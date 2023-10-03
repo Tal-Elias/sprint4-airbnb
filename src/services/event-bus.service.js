@@ -16,10 +16,10 @@ function createEventEmitter() {
     }
 }
 
-export const eventBus = createEventEmitter()
+export const eventBusService = createEventEmitter()
 
 export function showUserMsg(msg) {
-    eventBus.emit(SHOW_MSG, msg)
+    eventBusService.emit(SHOW_MSG, msg)
 }
 
 export function showSuccessMsg(txt) {

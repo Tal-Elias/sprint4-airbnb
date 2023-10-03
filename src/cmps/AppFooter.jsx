@@ -1,5 +1,5 @@
 
-import { UserMsg } from './UserMsg.jsx'
+import { UserMsg } from './UserMsg'
 
 export function AppFooter() {
     return (
