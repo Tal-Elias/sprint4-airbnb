@@ -2,17 +2,18 @@ header.app-header {
     height: 80px;
     background-color: $clr2;
     position: relative;
-
+    
     .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-
+    
     .logo-container {
         display: flex;
         align-items: center;
         gap: 7px;
+        cursor: pointer;
 
         img {
             width: 32px;
@@ -22,7 +23,7 @@ header.app-header {
             font-family: airbnb-cereal-md;
             font-size: 22px;
             font-weight: 700;
-            color: $clr1;
+            color: $clr-brand;
             line-height: lh(22px, 22px);
         }
     }

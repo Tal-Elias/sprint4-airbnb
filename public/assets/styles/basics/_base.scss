@@ -3,13 +3,13 @@
 }
 
 // ::selection {
-//     background-color: $clr1;
-//     color: $clr6;
+//     background-color: $clr-brand;
+//     color: $clr-txt-primary;
 // }
 
 html {
     font-family: roboto;
-    color: $clr6;
+    color: $clr-txt-primary;
 }
 
 body {
