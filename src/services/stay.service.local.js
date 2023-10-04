@@ -74,53 +74,56 @@ function getEmptyStay() {
 
 
 // TEST DATA
-// storageService.post(STORAGE_KEY, {
-//     name: "Ribeira Charming Duplex",
-//     type: "House",
-//     imgUrls: ["https://e26e9b.jpg", "otherImg.jpg"],
-//     price: 80.00,
-//     summary: "Fantastic duplex apartment...",
-//     capacity: 8,
-//     amenities: [
-//         "TV",
-//         "Wifi",
-//         "Kitchen",
-//         "Smoking allowed",
-//         "Pets allowed",
-//         "Cooking basics"
-//     ],
-//     labels: [
-//         "Top of the world",
-//         "Trending",
-//         "Play",
-//         "Tropical"
-//     ],
-//     host: {
-//         _id: "u101",
-//         fullname: "Davit Pok",
-//         imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
-//     },
-//     loc: {
-//         country: "Portugal",
-//         countryCode: "PT",
-//         city: "Lisbon",
-//         address: "17 Kombo st",
-//         lat: -8.61308,
-//         lng: 41.1413
-//     },
-//     reviews: [
-//         {
-//             id: "madeId",
-//             txt: "Very helpful hosts. Cooked traditional...",
-//             rate: 4,
-//             by: {
-//                 _id: "u102",
-//                 fullname: "user2",
-//                 imgUrl: "/img/img2.jpg"
-//             }
-//         }
-//     ]
-// }).then(x => console.log(x))
+storageService.post(STORAGE_KEY, {
+    name: "Spacious SeaView villa",
+    type: "House",
+    // imgUrls: ["https://e26e9b.jpg", "otherImg.jpg"],
+    imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp"],
+    price: 744.00,
+    summary: "This spacious and charming villa has everything you need for an amazing holiday. Fully equipped for a self-catering stay for up to 6 guests, you will enjoy a private swimming pool 8x6 m, landscaped garden within your own  gated area for maximum comfort and privacy. Located across the road from Oroklini promenade where there is an open air gym, this beautiful villa is within easy walking distance of many cafes and restaurants and the 5 star Radisson Hotel.   The sunrises are awesome !",
+    capacity: 6,
+    amenities: [
+        "Public or shared beach access",
+        "Wifi - 9 Mbps",
+        "Free carport on premises - 2 spaces",
+        "TV",
+        "Kitchen",
+        "Dedicated workspace",
+        "Private outdoor pool - available all year, open 24 hours, pool toys",
+        "Free washer - In unit"
+    ],
+    labels: [
+        "Top of the world",
+        "Trending",
+        "Play",
+        "Tropical"
+    ],
+    host: {
+        _id: "u101",
+        fullname: "Davit Pok",
+        imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
+    },
+    loc: {
+        country: "Cyprus",
+        countryCode: "CY",
+        city: "Oroklini",
+        address: "",
+        lat: 34.968609, 
+        lng: 33.664848
+    },
+    reviews: [
+        {
+            id: "madeId",
+            txt: "Very helpful hosts. Cooked traditional...",
+            rate: 4,
+            by: {
+                _id: "u102",
+                fullname: "user2",
+                imgUrl: "/img/img2.jpg"
+            }
+        }
+    ]
+}).then(x => console.log(x))
 
 
 
