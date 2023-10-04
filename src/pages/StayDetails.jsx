@@ -52,6 +52,7 @@ export function StayDetails() {
             <div className="imgs-container">
                 {stay.imgUrls.map(url => <img src={url} />)}
             </div>
+            <StayReservation stay = {stay} />
         </section>
     )
 }
