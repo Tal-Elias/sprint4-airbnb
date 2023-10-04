@@ -10,7 +10,7 @@ export function LoginSignup(props) {
     useEffect(() => {
         loadUsers()
     }, [])
-
+    
     async function loadUsers() {
         const users = await userService.getUsers()
         setUsers(users)
@@ -51,9 +51,9 @@ export function LoginSignup(props) {
 
     return (
         <div className="login-page">
-            <p>
+            {/* <p>
                 <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
-            </p>
+            </p> */}
             {!isSignup && <form className="login-form" onSubmit={onLogin}>
                 <select
                     name="username"

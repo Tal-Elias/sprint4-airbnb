@@ -55,18 +55,18 @@ async function login(userCred) {
 }
 async function signup(userCred) {
     // userCred.score = 10000
-    // if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    // const user = await storageService.post('user', userCred)
-    const user = await httpService.post('auth/signup', userCred)
+    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    const user = await storageService.post('user', userCred)
+    // const user = await httpService.post('auth/signup', userCred)
     return saveLocalUser(user)
 }
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    return httpService.post('auth/logout')
+    // return httpService.post('auth/logout')
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score }
+    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -84,9 +84,8 @@ function getLoggedinUser() {
 
 
 // ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
+//     await userService.signup({fullname: 'Host', username: 'host', password:'123', isHost: true})
+//     await userService.signup({fullname: 'Guest', username: 'guest', password:'123', isHost: false})
 // })()
 
 
