@@ -12,6 +12,13 @@ export function StayDetails() {
     const { stayId } = useParams()
     const navigate = useNavigate()
     console.log('stayId', stayId)
+    const order = {
+        startDate:"2025/10/15",
+        endDate:"2025/10/17",
+        adults: 1,
+        kids:2
+    }
+    const orderUrl= new URLSearchParams(order).toString()
 
     useEffect(() => {
         loadStay()
@@ -41,7 +48,7 @@ export function StayDetails() {
                     <button className="save-btn">save</button>
                 </div>
             </div>
-            <button onClick={() => navigate(`/book/${order._id}`)}>Reserve</button>
+            <button onClick={() => navigate(`/stay/${stay._id}/book?${orderUrl}`)}>Reserve</button>
             <img src={`${stay.imgUrls[0]}`} />
             <div className="imgs-container">
                 {stay.imgUrls.map(url => <img src={url} />)}

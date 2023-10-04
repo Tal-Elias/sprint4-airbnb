@@ -157,8 +157,6 @@ async function query(filterBy = { txt: '', price: 0 }) {
 }
 
 function getById(stayId) {
-    console.log('hellllllllo')
-
     return storageService.get(STORAGE_KEY, stayId)
 }
 
