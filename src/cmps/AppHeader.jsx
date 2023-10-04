@@ -34,7 +34,7 @@ export function AppHeader() {
     }
 
     return (
-        <header className="app-header">
+        <header className="app-header main-layout full">
             <nav>
                 {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
 

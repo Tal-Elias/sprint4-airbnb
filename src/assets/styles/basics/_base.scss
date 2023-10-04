@@ -8,24 +8,30 @@
 // }
 
 html {
-    font-family: roboto;
+    font-family: roboto, sans-serif;
     color: $clr6;
 }
 
 body {
-    font-size: rem(14px);
+    font-size: 14px;
     margin: 0;
+    background-color: $clr2;
+    line-height: 1.43;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: roboto;
-    margin: 0 0 0.6em;
-    line-height: 1;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 600;
 }
 
-section, main, footer {
-    
-}
+section,
+main,
+footer {}
 
 img {
     width: 100%;
@@ -37,9 +43,10 @@ p {
 
 a {
     text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+    &:visited {
+        color: inherit;
+    }
 }
-
-a:hover {
-    text-decoration: underline;
-}
-

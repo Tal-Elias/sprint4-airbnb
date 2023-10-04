@@ -1,7 +1,21 @@
-.app-footer{
-    // background-color: #111;
-    // color: $clr4;
-    // padding: 20px;
-    // margin: 10px;
-    // text-align: center;
+// .app-footer{
+// background-color: #111;
+// color: $clr4;
+// padding: 20px;
+// margin: 10px;
+// text-align: center;
+// }
+
+footer.app-footer {
+    position: fixed;
+    bottom: 0;
+    padding: 14px 0;
+
+    span.seperator {
+        display: inline-block;
+        text-align: center;
+        width: 19px;
+        font-size: 0.875rem;
+        line-height: 1.125rem;
+    }
 }
