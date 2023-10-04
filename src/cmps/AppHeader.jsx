@@ -1,58 +1,21 @@
 import routes from '../routes'
 import { Link, NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { login, logout, signup } from '../store/actions/user.actions'
-import { LoginSignup } from './LoginSignup.jsx'
 
 export function AppHeader() {
-    const user = useSelector(storeState => storeState.userModule.user)
-
-    async function onLogin(credentials) {
-        try {
-            const user = await login(credentials)
-            showSuccessMsg(`Welcome: ${user.fullname}`)
-        } catch (err) {
-            showErrorMsg('Cannot login')
-        }
-    }
-    async function onSignup(credentials) {
-        try {
-            const user = await signup(credentials)
-            showSuccessMsg(`Welcome new user: ${user.fullname}`)
-        } catch (err) {
-            showErrorMsg('Cannot signup')
-        }
-    }
-    async function onLogout() {
-        try {
-            await logout()
-            showSuccessMsg(`Bye now`)
-        } catch (err) {
-            showErrorMsg('Cannot logout')
-        }
-    }
-
     return (
         <header className="app-header main-layout full">
-            <nav>
-                {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-
-                {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.imgUrl && <img src={user.imgUrl} />}
-                        </Link>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                }
-                {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                }
-            </nav>
-            <h1>My App</h1>
+            <div className="container">
+                <Link to={'/'}>
+                    <div className='logo-container'>
+                        <img src="assets/img/bnb_logo.png" alt="" />
+                        <h1 className="logo">airbnb</h1>
+                    </div>
+                </Link>
+                <div className="main-search">I'm search bar</div>
+                <nav>
+                    {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
+                </nav>
+            </div>
         </header>
     )
 }
