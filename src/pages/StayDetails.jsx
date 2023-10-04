@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { stayService } from "../services/stay.service.local.js"
 import { utilService } from "../services/util.service.js"
 import { useSelector } from 'react-redux'
+import { StayReservation } from "../cmps/StayReservation.jsx"
 
 
 
@@ -11,14 +12,12 @@ export function StayDetails() {
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
     const navigate = useNavigate()
-    console.log('stayId', stayId)
 
     useEffect(() => {
         loadStay()
     }, [stayId])
 
     async function loadStay() {
-        console.log('dddddddddddddddddddddddddddd')
         try {
             const stay = await stayService.getById(stayId)
             setStay(stay)
@@ -42,11 +41,10 @@ export function StayDetails() {
                 </div>
             </div>
             <button onClick={() => navigate(`/book/${order._id}`)}>Reserve</button>
-            <img src={`${stay.imgUrls[0]}`} />
             <div className="imgs-container">
                 {stay.imgUrls.map(url => <img src={url} />)}
             </div>
-            {/* <img src={`${stay.imgUrls[3]}`} /> */}
+            <StayReservation stay={stay} />
         </section>
     )
 }

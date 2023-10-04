@@ -20,7 +20,7 @@ const gStays = [
         name: "Ribeira Charming Duplex",
         type: "House",
         imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp", "otherImg.jpg"],
-        price: 80.00,
+        price: 80,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
         amenities: [
@@ -68,7 +68,7 @@ const gStays = [
         name: "Spacious SeaView villa",
         type: "House",
         imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp"],
-        price: 744.00,
+        price: 744,
         summary: "This spacious and charming villa has everything you need for an amazing holiday. Fully equipped for a self-catering stay for up to 6 guests, you will enjoy a private swimming pool 8x6 m, landscaped garden within your own  gated area for maximum comfort and privacy. Located across the road from Oroklini promenade where there is an open air gym, this beautiful villa is within easy walking distance of many cafes and restaurants and the 5 star Radisson Hotel.   The sunrises are awesome !",
         capacity: 6,
         amenities: [
