@@ -40,7 +40,10 @@ export function StayDetails() {
                 <button className="save-btn">save</button>
                 </div>
             </div>
-            <img src={`${stay.imgUrls[3]}`} />
+            <div className="imgs-container">
+            {stay.imgUrls.map(url => <img src={url}/>)}
+            </div>
+            {/* <img src={`${stay.imgUrls[3]}`} /> */}
         </section>
     )
 }

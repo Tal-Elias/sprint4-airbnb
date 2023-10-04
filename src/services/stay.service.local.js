@@ -30,7 +30,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
 
 function getById(stayId) {
     console.log('hellllllllo')
-    
+
     return storageService.get(STORAGE_KEY, stayId)
 }
 
@@ -115,7 +115,7 @@ const demoData = [
                 txt: "Very helpful hosts. Cooked traditional...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    // _id: "u102",
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -162,7 +162,7 @@ const demoData = [
                 txt: "Very helpful hosts. Cooked traditional...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    // _id: "u102",
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -172,11 +172,10 @@ const demoData = [
 ]
 
 
-demoData.forEach(data => {
-    console.log('data:',data)
-    
-    storageService.post(STORAGE_KEY, data)
-})
+// demoData.forEach(data => {
+//     storageService.post(STORAGE_KEY, data)
+//         .then(console.log('saved in storage:', data))
+// })
 
 
 

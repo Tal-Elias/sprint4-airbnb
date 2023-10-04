@@ -1,4 +1,3 @@
-
 .details-header {
     display: flex;
     justify-content: space-between;
@@ -13,6 +12,37 @@
     color: $clr8;
     background-color: $clr2;
     cursor: pointer;
+    font-weight: 600;
+}
+
+.imgs-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 50% 50%;
+    gap: 8px;
+
+    // border-bottom-right-radius: 12px;
+
+
+}
+
+img:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+img:nth-child(3) {
+    border-top-right-radius: 12px;
+}
+
+img:nth-child(5) {
+    border-bottom-right-radius: 12px;
 }
 
 
+// display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+//     grid-auto-flow: dense;
+//     gap: 10px;
