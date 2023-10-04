@@ -1,7 +1,46 @@
+import { useEffect, useState } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { stayService } from "../services/stay.service.local.js"
+import { utilService } from "../services/util.service.js"
+import { useSelector } from 'react-redux'
+
 
 
 export function StayDetails() {
+
+    const [stay, setStay] = useState(null)
+    const { stayId } = useParams()
+    console.log('stayId', stayId)
+
+    useEffect(() => {
+        loadStay()
+    }, [stayId])
+
+    async function loadStay() {
+        console.log('dddddddddddddddddddddddddddd')
+        try {
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Had issues in stay details', err)
+            showErrorMsg('Cannot load stay')
+            navigate('/stay')
+        }
+    }
+    console.log(stay)
+    if (!stay) return (
+        <div>loading</div>
+    )
     return (
-        <div>AirBNB</div>
+        <section className="stay-details">
+            <div className="details-header">
+                <h1>{`${stay.name}`}</h1>
+                <div className="save-btn-container">
+                <div>💓</div>
+                <button className="save-btn">save</button>
+                </div>
+            </div>
+            <img src={`${stay.imgUrls[3]}`} />
+        </section>
     )
 }

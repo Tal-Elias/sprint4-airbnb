@@ -1,3 +1,18 @@
 
+.details-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.save-btn {
+    color: $clr8;
+    background-color: $clr2;
+    cursor: pointer;
+}
 
 
