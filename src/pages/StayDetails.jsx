@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { stayService } from "../services/stay.service.local.js"
 import { utilService } from "../services/util.service.js"
 import { useSelector } from 'react-redux'
-import { StayReservation } from "../cmps/StayReservation.jsx"
 
 
 
@@ -48,12 +47,11 @@ export function StayDetails() {
                     <button className="save-btn">save</button>
                 </div>
             </div>
-            <button onClick={() => navigate(`/book/${order._id}`)}>Reserve</button>
+            <button onClick={() => navigate(`/stay/${stay._id}/book?${orderUrl}`)}>Reserve</button>
             <img src={`${stay.imgUrls[0]}`} />
             <div className="imgs-container">
                 {stay.imgUrls.map(url => <img src={url} />)}
             </div>
-            {/* <img src={`${stay.imgUrls[3]}`} /> */}
         </section>
     )
 }
