@@ -1,51 +1,30 @@
-.app-header {
+header.app-header {
+    height: 80px;
     background-color: $clr2;
+    position: relative;
 
-    .user-info {
-        // background-color: $clr2;
-        // padding: 2px 8px;
-        padding-left: 100px;
-        color: $clr1;
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .score {
-            background-color: $clr2;
-            color: $clr6;
-            padding: 8px;
-            margin: 10px;
-            border-radius: 50%;
-        }
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 7px;
 
         img {
             width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
+        }
+
+        h1 {
+            font-family: airbnb-cereal-md;
+            font-size: 22px;
+            font-weight: 700;
+            color: $clr1;
+            line-height: lh(22px, 22px);
         }
     }
-
-    .user-info .btn-link {
-        color: $clr2;
-    }
-
-    nav {
-        font-size: .8em;
-        background-color: $clr5;
-        padding: 5px;
-
-    }
-
-    nav a:first-child {
-        margin-right: 30px;
-    }
-
-    nav a:not(:first-child) {
-        border-top: 1px solid $clr1;
-        padding: 0 5px;
-        margin: 10px;
-    }
-
-    nav .active {
-        color: $clr1;
-    }
-
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
 }

@@ -73,7 +73,7 @@ function getEmptyStay() {
 }
 
 
-// // TEST DATA
+// TEST DATA
 // storageService.post(STORAGE_KEY, {
 //     name: "Ribeira Charming Duplex",
 //     type: "House",

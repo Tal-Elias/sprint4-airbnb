@@ -19,7 +19,6 @@ export function StayIndex() {
 
     return (
         <section className="stay-index">
-            {/* <CategoriesFilter /> */}
             <StayList stays={stays} />
         </section>
     )
