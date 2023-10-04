@@ -13,72 +13,13 @@ export const stayService = {
     getEmptyStay,
     addStayMsg
 }
-window.cs = stayService
 
-
-async function query(filterBy = { txt: '', price: 0 }) {
-    var stays = await storageService.query(STORAGE_KEY)
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
-    }
-    if (filterBy.price) {
-        stays = stays.filter(stay => stay.price <= filterBy.price)
-    }
-    return stays
-}
-
-function getById(stayId) {
-    console.log('hellllllllo')
-    
-    return storageService.get(STORAGE_KEY, stayId)
-}
-
-async function remove(stayId) {
-    // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, stayId)
-}
-
-async function save(stay) {
-    var savedStay
-    if (stay._id) {
-        savedStay = await storageService.put(STORAGE_KEY, stay)
-    } else {
-        // Later, owner is set by the backend
-        stay.owner = userService.getLoggedinUser()
-        savedStay = await storageService.post(STORAGE_KEY, stay)
-    }
-    return savedStay
-}
-
-async function addStayMsg(stayId, txt) {
-    // Later, this is all done by the backend
-    const stay = await getById(stayId)
-    if (!stay.msgs) stay.msgs = []
-
-    const msg = {
-        id: utilService.makeId(),
-        by: userService.getLoggedinUser(),
-        txt
-    }
-    stay.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, stay)
-
-    return msg
-}
-
-function getEmptyStay() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
-}
-
-const demoData = [
+const gStays = [
     {
+        _id: 't101',
         name: "Ribeira Charming Duplex",
         type: "House",
-        imgUrls: ["https://e26e9b.jpg", "otherImg.jpg"],
+        imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp", "otherImg.jpg"],
         price: 80.00,
         summary: "Fantastic duplex apartment...",
         capacity: 8,
@@ -123,6 +64,7 @@ const demoData = [
         ]
     },
     {
+        _id: 't102',
         name: "Spacious SeaView villa",
         type: "House",
         imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp"],
@@ -171,13 +113,107 @@ const demoData = [
     }
 ]
 
+const gOrders = [
+    {
+        "_id": "o1225",
+        "hostId": "u102",
+        "buyer": {
+            "_id": "u101",
+            "fullname": "User 1"
+        },
+        "totalPrice": 160,
+        "startDate": "2025/10/15",
+        "endDate": "2025/10/17",
+        "guests": {
+            "adults": 1,
+            "kids": 2
+        },
+        "stay": {
+            "_id": "h102",
+            "name": "House Of Uncle My",
+            "price": 80.00
+        },
+        "msgs": [],
+        "status": "pending" // approved, rejected
+    }
+]
 
-demoData.forEach(data => {
-    console.log('data:',data)
-    
-    storageService.post(STORAGE_KEY, data)
-})
+window.cs = stayService
+
+_createStays()
+_createOrders()
 
 
+async function query(filterBy = { txt: '', price: 0 }) {
+    var stays = await storageService.query(STORAGE_KEY)
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
+    }
+    if (filterBy.price) {
+        stays = stays.filter(stay => stay.price <= filterBy.price)
+    }
+    return stays
+}
 
+function getById(stayId) {
+    console.log('hellllllllo')
 
+    return storageService.get(STORAGE_KEY, stayId)
+}
+
+async function remove(stayId) {
+    // throw new Error('Nope')
+    await storageService.remove(STORAGE_KEY, stayId)
+}
+
+async function save(stay) {
+    var savedStay
+    if (stay._id) {
+        savedStay = await storageService.put(STORAGE_KEY, stay)
+    } else {
+        // Later, owner is set by the backend
+        stay.owner = userService.getLoggedinUser()
+        savedStay = await storageService.post(STORAGE_KEY, stay)
+    }
+    return savedStay
+}
+
+async function addStayMsg(stayId, txt) {
+    // Later, this is all done by the backend
+    const stay = await getById(stayId)
+    if (!stay.msgs) stay.msgs = []
+
+    const msg = {
+        id: utilService.makeId(),
+        by: userService.getLoggedinUser(),
+        txt
+    }
+    stay.msgs.push(msg)
+    await storageService.put(STORAGE_KEY, stay)
+
+    return msg
+}
+
+function getEmptyStay() {
+    return {
+        vendor: 'Susita-' + (Date.now() % 1000),
+        price: utilService.getRandomIntInclusive(1000, 9000),
+    }
+}
+
+function _createStays() {
+    let stays = utilService.loadFromStorage(STORAGE_KEY)
+    if (!stays || !stays.length) {
+        stays = gStays
+        utilService.saveToStorage(STORAGE_KEY, stays)
+    }
+}
+
+function _createOrders() {
+    let orders = utilService.loadFromStorage('orders')
+    if (!orders || !orders.length) {
+        orders = gOrders
+        utilService.saveToStorage('orders', orders)
+    }
+}

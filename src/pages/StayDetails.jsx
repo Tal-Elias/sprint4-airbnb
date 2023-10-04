@@ -10,6 +10,7 @@ export function StayDetails() {
 
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
+    const navigate = useNavigate()
     console.log('stayId', stayId)
 
     useEffect(() => {
@@ -36,11 +37,12 @@ export function StayDetails() {
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
                 <div className="save-btn-container">
-                <div>💓</div>
-                <button className="save-btn">save</button>
+                    <div>💓</div>
+                    <button className="save-btn">save</button>
                 </div>
             </div>
-            <img src={`${stay.imgUrls[3]}`} />
+            <button onClick={() => navigate(`/book/${order._id}`)}>Reserve</button>
+            <img src={`${stay.imgUrls[0]}`} />
         </section>
     )
 }

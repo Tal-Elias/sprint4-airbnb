@@ -6,7 +6,7 @@ import routes from './routes'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { StayDetails } from './pages/StayDetails'
-import { StayOrder } from './pages/StayOrder'
+import { StayBook } from './pages/StayBook'
 // import { UserDetails } from './pages/UserDetails'
 
 export function RootCmp() {
@@ -18,7 +18,7 @@ export function RootCmp() {
                 <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     <Route path="stay/:stayId" element={<StayDetails />} />
-                    <Route path="order/:id" element={<StayOrder />} />
+                    <Route path="book" element={<StayBook />} />
                     {/* <Route path="user/:id" element={<UserDetails />} /> */}
                 </Routes>
             </main>

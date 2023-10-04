@@ -26,7 +26,6 @@ export function getActionUpdateStay(stay) {
 export async function loadStays() {
     try {
         const stays = await stayService.query()
-        console.log('Stays from DB:', stays)
         store.dispatch({
             type: SET_STAYS,
             stays

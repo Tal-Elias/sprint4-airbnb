@@ -1,4 +1,4 @@
-export function StayOrder() {
+export function StayBook() {
     return (
         <div>AirBNB</div>
     )

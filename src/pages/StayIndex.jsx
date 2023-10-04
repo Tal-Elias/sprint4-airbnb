@@ -8,7 +8,7 @@ import { StayList } from '../cmps/StayList.jsx'
 export function StayIndex() {
 
     const stays = useSelector(storeState => storeState.stayModule.stays)
-
+    
     useEffect(() => {
         loadStays()
             .catch(err => {
