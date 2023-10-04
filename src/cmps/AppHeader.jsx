@@ -7,7 +7,7 @@ export function AppHeader() {
             <div className="container">
                 <Link to={'/'}>
                     <div className='logo-container'>
-                        <img src="assets/img/bnb_logo.png" alt="" />
+                        <img src="../../../../public/assets/img/bnb_logo.png" alt="" />
                         <h1 className="logo">airbnb</h1>
                     </div>
                 </Link>
