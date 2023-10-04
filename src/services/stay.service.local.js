@@ -56,7 +56,7 @@ const gStays = [
                 txt: "Very helpful hosts. Cooked traditional...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    // _id: "u102",
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
@@ -104,7 +104,7 @@ const gStays = [
                 txt: "Very helpful hosts. Cooked traditional...",
                 rate: 4,
                 by: {
-                    _id: "u102",
+                    // _id: "u102",
                     fullname: "user2",
                     imgUrl: "/img/img2.jpg"
                 }
