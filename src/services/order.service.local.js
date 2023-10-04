@@ -7,7 +7,7 @@ export const orderService = {
     query,
     getById,
     save,
-   
+
 }
 
 window.cs = orderService
@@ -24,6 +24,9 @@ async function query(filterBy = { txt: '', price: 0 }) {
 
     if (filterBy.hostId) {
         orders = orders.filter(order => order.hostId === filterBy.hostId)
+    }
+    if (filterBy.buyerId) {
+        orders = orders.filter(order => order.buyer._id === filterBy.buyerId)
     }
     return orders
 }
@@ -43,8 +46,8 @@ async function save(order) {
         savedOrder = await storageService.put(STORAGE_KEY, order)
     } else {
         // Later, owner is set by the backend
-        // const buyer = userService.getLoggedinUser()
-        // savedOrder.buyer = { _id, fullname } = buyer
+        const { _id, fullname } = userService.getLoggedinUser()
+        order.buyer = { _id, fullname }
         savedOrder = await storageService.post(STORAGE_KEY, order)
     }
     return savedOrder

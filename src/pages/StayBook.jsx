@@ -35,7 +35,6 @@ export function StayBook() {
             // navigate('/stay')
         }
     }
-    console.log('stayId', stayId)
     // console.log(window.location.href);
     // console.log('Hostname:', window.location.hostname);
     // console.log('Pathname:', window.location.pathname);
@@ -64,13 +63,11 @@ export function StayBook() {
         try {
             const savedOrder = await addOrder(order)
             showSuccessMsg(`Order added (id: ${savedOrder._id})`)
-            console.log(savedOrder)
         } catch (err) {
             showErrorMsg('Cannot add order')
         }
 
     }
-    console.log(orderDetails);
 
     return (
         <div>

@@ -38,7 +38,7 @@ const gStays = [
             "Tropical"
         ],
         host: {
-            _id: "u101",
+            _id: "SzgiV",
             fullname: "Davit Pok",
             imgUrl: "https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small",
         },
@@ -141,7 +141,7 @@ const gOrders = [
 window.cs = stayService
 
 _createStays()
-_createOrders()
+// _createOrders()
 
 
 async function query(filterBy = { txt: '', price: 0 }) {
@@ -208,10 +208,10 @@ function _createStays() {
     }
 }
 
-function _createOrders() {
-    let orders = utilService.loadFromStorage('orders')
-    if (!orders || !orders.length) {
-        orders = gOrders
-        utilService.saveToStorage('orders', orders)
-    }
-}
+// function _createOrders() {
+//     let orders = utilService.loadFromStorage('orders')
+//     if (!orders || !orders.length) {
+//         orders = gOrders
+//         utilService.saveToStorage('orders', orders)
+//     }
+// }

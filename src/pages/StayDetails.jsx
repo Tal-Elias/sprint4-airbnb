@@ -12,14 +12,13 @@ export function StayDetails() {
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
     const navigate = useNavigate()
-    console.log('stayId', stayId)
     const order = {
-        startDate:"2025/10/15",
-        endDate:"2025/10/17",
+        startDate: "2025/10/15",
+        endDate: "2025/10/17",
         adults: 1,
-        kids:2
+        kids: 2
     }
-    const orderUrl= new URLSearchParams(order).toString()
+    const orderUrl = new URLSearchParams(order).toString()
 
     useEffect(() => {
         loadStay()
@@ -35,7 +34,6 @@ export function StayDetails() {
             navigate('/stay')
         }
     }
-    console.log(stay)
     if (!stay) return (
         <div>loading</div>
     )
@@ -51,9 +49,9 @@ export function StayDetails() {
             <button onClick={() => navigate(`/stay/${stay._id}/book?${orderUrl}`)}>Reserve</button>
             <img src={`${stay.imgUrls[0]}`} />
             <div className="imgs-container">
-                {stay.imgUrls.map(url => <img src={url} />)}
+                {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
             </div>
-            <StayReservation stay = {stay} />
+            <StayReservation stay={stay} />
         </section>
     )
 }

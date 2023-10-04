@@ -2,13 +2,19 @@ header.app-header {
     height: 80px;
     background-color: $clr2;
     position: relative;
-    
+
+    nav {
+        a {
+            margin-left: 5px;
+        }
+    }
+
     .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .logo-container {
         display: flex;
         align-items: center;
@@ -27,5 +33,6 @@ header.app-header {
             line-height: lh(22px, 22px);
         }
     }
+
     box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
 }
