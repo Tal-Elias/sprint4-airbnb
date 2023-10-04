@@ -1,1 +1,18 @@
-.stay-preview {}
+.stay-preview {
+
+    // display: grid;
+    .stay-info {
+        display: grid;
+        .stay-loc{
+            text-overflow: ellipsis;
+            grid-row: 1;
+        }
+        .stay-rate{
+            grid-row: 1;
+            justify-self: end;
+        }
+        .stay-price{
+            grid-row: 3;
+        }
+    }
+}

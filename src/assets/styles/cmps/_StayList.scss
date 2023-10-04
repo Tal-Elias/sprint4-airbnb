@@ -1,20 +1,32 @@
-.stay-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    li {
-        background-color: $clr2;
-        color: $clr6;
-        padding: 5px;
-        margin: 5px;
-    }
-    a {
-        color: $clr1;
-        padding: 10px;
-    }    
-    h3 {
-        background-color: #ddd;
-        padding: 10px 5px;
-        margin: 5px;
-    }    
+// .stay-list {
+//     list-style: none;
+//     display: flex;
+//     flex-wrap: wrap;
+//     li {
+//         background-color: $clr2;
+//         color: $clr6;
+//         padding: 5px;
+//         margin: 5px;
+//     }
+//     a {
+//         color: $clr1;
+//         padding: 10px;
+//     }    
+//     h3 {
+//         background-color: #ddd;
+//         padding: 10px 5px;
+//         margin: 5px;
+//     }    
+// }
+
+.stay-list{
+    // list-style: none;
+    display: grid;
+    grid-auto-flow: row dense;
+    grid-gap: 40px 24px;
+    grid-auto-rows: minmax(min-content,max-content);
+    grid-template-columns: repeat(auto-fill,minmax(255px,1fr))
 }
+
+// grid-auto-rows: var(--breakpoint-grid_auto-rows, minmax(min-content,max-content) );
+// grid-template-columns: var(--breakpoint-grid_column-template, repeat(var(--breakpoint-grid_columns,1),minmax(0,1fr)) );
