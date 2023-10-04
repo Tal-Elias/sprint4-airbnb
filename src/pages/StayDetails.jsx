@@ -49,11 +49,10 @@ export function StayDetails() {
                 </div>
             </div>
             <button onClick={() => navigate(`/book/${order._id}`)}>Reserve</button>
-            <img src={`${stay.imgUrls[0]}`} />
             <div className="imgs-container">
                 {stay.imgUrls.map(url => <img src={url} />)}
             </div>
-            {/* <img src={`${stay.imgUrls[3]}`} /> */}
+            <StayReservation stay = {stay} />
         </section>
     )
 }
