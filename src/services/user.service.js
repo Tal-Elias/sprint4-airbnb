@@ -1,5 +1,7 @@
 import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
+import { utilService } from './util.service'
+
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -18,6 +20,24 @@ export const userService = {
 
 window.userService = userService
 
+const gUsers = [
+    {
+        fullname: 'Host',
+        username: 'host',
+        password: '123',
+        isHost: true,
+        _id: "SzgiV"
+    },
+    {
+        fullname: 'Guest',
+        username: 'guest',
+        password: '123',
+        isHost: false,
+        _id: "dhbsb"
+    }
+]
+
+_createUsers()
 
 function getUsers() {
     return storageService.query('user')
@@ -82,10 +102,18 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+function _createUsers() {
+    let users = utilService.loadFromStorage('user')
+    if (!users || !users.length) {
+        users = gUsers
+        utilService.saveToStorage('user', users)
+    }
+}
 
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Host', username: 'host', password:'123', isHost: true})
-//     await userService.signup({fullname: 'Guest', username: 'guest', password:'123', isHost: false})
+
+// ; (async () => {
+//     await userService.signup({ fullname: 'Host', username: 'host', password: '123', isHost: true, _id: "SzgiV" })
+//     await userService.signup({ fullname: 'Guest', username: 'guest', password: '123', isHost: false, _id: "dhbsb" })
 // })()
 
 
