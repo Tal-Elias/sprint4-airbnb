@@ -9,17 +9,30 @@ export function StayIndex() {
 
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
-    useEffect(async () => {
-        try {
-            await loadStays()
-        } catch (err) {
-            console.log('err:', err)
-            showErrorMsg('Cannot load toys')
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                await loadStays()
+            } catch (err) {
+                console.log('err:', err)
+                showErrorMsg('Cannot load stays')
+            }
         }
+
+        fetchData()
     }, [])
+
+    // useEffect(() => {
+    //     loadStays()
+    //         .catch(err => {
+    //             console.log('err:', err)
+    //             showErrorMsg('Cannot load stays')
+    //         })
+    // }, [])
 
     return (
         <section className="stay-index">
+            <div className="lables">Lables container</div>
             <StayList stays={stays} />
         </section>
     )

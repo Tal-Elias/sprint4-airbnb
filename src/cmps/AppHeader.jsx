@@ -13,7 +13,7 @@ import { FiMenu } from 'react-icons/fi'
 import { FaUser } from 'react-icons/fa'
 // import { HamburgerMenu } from './HamburgerMenu'
 
-export function AppHeader() {
+export function AppHeader({ isDetailsPage }) {
     const user = useSelector(storeState => storeState.userModule.user)
 
     async function onLogin(credentials) {
@@ -41,7 +41,7 @@ export function AppHeader() {
         }
     }
     return (
-        <header className='app-header main-layout full'>
+        <header className={`app-header full ${isDetailsPage ? 'details-layout' : 'main-layout'}`}>
             <div className='container'>
                 <Link to={'/'}>
                     <div className='logo-container'>

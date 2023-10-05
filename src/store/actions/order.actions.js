@@ -74,22 +74,20 @@ export async function updateOrder(order) {
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveOrderOptimistic(orderId) {
+export async function onRemoveOrderOptimistic(orderId) {
     store.dispatch({
         type: REMOVE_ORDER,
         orderId
     })
     showSuccessMsg('Order removed')
-
-    orderService.remove(orderId)
-        .then(() => {
-            console.log('Server Reported - Deleted Succesfully');
+    try {
+        await orderService.remove(orderId)
+        console.log('Server Reported - Deleted Succesfully');
+    } catch (err) {
+        showErrorMsg('Cannot remove order')
+        console.log('Cannot load orders', err)
+        store.dispatch({
+            type: UNDO_REMOVE_ORDER,
         })
-        .catch(err => {
-            showErrorMsg('Cannot remove order')
-            console.log('Cannot load orders', err)
-            store.dispatch({
-                type: UNDO_REMOVE_ORDER,
-            })
-        })
+    }
 }

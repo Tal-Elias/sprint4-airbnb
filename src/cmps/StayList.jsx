@@ -6,11 +6,11 @@ export function StayList({ stays }) {
         <section >
             <ul className="stay-list clean-list">
                 {stays.map(stay =>
-                    <Link to={`/stay/${stay._id}`}>
-                        <li key={stay._id}>
+                    <li key={stay._id}>
+                        <Link to={`/stay/${stay._id}`}>
                             <StayPreview stay={stay} />
-                        </li>
-                    </Link>
+                        </Link>
+                    </li>
                 )}
             </ul>
         </section>
