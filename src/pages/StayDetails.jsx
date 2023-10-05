@@ -4,6 +4,7 @@ import { stayService } from "../services/stay.service.local.js"
 import { utilService } from "../services/util.service.js"
 import { useSelector } from 'react-redux'
 import { StayReservation } from "../cmps/StayReservation.jsx"
+import { CiHeart } from 'react-icons/ci'
 
 
 
@@ -42,7 +43,7 @@ export function StayDetails() {
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
                 <div className="save-btn-container">
-                    <div>💓</div>
+                    <CiHeart />
                     <button className="save-btn">save</button>
                 </div>
             </div>
