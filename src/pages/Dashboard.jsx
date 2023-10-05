@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { loadOrders } from "../store/actions/order.actions"
 import { orderService } from "../services/order.service.local"
 import { showErrorMsg } from "../services/event-bus.service"
@@ -37,6 +38,7 @@ export function Dashboard() {
 
     return (
         <section className="dashboard">
+            <Link to='stay/edit'>Create Listing</Link>
             <ul className="clean-list">
                 {orders.map(o => <li key={o._id}>
                     <h2>Guest: {o.buyer.fullname}</h2>

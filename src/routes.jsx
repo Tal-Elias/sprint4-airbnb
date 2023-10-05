@@ -1,4 +1,5 @@
 import { Dashboard } from './pages/Dashboard.jsx'
+import { StayEdit } from './pages/StayEdit.jsx'
 import { StayIndex } from './pages/StayIndex.jsx'
 import { UserTrips } from './pages/UserTrips.jsx'
 import { UserWishList } from './pages/UserWishlist.jsx'
@@ -24,6 +25,11 @@ const routes = [
         path: 'dashboard',
         component: <Dashboard />,
         label: 'Dashboard'
+    },
+    {
+        path: 'dashboard/stay/edit',
+        component: <StayEdit />,
+        label: 'edit'
     }
 ]
 
