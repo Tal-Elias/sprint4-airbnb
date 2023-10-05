@@ -26,6 +26,7 @@
     grid-gap: 40px 24px;
     grid-auto-rows: minmax(min-content, max-content);
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    margin-block-start: 16px;
 
     li {
         cursor: pointer;

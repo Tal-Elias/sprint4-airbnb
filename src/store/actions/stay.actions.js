@@ -94,22 +94,20 @@ export async function setCurrStay(stayId) {
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveStayOptimistic(stayId) {
+export async function onRemoveStayOptimistic(stayId) {
     store.dispatch({
         type: REMOVE_STAY,
         stayId
     })
     showSuccessMsg('Stay removed')
-
-    stayService.remove(stayId)
-        .then(() => {
-            console.log('Server Reported - Deleted Succesfully');
+    try {
+        await stayService.remove(stayId)
+        console.log('Server Reported - Deleted Succesfully');
+    } catch (err) {
+        showErrorMsg('Cannot remove stay')
+        console.log('Cannot load stays', err)
+        store.dispatch({
+            type: UNDO_REMOVE_STAY,
         })
-        .catch(err => {
-            showErrorMsg('Cannot remove stay')
-            console.log('Cannot load stays', err)
-            store.dispatch({
-                type: UNDO_REMOVE_STAY,
-            })
-        })
+    }
 }

@@ -22,10 +22,17 @@ export function StayIndex() {
         fetchData()
     }, [])
 
-    console.log(stays)
+    // useEffect(() => {
+    //     loadStays()
+    //         .catch(err => {
+    //             console.log('err:', err)
+    //             showErrorMsg('Cannot load stays')
+    //         })
+    // }, [])
 
     return (
         <section className="stay-index">
+            <div className="lables">Lables container</div>
             <StayList stays={stays} />
         </section>
     )

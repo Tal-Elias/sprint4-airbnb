@@ -1,25 +1,49 @@
 /* Media queries Breakpoint mixins */
 
-@mixin for-mobile-layout {
-    @media (max-width: $mobile-breakpoint) {
+@mixin main-for-mobile-layout {
+    @media (max-width: $main-layout-narrow-breakpoint) {
         @content;
     }
 }
 
-@mixin for-narrow-layout {
-    @media (min-width: $narrow-breakpoint) {
+@mixin main-for-narrow-layout {
+    @media (min-width: $main-layout-narrow-breakpoint) {
         @content;
     }
 }
 
-@mixin for-normal-layout {
-    @media (min-width: $normal-breakpoint) {
+@mixin main-for-normal-layout {
+    @media (min-width: $main-layout-normal-breakpoint) {
         @content;
     }
 }
 
-@mixin for-wide-layout {
-    @media (min-width: $wide-breakpoint) {
+@mixin main-for-wide-layout {
+    @media (min-width: $main-layout-wide-breakpoint) {
+        @content;
+    }
+}
+
+@mixin details-for-mobile-layout {
+    @media (max-width: $details-layout-narrow-breakpoint) {
+        @content;
+    }
+}
+
+@mixin details-for-narrow-layout {
+    @media (min-width: $details-layout-narrow-breakpoint) {
+        @content;
+    }
+}
+
+@mixin details-for-normal-layout {
+    @media (min-width: $details-layout-normal-breakpoint) {
+        @content;
+    }
+}
+
+@mixin details-for-wide-layout {
+    @media (min-width: $details-layout-wide-breakpoint) {
         @content;
     }
 }

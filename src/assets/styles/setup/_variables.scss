@@ -13,6 +13,12 @@ $clr9: rgb(221, 221, 221);
 $layoutPadding: 24px;
 
 // Breakpoints
-$narrow-breakpoint: 744px;
-$normal-breakpoint: 1440px;
-$wide-breakpoint: 2520px;
+// MAIN
+$main-layout-narrow-breakpoint: 744px;
+$main-layout-normal-breakpoint: 1440px;
+$main-layout-wide-breakpoint: 2550px;
+
+// DETAILS
+$details-layout-narrow-breakpoint: 744px;
+$details-layout-normal-breakpoint: 1128px;
+$details-layout-wide-breakpoint: 1300px;

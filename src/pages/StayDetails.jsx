@@ -55,11 +55,25 @@ export function StayDetails() {
     )
     return (
         <section className="stay-details">
+            <Link to={`/stay/${stay._id}/book?${orderUrl}`}>
+                <button>Reserve</button>
+            </Link>
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
-                <div className="save-btn-container">
-                    <CiHeart />
-                    <button className="save-btn">save</button>
+            </div>
+            <div className="imgs-container">
+                {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
+            </div>
+        </section>
+    )
+}
+
+{/* <section className="stay-details">
+            <div className="details-header">
+                <h1>{`${stay.name}`}</h1>
+                <div className="btn-save-container">
+                    <div>💓</div>
+                    <button className="btn-save">save</button>
                 </div>
             </div>
             <Link to={`/stay/order`}>
@@ -67,8 +81,6 @@ export function StayDetails() {
             </Link>
             <div className="imgs-container">
                 {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
-            </div>
-            {/* <StayReservation stay={stay} /> */}
-        </section>
-    )
-}
+            </div> */}
+{/* <StayReservation stay={stay} /> */ }
+{/* </section> */ }
