@@ -1,6 +1,6 @@
 import routes from '../routes'
 import { Link, NavLink } from 'react-router-dom'
-import Logo from '../../public/assets/img/logo.png'
+import Logo from '../assets/img/logo.png'
 import { useNavigate } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
 import { StaySearchBar } from './StaySearchBar'
@@ -8,6 +8,10 @@ import { useSelector } from 'react-redux'
 import { LoginSignup } from './LoginSignup'
 import { login, logout, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { FaSearch } from 'react-icons/fa'
+import { TbWorld } from 'react-icons/tb'
+import { FiMenu } from 'react-icons/fi'
+import { FaUser } from 'react-icons/fa'
 // import { HamburgerMenu } from './HamburgerMenu'
 
 export function AppHeader() {
@@ -44,9 +48,17 @@ export function AppHeader() {
             <div className='container'>
                 <div className='logo-container' onClick={() => navigate('/')}>
                     <img src={Logo} alt='' />
-                    <h1 className='logo'>airbnb</h1>
+                    <h1 className='logo'>hairbnb</h1>
                 </div>
                 <div className='header-search-bar'>
+                </div>
+                <div className='search-bar-buttons flex' >
+                    <div>Anywhere</div>
+                    <span className="seperator"></span>
+                    <div>Any week</div>
+                    <span className="seperator"></span>
+                    <div>Add guests</div>
+                    <button><FaSearch /></button>
                 </div>
                 {user &&
                     <span className="user-info">
@@ -62,9 +74,16 @@ export function AppHeader() {
                         <LoginSignup onLogin={onLogin} onSignup={onSignup} />
                     </section>
                 }
-                <nav>
+                <TbWorld className='globe-icon' />
+                <div className='burger-menu'>
+                    <FiMenu />
+                    <div className='avatar'>
+                        <FaUser className='avatar-icon' />
+                    </div>
+                </div>
+                {/* <nav>
                     {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-                </nav>
+                </nav> */}
                 {/* <HamburgerMenu /> */}
             </div>
         </header>

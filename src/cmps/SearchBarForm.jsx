@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
+import { FaSearch } from 'react-icons/fa'
 
 
 export function SearchBarForm() {
@@ -42,54 +43,42 @@ export function SearchBarForm() {
   return (
     <form onSubmit={handleFormSubmit}>
       <div>
-        <label>Text Input:</label>
+        <label>Where:</label>
         <input
           type="text"
           value={textInput}
           onChange={handleInputChange}
         />
       </div>
-      <div>
-        <label>Date Picker:</label>
+      <div className='date-picker flex'>
+        <label>Check in:</label>
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
         />
+        <label>Check out:</label>
         <DatePicker
           selected={endtDate}
           onChange={(date) => setEndDate(date)}
         />
       </div>
-      <div>
+      {/* <div>
         <label>Select Option:</label>
         <Select
           options={options}
           value={selectedOption}
           onChange={handleOptionChange}
         />
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <label>Count:</label>
         <button onClick={() => handleCountChange(1)}>+</button>
         <span>{count}</span>
         <button onClick={() => handleCountChange(-1)}>-</button>
-      </div>
+      </div> */}
       <div>
-        <button type="submit">Search</button>
+        <button type="submit">Search<FaSearch /></button>
       </div>
     </form>
   );
 }
-
-
-
-
-
-
-// <div className='search-bar-buttons' >
-//     <button className='search-anywhere'>Anywhere</button>
-//     <span className='splitter'></span>
-//     <button className='search-any-week'>Any week</button>
-//     <span className='splitter'></span>
-//     <button className='search-add-guests'>Add guests</button>
-// </div>
