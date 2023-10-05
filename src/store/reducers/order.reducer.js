@@ -42,6 +42,7 @@ export function orderReducer(state = initialState, action) {
             break
 
         case SET_CURR_ORDER:
+            console.log('action:', action)
             // newState = { ...state, currOrder: action.currOrder }
             newState = { ...state, currOrder:{...state.currOrder, ...action.currOrder }  }
             break

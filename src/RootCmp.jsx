@@ -20,7 +20,7 @@ export function RootCmp() {
                 <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     <Route path="stay/:stayId" element={<StayDetails />} />
-                    <Route path="stay/:stayId/order" element={<StayOrder />} />
+                    <Route path="stay/order" element={<StayOrder />} />
                     {/* <Route path="user/:id" element={<UserDetails />} /> */}
                 </Routes>
             </main>

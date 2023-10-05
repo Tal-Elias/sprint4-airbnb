@@ -12,7 +12,7 @@ export function StayIndex() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                await loadStays()
+            await loadStays()
             } catch (err) {
                 console.log('err:', err)
                 showErrorMsg('Cannot load stays')
@@ -22,6 +22,7 @@ export function StayIndex() {
         fetchData()
     }, [])
 
+    console.log(stays)
 
     return (
         <section className="stay-index">

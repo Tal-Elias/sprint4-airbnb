@@ -1,8 +1,9 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { addOrder, setCurrOrder } from "../store/actions/order.actions";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
 import { orderService } from "../services/order.service.local";
+import { setCurrStay } from "../store/actions/stay.actions";
 
 export function StayOrder() {
     const order = useSelector((storeState) => storeState.orderModule.currOrder)
@@ -10,8 +11,9 @@ export function StayOrder() {
 
     useEffect(() => {
 
-        return ()=>{
-           setCurrOrder(orderService.getEmptyOrder()) 
+        return () => {
+            setCurrOrder(orderService.getEmptyOrder())
+            setCurrStay(null)
         }
     }, [])
 
@@ -23,7 +25,7 @@ export function StayOrder() {
             showErrorMsg('Cannot add order')
         }
     }
-
+    console.log('order in stayOrder:', order)
     return (
         <div>
             {order && stay && <section>

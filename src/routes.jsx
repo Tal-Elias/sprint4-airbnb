@@ -1,7 +1,7 @@
 import { Dashboard } from './pages/Dashboard.jsx'
 import { StayEdit } from './pages/StayEdit.jsx'
 import { StayIndex } from './pages/StayIndex.jsx'
-import { UserTrips } from './pages/UserTrips.jsx'
+import { UserOrders} from './pages/UserOrders.jsx'
 import { UserWishList } from './pages/UserWishlist.jsx'
 
 // Routes accesible from the main navigation (in AppHeader)
@@ -13,7 +13,7 @@ const routes = [
     },
     {
         path: 'trip',
-        component: <UserTrips />,
+        component: <UserOrders />,
         label: 'Trips'
     },
     {
