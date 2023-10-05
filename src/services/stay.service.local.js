@@ -483,8 +483,25 @@ async function addStayMsg(stayId, txt) {
 
 function getEmptyStay() {
     return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
+        // _id: utilService.makeId(),
+        name: '',
+        type: '',
+        imgUrls: ["https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/2_mwreys.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/1_gkubpt.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/3_ro5oet.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403545/Spacious%20SeaView%20villa/4_rhxf0x.webp", "https://res.cloudinary.com/dmhaze3tc/image/upload/v1696403546/Spacious%20SeaView%20villa/5_ku4axy.webp"],
+        price: 0,
+        summary: '',
+        capacity: 0,
+        amenities: [],
+        labels: [],
+        host: {},
+        loc: {
+        country: '',
+        countryCode: "PT",
+        city: '',
+        address: '',
+        lat: -8.61308,
+        lng: 41.1413,
+        },
+        reviews: []
     }
 }
 

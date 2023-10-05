@@ -1,3 +1,13 @@
 
+.add-stay {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    // text-align: center;
+
+    & input {
+        border-radius: .5em;
+    }
+}
 
 
