@@ -60,19 +60,17 @@ export async function addOrder(order) {
     }
 }
 
-export function updateOrder(order) {
-    return orderService.save(order)
-        .then(savedOrder => {
-            console.log('Updated Order:', savedOrder)
-            store.dispatch(getActionUpdateOrder(savedOrder))
-            return savedOrder
-        })
-        .catch(err => {
-            console.log('Cannot save order', err)
-            throw err
-        })
+export async function updateOrder(order) {
+    try {
+        const savedOrder = await orderService.save(order)
+        console.log('Updated Order:', savedOrder)
+        store.dispatch(getActionUpdateOrder(savedOrder))
+        return savedOrder
+    } catch (err) {
+        console.log('Cannot save order', err)
+        throw err
+    }
 }
-
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)

@@ -46,7 +46,9 @@ export function StayDetails() {
                     <button className="save-btn">save</button>
                 </div>
             </div>
-            <button onClick={() => navigate(`/stay/${stay._id}/book?${orderUrl}`)}>Reserve</button>
+            <Link to={`/stay/${stay._id}/book?${orderUrl}`}>
+                <button>Reserve</button>
+            </Link>
             <div className="imgs-container">
                 {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
             </div>

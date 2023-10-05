@@ -1,7 +1,6 @@
 import routes from '../routes'
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../assets/img/logo.png'
-import { useNavigate } from 'react-router-dom'
 import { FiSearch } from 'react-icons/fi'
 import { StaySearchBar } from './StaySearchBar'
 import { useSelector } from 'react-redux'
@@ -16,8 +15,6 @@ import { FaUser } from 'react-icons/fa'
 
 export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.user)
-
-    const navigate = useNavigate()
 
     async function onLogin(credentials) {
         try {
@@ -46,10 +43,12 @@ export function AppHeader() {
     return (
         <header className='app-header main-layout full'>
             <div className='container'>
-                <div className='logo-container' onClick={() => navigate('/')}>
-                    <img src={Logo} alt='' />
-                    <h1 className='logo'>hairbnb</h1>
-                </div>
+                <Link to={'/'}>
+                    <div className='logo-container'>
+                        <img src={Logo} alt='' />
+                        <h1 className='logo'>hairbnb</h1>
+                    </div>
+                </Link>
                 <div className='header-search-bar'>
                 </div>
                 <div className='search-bar-buttons flex' >
