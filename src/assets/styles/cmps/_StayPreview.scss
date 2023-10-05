@@ -1,19 +1,23 @@
 .stay-preview {
-.stay-img{
-    border-radius: 5%;
-}
+    .stay-img {
+        border-radius: 5%;
+    }
+
     // display: grid;
     .stay-info {
         display: grid;
-        .stay-loc{
+
+        .stay-loc {
             text-overflow: ellipsis;
             grid-row: 1;
         }
-        .stay-rate{
+
+        .stay-rate {
             grid-row: 1;
             justify-self: end;
         }
-        .stay-price{
+
+        .stay-price {
             grid-row: 3;
         }
     }

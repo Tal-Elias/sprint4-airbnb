@@ -5,7 +5,7 @@ export function AppFooter() {
     return (
         <footer className="app-footer main-layout full">
             <div className="site-info">
-                <span> © 2023 Airbnb, Inc.</span>
+                <span> © 2023 Hairbnb, Inc.</span>
                 <span className="seperator">·</span>
                 <a href="#">Terms</a>
                 <span className="seperator">·</span>

@@ -19,13 +19,17 @@
 //     }    
 // }
 
-.stay-list{
+.stay-list {
     // list-style: none;
     display: grid;
     grid-auto-flow: row dense;
     grid-gap: 40px 24px;
-    grid-auto-rows: minmax(min-content,max-content);
-    grid-template-columns: repeat(auto-fill,minmax(255px,1fr))
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+
+    li {
+        cursor: pointer;
+    }
 }
 
 // grid-auto-rows: var(--breakpoint-grid_auto-rows, minmax(min-content,max-content) );

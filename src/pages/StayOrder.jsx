@@ -4,7 +4,7 @@ import { stayService } from "../services/stay.service.local";
 import { addOrder } from "../store/actions/order.actions";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 
-export function StayBook() {
+export function StayOrder() {
     const queryParams = new URL(window.location.href).searchParams;
     const orderDetails = {};
     for (const [key, value] of queryParams.entries()) {

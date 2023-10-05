@@ -20,7 +20,7 @@ export function UserTrips () {
         }
     }
 
-    if (!orders) return <div>is loading...</div>
+    if (!orders) return <div>Loading...</div>
 
     return (
         <section className="user-trips">

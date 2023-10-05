@@ -8,14 +8,20 @@ import { StayList } from '../cmps/StayList.jsx'
 export function StayIndex() {
 
     const stays = useSelector(storeState => storeState.stayModule.stays)
-    
+
     useEffect(() => {
-        loadStays()
-            .catch(err => {
+        const fetchData = async () => {
+            try {
+                await loadStays()
+            } catch (err) {
                 console.log('err:', err)
-                showErrorMsg('Cannot load toys')
-            })
+                showErrorMsg('Cannot load stays')
+            }
+        }
+
+        fetchData()
     }, [])
+
 
     return (
         <section className="stay-index">
