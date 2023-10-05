@@ -4,36 +4,26 @@ import { stayService } from "../services/stay.service.local.js"
 import { utilService } from "../services/util.service.js"
 import { useSelector } from 'react-redux'
 import { StayReservation } from "../cmps/StayReservation.jsx"
-
-
+import { setCurrStay } from "../store/actions/stay.actions.js"
 
 export function StayDetails() {
+    // const [stay, setStay] = useState(null)
+    const stay = useSelector((storeState) => storeState.stayModule.currStay)
 
-    const [stay, setStay] = useState(null)
     const { stayId } = useParams()
-    const navigate = useNavigate()
+
     const order = {
         startDate: "2025/10/15",
         endDate: "2025/10/17",
         adults: 1,
         kids: 2
     }
-    const orderUrl = new URLSearchParams(order).toString()
+    // const orderUrl = new URLSearchParams(order).toString()
 
     useEffect(() => {
-        loadStay()
+        setCurrStay(stayId)
     }, [stayId])
 
-    async function loadStay() {
-        try {
-            const stay = await stayService.getById(stayId)
-            setStay(stay)
-        } catch (err) {
-            console.log('Had issues in stay details', err)
-            showErrorMsg('Cannot load stay')
-            navigate('/stay')
-        }
-    }
     if (!stay) return (
         <div>loading</div>
     )
@@ -46,7 +36,7 @@ export function StayDetails() {
                     <button className="save-btn">save</button>
                 </div>
             </div>
-            <Link to={`/stay/${stay._id}/book?${orderUrl}`}>
+            <Link to={`/stay/${stay._id}/order`}>
                 <button>Reserve</button>
             </Link>
             <div className="imgs-container">

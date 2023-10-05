@@ -3,10 +3,12 @@ export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const UNDO_REMOVE_STAY = 'UNDO_REMOVE_STAY'
+export const SET_CURR_STAY = 'SET_CURR_STAY'
 
 
 const initialState = {
     stays: [],
+    currStay: null,
     lastRemovedStay: null
 }
 
@@ -17,7 +19,7 @@ export function stayReducer(state = initialState, action) {
         case SET_STAYS:
             newState = { ...state, stays: action.stays }
             // console.log('newState:',newState)
-            
+
             break
         case REMOVE_STAY:
             const lastRemovedStay = state.stays.find(stay => stay._id === action.stayId)
@@ -35,6 +37,10 @@ export function stayReducer(state = initialState, action) {
             if (state.lastRemovedStay) {
                 newState = { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
             }
+            break
+
+        case SET_CURR_STAY:
+            newState = { ...state, currStay: action.currStay }
             break
         default:
     }

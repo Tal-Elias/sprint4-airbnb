@@ -1,7 +1,7 @@
 import { stayService } from "../../services/stay.service.local.js";
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY } from "../reducers/stay.reducer.js";
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_CURR_STAY } from "../reducers/stay.reducer.js";
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -72,6 +72,13 @@ export async function updateStay(stay) {
     }
 }
 
+export function setCurrStay(stayId) {
+    const { stays } = store.getState().stayModule
+    const currStay = stays.find(stay => stay._id === stayId)
+    store.dispatch({ type: SET_CURR_STAY, currStay: currStay })
+    console.log(currStay)
+    return currStay
+}
 
 // Demo for Optimistic Mutation 
 // (IOW - Assuming the server call will work, so updating the UI first)
