@@ -2,6 +2,7 @@ header.app-header {
     height: 80px;
     background-color: $clr2;
     position: relative;
+    margin-block-end: 1.5em;
 
     .container {
         display: flex;

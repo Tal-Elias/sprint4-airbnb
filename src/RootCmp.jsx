@@ -16,7 +16,7 @@ export function RootCmp() {
         <div className="main-layout">
             <AppHeader />
             <main>
-                <StaySearchBar />
+                {/* <StaySearchBar /> */}
                 <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     <Route path="stay/:stayId" element={<StayDetails />} />

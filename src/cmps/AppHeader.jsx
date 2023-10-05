@@ -81,9 +81,9 @@ export function AppHeader() {
                         <FaUser className='avatar-icon' />
                     </div>
                 </div>
-                {/* <nav>
+                <nav>
                     {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-                </nav> */}
+                </nav>
                 {/* <HamburgerMenu /> */}
             </div>
         </header>

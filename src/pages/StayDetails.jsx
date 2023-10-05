@@ -50,7 +50,7 @@ export function StayDetails() {
             <div className="imgs-container">
                 {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
             </div>
-            <StayReservation stay={stay} />
+            {/* <StayReservation stay={stay} /> */}
         </section>
     )
 }
