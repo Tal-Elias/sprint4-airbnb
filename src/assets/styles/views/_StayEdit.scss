@@ -8,6 +8,15 @@
     & input {
         border-radius: .5em;
     }
+
+    & .imgs-container {
+        display: flex;
+        gap: 1em;
+
+        & img {
+            width: 100px;
+        }
+    }
 }
 
 
