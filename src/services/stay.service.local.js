@@ -459,7 +459,7 @@ async function save(stay) {
         savedStay = await storageService.put(STORAGE_KEY, stay)
     } else {
         // Later, owner is set by the backend
-        stay.owner = userService.getLoggedinUser()
+        stay.host = userService.getLoggedinUser()
         savedStay = await storageService.post(STORAGE_KEY, stay)
     }
     return savedStay

@@ -4,12 +4,14 @@ import { Formik, Field, Form } from 'formik';
 import { addStay } from '../store/actions/stay.actions.js'
 import { useEffect, useState } from "react"
 import { stayService } from '../services/stay.service.local.js';
+import { cloudinaryService } from '../services/cloudinary-service.js';
 import Multiselect from 'multiselect-react-dropdown';
 
 
 export function StayEdit() {
 
     const [newStay, setNewStay] = useState(stayService.getEmptyStay())
+    const [images, setImages] = useState([])
 
 
     function handleChange({ target }) {
@@ -29,19 +31,30 @@ export function StayEdit() {
     }
 
     function onRemoveLabel(event) {
-        setNewStay(prevState => ({...prevState, labels: event}))
+        setNewStay(prevState => ({ ...prevState, labels: event }))
     }
 
     function onSelectLabel(event) {
-        setNewStay(prevState => ({...prevState, labels: event}))
+        setNewStay(prevState => ({ ...prevState, labels: event }))
     }
 
     function onRemoveAmenity(event) {
-        setNewStay(prevState => ({...prevState, amenities: event}))
+        setNewStay(prevState => ({ ...prevState, amenities: event }))
     }
 
     function onSelectAmenity(event) {
-        setNewStay(prevState => ({...prevState, amenities: event}))
+        setNewStay(prevState => ({ ...prevState, amenities: event }))
+    }
+
+    async function handleImgSelected(ev) {
+        try {
+            const url = await cloudinaryService.uploadImg(ev)
+            setImages(prevState => [...prevState, url])
+            setNewStay(prevState => ({ ...prevState, imgUrls: images }))
+        }
+        catch (err) {
+            console.error(err)
+        }
     }
 
     async function handleSubmit(ev) {
@@ -61,6 +74,15 @@ export function StayEdit() {
                 <input type="text" name="city" placeholder='City' onChange={handleChange} />
                 <input type="text" name="country" placeholder='Country' onChange={handleChange} />
                 <input type="text" name="address" placeholder='adress' onChange={handleChange} />
+            </div>
+            <div className='flex column'>
+                <h3>Upload photos</h3>
+                <input type="file" onChange={handleImgSelected} />
+                <div className='imgs-container'>
+                    {/* {images.length && */}
+                       { images.map((url, idx) => <img key={idx} src={url} />)}
+                    {/* } */}
+                </div>
             </div>
             <div>
                 <h3>Capacity</h3>
