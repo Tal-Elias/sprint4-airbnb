@@ -74,7 +74,7 @@ export function AppHeader({ isDetailsPage }) {
                 }
                 <TbWorld className='globe-icon' />
                 <div className='burger-menu'>
-                    <FiMenu />
+                    <FiMenu className='icon-menu' />
                     <div className='avatar'>
                         <FaUser className='avatar-icon' />
                     </div>

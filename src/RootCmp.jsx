@@ -20,6 +20,7 @@ export function RootCmp() {
     useEffect(() => {
         if (location.pathname.startsWith('/stay/') ||
             location.pathname.startsWith('/trip') ||
+            location.pathname.startsWith('/wishlist') ||
             location.pathname.startsWith('/dashboard')) setIsDetailsPage(true)
         else setIsDetailsPage(false)
     }, [location])

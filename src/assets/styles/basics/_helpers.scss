@@ -25,6 +25,12 @@
     &.align-center {
         align-items: center;
     }
+    &.between {
+        justify-content: space-between
+    }
+    &.gap24 {
+        gap: 24px
+    }
 }
 
 // Media helpers
@@ -46,3 +52,23 @@
     margin: 0;
     list-style-type: none;
 }
+
+// border helpers
+.border-bottom {
+    border-bottom: 1px solid $clr-border;
+}
+
+// padding helpers
+.pt24 { padding-top: 24px; }
+.pb24 { padding-bottom: 24px; }
+.ptb24 { padding: 24px 0; }
+.pt32 { padding-top: 32px; }
+.pb32 { padding-bottom: 32px; }
+.ptb32 { padding: 32px 0; }
+.pt48 { padding-top: 48px; }
+.pb48 { padding-bottom: 48px; }
+.ptb48 { padding: 48px 0; }
+
+// img helpers
+.w24 { width: 24px; }
+.w40 { width: 40px; }
