@@ -10,7 +10,7 @@ export function LoginSignup(props) {
     useEffect(() => {
         loadUsers()
     }, [])
-    
+
     async function loadUsers() {
         const users = await userService.getUsers()
         setUsers(users)
