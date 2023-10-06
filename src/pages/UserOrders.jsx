@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux"
 import { orderService } from "../services/order.service.local"
 import { useEffect, useState } from "react"
+import { showErrorMsg } from "../services/event-bus.service"
 
-export function UserTrips () {
+export function UserOrders () {
     const user = useSelector((storeState) => storeState.userModule.user)
     const [orders, setOrders] = useState(null)
 

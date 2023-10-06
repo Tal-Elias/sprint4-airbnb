@@ -38,9 +38,11 @@ export function StayDetails() {
         // setCurrOrder((prevOrder)=>({...prevOrder,...updatedOrder}))
 
     }
-
     useEffect(() => {
         setCurrStay(stayId)
+    }, [])
+    
+    useEffect(() => {
         handleChange()
     }, [stay])
 
