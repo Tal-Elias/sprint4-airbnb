@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { loadOrders } from "../store/actions/order.actions"
 import { orderService } from "../services/order.service.local"
-import { showErrorMsg } from "../services/event-bus.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 export function Dashboard() {
     const user = useSelector((storeState) => storeState.userModule.user)
@@ -28,6 +28,7 @@ export function Dashboard() {
         try {
             const updatedOrder = await orderService.save(order)
             console.log('order approval:', updatedOrder)
+            showSuccessMsg('Order ' + status)
         } catch (error) {
             console.log('Error while updating order:', err)
             showErrorMsg('Cannot update order')
@@ -40,15 +41,15 @@ export function Dashboard() {
         <section className="dashboard">
             <Link to='stay/edit'>Create Listing</Link>
             <ul className="clean-list">
-                {orders.map(o => <li key={o._id}>
-                    <h2>Guest: {o.buyer.fullname}</h2>
-                    <h2>Check-in: {o.startDate}</h2>
-                    <h2>Checkout: {o.endDate}</h2>
-                    <h2>Listing: {o.stay.name}</h2>
-                    <h2>Total: ${o.totalPrice}</h2>
-                    <h2>Status: {o.status}</h2>
-                    <button onClick={() => onApprove(o, 'approved')}>Approve</button>
-                    <button onClick={() => onApprove(o, 'declined')}>Decline</button>
+                {orders.map(order => <li key={order._id}>
+                    <h2>Guest: {order.buyer.fullname}</h2>
+                    <h2>Check-in: {order.startDate}</h2>
+                    <h2>Checkout: {order.endDate}</h2>
+                    <h2>Listing: {order.stay.name}</h2>
+                    <h2>Total: ${order.totalPrice}</h2>
+                    <h2>Status: {order.status}</h2>
+                    <button onClick={() => onApprove(order, 'approved')}>Approve</button>
+                    <button onClick={() => onApprove(order, 'declined')}>Decline</button>
                 </li>)}
             </ul>
         </section>
