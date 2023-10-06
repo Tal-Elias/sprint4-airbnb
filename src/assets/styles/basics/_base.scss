@@ -8,12 +8,13 @@
 // }
 
 html {
-    font-family: roboto, sans-serif;
+    font-family: cereal-light, roboto, sans-serif;
     color: $clr-txt-primary;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin: 0;
     background-color: $clr2;
     line-height: 1.43;
@@ -25,8 +26,9 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: cereal-md, roboto, sans-serif;
+    font-weight: 400;
     margin: 0;
-    font-weight: 600;
 }
 
 section,
@@ -50,11 +52,27 @@ a {
     }
 }
 
-// .btn.simple {
-//     border: 0;
-//     background-color: transparent;
-//     padding: 8px;
-//     // margin: 5px;
-//     text-decoration: underline;
-//     cursor: pointer;
-// }
+button {
+    font-size: inherit;
+    font-family: inherit;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.btn {
+    // display: inline-block;
+    // margin: 0;
+    // padding: 0;
+    // font-family: inherit;
+    // font-size: inherit;
+    // font-weight: 600;
+    // line-height: lh(18px, 14px);
+    // text-align: center;
+    // text-decoration: underline;
+    // color: $clr-txt-primary;
+    // background-color: transparent;
+    // border-style: none;
+    // border-bottom-color: $clr-txt-primary;
+    // border-radius: 8px;
+    // cursor: pointer;
+}

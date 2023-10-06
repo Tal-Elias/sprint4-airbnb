@@ -4,11 +4,16 @@
 }
 
 @font-face {
-    font-family: circular-md;
-    src: url(../../fonts/circular/CircularStd-Medium.otf);
+    font-family: cereal-light;
+    src: url(../../fonts/cereal/AirbnbCerealLight.ttf);
 }
 
 @font-face {
-    font-family: airbnb-cereal-md;
-    src: url(../../fonts/airbnb-cereal/AirbnbCereal_W_Md.otf);
+    font-family: cereal-black;
+    src: url(../../fonts/cereal/AirbnbCerealBlack.ttf);
+}
+
+@font-face {
+    font-family: cereal-md;
+    src: url(../../fonts/cereal/AirbnbCerealMedium.ttf);
 }

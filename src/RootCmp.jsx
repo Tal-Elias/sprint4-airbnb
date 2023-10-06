@@ -9,16 +9,18 @@ import { StayDetails } from './pages/StayDetails'
 import { StayOrder } from './pages/StayOrder.jsx'
 import { StaySearchBar } from './cmps/StaySearchBar'
 import { UserMsg } from './cmps/UserMsg'
+import { Toaster } from 'react-hot-toast'
 // import { UserDetails } from './pages/UserDetails'
 
 export function RootCmp() {
     let location = useLocation()
-    console.log('location:', location)
 
     const [isDetailsPage, setIsDetailsPage] = useState(false)
 
     useEffect(() => {
-        if (location.pathname.startsWith('/stay/')) setIsDetailsPage(true)
+        if (location.pathname.startsWith('/stay/') ||
+            location.pathname.startsWith('/trip') ||
+            location.pathname.startsWith('/dashboard')) setIsDetailsPage(true)
         else setIsDetailsPage(false)
     }, [location])
 
@@ -26,7 +28,11 @@ export function RootCmp() {
         <div className={`${isDetailsPage ? 'details-layout' : 'main-layout'}`}>
             <AppHeader isDetailsPage={isDetailsPage} />
             <main>
-                <UserMsg />
+                {/* <UserMsg /> */}
+                <Toaster position='absolute' containerStyle={{
+                    bottom: 60,
+                    left: 30,
+                }} />
                 {/* <StaySearchBar /> */}
                 <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}

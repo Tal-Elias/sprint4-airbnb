@@ -25,13 +25,13 @@ export function UserTrips () {
     return (
         <section className="user-trips">
             <ul className="clean-list">
-            {orders.map(o => <li key={o._id}>
-                    <h2>Listing: {o.stay.name}</h2>
-                    <h2>Host: {o.hostId}</h2>
-                    <h2>Check-in: {o.startDate}</h2>
-                    <h2>Checkout: {o.endDate}</h2>
-                    <h2>Total: ${o.totalPrice}</h2>
-                    <h2>Status: {o.status}</h2>
+            {orders.map(order => <li key={order._id}>
+                    <h2>Listing: {order.stay.name}</h2>
+                    <h2>Host: {order.hostId}</h2>
+                    <h2>Check-in: {order.startDate}</h2>
+                    <h2>Checkout: {order.endDate}</h2>
+                    <h2>Total: ${order.totalPrice}</h2>
+                    <h2>Status: {order.status}</h2>
                 </li>)}
             </ul>
         </section>

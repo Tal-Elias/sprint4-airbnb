@@ -76,7 +76,6 @@ export function setCurrStay(stayId) {
     const { stays } = store.getState().stayModule
     const currStay = stays.find(stay => stay._id === stayId)
     store.dispatch({ type: SET_CURR_STAY, currStay: currStay })
-    console.log(currStay)
     return currStay
 }
 

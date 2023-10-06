@@ -18,7 +18,6 @@ export function StayIndex() {
                 showErrorMsg('Cannot load stays')
             }
         }
-
         fetchData()
     }, [])
 
