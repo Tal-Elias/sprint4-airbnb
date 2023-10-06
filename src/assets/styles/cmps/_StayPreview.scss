@@ -20,17 +20,21 @@
             color: $clr-txt-secondary;
         }
 
-        .stay-rate {
+        // .stay-rate {
+        //     grid-row: 1;
+        //     justify-self: end;
+        //     font-weight: 400;
+        //     display: grid;
+        //     place-items: center;
+        //     grid-template-columns: auto auto;
+
+        //     .rate-num {
+        //         margin-inline-start: 4px;
+        //     }
+        // }
+        .review-rate {
             grid-row: 1;
             justify-self: end;
-            font-weight: 400;
-            display: grid;
-            place-items: center;
-            grid-template-columns: auto auto;
-
-            .rate-num {
-                margin-inline-start: 4px;
-            }
         }
 
         .stay-price {
