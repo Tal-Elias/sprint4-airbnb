@@ -38,7 +38,7 @@ export function StayDetails() {
     useEffect(() => {
         setCurrStay(stayId)
     }, [])
-    
+
     useEffect(() => {
         handleChange()
     }, [stay])
@@ -55,7 +55,7 @@ export function StayDetails() {
     )
     return (
         <section className="stay-details">
-            <Link to={`/stay/${stay._id}/book?${orderUrl}`}>
+            <Link to={`/stay/order`}>
                 <button>Reserve</button>
             </Link>
             <div className="details-header">

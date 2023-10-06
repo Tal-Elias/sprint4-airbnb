@@ -1,6 +1,6 @@
-import { StayPreview } from "./StayPreview";
 import { Link } from 'react-router-dom'
-
+import { StayPreview } from './StayPreview'
+import { ImageCarousel } from './ImageCarousel'
 export function StayList({ stays }) {
     return (
         <section >

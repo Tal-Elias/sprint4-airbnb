@@ -1,0 +1,36 @@
+
+.slick-dots {
+    text-align: center;
+    /* Center align the dots */
+
+}
+
+/* Target the individual dots */
+.slick-dots li {
+    list-style: none;
+    /* Remove default list style */
+    display: inline-block;
+    /* Display dots inline */
+    margin: 0 4px;
+    /* Add some spacing between dots */
+
+}
+
+.slick-dots li button {
+    width: 10px;
+    /* Adjust dot width if needed */
+    height: 10px;
+    /* Adjust dot height if needed */
+    // background-color: red; /* Change dot color to red */
+    border: none;
+    /* Remove dot border if any */
+    border-radius: 50%;
+    /* Make the dot a circle */
+    cursor: pointer;
+    /* Show pointer cursor on hover */
+
+}
+
+.slick-dots li.slick-active button {
+
+}
