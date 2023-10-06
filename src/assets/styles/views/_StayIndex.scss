@@ -1,9 +1,55 @@
 .stay-index {
-    .lables {
-        height: 78px;
+    .labels {
+        // height: 78px;
+        height: fit-content;
         padding-block-start: 20px;
-        background-color: rgb(224, 224, 224);
+        // background-color: rgb(224, 224, 224);
+        display: flex;
+        gap: 32px;
+        font-size: 12px;
+        font-weight: 600;
+
+
+        .label-container {
+            min-width: 56px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 0 4px;
+            margin: 12px 0 10px;
+            color: $clr-txt-secondary;
+            position: relative;
+            white-space: nowrap;
+
+            &:hover {
+                color: $clr-txt-primary;
+
+                .label-img {
+                    opacity: 1;
+
+                }
+
+                &::after {
+                    content: '';
+                    background-color: $clr-border;
+                    width: 100%;
+                    height: 2px;
+                    position: absolute;
+                    top: calc(100% + 12px);
+                }
+            }
+        }
     }
+
+
+    .label-img {
+        width: 24px;
+        height: 24px;
+        opacity: 0.65;
+
+    }
+
+    //     .label-title{
+    // }
 }
-
-
