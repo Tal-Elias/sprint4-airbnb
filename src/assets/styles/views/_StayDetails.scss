@@ -13,38 +13,41 @@
 
     .img-container {
         position: relative;
-    }
-
-    .img-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 8px;
-        grid-template-areas:
-            'img1 . .'
-            'img1 . .';
         padding-top: 24px;
-        align-items: stretch;
-        // max-height: calc(60vh - 64px); //check if needed
 
-        img {
-            aspect-ratio: 1.055;
-            object-fit: cover;
-        }
+        .img-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 8px;
+            grid-template-areas:
+                'img1 . . '
+                'img1 . . ';
+            align-items: stretch;
+            // max-height: calc(60vh - 64px); //check if needed
 
-        img:first-child {
-            grid-area: img1;
-            border-bottom-left-radius: 12px;
-            border-top-left-radius: 12px;
-        }
+            img {
+                aspect-ratio: 1.055;
+                // aspect-ratio: 1.04;
+                // aspect-ratio: 1;
+                object-fit: cover;
+            }
 
-        img:nth-child(3) {
-            border-top-right-radius: 12px;
-        }
+            img:first-child {
+                grid-area: img1;
+                border-bottom-left-radius: 12px;
+                border-top-left-radius: 12px;
+            }
 
-        img:nth-child(5) {
-            border-bottom-right-radius: 12px;
+            img:nth-child(3) {
+                border-top-right-radius: 12px;
+            }
+
+            img:nth-child(5) {
+                border-bottom-right-radius: 12px;
+            }
         }
     }
+
 
     .btn {
         position: absolute;
