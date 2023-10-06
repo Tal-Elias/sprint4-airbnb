@@ -6,44 +6,81 @@ import { useSelector } from 'react-redux'
 import { StayReservation } from "../cmps/StayReservation.jsx"
 import { CiHeart } from 'react-icons/ci'
 import { setCurrStay } from "../store/actions/stay.actions.js"
+import { setCurrOrder } from "../store/actions/order.actions.js"
 
 export function StayDetails() {
     // const [stay, setStay] = useState(null)
     const stay = useSelector((storeState) => storeState.stayModule.currStay)
+    const order = useSelector((storeState) => storeState.orderModule.currOrder)
 
     const { stayId } = useParams()
 
-    const order = {
-        startDate: "2025/10/15",
-        endDate: "2025/10/17",
-        adults: 1,
-        kids: 2
-    }
-    // const orderUrl = new URLSearchParams(order).toString()
+    function handleChange() {
+        if (!stay) return
+        const updatedOrder = {
+            hostId: stay.host._id,
+            startDate: "2025/10/15",
+            endDate: "2025/10/17",
+            guests: {
+                adults: 1,
+                kids: 2
+            },
+            stay: {
+                _id: stay._id,
+                name: stay.name,
+                price: stay.price
+            }
+        }
+        setCurrOrder(updatedOrder)
+        // setCurrOrder((prevOrder)=>({...prevOrder,...updatedOrder}))
 
+    }
     useEffect(() => {
         setCurrStay(stayId)
-    }, [stayId])
+    }, [])
+    
+    useEffect(() => {
+        handleChange()
+    }, [stay])
+
+
+    console.log('stay:', stay)
+
+    console.log('order:', order)
+
+
 
     if (!stay) return (
         <div>loading</div>
     )
     return (
         <section className="stay-details">
+            <Link to={`/stay/${stay._id}/book?${orderUrl}`}>
+                <button>Reserve</button>
+            </Link>
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
-                <div className="save-btn-container">
-                    <CiHeart />
-                    <button className="save-btn">save</button>
+            </div>
+            <div className="imgs-container">
+                {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
+            </div>
+        </section>
+    )
+}
+
+{/* <section className="stay-details">
+            <div className="details-header">
+                <h1>{`${stay.name}`}</h1>
+                <div className="btn-save-container">
+                    <div>💓</div>
+                    <button className="btn-save">save</button>
                 </div>
             </div>
-            <Link to={`/stay/${stay._id}/order`}>
+            <Link to={`/stay/order`}>
                 <button>Reserve</button>
             </Link>
             <div className="imgs-container">
                 {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
-            </div>
-            {/* <StayReservation stay={stay} /> */}
-        </section>
-    )
-}
+            </div> */}
+{/* <StayReservation stay={stay} /> */ }
+{/* </section> */ }

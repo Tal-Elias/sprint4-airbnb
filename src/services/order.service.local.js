@@ -7,6 +7,7 @@ export const orderService = {
     query,
     getById,
     save,
+    getEmptyOrder
 
 }
 
@@ -48,10 +49,32 @@ async function save(order) {
         // Later, owner is set by the backend
         const { _id, fullname } = userService.getLoggedinUser()
         order.buyer = { _id, fullname }
+        order.status= 'pending'
         savedOrder = await storageService.post(STORAGE_KEY, order)
     }
     return savedOrder
 }
+
+function getEmptyOrder(){
+   return {
+        hostId:'',
+        totalPrice: '',
+        startDate: '',
+        endDate: '',
+        guests: {
+            adults: null,
+            kids: null
+        },
+        stay: {
+            _id: '',
+            name: '',
+            price: null,
+
+        },
+        msgs: [],
+    }
+}
+
 
 // async function addStayMsg(stayId, txt) {
 //     // Later, this is all done by the backend
@@ -70,11 +93,3 @@ async function save(order) {
 // }
 
 
-
-
-// function getEmptyStay() {
-//     return {
-//         vendor: 'Susita-' + (Date.now() % 1000),
-//         price: utilService.getRandomIntInclusive(1000, 9000),
-//     }
-// }

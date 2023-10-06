@@ -1,9 +1,7 @@
 
-import { UserMsg } from './UserMsg'
-
-export function AppFooter() {
+export function AppFooter({ isDetailsPage }) {
     return (
-        <footer className="app-footer main-layout full">
+        <footer className={`app-footer full ${isDetailsPage ? 'details-layout' : 'main-layout'}`}>
             <div className="site-info">
                 <span> © 2023 Hairbnb, Inc.</span>
                 <span className="seperator">·</span>
@@ -15,7 +13,6 @@ export function AppFooter() {
                 <span className="seperator">·</span>
                 <a href="#">Your Privacy Choices</a>
             </div>
-            <UserMsg />
         </footer>
     )
 }

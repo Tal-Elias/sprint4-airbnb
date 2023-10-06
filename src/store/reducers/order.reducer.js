@@ -1,12 +1,16 @@
+import { orderService } from "../../services/order.service.local"
+
 export const SET_ORDERS = 'SET_ORDERS'
 export const REMOVE_ORDER = 'REMOVE_ORDER'
 export const ADD_ORDER = 'ADD_ORDER'
 export const UPDATE_ORDER = 'UPDATE_ORDER'
 export const UNDO_REMOVE_ORDER = 'UNDO_REMOVE_ORDER'
+export const SET_CURR_ORDER = 'SET_CURR_ORDER'
 
 
 const initialState = {
     orders: [],
+    currOrder: orderService.getEmptyOrder()
     // lastRemovedOrder: null
 }
 
@@ -17,7 +21,7 @@ export function orderReducer(state = initialState, action) {
         case SET_ORDERS:
             newState = { ...state, orders: action.orders }
             // console.log('newState:',newState)
-            
+
             break
         case REMOVE_ORDER:
             const lastRemovedOrder = state.orders.find(order => order._id === action.orderId)
@@ -35,6 +39,12 @@ export function orderReducer(state = initialState, action) {
             if (state.lastRemovedOrder) {
                 newState = { ...state, orders: [...state.orders, state.lastRemovedOrder], lastRemovedOrder: null }
             }
+            break
+
+        case SET_CURR_ORDER:
+            console.log('action:', action)
+            // newState = { ...state, currOrder: action.currOrder }
+            newState = { ...state, currOrder:{...state.currOrder, ...action.currOrder }  }
             break
         default:
     }

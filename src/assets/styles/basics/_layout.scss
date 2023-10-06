@@ -10,12 +10,41 @@
         }
     }
 
-    @include for-narrow-layout {
+    @include main-for-narrow-layout {
         grid-template-columns: 40px 1fr 40px
     }
 
-    @include for-normal-layout {
+    @include main-for-normal-layout {
         grid-template-columns: 80px 1fr 80px;
+    }
+
+    @include main-for-wide-layout {
+        grid-template-columns: 1fr minmax(auto, 2360px) 1fr;
+    }
+}
+
+.details-layout {
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    >* {
+        grid-column: 2;
+
+        &.full {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @include details-for-narrow-layout {
+        grid-template-columns: 40px 1fr 40px;
+    }
+
+    @include details-for-normal-layout {
+        grid-template-columns: 80px 1fr 80px;
+    }
+
+    @include details-for-wide-layout {
+        grid-template-columns: 1fr minmax(auto, 1120px) 1fr;
     }
 }
 
