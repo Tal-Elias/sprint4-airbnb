@@ -11,7 +11,6 @@ import { FaSearch } from 'react-icons/fa'
 import { TbWorld } from 'react-icons/tb'
 import { FiMenu } from 'react-icons/fi'
 import { FaUser } from 'react-icons/fa'
-// import { HamburgerMenu } from './HamburgerMenu'
 
 export function AppHeader({ isDetailsPage }) {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -83,7 +82,6 @@ export function AppHeader({ isDetailsPage }) {
                 <nav>
                     {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 </nav>
-                {/* <HamburgerMenu /> */}
             </div>
         </header>
     )

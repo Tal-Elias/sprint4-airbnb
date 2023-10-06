@@ -15,7 +15,6 @@ export function StayDetails() {
     const stay = useSelector((storeState) => storeState.stayModule.currStay)
     const order = useSelector((storeState) => storeState.orderModule.currOrder)
     const [showAllPhotos, setShowAllPhotos] = useState(false)
-
     const { stayId } = useParams()
 
     function handleChange() {
@@ -97,7 +96,7 @@ export function StayDetails() {
                         <li>1 bath</li>
                     </ul>
                 </div>
-                <OrderModal />
+                <OrderModal stay={stay} />
             </div>
         </section>
     )
