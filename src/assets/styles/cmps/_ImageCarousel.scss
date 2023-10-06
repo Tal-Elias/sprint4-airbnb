@@ -1,36 +1,75 @@
-
 .slick-dots {
-    text-align: center;
-    /* Center align the dots */
-
+    position: absolute;
+    bottom: 10px;
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
 /* Target the individual dots */
-.slick-dots li {
-    list-style: none;
-    /* Remove default list style */
-    display: inline-block;
-    /* Display dots inline */
-    margin: 0 4px;
-    /* Add some spacing between dots */
 
+// .slick-dots li {}
+
+// .slick-dots li button {}
+
+// .slick-dots li.slick-active button {}
+
+
+// .carousel-container {
+//     position: relative;
+//     margin-block-end: 12px;
+// }
+
+// .slick-prev {
+//     position: absolute;
+//     top: 50%;
+//     left: 10px;
+//     transform: translateY(-50%);
+//     z-index: 1;
+// }
+
+// .slick-next {
+//     position: absolute;
+//     top: 50%;
+//     right: 10px;
+//     transform: translateY(-50%);
+//     z-index: 1;
+// }
+
+.slick-prev,
+.slick-next {
+    display: none !important;
 }
 
-.slick-dots li button {
-    width: 10px;
-    /* Adjust dot width if needed */
-    height: 10px;
-    /* Adjust dot height if needed */
-    // background-color: red; /* Change dot color to red */
-    border: none;
-    /* Remove dot border if any */
+.new-button {
+    display: none;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    opacity: .8;
+    border: 1px solid $clr-txt-secondary;
     border-radius: 50%;
-    /* Make the dot a circle */
-    cursor: pointer;
-    /* Show pointer cursor on hover */
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    transition: .1s;
+    // .io-ios-arrow-forward {
+    // }
 
-}
+    &:hover {
+        opacity: 1;
+        height: 31px;
+        width: 31px;
 
-.slick-dots li.slick-active button {
+    }
 
+    &.prev {
+        left: 10px;
+    }
+
+    &.next {
+        right: 10px;
+    }
 }
