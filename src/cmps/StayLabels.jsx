@@ -58,7 +58,6 @@ export function StayLabels() {
                     <span className="label-title">{label.title}</span>
                 </div>
             )}
-
         {/* </Slider> */}
       </div>
     )
