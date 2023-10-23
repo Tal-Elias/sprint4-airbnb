@@ -96,10 +96,12 @@ export function StayLabels() {
     return (
         <div className="stay-labels" style={{ position: "relative" }}>
             <div className="swiper-button image-swiper-button-next">
-                <IoIosArrowForward />
+                {/* <IoIosArrowForward /> */}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
             </div>
             <div className="swiper-button image-swiper-button-prev">
-                <IoIosArrowBack />
+                {/* <IoIosArrowBack /> */}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
             </div>
 
             <Swiper slidesPerView={'auto'}
