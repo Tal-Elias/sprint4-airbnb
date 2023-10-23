@@ -12,9 +12,12 @@
     display: flex;
     flex-direction: column;
 
-    flex-basis: 372px;
+    // flex-basis: 372px;
+    width: 33.33%;
+    margin-left: 8.33%;
 
-    max-height: 459px;
+    // max-height: 459px;
+    height: max-content;
     // margin: 5px auto calc(5px + 2em);
     padding: em(24px, 14px);
 
@@ -25,6 +28,20 @@
     .header {
         display: flex;
         justify-content: space-between;
+        margin-block-end: 24px;
+
+        .price-per-night {
+            span.price {
+                font-size: rem(22px);
+                font-weight: 600;
+                // line-height: 26px;
+            }
+
+            span.night {
+                font-size: rem(16px);
+                // line-height: 20px;
+            }
+        }
 
         .reviews {
             display: flex;
@@ -34,5 +51,54 @@
                 margin-inline-start: 4px;
             }
         }
+    }
+
+    .order-edit-container {
+        margin-block-end: 16px;
+        border: 1px solid $clr-border2;
+        border-radius: 8px;
+
+        .date-picker {
+            border-bottom: 1px solid $clr-border2;
+
+            .check-in,
+            .checkout {
+                position: relative;
+                flex: 1 1 0%;
+
+                span:first-child {
+                    position: absolute;
+                    top: 12px;
+                    left: 12px;
+                    right: 12px;
+                    font-family: cereal-bold;
+                    font-size: 0.625rem;
+                }
+
+                span:nth-child(2) {
+                    min-height: 56px;
+                    padding: 26px 12px 10px;
+                    font-size: 0.875rem;
+                    color: $clr-txt-secondary;
+                }
+            }
+
+            .checkout {
+                border-left: 1px solid $clr-border2;
+            }
+        }
+
+        .guest-picker {
+            padding: 26px 36px 10px 12px;
+        }
+    }
+
+    button {
+        width: 100%;
+        height: 48px;
+        border-radius: 8px;
+        font-size: rem(16px);
+        margin: 0;
+        padding: 0;
     }
 }

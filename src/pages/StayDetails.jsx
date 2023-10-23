@@ -67,9 +67,9 @@ export function StayDetails() {
 
     return (
         <section className="stay-details">
-            <Link to={'/stay/order'}>
+            {/* <Link to={'/stay/order'}>
                 <button>Reserve</button>
-            </Link>
+            </Link> */}
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
             </div>
