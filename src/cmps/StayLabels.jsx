@@ -5,18 +5,33 @@ import design from "../assets/img/design.jpeg"
 import farms from "../assets/img/farms.jpeg"
 import mansions from "../assets/img/mansions.jpeg"
 import amazingViews from "../assets/img/amazingViews.jpeg"
-import React, { Component } from "react";
-import Slider from "react-slick";
+import tropical from "../assets/img/tropical.jpeg"
+import vineyards from "../assets/img/vineyards.jpeg"
+import lake from "../assets/img/lake.jpeg"
+import treehouses from "../assets/img/treehouses.jpeg"
+import omg from "../assets/img/omg.jpeg"
+import countryside from "../assets/img/countryside.jpeg"
+import amazingPools from "../assets/img/amazingPools.jpeg"
+import castles from "../assets/img/castles.jpeg"
+import rooms from "../assets/img/rooms.jpeg"
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+// import 'swiper/css/navigation';
+
+import { Navigation } from 'swiper/modules';
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 export function StayLabels() {
     const labels = [
         {
             title: 'National parks',
-            url: beachfront
+            url: nationalParks
         },
         {
             title: 'Beachfront',
-            url: nationalParks
+            url: beachfront
         },
         {
             title: 'Cabins',
@@ -37,28 +52,74 @@ export function StayLabels() {
         {
             title: 'Amazing views',
             url: amazingViews
+        },
+        {
+            title: 'Tropical',
+            url: tropical
+        },
+        {
+            title: 'Vineyards',
+            url: vineyards
+        },
+        {
+            title: 'Lake',
+            url: lake
+        },
+        {
+            title: 'Treehouses',
+            url: treehouses
+        },
+        {
+            title: 'OMG!',
+            url: omg
+        },
+        {
+            title: 'Countryside',
+            url: countryside
+        },
+        {
+            title: 'Amazing pools',
+            url: amazingPools
+        },
+        {
+            title: 'Castles',
+            url: castles
+        },
+        {
+            title: 'Rooms',
+            url: rooms
         }
     ]
-    const settings = {
-        className: "slider variable-width",
-        dots: false,
-        infinite: false,
-        centerMode: false,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        variableWidth: true
-      };
+
+
 
     return (
-        <div className="labels">
-        {/* <Slider {...settings}> */}
-        {labels.map(label => 
-                <div key={label.title} className="label-container">
-                    <img className="label-img w24" src={label.url} />
-                    <span className="label-title">{label.title}</span>
-                </div>
-            )}
-        {/* </Slider> */}
-      </div>
+        <div className="stay-labels" style={{ position: "relative" }}>
+            <div className="swiper-button image-swiper-button-next">
+                <IoIosArrowForward />
+            </div>
+            <div className="swiper-button image-swiper-button-prev">
+                <IoIosArrowBack />
+            </div>
+
+            <Swiper slidesPerView={'auto'}
+                spaceBetween={32}
+                navigation={{
+                    nextEl: ".image-swiper-button-next",
+                    prevEl: ".image-swiper-button-prev",
+                    disabledClass: "swiper-button-disabled"
+                }}
+                // navigation={true}
+                modules={[Navigation]}
+                className="mySwiper">
+
+                {labels.map(label =>
+                    <SwiperSlide key={label.title}>
+                        <img className="label-img w24" src={label.url} />
+                        <span className="label-title">{label.title}</span>
+                    </SwiperSlide>
+                )}
+            </Swiper >
+        </div>
     )
 }

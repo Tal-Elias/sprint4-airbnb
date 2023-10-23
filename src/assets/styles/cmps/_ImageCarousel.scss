@@ -1,90 +1,73 @@
-.slick-dots {
-    position: absolute;
-    bottom: 1px;
-    transform: translateY(-50%);
-    z-index: 1;
-}
+.imgs-container {
+    .slick-dots {
+        position: absolute;
+        bottom: 1px;
+        transform: translateY(-50%);
+        z-index: 1;
 
-/* Target the individual dots */
+        li {
+            margin-inline: 0;
+            padding: 0;
+            width: 11px;
 
-.slick-dots li {
-    margin-inline: 0;
-    padding: 0;
-    width: 11px;
-}
+            button {
+                margin: 0;
+                padding: 0;
 
-.slick-dots li button {
-    margin: 0;
-    padding: 0;
-}
+                &::before {
+                    color: rgb(255, 255, 255);
+                    opacity: .5;
+                }
+            }
 
-.slick-dots li button::before {
-    color: white;
+            &.slick-active {
+                button {
+                    &::before {
+                        color: white;
+                        opacity: 1;
 
-}
-
-.slick-dots li.slick-active button::before {
-    color: white;
-
-}
-
-
-// .carousel-container {
-//     position: relative;
-//     margin-block-end: 12px;
-// }
-
-// .slick-prev {
-//     position: absolute;
-//     top: 50%;
-//     left: 10px;
-//     transform: translateY(-50%);
-//     z-index: 1;
-// }
-
-// .slick-next {
-//     position: absolute;
-//     top: 50%;
-//     right: 10px;
-//     transform: translateY(-50%);
-//     z-index: 1;
-// }
-
-.slick-prev,
-.slick-next {
-    display: none !important;
-}
-
-.new-button {
-    display: none;
-    height: 30px;
-    width: 30px;
-    background-color: white;
-    opacity: .9;
-    border: 1px solid $clr-txt-secondary;
-    border-radius: 50%;
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-    transition: .3s;
-    // .io-ios-arrow-forward {
-    // }
-
-    &:hover {
-        opacity: 1;
-        height: 31px;
-        width: 31px;
-
+                    }
+                }
+            }
+        }
     }
 
-    &.prev {
-        left: 10px;
+    .slick-prev,
+    .slick-next {
+        display: none !important;
     }
 
-    &.next {
-        right: 10px;
+    .new-button {
+        height: 30px;
+        width: 30px;
+        background-color: rgb(255, 255, 255);
+        opacity: .9;
+        border: 1px solid $clr-txt-secondary;
+        border-radius: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        z-index: 1;
+        place-items: center;
+        transition: .3s;
+        display: none;
+
+        &:hover {
+            opacity: 1;
+            height: 31px;
+            width: 31px;
+        }
+
+        &.prev {
+            left: 10px;
+        }
+
+        &.next {
+            right: 10px;
+        }
+    }
+
+    &:hover .new-button {
+        display: grid;
     }
 }

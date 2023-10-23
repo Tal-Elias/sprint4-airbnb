@@ -1,4 +1,7 @@
 .stay-preview {
+    position: relative;
+    ;
+
     .stay-img {
         border-radius: 5%;
         object-fit: cover;
@@ -6,6 +9,18 @@
     }
 
     // display: grid;
+
+    .stay-heart {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        height: 24px;
+        width: 24px;
+        stroke: white;
+        stroke-width: 2;
+        fill: rgba(0, 0, 0, 0.5)
+    }
+
     .stay-info {
         display: grid;
         gap: 2px 8px;
