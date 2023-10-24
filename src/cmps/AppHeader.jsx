@@ -8,7 +8,6 @@ import { LoginSignup } from './LoginSignup'
 import { login, logout, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { FaSearch } from 'react-icons/fa'
-import { TbWorld } from 'react-icons/tb'
 import { FiMenu } from 'react-icons/fi'
 import { FaUser } from 'react-icons/fa'
 
@@ -72,7 +71,6 @@ export function AppHeader({ isDetailsPage }) {
                         <LoginSignup onLogin={onLogin} onSignup={onSignup} />
                     </section>
                 }
-                <TbWorld className='globe-icon' />
                 <div className='burger-menu'>
                     <FiMenu className='icon-menu' />
                     <div className='avatar'>

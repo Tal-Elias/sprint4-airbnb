@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ReviewRate } from '../stay-reviews/ReviewRate'
+import { DatePickerModal } from './DatePickerModal'
+import { useState } from 'react'
+import { GuestSelect } from './GuestSelect'
 
 export function OrderModal({ stay }) {
 
     const { price, reviews } = stay
+    const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
 
     return (
         <div className="order-modal">
-            <div className="header">
+            <header className="order-modal-header">
                 <div className="price-per-night">
                     <span className="price">${price} </span>
                     <span className="night">night</span>
@@ -17,9 +21,9 @@ export function OrderModal({ stay }) {
                     <span className="seperator">·</span>
                     <span>{reviews.length}</span>
                 </div>
-            </div>
+            </header>
             <div className="order-edit-container">
-                <div className="date-picker flex">
+                <div className="date-picker flex" onClick={setDatePickerModalOpen}>
                     <div className="check-in flex column">
                         <span>CHECK-IN</span>
                         <span>Add date</span>
@@ -29,13 +33,17 @@ export function OrderModal({ stay }) {
                         <span>Add date</span>
                     </div>
                 </div>
-                <div className="guest-picker">
+                <GuestSelect />
+                {/* <div className="guest-picker">
                     <input type="text" placeholder="Add guests" />
-                </div>
+                </div> */}
             </div>
             <Link to={'/stay/order'}>
-                <button>Reserve</button>
+                <button className="reserve">Reserve</button>
             </Link>
+            {isDatePickerModalOpen && (
+                <DatePickerModal setDatePickerModalOpen={setDatePickerModalOpen} />
+            )}
         </div>
     )
 }

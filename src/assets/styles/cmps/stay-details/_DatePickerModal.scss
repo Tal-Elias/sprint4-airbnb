@@ -1,0 +1,37 @@
+.date-picker-modal {
+    position: absolute;
+    top: 50px;
+    right: -10px;
+
+    width: 660px;
+    padding: 24px 32px 16px;
+
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
+    border-radius: 16px;
+    background-color: $clr2;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 0 16px;
+
+        .side-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            span {
+                color: $clr-txt-secondary;
+            }
+        }
+    }
+
+    .day-picker {
+        padding-block-start: 22px;
+    }
+
+    .reset-close-btns {
+        float: right;
+        padding-top: 20px;
+    }
+}

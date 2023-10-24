@@ -33,12 +33,16 @@
 @import "cmps/AppFooter";
 @import "cmps/StayReservation";
 @import "cmps/StayLabels";
+@import "cmps/DatePicker";
 
 @import "cmps/ImageCarousel";
 
 
 // Components- stay details
 @import "cmps/stay-details/OrderModal";
+@import "cmps/stay-details/DatePickerPreview";
+@import "cmps/stay-details/DatePickerModal";
+@import "cmps/stay-details/GuestSelect.scss";
 
 // Components- stay reviews
 @import "cmps/stay-reviews/ReviewRate";
