@@ -47,40 +47,71 @@ export function AppHeader({ isDetailsPage }) {
                         <h1 className='logo'>hairbnb</h1>
                     </div>
                 </Link>
-                <div className='header-search-bar'>
-                </div>
-                <div className='search-bar-buttons flex' >
-                    <div>Anywhere</div>
+                {/* <div className='header-search-bar'>
+                </div> */}
+                {/* <div className='search-bar-buttons flex' >
+                    <div className='fw600'>Anywhere</div>
                     <span className="seperator"></span>
-                    <div>Any week</div>
+                    <div className='fw600'>Any week</div>
                     <span className="seperator"></span>
                     <div>Add guests</div>
                     <button><FaSearch /></button>
-                </div>
-                {user &&
+                </div> */}
+
+               
+
+                {/* {user &&
                     <span className="user-info">
                         <Link to={`user/${user._id}`}>
-                            {/* {user.imgUrl && <img src={user.imgUrl} />} */}
+                            {user.imgUrl && <img src={user.imgUrl} />}
                             {user.fullname}
                         </Link>
                         <button onClick={onLogout}>Logout</button>
                     </span>
-                }
-                {!user &&
+                } */}
+                {/* {!user &&
                     <section className="user-info">
                         <LoginSignup onLogin={onLogin} onSignup={onSignup} />
                     </section>
-                }
+                } */}
                 <div className='burger-menu'>
                     <FiMenu className='icon-menu' />
                     <div className='avatar'>
                         <FaUser className='avatar-icon' />
                     </div>
                 </div>
-                <nav>
+                {/* <nav>
                     {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-                </nav>
+                </nav> */}
             </div>
+            <div className='exp-search-bar'>
+                    <div className='where choose'>
+                        <div className='label'>Where</div>
+                        <input className='input' placeholder='Search destinations' />
+                    </div>
+                    <div className='exp-seperator'></div>
+                    <div className='when'>
+                        <div className='check-in choose'>
+                            <div className='label'>Check in</div>
+                            <div className='input'>Add dates</div>
+                        </div>
+                        <div className='exp-seperator'></div>
+                        <div className='check-out choose'>
+                            <div className='label'>Check out</div>
+                            <div className='input'>Add dates</div>
+                        </div>
+                    </div>
+                    <div className='exp-seperator'></div>
+                    <div className='search-section choose'>
+                        <div className='who '>
+                            <div className='label'>Who</div>
+                            <div className='input'>Add guests</div>
+                        </div>
+                        <button className='search'><FaSearch /></button>
+
+                    </div>
+
+                </div>
         </header>
     )
 }

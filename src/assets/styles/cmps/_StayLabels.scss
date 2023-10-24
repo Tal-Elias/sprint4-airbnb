@@ -2,12 +2,13 @@
     .label-img {
         opacity: 0.65;
     }
+
     .swiper-button {
-        height: 30px;
-        width: 30px;
+        height: 28px;
+        width: 28px;
         background-color: rgb(255, 255, 255);
         opacity: .9;
-        border: 1px solid $clr-txt-secondary;
+        border: 0.5px solid rgb(0 0 0/0.3);
         border-radius: 50%;
         position: absolute;
         transform: translateY(-50%);
@@ -17,6 +18,21 @@
         transition: .3s;
         display: grid;
         cursor: pointer;
+
+        svg {
+            display: block;
+            fill: none;
+            height: 12px;
+            width: 12px;
+            stroke: currentColor;
+            stroke-width: 5.33333;
+            overflow: visible;
+        }
+
+        &:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-50%) scale(1.04);
+        }
     }
 
     .image-swiper-button-prev {
