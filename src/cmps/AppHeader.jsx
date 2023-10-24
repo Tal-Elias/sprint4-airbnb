@@ -87,7 +87,7 @@ export function AppHeader({ isDetailsPage }) {
             <div className='exp-search-bar'>
                     <div className='where choose'>
                         <div className='label'>Where</div>
-                        <input className='input' placeholder='Search destinations' />
+                        <div className='input'>Add destination</div>
                     </div>
                     <div className='exp-seperator'></div>
                     <div className='when'>

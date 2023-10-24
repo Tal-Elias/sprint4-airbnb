@@ -158,12 +158,25 @@ header.app-header {
             }
 
             .search {
-                padding-right: 9px;
+                // padding-right: 9px;
+                padding:14px 16px ;
                 border-radius: 24px;
+                position: relative;
+                transition: 0.2s opacity cubic-bezier(0.2, 0, 0, 1);
 
-                svg {
+
+
+                &:hover {
+                    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+                    will-change: opacity;
+
+
+                }
+
+                &>* {
                     font-size: 1rem;
                     font-weight: 600;
+
                 }
             }
         }
