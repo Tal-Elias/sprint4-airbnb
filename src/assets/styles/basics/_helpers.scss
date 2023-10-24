@@ -1,11 +1,36 @@
 // Font Sizes
-.fs12 { font-size: rem(12px); }
-.fs14 { font-size: rem(14px); }
-.fs18 { font-size: rem(18px); }
-.fs20 { font-size: rem(20px); }
-.fs24 { font-size: rem(24px); }
-.fs28 { font-size: rem(28px); }
-.fs30 { font-size: rem(30px); }
+.fs12 {
+    font-size: rem(12px);
+}
+
+.fs14 {
+    font-size: rem(14px);
+}
+
+.fs18 {
+    font-size: rem(18px);
+}
+
+.fs20 {
+    font-size: rem(20px);
+}
+
+.fs24 {
+    font-size: rem(24px);
+}
+
+.fs28 {
+    font-size: rem(28px);
+}
+
+.fs30 {
+    font-size: rem(30px);
+}
+
+// Font Weights
+.fw600 {
+    font-weight: 600;
+}
 
 // flex helpers
 
@@ -13,21 +38,26 @@
 
     display: flex;
 
-    > *.full {
+    >*.full {
         flex: 1;
     }
+
     &.column {
         flex-direction: column;
     }
+
     &.justify-center {
         justify-content: center;
     }
+
     &.align-center {
         align-items: center;
     }
+
     &.space-between {
         justify-content: space-between
     }
+
     &.gap24 {
         gap: 24px
     }
@@ -38,9 +68,11 @@
 .square-ratio {
     @include aspect-ratio(1, 1);
 }
+
 .video-ratio {
     @include aspect-ratio(16, 9);
 }
+
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
@@ -59,16 +91,51 @@
 }
 
 // padding helpers
-.pt24 { padding-top: 24px; }
-.pb24 { padding-bottom: 24px; }
-.ptb24 { padding: 24px 0; }
-.pt32 { padding-top: 32px; }
-.pb32 { padding-bottom: 32px; }
-.ptb32 { padding: 32px 0; }
-.pt48 { padding-top: 48px; }
-.pb48 { padding-bottom: 48px; }
-.ptb48 { padding: 48px 0; }
+.pt24 {
+    padding-top: 24px;
+}
+
+.pb24 {
+    padding-bottom: 24px;
+}
+
+.pb2 {
+    padding-bottom: 2px;
+}
+
+.ptb24 {
+    padding: 24px 0;
+}
+
+.pt32 {
+    padding-top: 32px;
+}
+
+.pb32 {
+    padding-bottom: 32px;
+}
+
+.ptb32 {
+    padding: 32px 0;
+}
+
+.pt48 {
+    padding-top: 48px;
+}
+
+.pb48 {
+    padding-bottom: 48px;
+}
+
+.ptb48 {
+    padding: 48px 0;
+}
 
 // img helpers
-.w24 { width: 24px; }
-.w40 { width: 40px; }
+.w24 {
+    width: 24px;
+}
+
+.w40 {
+    width: 40px;
+}
