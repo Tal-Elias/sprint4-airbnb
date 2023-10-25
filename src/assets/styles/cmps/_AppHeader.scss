@@ -28,57 +28,59 @@ header.app-header {
             }
         }
 
+        // .logo-container {
+        //     display: flex;
+        //     align-items: center;
+        //     gap: 7px;
+        //     cursor: pointer;
+        //     height: 80px;
 
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            cursor: pointer;
-            height: 80px;
+        //     img {
+        //         width: 32px;
+        //     }
 
+        //     svg {
+        //         color: $clr-brand;
+        //     }
 
-            img {
-                width: 32px;
-            }
+        //     h1 {
+        //         font-size: 22px;
+        //         font-weight: 700;
+        //         color: $clr-brand;
+        //         line-height: lh(22px, 22px);
+        //     }
+        // }
 
-            h1 {
-                font-size: 22px;
-                font-weight: 700;
-                color: $clr-brand;
-                line-height: lh(22px, 22px);
-            }
-        }
+        // .burger-menu {
+        //     font-size: 1.3rem;
+        //     display: flex;
+        //     align-items: center;
+        //     gap: 10px;
+        //     padding: .5em .5em;
+        //     border: 1px solid $clr-border;
+        //     border-radius: 2em;
 
-        .burger-menu {
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: .5em .5em;
-            border: 1px solid $clr-border;
-            border-radius: 2em;
+        //     .avatar {
+        //         display: flex;
+        //         color: white;
+        //         background-color: gray;
+        //         border-radius: 2em;
+        //         border: 1px solid gray;
+        //         overflow: hidden;
 
-            .avatar {
-                display: flex;
-                color: white;
-                background-color: gray;
-                border-radius: 2em;
-                border: 1px solid gray;
-                overflow: hidden;
+        //         .avatar-icon {
+        //             position: relative;
+        //             bottom: -3px;
+        //         }
+        //     }
+        // }
 
-                .avatar-icon {
-                    position: relative;
-                    bottom: -3px;
-                }
-            }
-        }
-
-        nav {
-            a {
-                margin-left: 5px;
-            }
-        }
+        // nav {
+        //     a {
+        //         margin-left: 5px;
+        //     }
+        // }
     }
 
     .exp-search-bar {

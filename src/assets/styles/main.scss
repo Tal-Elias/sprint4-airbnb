@@ -34,6 +34,9 @@
 @import "cmps/StayReservation";
 @import "cmps/StayLabels";
 @import "cmps/DatePicker";
+@import "cmps/NavHamburger";
+@import "cmps/NavMenu";
+@import "cmps/Logo";
 
 @import "cmps/ImageCarousel";
 
@@ -42,7 +45,9 @@
 @import "cmps/stay-details/OrderModal";
 @import "cmps/stay-details/DatePickerPreview";
 @import "cmps/stay-details/DatePickerModal";
-@import "cmps/stay-details/GuestSelect.scss";
+@import "cmps/stay-details/GuestSelect";
+@import "cmps/stay-details/GuestSelectModal";
+@import "cmps/stay-details/GuestCounter";
 
 // Components- stay reviews
 @import "cmps/stay-reviews/ReviewRate";
