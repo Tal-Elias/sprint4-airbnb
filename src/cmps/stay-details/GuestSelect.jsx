@@ -1,33 +1,37 @@
-import { useState } from 'react'
-import Select from 'react-select'
 import { GuestCounter } from './GuestCounter'
+import { GuestSelectModal } from './GuestSelectModal';
 
-export function GuestSelect() {
-
-    const options = [
-        { label: 'Adults', value: 'adults' },
-        { label: 'Children', value: 'children' },
-        { label: 'Infants', value: 'infants' },
-        { label: 'Pets', value: 'pets' },
-    ]
-
-    const [selectedOption, setSelectedOption] = useState(options[0])
-
-    const handleOptionChange = (option) => {
-        setSelectedOption(option)
-    }
+export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen }) {
+    const pathOpen = "M4 20 15.3 8.7a1 1 0 0 1 1.4 0L28 20";
+    const pathClosed = "M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12";
 
     return (
-        <div className="guest-select">
-            <Select
-                options={options}
-                value={selectedOption}
-                onChange={handleOptionChange}
-            />
-            {selectedOption.value === 'adults' && <GuestCounter label="Adults" />}
-            {selectedOption.value === 'children' && <GuestCounter label="Children" />}
-            {selectedOption.value === 'infants' && <GuestCounter label="Infants" />}
-            {selectedOption.value === 'pets' && <GuestCounter label="Pets" />}
+        <div className="guest-select flex">
+            <div className="guests-preview">
+                <span>GUESTS</span>
+                <span>1 guest</span>
+            </div>
+            <div className="arrow" onClick={() => setGuestSelectModalOpen(!isGuestSelectModalOpen)}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 32 32"
+                    aria-hidden="true"
+                    role="presentation"
+                    focusable="false"
+                    style={{
+                        display: 'block',
+                        fill: 'none',
+                        height: '16px',
+                        width: '16px',
+                        stroke: 'currentcolor',
+                        strokeWidth: 4,
+                        overflow: 'visible',
+                    }}
+                >
+                    <path fill="none" d={isGuestSelectModalOpen ? pathOpen : pathClosed} />
+                </svg>
+            </div>
+            {isGuestSelectModalOpen && <GuestSelectModal setGuestSelectModalOpen={setGuestSelectModalOpen} />}
         </div>
-    )
+    );
 }

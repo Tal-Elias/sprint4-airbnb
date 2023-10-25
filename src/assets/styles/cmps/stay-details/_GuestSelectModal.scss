@@ -1,0 +1,41 @@
+.guest-select-modal {
+    position: absolute;
+    top: 57px;
+    left: 0;
+
+    width: 100%;
+    // min-width: 280px;
+    padding: 16px;
+
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+    border-radius: 4px;
+    background-color: $clr2;
+
+    .guest-select-row {
+        align-items: center;
+        margin: 24px 0;
+
+        &:first-child {
+            margin-top: 8px;
+        }
+
+        .guest-select-labels {
+            .guest-select-label {
+                font-family: cereal-bold;
+                font-size: rem(16px);
+                padding: 0 0 4px;
+            }
+        }
+    }
+
+    button {
+        float: right;
+        margin: 0;
+        padding: 10px;
+        font-size: rem(16px);
+        color: $clr-txt-primary;
+        text-decoration: underline;
+        background: transparent;
+    }
+}

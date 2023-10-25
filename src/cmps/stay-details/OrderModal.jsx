@@ -8,6 +8,7 @@ export function OrderModal({ stay }) {
 
     const { price, reviews } = stay
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
+    const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
 
     return (
         <div className="order-modal">
@@ -19,7 +20,7 @@ export function OrderModal({ stay }) {
                 <div className="reviews">
                     <ReviewRate reviews={reviews} />
                     <span className="seperator">·</span>
-                    <span>{reviews.length}</span>
+                    <span>{reviews.length} reviews</span>
                 </div>
             </header>
             <div className="order-edit-container">
@@ -33,10 +34,10 @@ export function OrderModal({ stay }) {
                         <span>Add date</span>
                     </div>
                 </div>
-                <GuestSelect />
-                {/* <div className="guest-picker">
-                    <input type="text" placeholder="Add guests" />
-                </div> */}
+                <GuestSelect
+                    isGuestSelectModalOpen={isGuestSelectModalOpen}
+                    setGuestSelectModalOpen={setGuestSelectModalOpen}
+                />
             </div>
             <Link to={'/stay/order'}>
                 <button className="reserve">Reserve</button>
