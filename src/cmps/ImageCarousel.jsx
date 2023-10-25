@@ -40,9 +40,9 @@ export function ImageCarousel({ imgs }) {
         <div className="imgs-container">
             <Slider {...settings}>
                 {imgs.map((item, idx) => (
-                    <div key={idx}>
-                        <img className="stay-img" src={item} alt={item} />
-                    </div>
+
+                    <img key={idx} className="stay-img" src={item} alt={item} />
+
                 ))}
             </Slider>
         </div>

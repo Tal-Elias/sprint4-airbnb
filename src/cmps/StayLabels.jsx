@@ -21,7 +21,6 @@ import 'swiper/css';
 // import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 
 export function StayLabels() {
     const labels = [
@@ -95,14 +94,16 @@ export function StayLabels() {
 
     return (
         <div className="stay-labels" style={{ position: "relative" }}>
-            <div className="swiper-button image-swiper-button-next">
-                {/* <IoIosArrowForward /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
-            </div>
-            <div className="swiper-button image-swiper-button-prev">
-                {/* <IoIosArrowBack /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
-            </div>
+            {/* <div className="button-container next"> */}
+                <div className="swiper-button image-swiper-button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
+                </div>
+            {/* </div> */}
+            {/* <div className="button-container prev"> */}
+                <div className="swiper-button image-swiper-button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
+                </div>
+            {/* </div> */}
 
             <Swiper slidesPerView={'auto'}
                 spaceBetween={32}
