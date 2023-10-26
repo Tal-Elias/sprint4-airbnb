@@ -1,7 +1,7 @@
 export function SearchBarForm({ setIsSearchBarOpen }) {
     return (
-        <div className="search-bar-form" onClick={() => setIsSearchBarOpen(false)}>
-            <div className="form-container">
+        <div className="search-bar-form">
+            <div className="form-container" onClick={() => setIsSearchBarOpen(false)}>
                 <div className="input-destination">
                     <button className="destination btn-input dest">
                         <div className="label">Where</div>

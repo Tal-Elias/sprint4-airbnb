@@ -1,6 +1,6 @@
 .stay-labels {
     position: sticky;
-    top: 6vh;
+    top: 8vh;
     z-index: 10;
     background: $clr2;
 
@@ -93,7 +93,8 @@
 
     .mySwiper {
         // TODO: define width
-        width: 90vw;
+        width: 85vw;
+        margin: 0;
 
         height: fit-content;
         padding-block-start: 20px;
