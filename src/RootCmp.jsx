@@ -10,25 +10,27 @@ import { StayOrder } from './pages/StayOrder.jsx'
 import { StaySearchBar } from './cmps/StaySearchBar'
 import { UserMsg } from './cmps/UserMsg'
 import { Toaster } from 'react-hot-toast'
+import { StayIndex } from './pages/StayIndex'
+import { StayEdit } from './pages/StayEdit'
 // import { UserDetails } from './pages/UserDetails'
 
 export function RootCmp() {
     let location = useLocation()
 
-    const [isDetailsPage, setIsDetailsPage] = useState(false)
+    const [isSecondaryLayout, setIsSecondaryLayout] = useState(false)
 
     useEffect(() => {
         if (location.pathname.startsWith('/stay/') ||
             location.pathname.startsWith('/trip') ||
             location.pathname.startsWith('/wishlist') ||
-            location.pathname.startsWith('/dashboard')) setIsDetailsPage(true)
-        else setIsDetailsPage(false)
+            location.pathname.startsWith('/dashboard')) setIsSecondaryLayout(true)
+        else setIsSecondaryLayout(false)
     }, [location])
 
     return (
-        <div className={`${isDetailsPage ? 'details-layout' : 'main-layout'}`}>
-            <AppHeader isDetailsPage={isDetailsPage} />
-            <main>
+        <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
+            <AppHeader isSecondaryLayout={isSecondaryLayout} />
+            <main style={{ paddingBottom: '80px' }}>
                 {/* <UserMsg /> */}
                 <Toaster position='absolute' containerStyle={{
                     bottom: 60,
@@ -36,13 +38,15 @@ export function RootCmp() {
                 }} />
                 {/* <StaySearchBar /> */}
                 <Routes>
-                    {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+                    <Route path="/" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />
                     <Route path="stay/order" element={<StayOrder />} />
+                    <Route path="dashboard/stay/edit" element={<StayEdit />} />
+                    {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     {/* <Route path="user/:id" element={<UserDetails />} /> */}
                 </Routes>
             </main>
-            {/* <AppFooter isDetailsPage={isDetailsPage} /> */}
+            <AppFooter isSecondaryLayout={isSecondaryLayout} />
         </div>
     )
 }

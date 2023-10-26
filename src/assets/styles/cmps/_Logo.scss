@@ -1,18 +1,23 @@
-.logo-container {
+.logo {
     display: flex;
-    align-items: center;
-    gap: 7px;
-    cursor: pointer;
-    height: 80px;
+    flex: 0 0 150px;
 
-    svg {
-        color: $clr-brand;
-    }
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
 
-    h1 {
-        font-size: 22px;
-        font-weight: 700;
-        color: $clr-brand;
-        line-height: lh(22px, 22px);
+        svg {
+            color: $clr-brand;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: $clr-brand;
+            line-height: lh(22px, 22px);
+        }
     }
 }

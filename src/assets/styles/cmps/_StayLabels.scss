@@ -1,4 +1,9 @@
 .stay-labels {
+    position: sticky;
+    top: 6vh;
+    z-index: 10;
+    background: $clr2;
+
     .label-img {
         opacity: 0.65;
     }
@@ -53,8 +58,8 @@
 
         height: fit-content;
         padding-block-start: 20px;
+        font-family: cereal-md, sans-serif;
         font-size: 12px;
-        font-weight: 600;
 
         .swiper-slide {
             min-width: 56px;

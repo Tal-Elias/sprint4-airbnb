@@ -1,0 +1,77 @@
+.search-bar-form {
+    display: flex;
+    justify-content: center;
+    padding-block-end: 30px;
+
+    .form-container {
+        display: flex;
+        flex: 1 1 0;
+        height: 66px;
+        max-width: 850px;
+        text-align: left;
+        border: 1px solid $clr-border;
+        border-radius: 32px;
+        cursor: pointer;
+
+        .input-destination {
+            flex: 1.25;
+        }
+
+        .input-dates {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-guests-search {
+            flex: 1 0;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 32px;
+
+            &:hover {
+                background-color: $clr-exp-search-bar;
+            }
+        }
+
+        .form-seperator {
+            align-self: center;
+            flex: 0 0 0;
+            height: 32px;
+            border-right: 1px solid $clr-border;
+        }
+
+        button {
+            text-align: left;
+
+            &.btn-input {
+                width: 100%;
+                border: none;
+                border-radius: 32px;
+                padding: 14px 24px;
+
+                &.dest {
+                    padding: 14px 32px;
+                }
+
+                &:hover {
+                    background-color: $clr-exp-search-bar;
+                }
+            }
+
+            &.btn-search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 48px;
+                margin: 7px;
+                min-width: 48px;
+                padding: 16px;
+                border: transparent;
+                border-radius: 2em;
+                color: $clr2;
+                background-color: $clr-brand;
+            }
+        }
+    }
+}

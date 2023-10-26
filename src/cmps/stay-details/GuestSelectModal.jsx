@@ -25,8 +25,12 @@ export function GuestSelectModal({ setGuestSelectModalOpen }) {
         }
     ]
 
+    function onModalClick(ev) {
+        ev.stopPropagation()
+    }
+
     return (
-        <div className="guest-select-modal">
+        <div className="guest-select-modal" onClick={onModalClick}>
             {guestTypes.map((type, idx) => {
                 return (
                     <div className="guest-select-row flex space-between" key={idx}>

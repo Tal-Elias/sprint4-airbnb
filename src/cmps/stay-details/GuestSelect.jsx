@@ -6,12 +6,12 @@ export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen })
     const pathClosed = "M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12";
 
     return (
-        <div className="guest-select flex">
+        <div className="guest-select flex" onClick={() => setGuestSelectModalOpen(!isGuestSelectModalOpen)}>
             <div className="guests-preview">
                 <span>GUESTS</span>
                 <span>1 guest</span>
             </div>
-            <div className="arrow" onClick={() => setGuestSelectModalOpen(!isGuestSelectModalOpen)}>
+            <div className="arrow" >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 32 32"

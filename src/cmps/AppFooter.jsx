@@ -1,7 +1,7 @@
 
-export function AppFooter({ isDetailsPage }) {
+export function AppFooter({ isSecondaryLayout }) {
     return (
-        <footer className={`app-footer full ${isDetailsPage ? 'details-layout' : 'main-layout'}`}>
+        <footer className={`app-footer full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
             <div className="site-info">
                 <span> © 2023 Hairbnb, Inc.</span>
                 <span className="seperator">·</span>

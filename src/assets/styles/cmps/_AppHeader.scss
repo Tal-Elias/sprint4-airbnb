@@ -1,189 +1,23 @@
 header.app-header {
     background-color: $clr2;
-    position: relative;
 
-    .container {
+    &.sticky {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        min-height: 80px;
 
-        .search-bar-buttons {
-            align-items: center;
-            padding: .3em .1em .3em 1.8em;
-            border: 1px solid $clr-border;
-            border-radius: 2em;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            gap: 10px;
-
-            span.seperator {
-                height: 2em;
-                border-left: 1px solid $clr-border;
-            }
-
-            button {
-                display: flex;
-                padding: .6em;
-                border-radius: 2em;
-                align-items: center;
-            }
-        }
-
-        // .logo-container {
-        //     display: flex;
-        //     align-items: center;
-        //     gap: 7px;
-        //     cursor: pointer;
-        //     height: 80px;
-
-
-        //     img {
-        //         width: 32px;
-        //     }
-
-        //     svg {
-        //         color: $clr-brand;
-        //     }
-
-        //     h1 {
-        //         font-size: 22px;
-        //         font-weight: 700;
-        //         color: $clr-brand;
-        //         line-height: lh(22px, 22px);
-        //     }
-        // }
-
-        // .burger-menu {
-        //     font-size: 1.3rem;
-        //     display: flex;
-        //     align-items: center;
-        //     gap: 10px;
-        //     padding: .5em .5em;
-        //     border: 1px solid $clr-border;
-        //     border-radius: 2em;
-
-        //     .avatar {
-        //         display: flex;
-        //         color: white;
-        //         background-color: gray;
-        //         border-radius: 2em;
-        //         border: 1px solid gray;
-        //         overflow: hidden;
-
-        //         .avatar-icon {
-        //             position: relative;
-        //             bottom: -3px;
-        //         }
-        //     }
-        // }
-
-        // nav {
-        //     a {
-        //         margin-left: 5px;
-        //     }
-        // }
-    }
-
-    .exp-search-bar {
-        border: 1px solid $clr-border;
-        border-radius: 32px;
-        // background-color: $clr-exp-search-bar;
-        display: flex;
-        align-items: center;
-        flex: 1 1 0%;
-        // min-width: 850px;
-        justify-self: center;
-
-        .exp-seperator {
-            border-right: 1px solid $clr-border;
-            height: 32px;
-            align-self: center
-        }
-
-        .label {
-            font-size: 0.75rem;
-            line-height: 1rem;
-            font-weight: 800;
-            padding-bottom: 2px;
-        }
-
-        .input {
-            border: 0;
-            margin: 0;
-            padding: 0;
-            background: none;
-            font-size: 0.875rem;
-            line-height: 1.125rem;
-            text-overflow: ellipsis;
-            display: block;
-            width: 100%;
-            color: $clr-txt-secondary;
-            font-weight: 400;
-
-        }
-
-        .choose {
-            border: 1px solid transparent;
-            border-radius: 32px;
-
-            &:hover {
-                background-color: $clr-exp-search-bar;
-            }
-        }
-
-        .where {
-            padding: 14px 32px;
-
-        }
-
-        .when {
+        .nav-container {
             display: flex;
-            flex: 1 0 0%, 2 0 0%;
-            min-width: 0;
-
-            .check-in,
-            .check-out {
-                padding: 14px 24px;
-            }
+            justify-content: flex-end;
+            flex: 0 0 150px;
         }
-
-        .search-section {
-            // flex: 1 0 0%, 0.95 0 auto;
-            display: flex;
-            align-items: center;
-            min-width: 0;
-            position: relative;
-            width: 100%, initial;
-
-            .who {
-                padding: 14px 24px;
-
-            }
-
-            .search {
-                // padding-right: 9px;
-                padding:14px 16px ;
-                border-radius: 24px;
-                position: relative;
-                transition: 0.2s opacity cubic-bezier(0.2, 0, 0, 1);
-
-
-
-                &:hover {
-                    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-                    will-change: opacity;
-
-
-                }
-
-                &>* {
-                    font-size: 1rem;
-                    font-weight: 600;
-
-                }
-            }
-        }
-
-
     }
 
     box-shadow: 0px 1px rgba(0, 0, 0, 0.08);

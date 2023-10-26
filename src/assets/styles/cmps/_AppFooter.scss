@@ -9,6 +9,10 @@
 footer.app-footer {
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
     padding: 14px 0;
     width: 100%;
     background-color: $clr2;

@@ -1,6 +1,7 @@
 .guest-select {
     position: relative;
     padding: 26px 36px 10px 12px;
+    cursor: pointer;
 
     span:first-child {
         position: absolute;
@@ -23,7 +24,5 @@
 
         max-width: 50%;
         min-width: 36px;
-
-        cursor: pointer;
     }
 }

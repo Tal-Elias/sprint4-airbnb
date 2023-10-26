@@ -23,7 +23,7 @@
     }
 }
 
-.details-layout {
+.secondary-layout {
     display: grid;
     grid-template-columns: $layoutPadding 1fr $layoutPadding;
 
@@ -35,15 +35,15 @@
         }
     }
 
-    @include details-for-narrow-layout {
+    @include secondary-for-narrow-layout {
         grid-template-columns: 40px 1fr 40px;
     }
 
-    @include details-for-normal-layout {
+    @include secondary-for-normal-layout {
         grid-template-columns: 80px 1fr 80px;
     }
 
-    @include details-for-wide-layout {
+    @include secondary-for-wide-layout {
         grid-template-columns: 1fr minmax(auto, 1120px) 1fr;
     }
 }

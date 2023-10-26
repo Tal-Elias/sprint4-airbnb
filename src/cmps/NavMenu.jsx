@@ -21,7 +21,7 @@ export function NavMenu({ ...props }) {
                 </section>
             }
             <nav className="nav-links flex column">
-                {routes.slice(1, -1).map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
+                {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
             </nav>
         </div>
     )
