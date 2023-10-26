@@ -4,58 +4,74 @@
     }
 
     // .button-container {
-        // height: 100%;
-        // background-color: white;
-        // position: absolute;
-        // width: 40px;
-        // z-index: 10;
+    // height: 100%;
+    // position: absolute;
+    // width: 80px;
+    // z-index: 10;
 
-        // background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
-        // &.next {
-        //     right: 0;
+    // &.next {
+    //     right: 0;
+    //     background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
 
-        // }
+    // }
+
+    // &.prev {
+
+    //     left: 0;
+    //     background-image: linear-gradient(to left, rgb(255 255 255/0), white 40px);
+
+
+    // }
+
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     width: 40px;
+    //     // background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
+
+    // }
+
+    .swiper-button {
+        height: 28px;
+        width: 28px;
+        background-color: rgb(255, 255, 255);
+        opacity: .9;
+        border: 0.5px solid rgb(0 0 0/0.3);
+        border-radius: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        z-index: 10;
+        place-items: center;
+        transition: .3s;
+        display: grid;
+        cursor: pointer;
 
         // &::before {
         //     content: '';
-        //     height: 100%;
-        //     display: block;
+        //     height: 40px;
         //     width: 40px;
-        //     background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
-
+        //     background-color: pink;
+        //     // position: absolute;
+            
         // }
 
-        .swiper-button {
-            height: 28px;
-            width: 28px;
-            background-color: rgb(255, 255, 255);
-            opacity: .9;
-            border: 0.5px solid rgb(0 0 0/0.3);
-            border-radius: 50%;
-            position: absolute;
-            transform: translateY(-50%);
-            top: 50%;
-            z-index: 10;
-            place-items: center;
-            transition: .3s;
-            display: grid;
-            cursor: pointer;
-
-            svg {
-                display: block;
-                fill: none;
-                height: 12px;
-                width: 12px;
-                stroke: currentColor;
-                stroke-width: 5.33333;
-                overflow: visible;
-            }
-
-            &:hover {
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-                transform: translateY(-50%) scale(1.04);
-            }
+        svg {
+            display: block;
+            fill: none;
+            height: 12px;
+            width: 12px;
+            stroke: currentColor;
+            stroke-width: 5.33333;
+            overflow: visible;
         }
+
+        &:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-50%) scale(1.04);
+        }
+    }
+
     // }
 
     .image-swiper-button-prev {
