@@ -8,6 +8,34 @@
         opacity: 0.65;
     }
 
+    // .button-container {
+    // height: 100%;
+    // position: absolute;
+    // width: 80px;
+    // z-index: 10;
+
+    // &.next {
+    //     right: 0;
+    //     background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
+
+    // }
+
+    // &.prev {
+
+    //     left: 0;
+    //     background-image: linear-gradient(to left, rgb(255 255 255/0), white 40px);
+
+
+    // }
+
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     width: 40px;
+    //     // background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
+
+    // }
+
     .swiper-button {
         height: 28px;
         width: 28px;
@@ -24,6 +52,15 @@
         display: grid;
         cursor: pointer;
 
+        // &::before {
+        //     content: '';
+        //     height: 40px;
+        //     width: 40px;
+        //     background-color: pink;
+        //     // position: absolute;
+            
+        // }
+
         svg {
             display: block;
             fill: none;
@@ -39,6 +76,8 @@
             transform: translateY(-50%) scale(1.04);
         }
     }
+
+    // }
 
     .image-swiper-button-prev {
         left: 5px;

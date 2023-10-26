@@ -7,9 +7,6 @@
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
     margin-block-start: 16px;
 
-    li {
-        cursor: pointer;
-    }
 }
 
 // grid-auto-rows: var(--breakpoint-grid_auto-rows, minmax(min-content,max-content) );
