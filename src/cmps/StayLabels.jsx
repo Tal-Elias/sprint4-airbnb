@@ -15,6 +15,12 @@ import amazingPools from "../assets/img/amazingPools.jpeg"
 import castles from "../assets/img/castles.jpeg"
 import rooms from "../assets/img/rooms.jpeg"
 import islands from "../assets/img/islands.jpeg"
+import aFrames from "../assets/img/aFrames.jpeg"
+import iconicCities from "../assets/img/iconicCities.jpeg"
+import lakeFront from "../assets/img/lakeFront.jpeg"
+import offTheGrid from "../assets/img/offTheGrid.jpeg"
+import play from "../assets/img/play.jpeg"
+import skiing from "../assets/img/skiing.jpeg"
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -92,6 +98,30 @@ export function StayLabels() {
         {
             title: 'Islands',
             url: islands
+        },
+        {
+            title: 'A-frames',
+            url: aFrames
+        },
+        {
+            title: 'Iconic cities',
+            url: iconicCities
+        },
+        {
+            title: 'LakeFront',
+            url: lakeFront
+        },
+        {
+            title: 'Off-the-grid',
+            url: offTheGrid
+        },
+        {
+            title: 'Play',
+            url: play
+        },
+        {
+            title: 'Skiing',
+            url: skiing
         }
     ]
 
