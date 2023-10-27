@@ -25,7 +25,7 @@ import skiing from "../assets/img/skiing.jpeg"
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
-// import 'swiper/css/navigation';
+import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 
@@ -129,16 +129,16 @@ export function StayLabels() {
 
     return (
         <div className="stay-labels">
-            {/* <div className="button-container next"> */}
-            <div className="swiper-button image-swiper-button-next">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
+            <div className="bg next">
+                <div className="swiper-button image-swiper-button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
+                </div>
             </div>
-            {/* </div> */}
-            {/* <div className="button-container prev"> */}
-            <div className="swiper-button image-swiper-button-prev">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
+            <div className="bg prev">
+                <div className="swiper-button image-swiper-button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
+                </div>
             </div>
-            {/* </div> */}
 
             <Swiper slidesPerView={'auto'}
                 spaceBetween={32}
@@ -149,7 +149,8 @@ export function StayLabels() {
                 }}
                 // navigation={true}
                 modules={[Navigation]}
-                className="mySwiper">
+            // className="mySwiper"
+            >
 
                 {labels.map(label =>
                     <SwiperSlide key={label.title}>
@@ -157,6 +158,7 @@ export function StayLabels() {
                         <span className="label-title">{label.title}</span>
                     </SwiperSlide>
                 )}
+
             </Swiper >
         </div>
     )
