@@ -1,6 +1,9 @@
 import { GuestCounter } from "./GuestCounter"
+import useClickOutside from "../../customHooks/useClickOutside"
+import { useRef } from "react"
 
-export function GuestSelectModal({ setGuestSelectModalOpen }) {
+export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen }) {
+    const elGuestSelectModal = useRef()
 
     const guestTypes = [
         {
@@ -25,12 +28,16 @@ export function GuestSelectModal({ setGuestSelectModalOpen }) {
         }
     ]
 
+    useClickOutside(elGuestSelectModal, () => {
+        if (isGuestSelectModalOpen) setGuestSelectModalOpen(false)
+    })
+
     function onModalClick(ev) {
         ev.stopPropagation()
     }
 
     return (
-        <div className="guest-select-modal" onClick={onModalClick}>
+        <div className="guest-select-modal" onClick={onModalClick} ref={elGuestSelectModal}>
             {guestTypes.map((type, idx) => {
                 return (
                     <div className="guest-select-row flex space-between" key={idx}>
