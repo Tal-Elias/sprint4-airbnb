@@ -57,6 +57,24 @@ button {
     cursor: pointer;
 }
 
+.btn-underline {
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: cereal-md;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.btn-grey-bg{
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+    &:hover{
+       background-color: $clr-bg-secondary;
+    }
+}
+
 .btn {
     // display: inline-block;
     // margin: 0;

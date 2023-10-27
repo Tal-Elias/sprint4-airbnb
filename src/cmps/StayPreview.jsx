@@ -1,6 +1,25 @@
 import { ImageCarousel } from "./ImageCarousel";
 import { ReviewRate } from "./stay-reviews/ReviewRate";
-export function StayPreview({ stay }) {
+export function StayPreview({ stay, dates }) {
+    function randomDateRange() {
+        const months = [
+          'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+      
+        const startMonthIndex = Math.floor(Math.random() * 12);
+        const endMonthIndex = Math.floor(Math.random() * 12);
+      
+        const startDate = Math.floor(Math.random() * 31) + 1;
+        const endDate = Math.floor(Math.random() * 31) + 1;
+      
+        const startMonth = months[startMonthIndex];
+        const endMonth = months[endMonthIndex];
+      
+        return `${startMonth} ${startDate} – ${endMonth} ${endDate}`;
+      }
+        
+
     return (
         <article className="stay-preview">
             <ImageCarousel imgs={stay.imgUrls} />
@@ -9,6 +28,7 @@ export function StayPreview({ stay }) {
                 <div className="stay-loc">{stay.loc.city}, {stay.loc.country}</div>
                 <ReviewRate reviews={stay.reviews} />
                 <div className="stay-name">{stay.name}</div>
+                <div className="stay-dates">{dates|| randomDateRange() }</div>
                 <div className="stay-price">$ {stay.price} <span className="night">night</span></div>
             </div>
         </article>
