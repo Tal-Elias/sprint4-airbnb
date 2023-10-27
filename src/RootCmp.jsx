@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
-
 import routes from './routes'
-
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { StayDetails } from './pages/StayDetails'
@@ -28,7 +26,6 @@ export function RootCmp() {
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
             <AppHeader isSecondaryLayout={isSecondaryLayout} />
             <main style={{ paddingBottom: '80px' }}>
-                {/* <UserMsg /> */}
                 <Toaster position='absolute' containerStyle={{
                     bottom: 60,
                     left: 30,

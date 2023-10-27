@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { DatePicker } from "../DatePicker";
 import { DatePickerPreview } from "./DatePickerPreview";
+import useClickOutside from "../../customHooks/useClickOutside";
 
-export function DatePickerModal({ setDatePickerModalOpen }) {
+export function DatePickerModal({ isDatePickerModalOpen, setDatePickerModalOpen }) {
     const [selectedDateRange, setSelectedDateRange] = useState(null)
+    const elDatePickerModal = useRef()
+
+    useClickOutside(elDatePickerModal, () => {
+        if (isDatePickerModalOpen) setDatePickerModalOpen(false)
+    })
 
     return (
-        <div className="date-picker-modal">
+        <div className="date-picker-modal" ref={elDatePickerModal}>
             <header className="header">
                 <div className="side-header">
                     <h2>Select dates</h2>

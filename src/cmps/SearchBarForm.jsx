@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Backdrop } from "./Backdrop"
 
 export function SearchBarForm({ setIsSearchBarOpen }) {
     const [expanded, setExpanded] = useState(false)
@@ -44,6 +45,7 @@ export function SearchBarForm({ setIsSearchBarOpen }) {
                     <div className="form-guest-modal"></div>
                 </div>
             </div>
+            <Backdrop setIsSearchBarOpen={setIsSearchBarOpen} />
         </div>
     )
 }

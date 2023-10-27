@@ -4,8 +4,13 @@ export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen })
     const pathOpen = "M4 20 15.3 8.7a1 1 0 0 1 1.4 0L28 20";
     const pathClosed = "M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12";
 
+    function handleOnClickGuestSelect(ev) {
+        ev.stopPropagation()
+        setGuestSelectModalOpen(!isGuestSelectModalOpen)
+    }
+
     return (
-        <div className="guest-select flex" onClick={() => setGuestSelectModalOpen(!isGuestSelectModalOpen)}>
+        <div className="guest-select flex" onClick={handleOnClickGuestSelect}>
             <div className="guests-preview">
                 <span>GUESTS</span>
                 <span>1 guest</span>
@@ -30,7 +35,12 @@ export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen })
                     <path fill="none" d={isGuestSelectModalOpen ? pathOpen : pathClosed} />
                 </svg>
             </div>
-            {isGuestSelectModalOpen && <GuestSelectModal setGuestSelectModalOpen={setGuestSelectModalOpen} />}
+            {isGuestSelectModalOpen &&
+                <GuestSelectModal
+                    isGuestSelectModalOpen={isGuestSelectModalOpen}
+                    setGuestSelectModalOpen={setGuestSelectModalOpen}
+                />
+            }
         </div>
     );
 }

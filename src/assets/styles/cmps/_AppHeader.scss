@@ -1,6 +1,9 @@
 header.app-header {
-    background-color: $clr-bg-primary;
+    position: sticky;
+    z-index: 999;
+
     height: 80px;
+    background-color: $clr-bg-primary;
 
     &::after {
         content: '';
@@ -9,22 +12,23 @@ header.app-header {
         right: 0;
         left: 0;
         height: 80px;
-        background-color: $clr-bg-primary;
         z-index: -1;
+        background-color: $clr-bg-primary;
+        box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
         transition: transform 250ms ease;
         transform: initial;
     }
 
     &:has(.search-bar-form)::after {
         transform: scaleY(3.1);
-        border-bottom: none;
+        box-shadow: none;
         transition: transform 250ms ease;
     }
 
     &.sticky {
-        position: sticky;
+        // position: sticky;
         top: 0;
-        z-index: 100;
+        // z-index: 100;
     }
 
     .header-container {
@@ -40,5 +44,5 @@ header.app-header {
         }
     }
 
-    box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
+    // box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
 }

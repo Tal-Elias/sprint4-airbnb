@@ -10,6 +10,11 @@ export function OrderModal({ stay }) {
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
 
+    function handleOnClickDatePicker(ev) {
+        ev.stopPropagation()
+        setDatePickerModalOpen(!isDatePickerModalOpen)
+    }
+
     return (
         <div className="order-modal">
             <header className="order-modal-header">
@@ -24,7 +29,7 @@ export function OrderModal({ stay }) {
                 </div>
             </header>
             <div className="order-edit-container">
-                <div className="date-picker flex" onClick={setDatePickerModalOpen}>
+                <div className="date-picker flex" onClick={handleOnClickDatePicker}>
                     <div className="check-in flex column">
                         <span>CHECK-IN</span>
                         <span>Add date</span>
@@ -43,7 +48,10 @@ export function OrderModal({ stay }) {
                 <button className="reserve">Reserve</button>
             </Link>
             {isDatePickerModalOpen && (
-                <DatePickerModal setDatePickerModalOpen={setDatePickerModalOpen} />
+                <DatePickerModal
+                    isDatePickerModalOpen={isDatePickerModalOpen}
+                    setDatePickerModalOpen={setDatePickerModalOpen}
+                />
             )}
         </div>
     )
