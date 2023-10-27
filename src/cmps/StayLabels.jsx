@@ -129,7 +129,7 @@ export function StayLabels() {
 
     return (
         <div className="stay-labels">
-            <div className="bg next">
+            <div className="bg next ">
                 <div className="swiper-button image-swiper-button-next">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
                 </div>
@@ -141,6 +141,9 @@ export function StayLabels() {
             </div>
 
             <Swiper slidesPerView={'auto'}
+                slidesPerGroupAuto={true}
+                // slidesPerGroup={1}
+                // slidesPerGroupSkip={0}
                 spaceBetween={32}
                 navigation={{
                     nextEl: ".image-swiper-button-next",

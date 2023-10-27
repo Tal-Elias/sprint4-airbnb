@@ -69,12 +69,16 @@
 
 
     }
+    .swiper-button-disabled {
+        display: none;
+        // background-color: transparent;
 
+    }
     .bg {
         height: 40px;
         width: 80px;
         position: absolute;
-        height: 90%;
+        height: 80px;
         z-index: 10;
 
         &.next {
@@ -88,7 +92,7 @@
 
         }
 
-
+    }
         .swiper-button {
             height: 28px;
             width: 28px;
@@ -139,11 +143,12 @@
 
         .swiper-button-disabled {
             display: none;
+
             // background-color: transparent;
 
         }
 
-    }
+    
 
     // .button-container {
     // height: 100%;
