@@ -401,36 +401,9 @@ const gStays = [
     }
 ]
 
-const gOrders = [
-    {
-        "_id": "o1225",
-        "hostId": "u102",
-        "buyer": {
-            "_id": "u101",
-            "fullname": "User 1"
-        },
-        "totalPrice": 160,
-        "startDate": "2025/10/15",
-        "endDate": "2025/10/17",
-        "guests": {
-            "adults": 1,
-            "kids": 2
-        },
-        "stay": {
-            "_id": "h102",
-            "name": "House Of Uncle My",
-            "price": 80.00
-        },
-        "msgs": [],
-        "status": "pending" // approved, rejected
-    }
-]
-
 window.cs = stayService
 
 _createStays()
-// _createOrders()
-
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
@@ -494,12 +467,12 @@ function getEmptyStay() {
         labels: [],
         host: {},
         loc: {
-        country: '',
-        countryCode: "PT",
-        city: '',
-        address: '',
-        lat: -8.61308,
-        lng: 41.1413,
+            country: '',
+            countryCode: "PT",
+            city: '',
+            address: '',
+            lat: -8.61308,
+            lng: 41.1413,
         },
         reviews: []
     }
@@ -512,11 +485,3 @@ function _createStays() {
         utilService.saveToStorage(STORAGE_KEY, stays)
     }
 }
-
-// function _createOrders() {
-//     let orders = utilService.loadFromStorage('orders')
-//     if (!orders || !orders.length) {
-//         orders = gOrders
-//         utilService.saveToStorage('orders', orders)
-//     }
-// }

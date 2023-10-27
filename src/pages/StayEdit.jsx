@@ -80,7 +80,7 @@ export function StayEdit() {
                 <input type="file" onChange={handleImgSelected} />
                 <div className='imgs-container'>
                     {/* {images.length && */}
-                       { images.map((url, idx) => <img key={idx} src={url} />)}
+                    {images.map((url, idx) => <img key={idx} src={url} />)}
                     {/* } */}
                 </div>
             </div>

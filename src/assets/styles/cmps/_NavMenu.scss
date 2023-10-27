@@ -8,7 +8,7 @@
     margin-block-start: 10px;
     padding: 8px 0;
     font-family: cereal-md, sans-serif;
-    background: $clr2;
+    background: $clr-bg-primary;
     border-radius: 12px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, .12);
 
@@ -22,7 +22,7 @@
             padding: 12px 16px;
 
             &:hover {
-                background-color: $clr3;
+                background-color: $clr-bg-secondary;
             }
         }
     }

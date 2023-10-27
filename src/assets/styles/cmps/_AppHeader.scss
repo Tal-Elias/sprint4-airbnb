@@ -1,5 +1,25 @@
 header.app-header {
-    background-color: $clr2;
+    background-color: $clr-bg-primary;
+    height: 80px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 80px;
+        background-color: $clr-bg-primary;
+        z-index: -1;
+        transition: transform 250ms ease;
+        transform: initial;
+    }
+
+    &:has(.search-bar-form)::after {
+        transform: scaleY(3.1);
+        border-bottom: none;
+        transition: transform 250ms ease;
+    }
 
     &.sticky {
         position: sticky;

@@ -4,6 +4,13 @@
     padding-block-end: 30px;
 
     .form-container {
+        transform: scale(0.43, 0.74) translateY(-100px);
+
+        &.expanded {
+            transform: translateY(0);
+            transition: transform 250ms ease;
+        }
+
         display: flex;
         flex: 1 1 0;
         height: 66px;
@@ -30,7 +37,7 @@
             border-radius: 32px;
 
             &:hover {
-                background-color: $clr-exp-search-bar;
+                background-color: $clr-bg-tertiary;
             }
         }
 
@@ -55,7 +62,7 @@
                 }
 
                 &:hover {
-                    background-color: $clr-exp-search-bar;
+                    background-color: $clr-bg-tertiary;
                 }
             }
 
@@ -69,7 +76,7 @@
                 padding: 16px;
                 border: transparent;
                 border-radius: 2em;
-                color: $clr2;
+                color: $clr-bg-primary;
                 background-color: $clr-brand;
             }
         }

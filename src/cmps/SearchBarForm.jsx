@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react"
+
 export function SearchBarForm({ setIsSearchBarOpen }) {
+    const [expanded, setExpanded] = useState(false)
+
+    useEffect(() => {
+        setExpanded(prevState => !prevState)
+    }, [])
+
     return (
         <div className="search-bar-form">
-            <div className="form-container" onClick={() => setIsSearchBarOpen(false)}>
+            <div className={`form-container ${expanded && 'expanded'}`} onClick={() => setIsSearchBarOpen(false)}>
                 <div className="input-destination">
                     <button className="destination btn-input dest">
                         <div className="label">Where</div>

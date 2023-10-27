@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { loadStays } from '../store/actions/stay.actions.js'
-
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { StayList } from '../cmps/StayList.jsx'
 import { StayLabels } from '../cmps/StayLabels.jsx'
@@ -21,14 +20,6 @@ export function StayIndex() {
         }
         fetchData()
     }, [])
-
-    // useEffect(() => {
-    //     loadStays()
-    //         .catch(err => {
-    //             console.log('err:', err)
-    //             showErrorMsg('Cannot load stays')
-    //         })
-    // }, [])
 
     return (
         <section className="stay-index">

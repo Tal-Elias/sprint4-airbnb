@@ -1,4 +1,11 @@
 .search-form-options {
+    transform: scale(0.1, 0.1) translateY(-500px);
+
+    &.expanded {
+        transform: translateY(0);
+        transition: transform .3s;
+    }
+
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -11,7 +11,7 @@ html {
 body {
     font-size: 0.875rem;
     margin: 0;
-    background-color: $clr2;
+    background-color: $clr-bg-primary;
     line-height: 1.43;
 }
 
@@ -48,9 +48,12 @@ a {
 }
 
 button {
+    margin: 0;
+    padding: 0;
     font-size: inherit;
     font-family: inherit;
-    background-color: inherit;
+    background-color: transparent;
+    border-color: transparent;
     cursor: pointer;
 }
 

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import Select from 'react-select';
-
 
 export function StayReservation({ stay }) {
     const [startDate, setStartDate] = useState(new Date())
@@ -30,7 +28,6 @@ export function StayReservation({ stay }) {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

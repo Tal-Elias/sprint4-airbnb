@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { stayService } from "../services/stay.service.local.js"
-import { utilService } from "../services/util.service.js"
+import { useParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
-import { StayReservation } from "../cmps/StayReservation.jsx"
-import { CiHeart } from 'react-icons/ci'
 import { setCurrStay } from "../store/actions/stay.actions.js"
 import { setCurrOrder } from "../store/actions/order.actions.js"
 import { TbGridDots } from 'react-icons/tb'
@@ -67,9 +63,6 @@ export function StayDetails() {
 
     return (
         <section className="stay-details">
-            {/* <Link to={'/stay/order'}>
-                <button>Reserve</button>
-            </Link> */}
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
             </div>
@@ -156,20 +149,3 @@ export function StayDetails() {
         </section>
     )
 }
-
-{/* <section className="stay-details">
-            <div className="details-header">
-                <h1>{`${stay.name}`}</h1>
-                <div className="btn-save-container">
-                    <div>💓</div>
-                    <button className="btn-save">save</button>
-                </div>
-            </div>
-            <Link to={`/stay/order`}>
-                <button>Reserve</button>
-            </Link>
-            <div className="imgs-container">
-                {stay.imgUrls.map((url, idx) => <img key={idx} src={url} />)}
-            </div> */}
-{/* <StayReservation stay={stay} /> */ }
-{/* </section> */ }

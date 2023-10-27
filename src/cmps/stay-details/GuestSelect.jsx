@@ -1,4 +1,3 @@
-import { GuestCounter } from './GuestCounter'
 import { GuestSelectModal } from './GuestSelectModal';
 
 export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen }) {

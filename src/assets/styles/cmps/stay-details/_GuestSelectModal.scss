@@ -5,13 +5,12 @@
     cursor: default;
 
     width: 100%;
-    // min-width: 280px;
     padding: 16px;
 
     border: 1px solid rgb(226, 226, 226);
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
     border-radius: 4px;
-    background-color: $clr2;
+    background-color: $clr-bg-primary;
 
     .guest-select-row {
         align-items: center;
