@@ -3,18 +3,22 @@ import { Backdrop } from "./Backdrop"
 import { RegionSelect } from "./RegionSelect"
 import { DatePickerModal } from "./stay-details/DatePickerModal"
 import { GuestSelectModal } from "./stay-details/GuestSelectModal"
+import { useForm } from "../customHooks/useForm"
 
 export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedInput }) {
     const [expanded, setExpanded] = useState(false)
-
+    const [fields, setFields, handleChange] = useForm({ destination, checkIn, checkOut, guests })
     useEffect(() => {
         setExpanded(prevState => !prevState)
     }, [])
 
     function handleOnClick(input) {
         setSelectedInput(input)
-    }
 
+    }
+    function handleChange({ target }) {
+        console.log(target)
+    }
     return (
         <div className="search-bar-form">
             <div className={`form-container ${expanded && 'expanded'}`}>
@@ -22,7 +26,7 @@ export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedIn
                     <button className="destination btn-input dest" onClick={() => handleOnClick('destination')}>
                         <div className="label">Where</div>
                         {/* <input type="text" className="sub-label">Search destinations</input> */}
-                        <input type="text" placeholder="Search destinations" name="" id="" onClick={(e) => e.stopPropagation()} />
+                        <input type="text" placeholder="Search destinations" name="destination" id="" onClick={(e) => e.stopPropagation()} onChange={handleChange} />
                     </button>
                     {selectedInput === 'destination' && <RegionSelect />}
                 </div>

@@ -1,11 +1,11 @@
 import { FaSearch } from "react-icons/fa";
 
-export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput }) {
+export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput}) {
 
+    
     function handleOnClick(input) {
         setSelectedInput(input)
     }
-
     return (
         <div className="stay-search-bar flex" onClick={setIsSearchBarOpen}>
             <div className="btn-container">
