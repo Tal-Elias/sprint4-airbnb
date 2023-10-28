@@ -26,10 +26,7 @@ export function RootCmp() {
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
             <AppHeader isSecondaryLayout={isSecondaryLayout} />
             <main style={{ paddingBottom: '80px' }}>
-                <Toaster position='absolute' containerStyle={{
-                    bottom: 60,
-                    left: 30,
-                }} />
+                <Toaster position='absolute' containerStyle={{ bottom: 60, left: 30, }} />
                 <Routes>
                     <Route path="/" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />

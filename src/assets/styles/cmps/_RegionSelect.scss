@@ -9,7 +9,7 @@
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
     font-size: 0.875rem;
     line-height: 1.125rem;
-    
+
     .region-select-header {
         margin: 0 0 20px 5px;
         padding-block: 8px;
@@ -41,7 +41,16 @@
                 transition-property: transform, background-color, border-color;
                 transition-duration: 0.15s;
                 overflow: hidden;
-                // transition-timing-function: var(--itr-yy-z);
+                transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+                &:active {
+                    border-color: black;
+                    transform: scale(0.925);
+                }
+
+                &:hover {
+                    border-color: black;
+                }
 
                 img {
                     display: flex;

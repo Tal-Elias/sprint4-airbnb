@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StaySearchBar } from './StaySearchBar'
 import { NavHamburger } from './NavHamburger'
 import { Logo } from './Logo'
@@ -15,18 +15,27 @@ export function AppHeader({ isSecondaryLayout }) {
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
     const [selectedInput, setSelectedInput] = useState('destination')
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    const [searchPreview, setSearchPreview] = useState({})
+    const [searchPreview, setSearchPreview] = useState({
+        destination: "",
+        checkIn: "",
+        checkOut: "",
+        guests: {}
+    })
+
+    useEffect(() => {
+        setFilter(filterByToEdit)
+    }, [filterByToEdit])
+
     function handleScroll() {
         if (window.scrollY > 0) setIsSearchBarOpen(false)
     }
 
-    function handleChange({ field, value }, newSearchPreview) {
-        setFilter({ ...filterBy, [field]: value })
-        setSearchPreview(newSearchPreview)
-    }
+    // function handleChange({ field, value }, newSearchPreview) {
+    //     setFilter({ ...filterBy, [field]: value })
+    //     setSearchPreview(newSearchPreview)
+    // }
 
     useEventListener('scroll', handleScroll)
-
 
     return (
         <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'}`}>
@@ -51,6 +60,8 @@ export function AppHeader({ isSecondaryLayout }) {
                     setIsSearchBarOpen={setIsSearchBarOpen}
                     selectedInput={selectedInput}
                     setSelectedInput={setSelectedInput}
+                    filterByToEdit={filterByToEdit}
+                    setFilterByToEdit={setFilterByToEdit}
                 />}
         </header>
     )

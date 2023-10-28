@@ -24,7 +24,6 @@ export function getActionUpdateStay(stay) {
 }
 
 export async function loadStays(filterBy) {
-    console.log('filterBy:', filterBy)
     try {
         const stays = await stayService.query(filterBy)
         store.dispatch({

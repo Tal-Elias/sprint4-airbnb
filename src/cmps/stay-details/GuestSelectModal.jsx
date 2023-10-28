@@ -2,8 +2,24 @@ import { GuestCounter } from "./GuestCounter"
 import useClickOutside from "../../customHooks/useClickOutside"
 import { useRef } from "react"
 
-export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen, formLayout }) {
+export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen, onSetField, guestsCount, formLayout }) {
     const elGuestSelectModal = useRef()
+
+    function handleChange(field, value) {
+        if (value <= 0) value = 0
+        if (field === 'adults') {
+            onSetField('guests', { ...guestsCount, adults: value })
+        }
+        if (field === 'children') {
+            onSetField('guests', { ...guestsCount, children: value })
+        }
+        if (field === 'infants') {
+            onSetField('guests', { ...guestsCount, infants: value })
+        }
+        if (field === 'pets') {
+            onSetField('guests', { ...guestsCount, pets: value })
+        }
+    }
 
     const guestTypes = [
         {
@@ -45,7 +61,7 @@ export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOp
                             <div className="guest-select-label">{type.label}</div>
                             <div className="guest-select-sub-label">{type.subLabel}</div>
                         </div>
-                        <GuestCounter />
+                        <GuestCounter field={type.field} value={guestsCount[type.field]} onChange={handleChange} />
                     </div>
                 )
             })}

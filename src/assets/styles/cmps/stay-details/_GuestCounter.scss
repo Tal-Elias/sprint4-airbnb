@@ -12,8 +12,19 @@
         margin: 0;
         text-align: center;
         color: $clr-txt-secondary;
-        border: 1px solid $clr-txt-secondary;
+        border: 1px solid $clr-border2;
         background: $clr-bg-primary;
         border-radius: 50%;
+
+        &:hover {
+            color: black;
+            border-color: black;
+        }
+
+        &:disabled {
+            color: $clr-border;
+            border: 1px solid $clr-border;
+            cursor: not-allowed;
+        }
     }
 }

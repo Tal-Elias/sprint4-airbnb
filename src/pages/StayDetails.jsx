@@ -23,7 +23,7 @@ export function StayDetails() {
             endDate: "2025/10/17",
             guests: {
                 adults: 1,
-                kids: 2
+                children: 2
             },
             stay: {
                 _id: stay._id,
