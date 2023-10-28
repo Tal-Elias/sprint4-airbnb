@@ -4,10 +4,54 @@
         display: flex;
         justify-content: space-between;
         padding-top: 24px;
+        flex-direction: column;
 
         h1 {
             font-size: rem(26px);
             line-height: lh(30px, 26px)
+        }
+
+        .header-actions {
+            align-items: flex-end;
+            display: flex;
+            justify-content: space-between;
+            height: 32px;
+
+            .reviews-loc {
+                display: flex;
+                flex-wrap: wrap;
+
+                button {
+                    margin-top: 4px
+                }
+
+                span {
+                    font-weight: 400;
+                    margin: 5px 8px 3px
+                }
+            }
+
+            .share-save {
+                // height: 28px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 4px;
+                position: relative;
+                left: 8px;
+                top: 8px;
+
+                .share,
+                .save {
+                    display: flex;
+                    border: 0;
+                    border-bottom: 1.6px solid transparent;
+
+                    svg {
+                        margin-right: 8px ;
+                    }
+                }
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 .stay-preview {
     position: relative;
-    
+
     // display: grid;
 
     .stay-heart {
@@ -17,14 +17,17 @@
     .stay-info {
         // TODO: change the library or fix it
         // and then set the mbs to 12px
-        margin-block-start:6px;
+        margin-block-start: 6px;
         display: grid;
         gap: 2px 8px;
+        font-size: 0.9375rem;
+        line-height: 1.1875rem;
 
         .stay-loc {
             text-overflow: ellipsis;
             grid-row: 1;
-            font-weight: 600;
+            // font-weight: 600;
+            font-family: cereal-md, sans-serif;
         }
 
         .stay-name {
@@ -48,8 +51,14 @@
             justify-self: end;
         }
 
-        .stay-price {
+        .stay-dates {
             grid-row: 3;
+            color: $clr-txt-secondary;
+        }
+
+        .stay-price {
+            grid-row: 4;
+            margin-top: 6px;
             font-weight: 600;
 
             .night {
