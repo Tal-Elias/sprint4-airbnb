@@ -1,13 +1,17 @@
+import { stayService } from "../../services/stay.service.local"
+
 export const SET_STAYS = 'SET_STAYS'
 export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const UNDO_REMOVE_STAY = 'UNDO_REMOVE_STAY'
 export const SET_CURR_STAY = 'SET_CURR_STAY'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 
 const initialState = {
     stays: [],
+    filterBy: stayService.getDefaultFilter(),
     currStay: null,
     lastRemovedStay: null
 }
@@ -37,6 +41,10 @@ export function stayReducer(state = initialState, action) {
             if (state.lastRemovedStay) {
                 newState = { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
             }
+            break
+
+        case SET_FILTER_BY:
+            newState = { ...state, filterBy: { ...action.filterBy } }
             break
 
         case SET_CURR_STAY:

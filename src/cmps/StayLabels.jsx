@@ -29,7 +29,7 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 
-export function StayLabels() {
+export function StayLabels({ handleChange }) {
     const labels = [
         {
             title: 'National parks',
@@ -125,7 +125,9 @@ export function StayLabels() {
         }
     ]
 
-
+    function onLabelSelect(label) {
+        handleChange({ field: 'label', value: label })
+    }
 
     return (
         <div className="stay-labels">
@@ -156,7 +158,7 @@ export function StayLabels() {
             >
 
                 {labels.map(label =>
-                    <SwiperSlide key={label.title}>
+                    <SwiperSlide key={label.title} onClick={() => onLabelSelect(label.title)}>
                         <img className="label-img w24" src={label.url} />
                         <span className="label-title">{label.title}</span>
                     </SwiperSlide>

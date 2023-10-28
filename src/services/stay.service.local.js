@@ -10,10 +10,11 @@ export const stayService = {
     save,
     remove,
     getEmptyStay,
-    addStayMsg
+    addStayMsg,
+    getDefaultFilter
 }
 
-const gStays =[
+const gStays = [
     {
         "_id": "t101",
         "name": "Ribeira Charming Duplex",
@@ -55200,21 +55201,28 @@ function modify() {
             rate: utilService.getRandomIntInclusive(4, 5)
         })),
     }))
-console.log(updatedGStays)
+    console.log(updatedGStays)
 }
 window.cs = stayService
 
 _createStays()
 
-async function query(filterBy = { txt: '', price: 0 }) {
-    var stays = await storageService.query(STORAGE_KEY)
+async function query(filterBy = { txt: '', label: '', guests: '' }) {
+    let stays = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
+        stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
     }
-    if (filterBy.price) {
-        stays = stays.filter(stay => stay.price <= filterBy.price)
+    if (filterBy.label) {
+        const regex = new RegExp(filterBy.label, 'i')
+        stays = stays.filter(stay => regex.test(stay.type))
     }
+    if (filterBy.guests) {
+        stays = stays.filter(stay => filterBy.guests <= stay.capacity)
+    }
+    // if (filterBy.price) {
+    //     stays = stays.filter(stay => stay.price <= filterBy.price)
+    // }
     return stays
 }
 
@@ -55276,6 +55284,14 @@ function getEmptyStay() {
             lng: 41.1413,
         },
         reviews: []
+    }
+}
+
+function getDefaultFilter() {
+    return {
+        txt: '',
+        label: '',
+        guests: ''
     }
 }
 

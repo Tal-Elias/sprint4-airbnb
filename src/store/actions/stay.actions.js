@@ -1,7 +1,7 @@
 import { stayService } from "../../services/stay.service.local.js";
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_CURR_STAY } from "../reducers/stay.reducer.js";
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_CURR_STAY, SET_FILTER_BY } from "../reducers/stay.reducer.js";
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -23,9 +23,10 @@ export function getActionUpdateStay(stay) {
     }
 }
 
-export async function loadStays() {
+export async function loadStays(filterBy) {
+    console.log('filterBy:', filterBy)
     try {
-        const stays = await stayService.query()
+        const stays = await stayService.query(filterBy)
         store.dispatch({
             type: SET_STAYS,
             stays
@@ -69,6 +70,11 @@ export async function updateStay(stay) {
         console.log('Cannot save stay', err)
         throw err
     }
+}
+
+export function setFilter(filterBy = stayService.getDefaultFilter()) {
+    // console.log('filterBy:', filterBy)
+    store.dispatch({ type: SET_FILTER_BY, filterBy: filterBy })
 }
 
 // export function setCurrStay(stayId) {

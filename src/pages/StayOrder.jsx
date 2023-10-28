@@ -13,10 +13,10 @@ export function StayOrder() {
         console.log('stay:', stay)
         console.log('order:', order)
 
-        return () => {
-            setCurrOrder(orderService.getEmptyOrder())
-            setCurrStay(null)
-        }
+        // return () => {
+        //     setCurrOrder(orderService.getEmptyOrder())
+        //     setCurrStay(null)
+        // }
     }, [])
 
     async function onOrder() {
