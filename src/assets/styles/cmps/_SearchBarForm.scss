@@ -20,14 +20,72 @@
         border-radius: 32px;
         cursor: pointer;
 
+        .label {
+            font-family: cereal-bold, roboto, sans-serif;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            letter-spacing: 0.04em;
+            padding-bottom: 2px;
+        }
+
+        .sub-label {
+            color: $clr-txt-secondary;
+        }
+
         .input-destination {
-            flex: 1.25;
+            flex: 1.25 0 0;
+
+            input {
+                border: none;
+                background-color: inherit;
+            }
+
+            &:hover {
+                +.form-seperator {
+                    opacity: 0;
+                }
+            }
         }
 
         .input-dates {
             display: flex;
+            flex: 1 0 0;
             justify-content: center;
             align-items: center;
+
+            button {
+                position: relative;
+
+                &::before,
+                &::after {
+                    content: "";
+                    position: absolute;
+                    width: 1px;
+                    height: 32px;
+                    background-color: $clr-bg-primary;
+                    display: none;
+                }
+
+                &::before {
+                    left: -1px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &::after {
+                    right: -1px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                &:hover {
+
+                    &::before,
+                    &::after {
+                        display: block;
+                    }
+                }
+            }
         }
 
         .input-guests-search {
@@ -35,6 +93,28 @@
             justify-content: space-between;
             align-items: center;
             border-radius: 32px;
+
+            .btn-input {
+                position: relative;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: -1px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 1px;
+                    height: 32px;
+                    background-color: $clr-bg-primary;
+                    display: none;
+                }
+
+                &:hover {
+                    &::before {
+                        display: block;
+                    }
+                }
+            }
 
             &:hover {
                 background-color: $clr-bg-tertiary;

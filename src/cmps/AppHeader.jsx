@@ -8,6 +8,7 @@ import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 import { SearchBarForm } from './SearchBarForm'
 import { SearchFormOptions } from './SearchFormOptions'
+import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -38,6 +39,13 @@ export function AppHeader({ isSecondaryLayout }) {
             showErrorMsg('Cannot logout')
         }
     }
+
+    function handleScroll() {
+        if (window.scrollY > 0) setIsSearchBarOpen(false)
+    }
+
+    useEventListener('scroll', handleScroll)
+
     return (
         <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'}`}>
             <div className='header-container'>

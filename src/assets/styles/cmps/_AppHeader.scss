@@ -19,8 +19,12 @@ header.app-header {
         transform: initial;
     }
 
+    &.secondary-layout::after{
+        height: 72px;
+    }
+
     &:has(.search-bar-form)::after {
-        transform: scaleY(3.1);
+        transform: scaleY(3.4);
         box-shadow: none;
         transition: transform 250ms ease;
     }

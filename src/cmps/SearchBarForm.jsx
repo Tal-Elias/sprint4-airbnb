@@ -14,7 +14,8 @@ export function SearchBarForm({ setIsSearchBarOpen }) {
                 <div className="input-destination">
                     <button className="destination btn-input dest">
                         <div className="label">Where</div>
-                        <div className="input">Search destinations</div>
+                        {/* <input type="text" className="sub-label">Search destinations</input> */}
+                        <input type="text" placeholder="Search destinations" name="" id="" onClick={(e) => e.stopPropagation()} />
                     </button>
                     <div className="by-region-modal"></div>
                 </div>
@@ -22,12 +23,12 @@ export function SearchBarForm({ setIsSearchBarOpen }) {
                 <div className="input-dates">
                     <button className="check-in btn-input">
                         <div className="label">Check in</div>
-                        <div className="input">Add dates</div>
+                        <div className="sub-label">Add dates</div>
                     </button>
                     <div className="form-seperator"></div>
                     <button className="check-out btn-input">
                         <div className="label">Check out</div>
-                        <div className="input">Add dates</div>
+                        <div className="sub-label">Add dates</div>
                     </button>
                     <div className="form-date-modal"></div>
                 </div>
@@ -36,7 +37,7 @@ export function SearchBarForm({ setIsSearchBarOpen }) {
                     <div className="flex space-between align-center">
                         <button className="guests btn-input">
                             <div className="label">Who</div>
-                            <div className="input">Add guests</div>
+                            <div className="sub-label">Add guests</div>
                         </button>
                         <button className="btn-search">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 4, overflow: 'visible' }}><path fill="none" d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9"></path></svg>
