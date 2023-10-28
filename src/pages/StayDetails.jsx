@@ -109,7 +109,7 @@ export function StayDetails() {
             <div className="full-details-container border-bottom">
                 <div className="details-description">
                     <div className="short-summary border-bottom pb32">
-                        <h1>{stay.summary}</h1>
+                        <h1>{stay.roomType + ' hosted by ' + stay.host.fullname}</h1>
                         <ul className="flex clean-list">
                             <li>{stay.capacity} guests</li>
                             <span className="seperator">·</span>
