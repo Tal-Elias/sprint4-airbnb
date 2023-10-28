@@ -2,7 +2,7 @@ import { GuestCounter } from "./GuestCounter"
 import useClickOutside from "../../customHooks/useClickOutside"
 import { useRef } from "react"
 
-export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen }) {
+export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen, formLayout }) {
     const elGuestSelectModal = useRef()
 
     const guestTypes = [
@@ -37,7 +37,7 @@ export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOp
     }
 
     return (
-        <div className="guest-select-modal" onClick={onModalClick} ref={elGuestSelectModal}>
+        <div className={`guest-select-modal ${formLayout ? formLayout : ''}`} onClick={onModalClick} ref={elGuestSelectModal}>
             {guestTypes.map((type, idx) => {
                 return (
                     <div className="guest-select-row flex space-between" key={idx}>
@@ -49,7 +49,7 @@ export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOp
                     </div>
                 )
             })}
-            <button onClick={() => setGuestSelectModalOpen(false)}>Close</button>
+            <button className="btn-close" onClick={() => setGuestSelectModalOpen(false)}>Close</button>
         </div>
     )
 }

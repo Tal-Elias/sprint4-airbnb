@@ -4,6 +4,7 @@
     padding-block-end: 30px;
 
     .form-container {
+        position: relative;
         transform: scale(0.43, 0.74) translateY(-100px);
 
         &.expanded {
@@ -18,7 +19,6 @@
         text-align: left;
         border: 1px solid $clr-border;
         border-radius: 32px;
-        cursor: pointer;
 
         .label {
             font-family: cereal-bold, roboto, sans-serif;

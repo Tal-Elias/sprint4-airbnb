@@ -1,0 +1,58 @@
+.region-select {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 12px;
+    padding: 32px 32px;
+    border-radius: 32px;
+    background: $clr-bg-primary;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    
+    .region-select-header {
+        margin: 0 0 20px 5px;
+        padding-block: 8px;
+        font-family: cereal-bold, roboto, sans-serif;
+    }
+
+    .region-grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, min-content);
+        column-gap: 5px;
+        row-gap: 24px;
+
+        .region {
+            display: flex;
+            flex-direction: column;
+            padding: 4px;
+            height: 158px;
+            width: 132px;
+
+            .btn-region {
+                width: 120px;
+                text-align: center;
+                border: 1px solid black;
+                padding: 0;
+                margin: 0;
+                background-color: $clr-bg-primary;
+                border-color: $clr-border;
+                border-radius: 12px;
+                transition-property: transform, background-color, border-color;
+                transition-duration: 0.15s;
+                overflow: hidden;
+                // transition-timing-function: var(--itr-yy-z);
+
+                img {
+                    display: flex;
+                }
+            }
+
+            .region-name {
+                margin: 8px 2px 0 2px;
+            }
+        }
+
+
+    }
+}

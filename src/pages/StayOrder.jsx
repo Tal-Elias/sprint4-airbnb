@@ -10,6 +10,8 @@ export function StayOrder() {
     const stay = useSelector((storeState) => storeState.stayModule.currStay)
 
     useEffect(() => {
+        console.log('stay:', stay)
+        console.log('order:', order)
 
         return () => {
             setCurrOrder(orderService.getEmptyOrder())

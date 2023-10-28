@@ -22,8 +22,9 @@
 
         .guest-select-labels {
             .guest-select-label {
-                font-family: cereal-bold;
+                font-family: cereal-md, roboto, sans-serif;
                 font-size: rem(16px);
+                line-height: 1.25rem;
                 padding: 0 0 4px;
             }
         }
@@ -37,5 +38,38 @@
         color: $clr-txt-primary;
         text-decoration: underline;
         background: transparent;
+    }
+
+    &.form-layout {
+        top: 100%;
+        right: 0;
+        left: auto;
+        width: auto;
+        max-height: calc(100vh - 150px);
+        margin-top: 12px;
+        padding: 16px 32px;
+        border: none;
+        border-radius: 32px;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
+
+        .guest-select-row {
+            position: relative;
+            width: 330px;
+            margin: 0;
+            padding: 24px 4px 24px 0;
+        }
+
+        .guest-select-row:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid $clr-bg-tertiary;
+        }
+
+        .btn-close {
+            display: none;
+        }
     }
 }

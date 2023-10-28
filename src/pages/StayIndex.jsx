@@ -10,16 +10,20 @@ export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                await loadStays()
-            } catch (err) {
-                console.log('err:', err)
-                showErrorMsg('Cannot load stays')
-            }
-        }
-        fetchData()
+        loadStays()
     }, [])
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             await loadStays()
+    //         } catch (err) {
+    //             console.log('err:', err)
+    //             showErrorMsg('Cannot load stays')
+    //         }
+    //     }
+    //     fetchData()
+    // }, [])
 
     return (
         <section className="stay-index">

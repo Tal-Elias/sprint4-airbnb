@@ -3,7 +3,7 @@ import { DatePicker } from "../DatePicker";
 import { DatePickerPreview } from "./DatePickerPreview";
 import useClickOutside from "../../customHooks/useClickOutside";
 
-export function DatePickerModal({ isDatePickerModalOpen, setDatePickerModalOpen }) {
+export function DatePickerModal({ isDatePickerModalOpen, setDatePickerModalOpen, formLayout }) {
     const [selectedDateRange, setSelectedDateRange] = useState(null)
     const elDatePickerModal = useRef()
 
@@ -12,7 +12,7 @@ export function DatePickerModal({ isDatePickerModalOpen, setDatePickerModalOpen 
     })
 
     return (
-        <div className="date-picker-modal" ref={elDatePickerModal}>
+        <div className={`date-picker-modal ${formLayout ? formLayout : ''}`} ref={elDatePickerModal}>
             <header className="header">
                 <div className="side-header">
                     <h2>Select dates</h2>

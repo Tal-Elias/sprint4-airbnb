@@ -1,12 +1,41 @@
+import { useSelector } from "react-redux"
 import { useRef } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { LoginSignup } from "./LoginSignup"
+import { login, logout, signup } from '../store/actions/user.actions'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import routes from "../routes"
 import useClickOutside from "../customHooks/useClickOutside"
 
 export function NavMenu({ ...props }) {
-    const user = props.user
+    const user = useSelector(storeState => storeState.userModule.user)
     const elNavMenu = useRef()
+
+    async function onLogin(credentials) {
+        try {
+            const user = await login(credentials)
+            showSuccessMsg(`Welcome: ${user.fullname}`)
+            props.setIsNavMenuOpen(false)
+        } catch (err) {
+            showErrorMsg('Cannot login')
+        }
+    }
+    async function onSignup(credentials) {
+        try {
+            const user = await signup(credentials)
+            showSuccessMsg(`Welcome new user: ${user.fullname}`)
+        } catch (err) {
+            showErrorMsg('Cannot signup')
+        }
+    }
+    async function onLogout() {
+        try {
+            await logout()
+            showSuccessMsg(`Bye now`)
+        } catch (err) {
+            showErrorMsg('Cannot logout')
+        }
+    }
 
     useClickOutside(elNavMenu, () => {
         if (props.isNavMenuOpen) props.setIsNavMenuOpen(false)
@@ -20,12 +49,12 @@ export function NavMenu({ ...props }) {
                         {user.imgUrl && <img src={user.imgUrl} />}
                         {user.fullname}
                     </Link>
-                    <button onClick={props.onLogout}>Logout</button>
+                    <button onClick={onLogout}>Logout</button>
                 </span>
             }
             {!user &&
                 <section className="user-info">
-                    <LoginSignup onLogin={props.onLogin} onSignup={props.onSignup} />
+                    <LoginSignup onLogin={onLogin} onSignup={onSignup} />
                 </section>
             }
             <nav className="nav-links flex column">
