@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addOrder, setCurrOrder } from "../store/actions/order.actions";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
@@ -6,30 +6,65 @@ import { orderService } from "../services/order.service.local";
 import { setCurrStay } from "../store/actions/stay.actions";
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
+import { useNavigate, useParams } from "react-router";
+import { stayService } from "../services/stay.service.local";
 
 export function StayOrder() {
-    const order = useSelector((storeState) => storeState.orderModule.currOrder)
-    const stay = useSelector((storeState) => storeState.stayModule.currStay)
+    // const order = useSelector((storeState) => storeState.orderModule.currOrder)
+    // const stay = useSelector((storeState) => storeState.stayModule.currStay)
+    const [stay, setStay] = useState(null)
+    const { stayId } = useParams()
+    // const navigate = useNavigate()
+
+
+    const queryParams = new URL(window.location.href).searchParams;
+    const order = {};
+    for (const [key, value] of queryParams.entries()) {
+        order[key] = value;
+    }
+    console.log(order)
+
 
     useEffect(() => {
-        console.log('stay:', stay)
-        console.log('order:', order)
-
-        // return () => {
-        //     setCurrOrder(orderService.getEmptyOrder())
-        //     setCurrStay(null)
-        // }
+        loadStay()
     }, [])
 
-    async function onOrder() {
+    async function loadStay() {
         try {
-            const savedOrder = await addOrder(order)
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Had issues in stay details', err)
+            showErrorMsg('Cannot load stay')
+            // navigate('/')
+        }
+    }
+    async function onOrder() {
+        const orderToSave = {
+            hostId: stay.host._id,
+            totalPrice: stay.price, //To fix
+            startDate: order.startDate,
+            endDate: order.endDate,
+            guests: {
+                adults: order.adults,
+                kids: order.children
+            },
+            stay: {
+                _id: stay._id,
+                name: stay.name,
+                price: stay.price,
+
+            },
+            msgs: [],
+            status: 'pending'
+        }
+        try {
+            const savedOrder = await addOrder(orderToSave)
             showSuccessMsg(`Order added (id: ${savedOrder._id})`)
         } catch (err) {
             showErrorMsg('Cannot add order')
         }
     }
-    console.log('order in stayOrder:', order)
 
     function formatDateRange(start, end) {
 
@@ -54,6 +89,9 @@ export function StayOrder() {
             {order && stay && <section className="stay-order">
 
                 <div className="confirm">
+                    <div className="back-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Back" role="img" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }}><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
+                    </div>
                     <h1>Confirm and pay</h1>
                 </div>
                 <div className="summary">
@@ -63,14 +101,13 @@ export function StayOrder() {
                             <div className="details">
                                 <h3>Dates</h3>
                                 <div>{formatDateRange(order.startDate, order.endDate)}</div>
-
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{utilService.numOf('guest',(order.guests.adults + order.guests.children))}</div>
+                                <div>{utilService.numOf('guest', (+order.adults + +order.children))}</div>
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>

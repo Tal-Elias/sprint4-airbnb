@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { setCurrStay } from "../store/actions/stay.actions.js"
 import { setCurrOrder } from "../store/actions/order.actions.js"
@@ -8,12 +8,17 @@ import { OrderModal } from "../cmps/stay-details/OrderModal.jsx"
 import test from '../assets/img/asset15.jpeg'
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate.jsx"
 import { utilService } from "../services/util.service.js"
+import { showErrorMsg } from "../services/event-bus.service.js"
+import { stayService } from "../services/stay.service.local.js"
 export function StayDetails() {
-    // const [stay, setStay] = useState(null)
-    const stay = useSelector((storeState) => storeState.stayModule.currStay)
-    const order = useSelector((storeState) => storeState.orderModule.currOrder)
+    const [stay, setStay] = useState(null)
+    const navigate = useNavigate()
+    // const stay = useSelector((storeState) => storeState.stayModule.currStay)
+    // const order = useSelector((storeState) => storeState.orderModule.currOrder)
     const [showAllPhotos, setShowAllPhotos] = useState(false)
     const { stayId } = useParams()
+
+   
 
     function handleChange() {
         if (!stay) return
@@ -36,12 +41,24 @@ export function StayDetails() {
 
     }
     useEffect(() => {
-        setCurrStay(stayId)
+        // setCurrStay(stayId)
+        loadStay()
     }, [])
 
-    useEffect(() => {
-        handleChange()
-    }, [stay])
+    // useEffect(() => {
+    //     handleChange()
+    // }, [stay])
+
+    async function loadStay() {
+        try {
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Had issues in stay details', err)
+            showErrorMsg('Cannot load stay')
+            navigate('/')
+        }
+    }
 
     if (!stay) return (
         <div>loading</div>

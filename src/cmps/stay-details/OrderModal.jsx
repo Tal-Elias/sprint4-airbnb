@@ -5,10 +5,18 @@ import { useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 
 export function OrderModal({ stay }) {
-
     const { price, reviews } = stay
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
+
+    const order = {
+        startDate:"2025/10/15",
+        endDate:"2025/10/17",
+        adults: 1,
+        children:2
+    }
+    const orderUrl= new URLSearchParams(order).toString()
+
 
     function handleOnClickDatePicker(ev) {
         ev.stopPropagation()
@@ -44,7 +52,7 @@ export function OrderModal({ stay }) {
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
                 />
             </div>
-            <Link to={'/stay/order'}>
+            <Link to={`/stay/${stay._id}/order?${orderUrl}`}>
                 <button className="reserve btn scale">Reserve</button>
             </Link>
             {isDatePickerModalOpen && (
