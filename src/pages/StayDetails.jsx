@@ -7,7 +7,7 @@ import { TbGridDots } from 'react-icons/tb'
 import { OrderModal } from "../cmps/stay-details/OrderModal.jsx"
 import test from '../assets/img/asset15.jpeg'
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate.jsx"
-
+import { utilService } from "../services/util.service.js"
 export function StayDetails() {
     // const [stay, setStay] = useState(null)
     const stay = useSelector((storeState) => storeState.stayModule.currStay)
@@ -61,18 +61,13 @@ export function StayDetails() {
 
     const [firstName] = stay.host.fullname.split(' ')
 
-    function numOfReviews(length) {
-        if (length === 1) return `${length} review`
-        else return `${length} reviews`
-    }
-
     return (
         <section className="stay-details">
             <div className="details-header">
                 <h1>{`${stay.name}`}</h1>
                 <div className="header-actions">
                     <div className="reviews-loc">
-                        <button className="btn underline">{numOfReviews(stay.reviews.length)}</button>
+                        <button className="btn underline">{utilService.numOf('review',(stay.reviews.length))}</button>
                         <span>.</span>
                         <button className="btn underline">{stay.loc.city}, {stay.loc.country}</button>
                     </div>

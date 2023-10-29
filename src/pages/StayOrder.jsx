@@ -4,6 +4,8 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
 import { orderService } from "../services/order.service.local";
 import { setCurrStay } from "../store/actions/stay.actions";
+import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
+import { utilService } from "../services/util.service";
 
 export function StayOrder() {
     const order = useSelector((storeState) => storeState.orderModule.currOrder)
@@ -43,7 +45,7 @@ export function StayOrder() {
         const endDay = endDate.getDate();
 
         // Construct the formatted date range
-        if (startMonth===endMonth) return `${startMonth} ${startDay} – ${endDay}`
+        if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
         else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
     }
 
@@ -63,23 +65,29 @@ export function StayOrder() {
                                 <div>{formatDateRange(order.startDate, order.endDate)}</div>
 
                             </div>
-                            <button className="btn-underline">Edit</button>
+                            <button className="btn underline">Edit</button>
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{order.guests.adults + order.guests.kids}</div>
+                                <div>{utilService.numOf('guest',(order.guests.adults + order.guests.children))}</div>
                             </div>
-                            <button className="btn-underline">Edit</button>
+                            <button className="btn underline">Edit</button>
                         </div>
-                        <button className="confirm-btn" onClick={onOrder}>Confirm and pay</button>
+                        <button className="confirm-btn btn scale" onClick={onOrder}>Confirm and pay</button>
                     </div>
                     <div className="stay-modal">
                         <div className="stay-details">
                             <img src={stay.imgUrls[0]} />
                             <div className="stay-details-txt">
-                                <h5 className="stay-type">{stay.type}</h5>
-                                <h5 className="stay-summary">{stay.name}</h5>
+                                <div className="stay-summary">
+                                    <h5 className="stay-type">{stay.type}</h5>
+                                    <h5 className="stay-name">{stay.name}</h5>
+                                </div>
+                                <div className="flex reviews">
+                                    <ReviewRate reviews={stay.reviews} />
+                                    <div className="reviews-count">{'(' + stay.reviews.length + ')'}</div>
+                                </div>
                             </div>
                         </div>
                         <h2>Price details</h2>
@@ -87,11 +95,17 @@ export function StayOrder() {
                             <div>$779.60 x 5 nights</div>
                             <div>$3,898.00</div>
                         </div>
-                        <div>Total</div>
+                        <div className="total">
+                            <div >Total ($)</div>
+                            <div>$3,898.00</div>
+                        </div>
+
+
                     </div>
                 </div>
+
             </section>}
 
-        </div>
+        </div >
     )
 }

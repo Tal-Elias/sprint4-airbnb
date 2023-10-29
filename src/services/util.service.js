@@ -7,7 +7,8 @@ export const utilService = {
     saveToStorage,
     loadFromStorage,
     getAssetSrc,
-    formatToMonthDay
+    formatToMonthDay,
+    numOf
 }
 
 function makeId(length = 6) {
@@ -70,6 +71,11 @@ function getAssetSrc(name) {
     const modules = import.meta.glob('/src/assets/*', { eager: true })
     const mod = modules[path]
     return mod.default
+}
+
+function numOf(word, length) {
+    if (length === 1) return `${length} ${word}`
+    else return `${length} ${word}s`
 }
 
 function formatToMonthDay(dateString) {

@@ -21,6 +21,8 @@
 
             h2 {
                 padding-bottom: 24px;
+                font-size: 1.375rem;
+                line-height: 1.625rem;
                 // font-family: cereal-md;
             }
 
@@ -95,16 +97,41 @@
                     flex-direction: column;
                     justify-content: space-between;
 
-                    .stay-type {
-                        font-size: 0.75rem;
-                        color: $clr-txt-secondary;
+                    &>* {
                         font-family: cereal-light;
+
                     }
 
                     .stay-summary {
-                        margin-top: 4px;
-                        font-size: 0.875rem;
-                        text-overflow: ellipsis;
+                        .stay-type {
+                            font-size: 0.75rem;
+                            color: $clr-txt-secondary;
+                            font-family: cereal-light;
+
+                        }
+
+                        .stay-name {
+                            margin-top: 4px;
+                            font-size: 0.875rem;
+                            text-overflow: ellipsis;
+                            word-break: break-word;
+                            font-family: cereal-light;
+                        }
+                    }
+
+
+                    .reviews {
+                        font-size: 0.75rem;
+
+                        &-count {
+                            margin-left: 3px;
+                            color: $clr-txt-secondary;
+                        }
+
+                        .review-rate {
+
+                            font-family: cereal-md;
+                        }
                     }
                 }
 
@@ -112,6 +139,8 @@
 
             h2 {
                 padding: 24px 0;
+                font-size: 1.375rem;
+                line-height: 1.625rem;
             }
 
             .price {
@@ -122,8 +151,17 @@
                 font-size: 1rem;
                 line-height: 1.25rem;
                 padding-bottom: 24px;
-                border-bottom: 1px solid $clr-border;
 
+
+            }
+
+            .total {
+                border-top: 1px solid $clr-border;
+                display: flex;
+                justify-content: space-between;
+                padding-top: 24px;
+                font-family: cereal-md;
+                font-size: 1rem;
             }
         }
     }
