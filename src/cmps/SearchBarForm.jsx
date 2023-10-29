@@ -58,7 +58,10 @@ export function SearchBarForm({
         }
         setFilterByToEdit(newFilterBy)
         setIsSearchBarOpen(false)
-        navigate(`/`)
+ 
+        const {destination, checkIn, checkOut, guests}= fields
+        const searchParams = new URLSearchParams({destination,checkIn,checkOut,...guests}).toString()
+        navigate(`/?${searchParams}`)
     }
 
     function countGuests(guests) {
