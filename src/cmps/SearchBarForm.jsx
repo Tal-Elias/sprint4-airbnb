@@ -4,8 +4,10 @@ import { RegionSelect } from "./RegionSelect"
 import { DatePickerModal } from "./stay-details/DatePickerModal"
 import { GuestSelectModal } from "./stay-details/GuestSelectModal"
 import { useForm } from "../customHooks/useForm"
+import { useNavigate } from "react-router"
 
 export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedInput, filterByToEdit, setFilterByToEdit }) {
+    const navigate = useNavigate()
     const [expanded, setExpanded] = useState(false)
     const [fields, setFields, handleChange] = useForm({
         destination: "",
@@ -30,6 +32,10 @@ export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedIn
         setFields((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
+    function checkForActiveClass(input) {
+        return (selectedInput === input) ? ' active' : ''
+    }
+
     function onSearch() {
         const { adults = 0, children = 0 } = fields.guests
         const totalGuests = adults + children
@@ -40,13 +46,14 @@ export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedIn
         }
         setFilterByToEdit(newFilterBy)
         setIsSearchBarOpen(false)
+        navigate(`/`)
     }
 
     return (
         <div className="search-bar-form">
             <div className={`form-container ${expanded && 'expanded'}`}>
                 <div className="input-destination">
-                    <button className="destination btn-input dest" onClick={() => handleOnClick('destination')}>
+                    <button className={"destination btn-input dest" + checkForActiveClass('destination')} onClick={() => handleOnClick('destination')}>
                         <div className="label">Where</div>
                         {/* <input type="text" className="sub-label">Search destinations</input> */}
                         <input
@@ -62,19 +69,19 @@ export function SearchBarForm({ setIsSearchBarOpen, selectedInput, setSelectedIn
                 </div>
                 <div className="form-seperator"></div>
                 <div className="input-dates">
-                    <button className="check-in btn-input" onClick={() => handleOnClick('check-in')}>
+                    <button className={"check-in btn-input" + checkForActiveClass('check-in')} onClick={() => handleOnClick('check-in')}>
                         <div className="label">Check in</div>
                         <div className="sub-label">Add dates</div>
                     </button>
                     <div className="form-seperator"></div>
-                    <button className="check-out btn-input" onClick={() => handleOnClick('checkout')}>
+                    <button className={"check-out btn-input" + checkForActiveClass('checkout')} onClick={() => handleOnClick('checkout')}>
                         <div className="label">Check out</div>
                         <div className="sub-label">Add dates</div>
                     </button>
                     {(selectedInput === 'check-in' || selectedInput === 'checkout') && <DatePickerModal formLayout='form-layout' />}
                 </div>
                 <div className="form-seperator"></div>
-                <div className="input-guests-search">
+                <div className={"input-guests-search" + checkForActiveClass('guests')}>
                     <div className="flex space-between align-center">
                         <button className="guests btn-input" onClick={() => handleOnClick('guests')}>
                             <div className="label">Who</div>

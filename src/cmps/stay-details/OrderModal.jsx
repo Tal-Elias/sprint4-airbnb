@@ -45,7 +45,7 @@ export function OrderModal({ stay }) {
                 />
             </div>
             <Link to={'/stay/order'}>
-                <button className="reserve">Reserve</button>
+                <button className="reserve btn scale">Reserve</button>
             </Link>
             {isDatePickerModalOpen && (
                 <DatePickerModal

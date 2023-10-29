@@ -6,6 +6,7 @@
     .form-container {
         position: relative;
         transform: scale(0.43, 0.74) translateY(-100px);
+        background-color: $clr-bg-tertiary;
 
         &.expanded {
             transform: translateY(0);
@@ -29,7 +30,7 @@
         }
 
         .sub-label {
-            color: $clr-txt-secondary;
+            color: $clr-txt-primary;
         }
 
         .input-destination {
@@ -38,6 +39,7 @@
             input {
                 border: none;
                 background-color: inherit;
+                font-size: inherit;
             }
 
             &:hover {
@@ -62,7 +64,7 @@
                     position: absolute;
                     width: 1px;
                     height: 32px;
-                    background-color: $clr-bg-primary;
+                    background-color: $clr-bg-tertiary;
                     display: none;
                 }
 
@@ -93,6 +95,19 @@
             justify-content: space-between;
             align-items: center;
             border-radius: 32px;
+
+            &.active {
+                outline: 1px solid $clr-bg-primary;
+                border-radius: 32px;
+                background-color: $clr-bg-primary;
+                background-clip: padding-box;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+                &:hover,
+                button:hover {
+                    background-color: $clr-bg-primary;
+                }
+            }
 
             .btn-input {
                 position: relative;
@@ -142,7 +157,15 @@
                 }
 
                 &:hover {
-                    background-color: $clr-bg-tertiary;
+                    background-color: #ddd;
+                }
+
+                &.active {
+                    outline: 1px solid $clr-bg-primary;
+                    border-radius: 32px;
+                    background-color: $clr-bg-primary;
+                    background-clip: padding-box;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
                 }
             }
 

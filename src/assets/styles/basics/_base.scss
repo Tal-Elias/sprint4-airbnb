@@ -53,29 +53,44 @@ button {
     font-size: inherit;
     font-family: inherit;
     background-color: transparent;
+    border: none;
     border-color: transparent;
     cursor: pointer;
-}
 
-.btn-underline {
-    cursor: pointer;
-    text-decoration: underline;
-    font-family: cereal-md;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
+    &.btn {
 
-.btn-grey-bg{
-    align-items: center;
-    border-radius: 8px;
-    padding: 8px;
-    &:hover{
-       background-color: $clr-bg-secondary;
+        &.scale {
+            transition-property: transform, background-color, border-color;
+            transition-duration: 0.15s;
+            overflow: hidden;
+            transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+            &:active {
+                border-color: black;
+                transform: scale(0.925);
+            }
+        }
+
+        &.underline {
+            text-decoration: underline;
+            font-family: cereal-md;
+        }
+
+        &.grey-bg {
+            align-items: center;
+            border-radius: 8px;
+            padding: 8px;
+
+            &:hover {
+                background-color: $clr-bg-secondary;
+            }
+        }
     }
 }
 
-.btn {
+
+
+.btn .btn {
     // display: inline-block;
     // margin: 0;
     // padding: 0;
