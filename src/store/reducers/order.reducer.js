@@ -20,8 +20,6 @@ export function orderReducer(state = initialState, action) {
     switch (action.type) {
         case SET_ORDERS:
             newState = { ...state, orders: action.orders }
-            // console.log('newState:',newState)
-
             break
         case REMOVE_ORDER:
             const lastRemovedOrder = state.orders.find(order => order._id === action.orderId)
@@ -40,11 +38,8 @@ export function orderReducer(state = initialState, action) {
                 newState = { ...state, orders: [...state.orders, state.lastRemovedOrder], lastRemovedOrder: null }
             }
             break
-
         case SET_CURR_ORDER:
-            // console.log('action:', action)
-            // newState = { ...state, currOrder: action.currOrder }
-            newState = { ...state, currOrder:{...state.currOrder, ...action.currOrder }  }
+            newState = { ...state, currOrder: { ...state.currOrder, ...action.currOrder } }
             break
         default:
     }

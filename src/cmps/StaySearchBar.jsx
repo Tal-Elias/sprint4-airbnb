@@ -8,7 +8,7 @@ export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput }) {
     }
 
     return (
-        <div className="stay-search-bar flex">
+        <div className="stay-search-bar flex" onClick={(e) => e.stopPropagation()}>
             <div className="btn-container">
                 <button
                     className="anywhere btn-search-bar"

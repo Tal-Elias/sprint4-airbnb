@@ -116,7 +116,7 @@ export function StayDetails() {
                         </ul>
                     </div>
                     <div className="hosted-by border-bottom ptb24 flex align-center gap24">
-                        <img className="w40" src={stay.host.imgUrl} alt="" />
+                        <img className="w40" src={stay.host.thumbnailUrl} alt="" />
                         <h3>Hosted by {firstName}</h3>
                     </div>
                     <div className="selected-amenities border-bottom ptb32 flex column gap24">

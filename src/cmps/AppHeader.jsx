@@ -13,7 +13,7 @@ export function AppHeader({ isSecondaryLayout }) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false)
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-    const [selectedInput, setSelectedInput] = useState('destination')
+    const [selectedInput, setSelectedInput] = useState(null)
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     const [searchPreview, setSearchPreview] = useState({
         destination: "",
@@ -41,8 +41,15 @@ export function AppHeader({ isSecondaryLayout }) {
         <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'}`}>
             <div className='header-container'>
                 <Logo />
-                {!isSearchBarOpen && <StaySearchBar setIsSearchBarOpen={setIsSearchBarOpen} setSelectedInput={setSelectedInput} />}
-                {isSearchBarOpen && <SearchFormOptions isSearchBarOpen={isSearchBarOpen} />}
+                {!isSearchBarOpen &&
+                    <StaySearchBar
+                        setIsSearchBarOpen={setIsSearchBarOpen}
+                        setSelectedInput={setSelectedInput}
+                    />}
+                {isSearchBarOpen &&
+                    <SearchFormOptions
+                        isSearchBarOpen={isSearchBarOpen}
+                    />}
                 <div className="nav-container" style={{ position: 'relative' }}>
                     <NavHamburger
                         isNavMenuOpen={isNavMenuOpen}

@@ -28,10 +28,9 @@ export function SearchBarForm({
         setExpanded(prevState => !prevState)
     }, [])
 
-    /*** WIP ***/
-    // useClickOutside(elSearchBarForm, () => {
-    //     setSelectedInput(null)
-    // })
+    useClickOutside(elSearchBarForm, () => {
+        setSelectedInput(null)
+    })
 
     function handleOnClick(input) {
         setSelectedInput(input)
@@ -62,7 +61,7 @@ export function SearchBarForm({
     }
 
     function countGuests(guests) {
-        const { adults, children, infants, pets } = guests
+        const { adults = 0, children = 0, infants, pets } = guests
 
         const totalGuests = adults + children
         const guestString = totalGuests > 0 ? `${totalGuests} guest${totalGuests > 1 ? 's' : ''}` : ''

@@ -49,15 +49,15 @@ async function save(order) {
         // Later, owner is set by the backend
         const { _id, fullname } = userService.getLoggedinUser()
         order.buyer = { _id, fullname }
-        order.status= 'pending'
+        order.status = 'pending'
         savedOrder = await storageService.post(STORAGE_KEY, order)
     }
     return savedOrder
 }
 
-function getEmptyOrder(){
-   return {
-        hostId:'',
+function getEmptyOrder() {
+    return {
+        hostId: '',
         totalPrice: '',
         startDate: '',
         endDate: '',
@@ -69,7 +69,6 @@ function getEmptyOrder(){
             _id: '',
             name: '',
             price: null,
-
         },
         msgs: [],
     }

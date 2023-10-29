@@ -1,9 +1,18 @@
 import { GuestCounter } from "./GuestCounter"
 import useClickOutside from "../../customHooks/useClickOutside"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
-export function GuestSelectModal({ isGuestSelectModalOpen, setGuestSelectModalOpen, onSetField, guestsCount, formLayout }) {
+export function GuestSelectModal({
+    isGuestSelectModalOpen,
+    setGuestSelectModalOpen,
+    onSetField,
+    guestsCount,
+    formLayout }) {
     const elGuestSelectModal = useRef()
+
+    // useEffect(() => {
+    //     if (!onSetField) return
+    // }, [])
 
     function handleChange(field, value) {
         if (value <= 0) value = 0

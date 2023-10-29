@@ -1,6 +1,8 @@
 import { GuestSelectModal } from './GuestSelectModal';
 
-export function GuestSelect({ isGuestSelectModalOpen, setGuestSelectModalOpen }) {
+export function GuestSelect({
+    isGuestSelectModalOpen,
+    setGuestSelectModalOpen }) {
     const pathOpen = "M4 20 15.3 8.7a1 1 0 0 1 1.4 0L28 20";
     const pathClosed = "M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12";
 
