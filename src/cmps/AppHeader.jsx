@@ -5,9 +5,9 @@ import { Logo } from './Logo'
 import { NavMenu } from './NavMenu'
 import { SearchBarForm } from './SearchBarForm'
 import { SearchFormOptions } from './SearchFormOptions'
-import useEventListener from '../customHooks/useEventListener'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
+import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)

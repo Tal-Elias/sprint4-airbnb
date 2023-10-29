@@ -1,7 +1,7 @@
 .guest-counter {
     width: 104px;
     height: 32px;
-    font-size: 16px;
+    font-size: rem(16px);
 
     .btn-counter {
         display: flex;

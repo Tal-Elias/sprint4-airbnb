@@ -6,7 +6,8 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getAssetSrc
+    getAssetSrc,
+    formatToMonthDay
 }
 
 function makeId(length = 6) {
@@ -69,4 +70,12 @@ function getAssetSrc(name) {
     const modules = import.meta.glob('/src/assets/*', { eager: true })
     const mod = modules[path]
     return mod.default
+}
+
+function formatToMonthDay(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' });
+
+    return `${month} ${day}`;
 }

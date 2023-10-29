@@ -58,6 +58,18 @@
             button {
                 position: relative;
 
+                span.btn-close {
+                    position: absolute;
+                    top: 18%;
+                    right: -7%;
+                    padding: 5px 5px;
+
+                    &:hover {
+                        background-color: $clr-border;
+                        border-radius: 2em;
+                    }
+                }
+
                 &::before,
                 &::after {
                     content: "";
