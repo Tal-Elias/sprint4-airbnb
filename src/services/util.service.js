@@ -6,7 +6,12 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    getAssetSrc
+    getAssetSrc,
+    numOf
+}
+function numOf(word, length) {
+    if (length === 1) return `${length} ${word}`
+    else return `${length} ${word}s`
 }
 
 function makeId(length = 6) {
