@@ -54,6 +54,9 @@ export function StayOrder() {
             {order && stay && <section className="stay-order">
 
                 <div className="confirm">
+                    <div className="back-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Back" role="img" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }}><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
+                    </div>
                     <h1>Confirm and pay</h1>
                 </div>
                 <div className="summary">
@@ -63,14 +66,13 @@ export function StayOrder() {
                             <div className="details">
                                 <h3>Dates</h3>
                                 <div>{formatDateRange(order.startDate, order.endDate)}</div>
-
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{utilService.numOf('guest',(order.guests.adults + order.guests.children))}</div>
+                                <div>{utilService.numOf('guest', (order.guests.adults + order.guests.children))}</div>
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>
