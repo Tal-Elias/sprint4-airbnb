@@ -88,8 +88,10 @@ export function StayOrder() {
         <div>
             {order && stay && <section className="stay-order">
 
-                <div className="confirm">
-                    <div className="back-arrow">
+                <div className="confirm" >
+                    {/* should be changed to a better way to navigate
+                    which saves the order details */}
+                    <div className="back-arrow" onClick={()=>window.history.back()}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Back" role="img" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }}><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
                     </div>
                     <h1>Confirm and pay</h1>
