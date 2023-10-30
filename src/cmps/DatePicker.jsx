@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-export function DatePicker({ setSelectedDateRange }) {
+export function DatePicker({ setSelectedDateRange, onSetField }) {
   const [range, setRange] = useState()
 
   const today = new Date()
@@ -13,6 +13,8 @@ export function DatePicker({ setSelectedDateRange }) {
   function handleDateSelect(selectedRange) {
     setRange(selectedRange)
     setSelectedDateRange(selectedRange)
+    if (selectedRange.from) onSetField('checkIn', selectedRange.from.getTime())
+    if (selectedRange.to) onSetField('checkOut', selectedRange.to.getTime())
   }
 
   return (

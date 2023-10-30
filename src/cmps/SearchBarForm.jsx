@@ -5,16 +5,20 @@ import { DatePickerModal } from "./stay-details/DatePickerModal"
 import { GuestSelectModal } from "./stay-details/GuestSelectModal"
 import { useForm } from "../customHooks/useForm"
 import { useNavigate } from "react-router"
-import useClickOutside from "../customHooks/useClickOutside"
 import { utilService } from "../services/util.service"
+import { useSelector } from "react-redux"
+import useClickOutside from "../customHooks/useClickOutside"
+import { setFilter } from "../store/actions/stay.actions"
 
 export function SearchBarForm({
     setIsSearchBarOpen,
     selectedInput,
     setSelectedInput,
     filterByToEdit,
-    setFilterByToEdit }) {
-    const navigate = useNavigate()
+    setFilterByToEdit,
+    setSearchFormIputs
+}) {
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [expanded, setExpanded] = useState(false)
     const elSearchBarForm = useRef(null)
     const [fields, setFields, handleChange] = useForm({
@@ -23,8 +27,10 @@ export function SearchBarForm({
         checkOut: '',
         guests: {},
     })
+    const navigate = useNavigate()
 
     useEffect(() => {
+        console.log('filterBy:', filterBy)
         setExpanded(prevState => !prevState)
     }, [])
 
@@ -43,7 +49,7 @@ export function SearchBarForm({
         if (field === 'checkout') setSelectedInput('guests')
     }
 
-    function checkForActiveClass(input) {
+    function toggleActiveClass(input) {
         return (selectedInput === input) ? ' active' : ''
     }
 
@@ -51,15 +57,23 @@ export function SearchBarForm({
         const { adults = 0, children = 0 } = fields.guests
         const totalGuests = adults + children
         const newFilterBy = {
-            ...filterByToEdit,
+            ...filterBy,
             txt: fields.destination,
             guests: totalGuests
         }
-        setFilterByToEdit(newFilterBy)
+        setFilter(newFilterBy)
+        // setFilterByToEdit(newFilterBy)
         setIsSearchBarOpen(false)
- 
-        const {destination, checkIn, checkOut, guests}= fields
-        const searchParams = new URLSearchParams({destination,checkIn,checkOut,...guests}).toString()
+        const { destination, checkIn, checkOut, guests } = fields
+        const searchFormIputs = {
+            destination,
+            checkIn,
+            checkOut,
+            guests: (totalGuests === 0) ? '' : totalGuests,
+            ...guests
+        }
+        // setSearchFormIputs(searchFormIputs)
+        const searchParams = new URLSearchParams(searchFormIputs).toString()
         navigate(`/?${searchParams}`)
     }
 
@@ -77,15 +91,15 @@ export function SearchBarForm({
         return !result ? 'Add guests' : result
     }
 
-    const fromDate = fields['check-in'] ? utilService.formatToMonthDay(fields['check-in']) : 'Add date'
-    const toDate = fields['checkout'] ? utilService.formatToMonthDay(fields['checkout']) : 'Add date'
+    const fromDate = fields['checkIn'] ? utilService.formatToMonthDay(fields['checkIn']) : 'Add dates'
+    const toDate = fields['checkOut'] ? utilService.formatToMonthDay(fields['checkOut']) : 'Add dates'
 
     return (
         <div className="search-bar-form">
-            <div className={`form-container ${expanded && 'expanded'}`} ref={elSearchBarForm}>
+            <div className={`form-container ${expanded && 'expanded'} ${!selectedInput && 'no-modals'}`} ref={elSearchBarForm}>
                 <div className="input-destination">
                     <button
-                        className={"destination btn-input dest" + checkForActiveClass('destination')}
+                        className={"destination btn-input dest" + toggleActiveClass('destination')}
                         onClick={() => handleOnClick('destination')}>
                         <div className="label">Where</div>
                         <input
@@ -94,7 +108,7 @@ export function SearchBarForm({
                             name="destination"
                             value={fields.destination}
                             onChange={handleChange}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => { e.stopPropagation(); setSelectedInput('destination') }}
                         />
                     </button>
                     {selectedInput === 'destination' && <RegionSelect onSetField={onSetField} />}
@@ -102,17 +116,17 @@ export function SearchBarForm({
                 <div className="form-seperator"></div>
                 <div className="input-dates">
                     <button
-                        className={"check-in btn-input" + checkForActiveClass('check-in')}
+                        className={"check-in btn-input" + toggleActiveClass('check-in')}
                         onClick={() => handleOnClick('check-in')}>
                         <div style={{ position: 'relative' }}>
                             <div className="label">Check in</div>
                             <div className="sub-label">{fromDate}</div>
-                            {fromDate !== 'Add date' && selectedInput === 'check-in' &&
+                            {fromDate !== 'Add dates' && selectedInput === 'check-in' &&
                                 <span
                                     className="btn-close"
                                     onClick={() => {
-                                        onSetField('check-in', '');
-                                        onSetField('checkout', '')
+                                        onSetField('checkIn', '');
+                                        onSetField('checkOut', '')
                                     }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentcolor', strokeWidth: 4, overflow: 'visible' }}><path d="m6 6 20 20M26 6 6 26"></path></svg>
                                 </span>}
@@ -120,17 +134,17 @@ export function SearchBarForm({
                     </button>
                     <div className="form-seperator"></div>
                     <button
-                        className={"check-out btn-input" + checkForActiveClass('checkout')}
+                        className={"check-out btn-input" + toggleActiveClass('checkout')}
                         onClick={() => handleOnClick('checkout')}>
                         <div style={{ position: 'relative' }}>
                             <div className="label">Check out</div>
                             <div className="sub-label">{toDate}</div>
-                            {toDate !== 'Add date' && selectedInput === 'checkout' &&
+                            {toDate !== 'Add dates' && selectedInput === 'checkout' &&
                                 <span
                                     className="btn-close"
                                     onClick={() => {
-                                        onSetField('check-in', '');
-                                        onSetField('checkout', '')
+                                        onSetField('checkIn', '');
+                                        onSetField('checkOut', '')
                                     }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentcolor', strokeWidth: 4, overflow: 'visible' }}><path d="m6 6 20 20M26 6 6 26"></path></svg>
                                 </span>}
@@ -141,7 +155,7 @@ export function SearchBarForm({
                     }
                 </div>
                 <div className="form-seperator"></div>
-                <div className={"input-guests-search" + checkForActiveClass('guests')}>
+                <div className={"input-guests-search" + toggleActiveClass('guests')}>
                     <div className="flex space-between align-center">
                         <button className="guests btn-input" onClick={() => handleOnClick('guests')}>
                             <div className="label">Who</div>

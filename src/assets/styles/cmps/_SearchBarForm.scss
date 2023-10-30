@@ -21,6 +21,27 @@
         border: 1px solid $clr-border;
         border-radius: 32px;
 
+        &.no-modals {
+            background-color: $clr-bg-primary;
+
+            .input-guests-search {
+                &:hover {
+                    background-color: $clr-bg-tertiary;
+                }
+            }
+
+            button.btn-input {
+                &:hover {
+                    background-color: $clr-bg-tertiary;
+
+                    &::before,
+                    &::after {
+                        background-color: $clr-bg-primary;
+                    }
+                }
+            }
+        }
+
         .label {
             font-family: cereal-bold, roboto, sans-serif;
             font-size: 0.75rem;
@@ -40,6 +61,10 @@
                 border: none;
                 background-color: inherit;
                 font-size: inherit;
+
+                &:focus-visible {
+                    outline: none;
+                }
             }
 
             &:hover {
@@ -115,8 +140,7 @@
                 background-clip: padding-box;
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 
-                &:hover,
-                button:hover {
+                &:hover {
                     background-color: $clr-bg-primary;
                 }
             }
@@ -137,14 +161,17 @@
                 }
 
                 &:hover {
+                    background: none;
+
                     &::before {
                         display: block;
+                        background-color: $clr-bg-tertiary;
                     }
                 }
             }
 
             &:hover {
-                background-color: $clr-bg-tertiary;
+                background-color: $clr-border;
             }
         }
 

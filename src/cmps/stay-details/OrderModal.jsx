@@ -4,7 +4,7 @@ import { DatePickerModal } from './DatePickerModal'
 import { useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 
-export function OrderModal({ stay }) {
+export function OrderModal({ stay, dateRangeParams, guestsParams }) {
     const { price, reviews } = stay
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
@@ -50,6 +50,7 @@ export function OrderModal({ stay }) {
                 <GuestSelect
                     isGuestSelectModalOpen={isGuestSelectModalOpen}
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
+                    guestsParams={guestsParams}
                 />
             </div>
             <Link to={`/stay/${stay._id}/order?${orderUrl}`}>
@@ -59,6 +60,7 @@ export function OrderModal({ stay }) {
                 <DatePickerModal
                     isDatePickerModalOpen={isDatePickerModalOpen}
                     setDatePickerModalOpen={setDatePickerModalOpen}
+                    dateRangeParams={dateRangeParams}
                 />
             )}
         </div>

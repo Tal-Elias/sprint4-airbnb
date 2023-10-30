@@ -7,14 +7,16 @@ export function DatePickerModal({
     isDatePickerModalOpen,
     setDatePickerModalOpen,
     onSetField,
-    formLayout }) {
+    formLayout,
+    dateRangeParams
+}) {
     const [selectedDateRange, setSelectedDateRange] = useState(null)
     const elDatePickerModal = useRef()
 
     useEffect(() => {
-        if (!onSetField) return
+        // if (!onSetField) return
         if (selectedDateRange?.from) onSetField('check-in', selectedDateRange.from)
-        if (selectedDateRange?.to) onSetField('checkout', selectedDateRange.to)
+        if (selectedDateRange?.to) onSetField('check-out', selectedDateRange.to)
     }, [selectedDateRange])
 
     useClickOutside(elDatePickerModal, () => {
@@ -28,9 +30,15 @@ export function DatePickerModal({
                     <h2>Select dates</h2>
                     <span>Add your travel dates for exact pricing</span>
                 </div>
-                <DatePickerPreview selectedDateRange={selectedDateRange} />
+                <DatePickerPreview
+                    selectedDateRange={selectedDateRange}
+                    dateRangeParams={dateRangeParams}
+                />
             </header>
-            <DatePicker setSelectedDateRange={setSelectedDateRange} />
+            <DatePicker
+                setSelectedDateRange={setSelectedDateRange}
+                onSetField={onSetField}
+            />
             <div className="reset-close-btns">
                 <button onClick={() => setSelectedDateRange(null)}>Clear dates</button>
                 <button onClick={() => setDatePickerModalOpen(false)}>Close</button>
