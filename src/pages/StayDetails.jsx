@@ -1,24 +1,38 @@
 import { useEffect, useState } from "react"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { setCurrStay } from "../store/actions/stay.actions.js"
 import { setCurrOrder } from "../store/actions/order.actions.js"
 import { TbGridDots } from 'react-icons/tb'
 import { OrderModal } from "../cmps/stay-details/OrderModal.jsx"
-import test from '../assets/img/asset15.jpeg'
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate.jsx"
 import { utilService } from "../services/util.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 import { stayService } from "../services/stay.service.local.js"
+import test from '../assets/img/asset15.jpeg'
+
 export function StayDetails() {
     const [stay, setStay] = useState(null)
     const navigate = useNavigate()
     // const stay = useSelector((storeState) => storeState.stayModule.currStay)
     // const order = useSelector((storeState) => storeState.orderModule.currOrder)
     const [showAllPhotos, setShowAllPhotos] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
     const { stayId } = useParams()
 
-   
+    const dateRangeParams = {
+        // destination: searchParams.get('destination') || '',
+        checkIn: searchParams.get('checkIn') || '',
+        checkOut: searchParams.get('checkOut') || '',
+    }
+
+    const guestsParams = {
+        guests: +searchParams.get('guests') || '',
+        adults: +searchParams.get('adults') || '',
+        children: +searchParams.get('children') || '',
+        infants: +searchParams.get('infants') || '',
+        pets: +searchParams.get('pets') || ''
+    }
 
     function handleChange() {
         if (!stay) return
@@ -84,7 +98,7 @@ export function StayDetails() {
                 <h1>{`${stay.name}`}</h1>
                 <div className="header-actions">
                     <div className="reviews-loc">
-                        <button className="btn underline">{utilService.numOf('review',(stay.reviews.length))}</button>
+                        <button className="btn underline">{utilService.numOf('review', (stay.reviews.length))}</button>
                         <span>.</span>
                         <button className="btn underline">{stay.loc.city}, {stay.loc.country}</button>
                     </div>
@@ -170,7 +184,11 @@ export function StayDetails() {
                         <div className="cmp">Calendar CMP</div>
                     </div>
                 </div>
-                <OrderModal stay={stay} />
+                <OrderModal
+                    stay={stay}
+                    dateRangeParams={dateRangeParams}
+                    guestsParams={guestsParams}
+                />
             </div>
             <section className="reviews border-bottom ptb48">
                 <div className="reviews-header flex">

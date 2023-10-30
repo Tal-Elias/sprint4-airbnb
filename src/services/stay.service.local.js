@@ -55290,8 +55290,14 @@ function getEmptyStay() {
 function getDefaultFilter() {
     return {
         txt: '',
-        label: '',
-        guests: ''
+        checkIn: '',
+        checkOut: '',
+        guests: '',
+        adults: '',
+        children: '',
+        infants: '',
+        pets: '',
+        label: ''
     }
 }
 

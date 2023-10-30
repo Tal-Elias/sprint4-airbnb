@@ -7,6 +7,7 @@ import { SearchBarForm } from './SearchBarForm'
 import { SearchFormOptions } from './SearchFormOptions'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
@@ -14,17 +15,31 @@ export function AppHeader({ isSecondaryLayout }) {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false)
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
     const [selectedInput, setSelectedInput] = useState(null)
-    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    const [searchPreview, setSearchPreview] = useState({
-        destination: "",
-        checkIn: "",
-        checkOut: "",
-        guests: {}
-    })
+    const [searchParams, setSearchParams] = useSearchParams()
+    // const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+    // const [searchFormIputs, setSearchFormIputs] = useState({})
 
     useEffect(() => {
-        setFilter(filterByToEdit)
-    }, [filterByToEdit])
+        setFilter(filterByParams)
+    }, [])
+
+    const filterByParams = {
+        ...filterBy,
+        txt: searchParams.get('destination') || '',
+        label: searchParams.get('label') || '',
+        guests: +searchParams.get('guests') || ''
+    }
+
+    // const updatedSearchParams = {
+    //     destination: searchParams.get('destination') || '',
+    //     checkIn: searchParams.get('checkIn') || '',
+    //     checkOut: searchParams.get('checkOut') || '',
+    //     guests: +searchParams.get('guests') || '',
+    //     adults: +searchParams.get('adults') || '',
+    //     children: +searchParams.get('children') || '',
+    //     infants: +searchParams.get('infants') || '',
+    //     pets: +searchParams.get('pets') || ''
+    // }
 
     function handleScroll() {
         if (window.scrollY > 0) setIsSearchBarOpen(false)
@@ -45,6 +60,7 @@ export function AppHeader({ isSecondaryLayout }) {
                     <StaySearchBar
                         setIsSearchBarOpen={setIsSearchBarOpen}
                         setSelectedInput={setSelectedInput}
+                        filterBy={filterBy}
                     />}
                 {isSearchBarOpen &&
                     <SearchFormOptions
@@ -67,8 +83,9 @@ export function AppHeader({ isSecondaryLayout }) {
                     setIsSearchBarOpen={setIsSearchBarOpen}
                     selectedInput={selectedInput}
                     setSelectedInput={setSelectedInput}
-                    filterByToEdit={filterByToEdit}
-                    setFilterByToEdit={setFilterByToEdit}
+                // filterByToEdit={filterByToEdit}
+                // setFilterByToEdit={setFilterByToEdit}
+                // setSearchFormIputs={setSearchFormIputs}
                 />}
         </header>
     )

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { stayService } from "../services/stay.service.local";
 
-export function Logo() {
+export function Logo({ setFilterByToEdit }) {
     return (
         <div className="logo">
             <Link to={'/'}>
