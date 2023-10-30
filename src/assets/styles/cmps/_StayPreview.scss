@@ -1,12 +1,10 @@
 .stay-preview {
     position: relative;
 
-    // display: grid;
-
     .stay-heart {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 14px;
+        right: 16px;
         height: 24px;
         width: 24px;
         stroke: white;
@@ -15,37 +13,24 @@
     }
 
     .stay-info {
-        // TODO: change the library or fix it
-        // and then set the mbs to 12px
         margin-block-start: 6px;
         display: grid;
         gap: 2px 8px;
-        font-size: 0.9375rem;
+        font-size: rem(15px);
         line-height: 1.1875rem;
 
         .stay-loc {
             text-overflow: ellipsis;
             grid-row: 1;
-            // font-weight: 600;
             font-family: cereal-md, sans-serif;
         }
 
         .stay-name {
             color: $clr-txt-secondary;
+            max-height: 19px;
+            overflow: hidden;
         }
 
-        // .stay-rate {
-        //     grid-row: 1;
-        //     justify-self: end;
-        //     font-weight: 400;
-        //     display: grid;
-        //     place-items: center;
-        //     grid-template-columns: auto auto;
-
-        //     .rate-num {
-        //         margin-inline-start: 4px;
-        //     }
-        // }
         .review-rate {
             grid-row: 1;
             justify-self: end;
@@ -57,12 +42,12 @@
         }
 
         .stay-price {
+            font-family: cereal-md;
             grid-row: 4;
             margin-top: 6px;
-            font-weight: 600;
 
             .night {
-                font-weight: 400;
+                font-family: cereal-light;
             }
         }
     }

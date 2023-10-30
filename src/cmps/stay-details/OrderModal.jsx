@@ -1,27 +1,27 @@
 import { Link } from 'react-router-dom'
 import { ReviewRate } from '../stay-reviews/ReviewRate'
 import { DatePickerModal } from './DatePickerModal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 
-export function OrderModal({ stay, dateRangeParams, guestsParams }) {
-    const { price, reviews } = stay
+export function OrderModal({ stay, orderToEdit, onSetField }) {
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
+    const { price, reviews } = stay
 
-    const order = {
-        startDate:"2025/10/15",
-        endDate:"2025/10/17",
-        adults: 1,
-        children:2
-    }
-    const orderUrl= new URLSearchParams(order).toString()
-
+    useEffect(() => {
+        // console.log('dateRangeParams:', dateRangeParams)
+        // console.log('guestsParams:', guestsParams)
+    }, [])
 
     function handleOnClickDatePicker(ev) {
         ev.stopPropagation()
         setDatePickerModalOpen(!isDatePickerModalOpen)
     }
+
+    const guestsCount = orderToEdit.guests
+    const { checkIn, checkOut } = orderToEdit
+    const dateRangeFromOrder = { from: new Date(checkIn), to: new Date(checkOut) }
 
     return (
         <div className="order-modal">
@@ -50,17 +50,19 @@ export function OrderModal({ stay, dateRangeParams, guestsParams }) {
                 <GuestSelect
                     isGuestSelectModalOpen={isGuestSelectModalOpen}
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
-                    guestsParams={guestsParams}
+                    guestsCount={guestsCount}
+                    onSetField={onSetField}
                 />
             </div>
-            <Link to={`/stay/${stay._id}/order?${orderUrl}`}>
+            <Link to={`/stay/order`}>
                 <button className="reserve btn scale">Reserve</button>
             </Link>
             {isDatePickerModalOpen && (
                 <DatePickerModal
                     isDatePickerModalOpen={isDatePickerModalOpen}
                     setDatePickerModalOpen={setDatePickerModalOpen}
-                    dateRangeParams={dateRangeParams}
+                    dateRangeFromOrder={dateRangeFromOrder}
+                    onSetField={onSetField}
                 />
             )}
         </div>

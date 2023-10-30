@@ -8,20 +8,24 @@ export function DatePickerModal({
     setDatePickerModalOpen,
     onSetField,
     formLayout,
-    dateRangeParams
+    dateRangeFromOrder
 }) {
     const [selectedDateRange, setSelectedDateRange] = useState(null)
     const elDatePickerModal = useRef()
 
     useEffect(() => {
-        // if (!onSetField) return
-        if (selectedDateRange?.from) onSetField('check-in', selectedDateRange.from)
-        if (selectedDateRange?.to) onSetField('check-out', selectedDateRange.to)
+        if (selectedDateRange?.from) onSetField('checkIn', selectedDateRange.from)
+        if (selectedDateRange?.to) onSetField('checkOut', selectedDateRange.to)
     }, [selectedDateRange])
 
     useClickOutside(elDatePickerModal, () => {
         if (isDatePickerModalOpen) setDatePickerModalOpen(false)
     })
+
+    // function setDateRangeFromOrder() {
+    //     const checkIn = new Date(dateRangeFromOrder.checkIn)
+    //     const checkOut = new Date(dateRangeFromOrder.checkOut)
+    // }
 
     return (
         <div className={`date-picker-modal ${formLayout ? formLayout : ''}`} ref={elDatePickerModal}>
@@ -32,11 +36,12 @@ export function DatePickerModal({
                 </div>
                 <DatePickerPreview
                     selectedDateRange={selectedDateRange}
-                    dateRangeParams={dateRangeParams}
                 />
             </header>
             <DatePicker
+                selectedDateRange={selectedDateRange}
                 setSelectedDateRange={setSelectedDateRange}
+                dateRangeFromOrder={dateRangeFromOrder}
                 onSetField={onSetField}
             />
             <div className="reset-close-btns">

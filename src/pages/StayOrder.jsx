@@ -1,31 +1,18 @@
 import { useEffect, useState } from "react";
-import { addOrder, setCurrOrder } from "../store/actions/order.actions";
+import { addOrder } from "../store/actions/order.actions";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
-import { orderService } from "../services/order.service.local";
-import { setCurrStay } from "../store/actions/stay.actions";
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
-import { useNavigate, useParams } from "react-router";
 import { stayService } from "../services/stay.service.local";
 
 export function StayOrder() {
-    // const order = useSelector((storeState) => storeState.orderModule.currOrder)
-    // const stay = useSelector((storeState) => storeState.stayModule.currStay)
+    const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
     const [stay, setStay] = useState(null)
-    const { stayId } = useParams()
-    // const navigate = useNavigate()
-
-
-    const queryParams = new URL(window.location.href).searchParams;
-    const order = {};
-    for (const [key, value] of queryParams.entries()) {
-        order[key] = value;
-    }
-    console.log(order)
-
+    const { stay: { _id: stayId } } = currOrder
 
     useEffect(() => {
+        console.log('currOrder:', currOrder)
         loadStay()
     }, [])
 
@@ -43,11 +30,11 @@ export function StayOrder() {
         const orderToSave = {
             hostId: stay.host._id,
             totalPrice: stay.price, //To fix
-            startDate: order.startDate,
-            endDate: order.endDate,
+            checkIn: currOrder.checkIn,
+            checkOut: currOrder.checkOut,
             guests: {
-                adults: order.adults,
-                kids: order.children
+                adults: currOrder.adults,
+                kids: currOrder.children
             },
             stay: {
                 _id: stay._id,
@@ -66,32 +53,13 @@ export function StayOrder() {
         }
     }
 
-    function formatDateRange(start, end) {
-
-        const startDate = new Date(start);
-        const endDate = new Date(end);
-
-        // Convert the months to abbreviated names (e.g., Jan, Feb, Mar)
-        const startMonth = startDate.toLocaleString('en-US', { month: 'short' });
-        const endMonth = endDate.toLocaleString('en-US', { month: 'short' });
-
-        // Extract the day parts
-        const startDay = startDate.getDate();
-        const endDay = endDate.getDate();
-
-        // Construct the formatted date range
-        if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
-        else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
-    }
-
     return (
         <div>
-            {order && stay && <section className="stay-order">
-
+            {currOrder && stay && <section className="stay-order">
                 <div className="confirm" >
                     {/* should be changed to a better way to navigate
                     which saves the order details */}
-                    <div className="back-arrow" onClick={()=>window.history.back()}>
+                    <div className="back-arrow" onClick={() => window.history.back()}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Back" role="img" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }}><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
                     </div>
                     <h1>Confirm and pay</h1>
@@ -102,14 +70,14 @@ export function StayOrder() {
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Dates</h3>
-                                <div>{formatDateRange(order.startDate, order.endDate)}</div>
+                                <div>{`${currOrder.checkIn} - ${currOrder.checkOut}`}</div>
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{utilService.numOf('guest', (+order.adults + +order.children))}</div>
+                                <div>{utilService.numOf('guest', (+currOrder.guests.adults + +currOrder.guests.children))}</div>
                             </div>
                             <button className="btn underline">Edit</button>
                         </div>
@@ -117,7 +85,10 @@ export function StayOrder() {
                     </div>
                     <div className="stay-modal">
                         <div className="stay-details">
-                            <img src={stay.imgUrls[0]} />
+                            <div>
+
+                                <img src={stay.imgUrls[0]} />
+                            </div>
                             <div className="stay-details-txt">
                                 <div className="stay-summary">
                                     <h5 className="stay-type">{stay.type}</h5>
@@ -138,13 +109,10 @@ export function StayOrder() {
                             <div >Total ($)</div>
                             <div>$3,898.00</div>
                         </div>
-
-
                     </div>
                 </div>
-
             </section>}
-
+            {!currOrder && !stay && <div>loading</div>}
         </div >
     )
 }

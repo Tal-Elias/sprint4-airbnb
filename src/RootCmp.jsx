@@ -10,32 +10,32 @@ import { StayIndex } from './pages/StayIndex'
 import { StayEdit } from './pages/StayEdit'
 
 export function RootCmp() {
-    let location = useLocation()
+    let routeLocation = useLocation()
 
     const [isSecondaryLayout, setIsSecondaryLayout] = useState(false)
 
     useEffect(() => {
-        if (location.pathname.startsWith('/stay/') ||
-            location.pathname.startsWith('/trip') ||
-            location.pathname.startsWith('/wishlist') ||
-            location.pathname.startsWith('/dashboard')) setIsSecondaryLayout(true)
+        if (routeLocation.pathname.startsWith('/stay/') ||
+            routeLocation.pathname.startsWith('/trip') ||
+            routeLocation.pathname.startsWith('/wishlist') ||
+            routeLocation.pathname.startsWith('/dashboard')) setIsSecondaryLayout(true)
         else setIsSecondaryLayout(false)
-    }, [location])
+    }, [routeLocation])
 
     return (
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
-            <AppHeader isSecondaryLayout={isSecondaryLayout} />
+            <AppHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
             <main style={{ paddingBottom: '80px' }}>
                 <Toaster position='absolute' containerStyle={{ bottom: 60, left: 30, }} />
                 <Routes>
                     <Route path="/" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />
-                    <Route path="stay/:stayId/:order" element={<StayOrder />} />
+                    <Route path="stay/order" element={<StayOrder />} />
                     <Route path="dashboard/stay/edit" element={<StayEdit />} />
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                 </Routes>
             </main>
-            <AppFooter isSecondaryLayout={isSecondaryLayout} />
+            <AppFooter isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
         </div>
     )
 }

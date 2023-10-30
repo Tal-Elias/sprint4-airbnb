@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-import { Navigate, useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { useSelector } from 'react-redux'
-import { setCurrStay } from "../store/actions/stay.actions.js"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { setCurrOrder } from "../store/actions/order.actions.js"
 import { TbGridDots } from 'react-icons/tb'
 import { OrderModal } from "../cmps/stay-details/OrderModal.jsx"
@@ -9,59 +7,26 @@ import { ReviewRate } from "../cmps/stay-reviews/ReviewRate.jsx"
 import { utilService } from "../services/util.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 import { stayService } from "../services/stay.service.local.js"
+import { useSelector } from "react-redux"
 import test from '../assets/img/asset15.jpeg'
 
 export function StayDetails() {
-    const [stay, setStay] = useState(null)
-    const navigate = useNavigate()
-    // const stay = useSelector((storeState) => storeState.stayModule.currStay)
-    // const order = useSelector((storeState) => storeState.orderModule.currOrder)
+    const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
+    const [orderToEdit, setOrderToEdit] = useState({})
     const [showAllPhotos, setShowAllPhotos] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
+    const [stay, setStay] = useState(null)
     const { stayId } = useParams()
+    const navigate = useNavigate()
 
-    const dateRangeParams = {
-        // destination: searchParams.get('destination') || '',
-        checkIn: searchParams.get('checkIn') || '',
-        checkOut: searchParams.get('checkOut') || '',
-    }
-
-    const guestsParams = {
-        guests: +searchParams.get('guests') || '',
-        adults: +searchParams.get('adults') || '',
-        children: +searchParams.get('children') || '',
-        infants: +searchParams.get('infants') || '',
-        pets: +searchParams.get('pets') || ''
-    }
-
-    function handleChange() {
-        if (!stay) return
-        const updatedOrder = {
-            hostId: stay.host._id,
-            startDate: "2025/10/15",
-            endDate: "2025/10/17",
-            guests: {
-                adults: 1,
-                children: 2
-            },
-            stay: {
-                _id: stay._id,
-                name: stay.name,
-                price: stay.price
-            }
-        }
-        setCurrOrder(updatedOrder)
-        // setCurrOrder((prevOrder)=>({...prevOrder,...updatedOrder}))
-
-    }
     useEffect(() => {
-        // setCurrStay(stayId)
         loadStay()
+        setNewOrder()
     }, [])
 
-    // useEffect(() => {
-    //     handleChange()
-    // }, [stay])
+    useEffect(() => {
+        setCurrOrder(orderToEdit)
+    }, [orderToEdit])
 
     async function loadStay() {
         try {
@@ -74,9 +39,40 @@ export function StayDetails() {
         }
     }
 
-    if (!stay) return (
-        <div>loading</div>
-    )
+    function setNewOrder() {
+        const dateRangeParams = {
+            checkIn: searchParams.get('checkIn') || utilService.getDemoFormattedDate(7),
+            checkOut: searchParams.get('checkOut') || utilService.getDemoFormattedDate(12),
+        }
+        const guestsParams = {
+            guests: +searchParams.get('guests') || 1,
+            adults: +searchParams.get('adults') || 1,
+            children: +searchParams.get('children') || 0,
+            infants: +searchParams.get('infants') || 0,
+            pets: +searchParams.get('pets') || 0
+        }
+        const newOrder = {
+            ...currOrder,
+            checkIn: dateRangeParams.checkIn,
+            checkOut: dateRangeParams.checkOut,
+            guests: {
+                adults: guestsParams.adults,
+                children: guestsParams.children,
+                infants: guestsParams.infants,
+                pets: guestsParams.pets
+            },
+            stay: {
+                _id: stayId
+            }
+        }
+        setOrderToEdit(newOrder)
+    }
+
+    function onSetField(field, value) {
+        setOrderToEdit((prevFields) => ({ ...prevFields, [field]: value }))
+    }
+
+    if (!stay) return <div>loading</div>
 
     if (showAllPhotos) {
         return <div className="all-photos">
@@ -116,14 +112,12 @@ export function StayDetails() {
             </div>
             <div className="img-container">
                 <div className="img-grid">
-                    {
-                        stay?.imgUrls?.length > 0 &&
+                    {stay?.imgUrls?.length > 0 &&
                         stay.imgUrls.map((url, idx) =>
                             <img key={idx}
                                 src={url}
                                 onClick={() => setShowAllPhotos(true)}
-                            />)
-                    }
+                            />)}
                 </div>
                 <button onClick={() => setShowAllPhotos(true)} className="btn scale">
                     <div className="btn-inner-container">
@@ -186,8 +180,8 @@ export function StayDetails() {
                 </div>
                 <OrderModal
                     stay={stay}
-                    dateRangeParams={dateRangeParams}
-                    guestsParams={guestsParams}
+                    orderToEdit={orderToEdit}
+                    onSetField={onSetField}
                 />
             </div>
             <section className="reviews border-bottom ptb48">

@@ -8,7 +8,6 @@ export const orderService = {
     getById,
     save,
     getEmptyOrder
-
 }
 
 window.cs = orderService
@@ -59,16 +58,16 @@ function getEmptyOrder() {
     return {
         hostId: '',
         totalPrice: '',
-        startDate: '',
-        endDate: '',
+        checkIn: '',
+        checkOut: '',
         guests: {
-            adults: null,
-            children: null
+            adults: 0,
+            children: 0
         },
         stay: {
             _id: '',
             name: '',
-            price: null,
+            price: 0,
         },
         msgs: [],
     }

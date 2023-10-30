@@ -57,6 +57,10 @@
         .input-destination {
             flex: 1.25 0 0;
 
+            .region-select {
+                z-index: -1;
+            }
+
             input {
                 border: none;
                 background-color: inherit;
@@ -79,6 +83,10 @@
             flex: 1 0 0;
             justify-content: center;
             align-items: center;
+
+            .date-picker-modal {
+                z-index: -1;
+            }
 
             button {
                 position: relative;
@@ -132,6 +140,10 @@
             justify-content: space-between;
             align-items: center;
             border-radius: 32px;
+
+            .guest-select-modal {
+                z-index: -1;
+            }
 
             &.active {
                 outline: 1px solid $clr-bg-primary;

@@ -14,6 +14,8 @@ export function GuestSelectModal({
     //     if (!onSetField) return
     // }, [])
 
+    console.log('guestsCount:', guestsCount)
+
     function handleChange(field, value) {
         if (value <= 0) value = 0
         if (field === 'adults') {

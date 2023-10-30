@@ -29,8 +29,8 @@ export function UserOrders () {
             {orders.map(order => <li key={order._id}>
                     <h2>Listing: {order.stay.name}</h2>
                     <h2>Host: {order.hostId}</h2>
-                    <h2>Check-in: {order.startDate}</h2>
-                    <h2>Checkout: {order.endDate}</h2>
+                    <h2>Check-in: {order.checkIn}</h2>
+                    <h2>Checkout: {order.checkOut}</h2>
                     <h2>Total: ${order.totalPrice}</h2>
                     <h2>Status: {order.status}</h2>
                 </li>)}

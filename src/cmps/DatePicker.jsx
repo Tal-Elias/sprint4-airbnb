@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-export function DatePicker({ setSelectedDateRange, onSetField }) {
+export function DatePicker({
+  selectedDateRange,
+  setSelectedDateRange,
+  onSetField,
+  dateRangeFromOrder
+}) {
   const [range, setRange] = useState()
+
+  useEffect(() => {
+    if (!selectedDateRange) setRange(null)
+  }, [selectedDateRange])
 
   const today = new Date()
   const disabledDays = [

@@ -8,6 +8,8 @@ export const utilService = {
     loadFromStorage,
     getAssetSrc,
     formatToMonthDay,
+    timeStampToLongDate,
+    getDemoFormattedDate,
     numOf
 }
 
@@ -84,4 +86,22 @@ function formatToMonthDay(dateString) {
     const month = date.toLocaleString('default', { month: 'short' });
 
     return `${month} ${day}`;
+}
+
+function timeStampToLongDate(timestamp) {
+    const date = new Date(timestamp);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+}
+
+function getDemoFormattedDate(daysToAdd) {
+    const currentDate = new Date();
+    const targetDate = new Date(currentDate);
+    targetDate.setDate(currentDate.getDate() + daysToAdd);
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+    const day = String(targetDate.getDate()).padStart(2, '0');
+    const year = targetDate.getFullYear();
+    return `${month}/${day}/${year}`;
 }
