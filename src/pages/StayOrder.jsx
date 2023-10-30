@@ -5,9 +5,14 @@ import { useSelector } from "react-redux";
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
 import { stayService } from "../services/stay.service.local";
+import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
+import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
+
 
 export function StayOrder() {
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
+    const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
+    const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [stay, setStay] = useState(null)
     const { stay: { _id: stayId } } = currOrder
 
@@ -53,6 +58,34 @@ export function StayOrder() {
         }
     }
 
+    function formatDateRange(start, end) {
+
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        // Convert the months to abbreviated names (e.g., Jan, Feb, Mar)
+        const startMonth = startDate.toLocaleString('en-US', { month: 'short' });
+        const endMonth = endDate.toLocaleString('en-US', { month: 'short' });
+
+        // Extract the day parts
+        const startDay = startDate.getDate();
+        const endDay = endDate.getDate();
+
+        // Construct the formatted date range
+        if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
+        else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
+    }
+
+    function onEditGuests(ev) {
+        ev.stopPropagation()
+        setGuestSelectModalOpen(!isGuestSelectModalOpen)
+    }
+
+    function onEditDates(ev) {
+        ev.stopPropagation()
+        setDatePickerModalOpen(!isDatePickerModalOpen)
+    }
+
     return (
         <div>
             {currOrder && stay && <section className="stay-order">
@@ -72,14 +105,23 @@ export function StayOrder() {
                                 <h3>Dates</h3>
                                 <div>{`${currOrder.checkIn} - ${currOrder.checkOut}`}</div>
                             </div>
-                            <button className="btn underline">Edit</button>
+                            <button className="btn underline" onClick={onEditDates}>Edit</button>
+                            {isDatePickerModalOpen &&
+                                <DatePickerModal
+                                    isDatePickerModalOpen={isDatePickerModalOpen}
+                                    setDatePickerModalOpen={setDatePickerModalOpen}
+                                />
+                            }
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
                                 <div>{utilService.numOf('guest', (+currOrder.guests.adults + +currOrder.guests.children))}</div>
                             </div>
-                            <button className="btn underline">Edit</button>
+                            <button className="btn underline" onClick={onEditGuests}>Edit</button>
+                            {isGuestSelectModalOpen &&
+                                <GuestSelectModal />
+                            }
                         </div>
                         <button className="confirm-btn btn scale" onClick={onOrder}>Confirm and pay</button>
                     </div>

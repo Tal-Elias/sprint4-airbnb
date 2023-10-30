@@ -18,11 +18,6 @@ export function AppHeader({ isSecondaryLayout }) {
     const [searchParams, setSearchParams] = useSearchParams()
     // const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     // const [searchFormIputs, setSearchFormIputs] = useState({})
-
-    useEffect(() => {
-        setFilter(filterByParams)
-    }, [])
-
     const filterByParams = {
         ...filterBy,
         txt: searchParams.get('destination') || '',
@@ -30,6 +25,24 @@ export function AppHeader({ isSecondaryLayout }) {
         guests: +searchParams.get('guests') || ''
     }
 
+    useEffect(() => {
+        console.log(filterByParams)
+        setFilter(filterByParams)
+    }, [])
+
+    useEffect(() => {
+        // setFilter(filterByParams)
+        setSearchParams({ ...filterBy })
+        console.log('hiiii')
+    }, [filterBy])
+
+
+
+    function onSetFilter(filterBy) {
+        console.log('filterBy from header:', filterBy)
+        setFilter(filterBy)
+
+    }
     // const updatedSearchParams = {
     //     destination: searchParams.get('destination') || '',
     //     checkIn: searchParams.get('checkIn') || '',
@@ -83,6 +96,8 @@ export function AppHeader({ isSecondaryLayout }) {
                     setIsSearchBarOpen={setIsSearchBarOpen}
                     selectedInput={selectedInput}
                     setSelectedInput={setSelectedInput}
+                    filterBy={filterBy}
+                    onSetFilter={onSetFilter}
                 // filterByToEdit={filterByToEdit}
                 // setFilterByToEdit={setFilterByToEdit}
                 // setSearchFormIputs={setSearchFormIputs}
