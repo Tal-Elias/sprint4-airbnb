@@ -8,8 +8,14 @@ import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
 import { useNavigate, useParams } from "react-router";
 import { stayService } from "../services/stay.service.local";
+import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
+import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
+
 
 export function StayOrder() {
+    const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
+    const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
+
     // const order = useSelector((storeState) => storeState.orderModule.currOrder)
     // const stay = useSelector((storeState) => storeState.stayModule.currStay)
     const [stay, setStay] = useState(null)
@@ -84,6 +90,14 @@ export function StayOrder() {
         else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
     }
 
+    function onEditGuests(ev) {
+        ev.stopPropagation()
+        setGuestSelectModalOpen(!isGuestSelectModalOpen)
+    }
+    function onEditDates(ev) {
+        ev.stopPropagation()
+        setDatePickerModalOpen(!isDatePickerModalOpen)
+    }
     return (
         <div>
             {order && stay && <section className="stay-order">
@@ -91,7 +105,7 @@ export function StayOrder() {
                 <div className="confirm" >
                     {/* should be changed to a better way to navigate
                     which saves the order details */}
-                    <div className="back-arrow" onClick={()=>window.history.back()}>
+                    <div className="back-arrow" onClick={() => window.history.back()}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-label="Back" role="img" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }}><path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4"></path></svg>
                     </div>
                     <h1>Confirm and pay</h1>
@@ -104,14 +118,23 @@ export function StayOrder() {
                                 <h3>Dates</h3>
                                 <div>{formatDateRange(order.startDate, order.endDate)}</div>
                             </div>
-                            <button className="btn underline">Edit</button>
+                            <button className="btn underline" onClick={onEditDates}>Edit</button>
+                            {isDatePickerModalOpen &&
+                                <DatePickerModal
+                                isDatePickerModalOpen={isDatePickerModalOpen}
+                                setDatePickerModalOpen={setDatePickerModalOpen}
+                                />
+                            }
                         </div>
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
                                 <div>{utilService.numOf('guest', (+order.adults + +order.children))}</div>
                             </div>
-                            <button className="btn underline">Edit</button>
+                            <button className="btn underline" onClick={onEditGuests}>Edit</button>
+                            {isGuestSelectModalOpen &&
+                                <GuestSelectModal />
+                            }
                         </div>
                         <button className="confirm-btn btn scale" onClick={onOrder}>Confirm and pay</button>
                     </div>

@@ -18,8 +18,8 @@
             margin-top: 10px;
             cursor: pointer;
 
-            &:hover{
-                background-color:$clr-bg-secondary;
+            &:hover {
+                background-color: $clr-bg-secondary;
             }
         }
 
@@ -60,6 +60,12 @@
 
                 button {
                     font-size: 1rem;
+                }
+
+                .date-picker-modal {
+                    position: fixed;
+                    z-index: 10;
+                  
                 }
             }
 
