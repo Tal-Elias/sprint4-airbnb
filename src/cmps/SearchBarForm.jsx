@@ -8,32 +8,32 @@ import { useNavigate } from "react-router"
 import { utilService } from "../services/util.service"
 import { useSelector } from "react-redux"
 import useClickOutside from "../customHooks/useClickOutside"
-import { setFilter } from "../store/actions/stay.actions"
+// import { setFilter } from "../store/actions/stay.actions"
 
 export function SearchBarForm({
     setIsSearchBarOpen,
     selectedInput,
     setSelectedInput,
-    filterByToEdit,
-    setFilterByToEdit,
+    filterBy,
+    onSetFilter,
     setSearchFormIputs
 }) {
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [expanded, setExpanded] = useState(false)
     const elSearchBarForm = useRef(null)
-    const [fields, setFields, handleChange] = useForm({
-        destination: '',
-        checkIn: '',
-        checkOut: '',
-        guests: {},
-    })
+    const [fields, setFields, handleChange] = useForm({ ...filterBy })
+    // destination: '',
+    // checkIn: '',
+    // checkOut: '',
+    // guests: {},
+
     const navigate = useNavigate()
 
+
     useEffect(() => {
-        console.log('filterBy:', filterBy)
         setExpanded(prevState => !prevState)
     }, [])
 
+   
     useClickOutside(elSearchBarForm, () => {
         setSelectedInput(null)
     })
@@ -54,27 +54,31 @@ export function SearchBarForm({
     }
 
     function onSearch() {
-        const { adults = 0, children = 0 } = fields.guests
-        const totalGuests = adults + children
-        const newFilterBy = {
-            ...filterBy,
-            txt: fields.destination,
-            guests: totalGuests
-        }
-        setFilter(newFilterBy)
-        // setFilterByToEdit(newFilterBy)
+        onSetFilter({...fields })
         setIsSearchBarOpen(false)
-        const { destination, checkIn, checkOut, guests } = fields
-        const searchFormIputs = {
-            destination,
-            checkIn,
-            checkOut,
-            guests: (totalGuests === 0) ? '' : totalGuests,
-            ...guests
-        }
-        // setSearchFormIputs(searchFormIputs)
-        const searchParams = new URLSearchParams(searchFormIputs).toString()
-        navigate(`/?${searchParams}`)
+
+
+        // const { adults = 0, children = 0} = fields.guests
+        // const totalGuests = adults + children
+
+        // const newFilterBy = {
+        //     ...filterBy,
+        //     txt: fields.destination,
+        //     guests: totalGuests
+        // }
+       
+
+        // const { destination, checkIn, checkOut, guests } = fields
+        // const searchFormIputs = {
+        //     destination,
+        //     checkIn,
+        //     checkOut,
+        //     guests: (totalGuests === 0) ? '' : totalGuests,
+        //     ...guests
+        // }
+        // // setSearchFormIputs(searchFormIputs)
+        // const searchParams = new URLSearchParams(searchFormIputs).toString()
+        // navigate(`/?${searchParams}`)
     }
 
     function countGuests(guests) {
@@ -90,6 +94,7 @@ export function SearchBarForm({
 
         return !result ? 'Add guests' : result
     }
+
 
     const fromDate = fields['checkIn'] ? utilService.formatToMonthDay(fields['checkIn']) : 'Add dates'
     const toDate = fields['checkOut'] ? utilService.formatToMonthDay(fields['checkOut']) : 'Add dates'
