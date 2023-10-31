@@ -38,6 +38,22 @@ export async function saveUser(user) {
     }
 }
 
+
+export async function saveUserWishlist(stayId) {
+    const { user } = store.getState().userModule
+    if (!user) return showErrorMsg('Please log in')
+    const updatedUser = { ...user, wishlist: [...user.wishlist] }
+    const stayIndex = updatedUser.wishlist.indexOf(stayId)
+    if (stayIndex !== -1) updatedUser.wishlist.splice(stayIndex, 1)
+    else updatedUser.wishlist.unshift(stayId)
+    try {
+        saveUser(updatedUser)
+    } catch (err) {
+        console.log('Cannot update user', err)
+        showErrorMsg('Cannot update user')
+    }
+}
+
 export async function login(credentials) {
     try {
         const user = await userService.login(credentials)

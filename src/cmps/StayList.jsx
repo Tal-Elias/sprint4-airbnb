@@ -3,14 +3,14 @@ import { StayPreview } from './StayPreview'
 
 export function StayList({ stays, updatedSearchParams, onWishlist, user }) {
     const params = new URLSearchParams(updatedSearchParams).toString()
-
+    console.log(stays)
     return (
         <section >
             <ul className="stay-list clean-list">
                 {stays.map(stay =>
                     <li key={stay._id}>
                         <Link to={`/stay/${stay._id}?${params}`}>
-                            <StayPreview stay={stay} onWishlist={onWishlist} user={user}/>
+                            <StayPreview stay={stay} onWishlist={onWishlist} user={user} />
                         </Link>
                     </li>
                 )}

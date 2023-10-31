@@ -59,13 +59,12 @@ function remove(userId) {
 }
 
 async function save(user) {
-    if (!user) return
+    saveLocalUser(user)
     if (user._id) return await storageService.put('user', user)
 }
 
 async function update({ _id }) {
     const user = await storageService.get('user', _id)
-    console.log('user in service:', user)
     await storageService.put('user', user)
 
     // const user = await httpService.put(`user/${_id}`, {_id, score})
