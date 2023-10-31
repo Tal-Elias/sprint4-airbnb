@@ -4,7 +4,8 @@ export function GuestSelect({
     isGuestSelectModalOpen,
     setGuestSelectModalOpen,
     guestsCount,
-    onSetField
+    onSetField,
+    totalGuestCount
 }) {
     const pathOpen = "M4 20 15.3 8.7a1 1 0 0 1 1.4 0L28 20";
     const pathClosed = "M28 12 16.7 23.3a1 1 0 0 1-1.4 0L4 12";
@@ -18,7 +19,7 @@ export function GuestSelect({
         <div className="guest-select flex" onClick={handleOnClickGuestSelect}>
             <div className="guests-preview">
                 <span>GUESTS</span>
-                <span>1 guest</span>
+                <span>{totalGuestCount}</span>
             </div>
             <div className="arrow" >
                 <svg

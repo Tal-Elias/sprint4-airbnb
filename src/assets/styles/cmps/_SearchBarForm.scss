@@ -10,7 +10,7 @@
 
         &.expanded {
             transform: translateY(0);
-            transition: transform 250ms ease;
+            transition: transform 200ms ease;
         }
 
         display: flex;

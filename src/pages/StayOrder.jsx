@@ -17,7 +17,6 @@ export function StayOrder() {
     const { stay: { _id: stayId } } = currOrder
 
     useEffect(() => {
-        console.log('currOrder:', currOrder)
         loadStay()
     }, [])
 
@@ -28,7 +27,7 @@ export function StayOrder() {
         } catch (err) {
             console.log('Had issues in stay details', err)
             showErrorMsg('Cannot load stay')
-            // navigate('/')
+            navigate('/')
         }
     }
     async function onOrder() {
@@ -116,7 +115,7 @@ export function StayOrder() {
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{utilService.numOf('guest', (+currOrder.guests.adults + +currOrder.guests.children))}</div>
+                                <div>{utilService.numOf('guest', ((+currOrder.guests.adults || 1) + +currOrder.guests.children))}</div>
                             </div>
                             <button className="btn underline" onClick={onEditGuests}>Edit</button>
                             {isGuestSelectModalOpen &&

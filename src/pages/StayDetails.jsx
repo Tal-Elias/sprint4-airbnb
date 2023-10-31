@@ -41,8 +41,8 @@ export function StayDetails() {
 
     function setNewOrder() {
         const dateRangeParams = {
-            checkIn: searchParams.get('checkIn') || utilService.getDemoFormattedDate(7),
-            checkOut: searchParams.get('checkOut') || utilService.getDemoFormattedDate(12),
+            checkIn: +searchParams.get('checkIn') || utilService.getDemoFormattedDate(7),
+            checkOut: +searchParams.get('checkOut') || utilService.getDemoFormattedDate(12),
         }
         const guestsParams = {
             guests: +searchParams.get('guests') || 1,
@@ -55,6 +55,7 @@ export function StayDetails() {
             ...currOrder,
             checkIn: dateRangeParams.checkIn,
             checkOut: dateRangeParams.checkOut,
+            guestsCount: guestsParams.guests,
             guests: {
                 adults: guestsParams.adults,
                 children: guestsParams.children,

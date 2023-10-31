@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import { utilService } from "../services/util.service";
 
 export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput, filterBy }) {
 
@@ -8,8 +8,11 @@ export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput, filterBy }
         setSelectedInput(input)
     }
 
+    // Do we need useEffect so that every time the cmp unloads it will clear the inputs?
+
     const destination = filterBy.txt ? filterBy.txt : 'Anywhere'
-    const checkIn = filterBy.checkIn ? filterBy.checkIn : 'Any week'
+    const checkIn = filterBy.checkIn ? utilService.formatToMonthDay(filterBy.checkIn) : 'Any week'
+    const checkOut = filterBy.checkOut ? utilService.formatToMonthDay(filterBy.checkOut) : ''
     const guests = filterBy.guests ? filterBy.guests + ' Guests' : 'Add guests'
 
     return (
@@ -23,7 +26,7 @@ export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput, filterBy }
             <div className="btn-container">
                 <button
                     className="any-week btn-search-bar"
-                    onClick={() => handleOnClick('check-in')}>{checkIn}</button>
+                    onClick={() => handleOnClick('check-in')}>{`${checkIn} ${checkOut && ` - ${checkOut.slice(4)}`}`}</button>
             </div>
             <span className="seperator"></span>
             <div className="btn-container">

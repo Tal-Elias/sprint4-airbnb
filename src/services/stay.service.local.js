@@ -55207,7 +55207,7 @@ window.cs = stayService
 
 _createStays()
 
-async function query(filterBy = {txt: '', label: '', guests: '' }) {
+async function query(filterBy = { txt: '', label: '', guests: '' }) {
     let stays = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
@@ -55292,11 +55292,11 @@ function getDefaultFilter() {
         txt: '',
         checkIn: '',
         checkOut: '',
-        guests: '',
-        adults: '',
-        children: '',
-        infants: '',
-        pets: '',
+        guests: 0,
+        adults: 0,
+        children: 0,
+        infants: 0,
+        pets: 0,
         label: ''
     }
 }

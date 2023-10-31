@@ -15,7 +15,7 @@ export function RegionSelect({ onSetField }) {
     ]
 
     return (
-        <div className="region-select">
+        <div className="region-select" onClick={(e) => e.stopPropagation()}>
             <div className="region-select-header">Search by region</div>
             <div className="region-grid-container">
                 {regions.map((region, idx) => {

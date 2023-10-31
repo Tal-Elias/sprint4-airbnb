@@ -1,7 +1,7 @@
-export function DatePickerPreview({ selectedDateRange }) {
+export function DatePickerPreview({ selectedDateRange, dateRangeFromOrder }) {
 
-    const fromDate = selectedDateRange ? selectedDateRange.from.toLocaleDateString() : 'Add date'
-    const toDate = selectedDateRange ? selectedDateRange.to?.toLocaleDateString() : 'Add date'
+    const fromDate = dateRangeFromOrder ? dateRangeFromOrder.from : selectedDateRange ? selectedDateRange.from.toLocaleDateString() : 'Add date'
+    const toDate = dateRangeFromOrder ? dateRangeFromOrder.to : selectedDateRange ? selectedDateRange.to?.toLocaleDateString() : 'Add date'
 
     return (
         <div className="date-picker-preview flex">

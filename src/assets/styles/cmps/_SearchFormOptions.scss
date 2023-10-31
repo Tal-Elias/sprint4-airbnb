@@ -1,9 +1,9 @@
 .search-form-options {
-    transform: scale(0.1, 0.1) translateY(-500px);
+    transform: translateY(-20px);
 
     &.expanded {
         transform: translateY(0);
-        transition: transform .3s;
+        transition: transform 200ms;
     }
 
     display: flex;

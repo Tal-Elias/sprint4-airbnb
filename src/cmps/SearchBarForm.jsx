@@ -4,36 +4,30 @@ import { RegionSelect } from "./RegionSelect"
 import { DatePickerModal } from "./stay-details/DatePickerModal"
 import { GuestSelectModal } from "./stay-details/GuestSelectModal"
 import { useForm } from "../customHooks/useForm"
-import { useNavigate } from "react-router"
 import { utilService } from "../services/util.service"
-import { useSelector } from "react-redux"
 import useClickOutside from "../customHooks/useClickOutside"
-// import { setFilter } from "../store/actions/stay.actions"
 
 export function SearchBarForm({
     setIsSearchBarOpen,
     selectedInput,
     setSelectedInput,
-    filterBy,
     onSetFilter,
-    setSearchFormIputs
+    filterBy
 }) {
     const [expanded, setExpanded] = useState(false)
     const elSearchBarForm = useRef(null)
-    const [fields, setFields, handleChange] = useForm({ ...filterBy })
-    // destination: '',
-    // checkIn: '',
-    // checkOut: '',
-    // guests: {},
-
-    const navigate = useNavigate()
-
+    const [fields, setFields, handleChange] = useForm({
+        destination: filterBy.txt || '',
+        checkIn: filterBy.checkIn || '',
+        checkOut: filterBy.checkOut || '',
+        guests: {}
+    })
 
     useEffect(() => {
         setExpanded(prevState => !prevState)
     }, [])
 
-   
+
     useClickOutside(elSearchBarForm, () => {
         setSelectedInput(null)
     })
@@ -45,8 +39,8 @@ export function SearchBarForm({
     function onSetField(field, value) {
         setFields((prevFields) => ({ ...prevFields, [field]: value }))
         if (field === 'destination') setSelectedInput('check-in')
-        if (field === 'check-in') setSelectedInput('checkout')
-        if (field === 'checkout') setSelectedInput('guests')
+        if (field === 'checkIn') setSelectedInput('checkout')
+        if (field === 'checkOut') setSelectedInput('guests')
     }
 
     function toggleActiveClass(input) {
@@ -54,50 +48,23 @@ export function SearchBarForm({
     }
 
     function onSearch() {
-        onSetFilter({...fields })
-        setIsSearchBarOpen(false)
-
-
-        // const { adults = 0, children = 0} = fields.guests
-        // const totalGuests = adults + children
-
-        // const newFilterBy = {
-        //     ...filterBy,
-        //     txt: fields.destination,
-        //     guests: totalGuests
-        // }
-       
-
-        // const { destination, checkIn, checkOut, guests } = fields
-        // const searchFormIputs = {
-        //     destination,
-        //     checkIn,
-        //     checkOut,
-        //     guests: (totalGuests === 0) ? '' : totalGuests,
-        //     ...guests
-        // }
-        // // setSearchFormIputs(searchFormIputs)
-        // const searchParams = new URLSearchParams(searchFormIputs).toString()
-        // navigate(`/?${searchParams}`)
-    }
-
-    function countGuests(guests) {
-        const { adults = 0, children = 0, infants, pets } = guests
-
+        const { adults = 0, children = 0 } = fields.guests
         const totalGuests = adults + children
-        const guestString = totalGuests > 0 ? `${totalGuests} guest${totalGuests > 1 ? 's' : ''}` : ''
-        const infantString = infants > 0 ? `${infants} infant${infants > 1 ? 's' : ''}` : ''
-        const petString = pets > 0 ? `${pets} pet${pets > 1 ? 's' : ''}` : ''
-
-        const resultArray = [guestString, infantString, petString].filter(Boolean)
-        const result = resultArray.join(', ')
-
-        return !result ? 'Add guests' : result
+        const { destination, checkIn, checkOut, guests } = fields
+        const searchFormIputs = {
+            destination,
+            checkIn,
+            checkOut,
+            guests: (totalGuests === 0) ? '' : totalGuests,
+            ...guests
+        }
+        onSetFilter(searchFormIputs)
+        setIsSearchBarOpen(false)
     }
-
 
     const fromDate = fields['checkIn'] ? utilService.formatToMonthDay(fields['checkIn']) : 'Add dates'
     const toDate = fields['checkOut'] ? utilService.formatToMonthDay(fields['checkOut']) : 'Add dates'
+    const totalGuestCount = utilService.countGuests(fields.guests)
 
     return (
         <div className="search-bar-form">
@@ -164,7 +131,7 @@ export function SearchBarForm({
                     <div className="flex space-between align-center">
                         <button className="guests btn-input" onClick={() => handleOnClick('guests')}>
                             <div className="label">Who</div>
-                            <div className="sub-label">{countGuests(fields.guests)}</div>
+                            <div className="sub-label">{totalGuestCount}</div>
                         </button>
                         <button className="btn-search" onClick={onSearch}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 4, overflow: 'visible' }}><path fill="none" d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9"></path></svg>

@@ -7,14 +7,9 @@ export function GuestSelectModal({
     setGuestSelectModalOpen,
     onSetField,
     guestsCount,
-    formLayout }) {
+    formLayout
+}) {
     const elGuestSelectModal = useRef()
-
-    // useEffect(() => {
-    //     if (!onSetField) return
-    // }, [])
-
-    console.log('guestsCount:', guestsCount)
 
     function handleChange(field, value) {
         if (value <= 0) value = 0

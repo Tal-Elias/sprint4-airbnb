@@ -11,9 +11,9 @@ export function DatePicker({
 }) {
   const [range, setRange] = useState()
 
-  useEffect(() => {
-    if (!selectedDateRange) setRange(null)
-  }, [selectedDateRange])
+  // useEffect(() => {
+  //   if (!selectedDateRange) setRange(null)
+  // }, [selectedDateRange])
 
   const today = new Date()
   const disabledDays = [

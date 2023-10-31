@@ -3,16 +3,12 @@ import { ReviewRate } from '../stay-reviews/ReviewRate'
 import { DatePickerModal } from './DatePickerModal'
 import { useEffect, useState } from 'react'
 import { GuestSelect } from './GuestSelect'
+import { utilService } from '../../services/util.service'
 
 export function OrderModal({ stay, orderToEdit, onSetField }) {
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
     const { price, reviews } = stay
-
-    useEffect(() => {
-        // console.log('dateRangeParams:', dateRangeParams)
-        // console.log('guestsParams:', guestsParams)
-    }, [])
 
     function handleOnClickDatePicker(ev) {
         ev.stopPropagation()
@@ -20,8 +16,15 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
     }
 
     const guestsCount = orderToEdit.guests
+    const totalGuestCount = utilService.countGuests(orderToEdit.guests)
     const { checkIn, checkOut } = orderToEdit
-    const dateRangeFromOrder = { from: new Date(checkIn), to: new Date(checkOut) }
+    const dateRangeFromOrder = {
+        from: utilService.timeStampToLongDate(checkIn),
+        to: utilService.timeStampToLongDate(checkOut)
+    }
+
+    const fromDate = dateRangeFromOrder.from ? dateRangeFromOrder.from : 'Add date'
+    const toDate = dateRangeFromOrder.to ? dateRangeFromOrder.to : 'Add date'
 
     return (
         <div className="order-modal">
@@ -40,17 +43,18 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
                 <div className="date-picker flex" onClick={handleOnClickDatePicker}>
                     <div className="check-in flex column">
                         <span>CHECK-IN</span>
-                        <span>Add date</span>
+                        <span>{fromDate}</span>
                     </div>
                     <div className="checkout flex column">
                         <span>CHECKOUT</span>
-                        <span>Add date</span>
+                        <span>{toDate}</span>
                     </div>
                 </div>
                 <GuestSelect
                     isGuestSelectModalOpen={isGuestSelectModalOpen}
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
                     guestsCount={guestsCount}
+                    totalGuestCount={totalGuestCount}
                     onSetField={onSetField}
                 />
             </div>
