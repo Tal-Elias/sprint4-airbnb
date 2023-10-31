@@ -55219,11 +55219,11 @@ async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageS
         const regex = new RegExp(filterBy.label, 'i')
         stays = stays.filter(stay => regex.test(stay.type))
     }
-    
+
     if (filterBy.guests) {
         stays = stays.filter(stay => filterBy.guests <= stay.capacity)
     }
-    
+
     const startIndex = (filterBy.page - 1) * filterBy.pageSize
     const endIndex = startIndex + filterBy.pageSize
     const paginatedStays = stays.slice(startIndex, endIndex)

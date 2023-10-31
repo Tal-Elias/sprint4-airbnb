@@ -8,16 +8,17 @@ import { useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay.service.local.js'
 import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
-import useEventListener from '../customHooks/useEventListener.js'
 import { saveUser } from '../store/actions/user.actions.js'
+import useEventListener from '../customHooks/useEventListener.js'
 
 export function StayIndex() {
+    const user = useSelector(storeState => storeState.userModule.user)
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
     const [searchParams, setSearchParams] = useSearchParams()
     const [page, setPage] = useState(1)
-    const user = useSelector(storeState => storeState.userModule.user)
+
     useEffect(() => {
         setFilterByParams()
         loadStays({ ...filterBy, page: 1 })
@@ -35,9 +36,9 @@ export function StayIndex() {
         }
     }, [filterBy, page])
 
-    useEffect(() => {
-        console.log('hi');
-    }, [handleScroll])
+    // useEffect(() => {
+    //     console.log('hi')
+    // }, [handleScroll])
 
     function setFilterByParams() {
         if (!searchParams.size) return

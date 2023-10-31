@@ -34,7 +34,8 @@ export function AppHeader({ isSecondaryLayout }) {
     }
 
     function onSetFilter(searchFormIputs) {
-        setFilter({ ...searchFormIputs, txt: searchFormIputs.destination })
+        const { page, pageSize } = filterBy
+        setFilter({ ...searchFormIputs, txt: searchFormIputs.destination, page, pageSize })
         setSearchParams(searchFormIputs)
         const searchString = new URLSearchParams(searchFormIputs)
         if (isSecondaryLayout) navigate(`/?${searchString}`)
