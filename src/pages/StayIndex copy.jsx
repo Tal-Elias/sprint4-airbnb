@@ -12,12 +12,22 @@ export function StayIndex() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [searchParams, setSearchParams] = useSearchParams()
     const user = useSelector(storeState => storeState.userModule.user)
+    const [userToEdit, setUserToEdit] = useState()
 
     useEffect(() => {
+        setUserToEdit(user)
+        try {
+            console.log('userToEdit', userToEdit)
+            saveUser(userToEdit)
+        } catch (err) {
+            console.log('Cannot update user', err)
+            showErrorMsg('Cannot update user')
+        }
         setFilter({ ...filterByParams })
-    }, [])
+    }, [userToEdit])
 
     useEffect(() => {
+        // console.log(user)
         try {
             loadStays(filterBy)
         } catch (err) {
@@ -50,19 +60,18 @@ export function StayIndex() {
     }
 
     async function onWishlist(stayId) {
+        // console.log(stayId)
         if (!user) return showErrorMsg('Please log in')
-        const newUser ={ ...user, wishlist: [...user.wishlist] }
-        const stayIndex = newUser.wishlist.indexOf(stayId)
-        if (stayIndex !== -1) newUser.wishlist.splice(stayIndex, 1)
-        else newUser.wishlist.unshift(stayId)
-      
-        // setUserToEdit(prevUser => ({ ...prevUser, wishlist: [...prevUser.wishlist] }))
-        try {
-            saveUser(newUser)
-        } catch (err) {
-            console.log('Cannot update user', err)
-            showErrorMsg('Cannot update user')
-        }
+        // console.log(user)
+        const stayIndex = user.wishlist.indexOf(stayId)
+        // console.log(stayIndex)
+        if (stayIndex !== -1) user.wishlist.splice(stayIndex, 1)
+        else user.wishlist.unshift(stayId)
+        // console.log('user.whislist:', user.wishlist)
+        console.log(userToEdit)
+
+        setUserToEdit(prevUser => ({ ...prevUser, wishlist: [...prevUser.wishlist] }))
+
     }
 
     if (!stays) return <div>loading</div>
