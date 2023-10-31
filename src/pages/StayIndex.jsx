@@ -10,6 +10,7 @@ import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
 import useEventListener from '../customHooks/useEventListener.js'
 import { saveUser } from '../store/actions/user.actions.js'
+
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
