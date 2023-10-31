@@ -9,6 +9,7 @@ import { showErrorMsg } from "../services/event-bus.service.js"
 import { stayService } from "../services/stay.service.local.js"
 import { useSelector } from "react-redux"
 import test from '../assets/img/asset15.jpeg'
+import { DetailsLoader } from "../cmps/DetailsLoader.jsx"
 
 export function StayDetails() {
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
@@ -73,7 +74,7 @@ export function StayDetails() {
         setOrderToEdit((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
-    if (!stay) return <div>loading</div>
+    if (!stay) return <DetailsLoader />
 
     if (showAllPhotos) {
         return <div className="all-photos">

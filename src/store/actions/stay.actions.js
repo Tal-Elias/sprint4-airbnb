@@ -1,7 +1,8 @@
 import { stayService } from "../../services/stay.service.local.js";
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_CURR_STAY, SET_FILTER_BY } from "../reducers/stay.reducer.js";
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UNDO_REMOVE_STAY, UPDATE_STAY, SET_FILTER_BY } from "../reducers/stay.reducer.js";
+import { LOADING_DONE, LOADING_START } from "../reducers/system.reducer.js";
 
 // Action Creators:
 export function getActionRemoveStay(stayId) {
@@ -23,18 +24,17 @@ export function getActionUpdateStay(stay) {
     }
 }
 
-export async function loadStays(filterBy) {
+export async function loadStays(filterBy = {}) {
+    store.dispatch({ type: LOADING_START })
     try {
         const stays = await stayService.query(filterBy)
-        store.dispatch({
-            type: SET_STAYS,
-            stays
-        })
+        store.dispatch({ type: SET_STAYS, stays })
     } catch (err) {
         console.log('Cannot load stays', err)
         throw err
+    } finally {
+        store.dispatch({ type: LOADING_DONE })
     }
-
 }
 
 export async function removeStay(stayId) {
@@ -72,29 +72,7 @@ export async function updateStay(stay) {
 }
 
 export function setFilter(filterBy = stayService.getDefaultFilter()) {
-    // console.log('filterBy:', filterBy)
     store.dispatch({ type: SET_FILTER_BY, filterBy: filterBy })
-}
-
-// export function setCurrStay(stayId) {
-//     const { stays } = store.getState().stayModule
-//     const currStay = stays.find(stay => stay._id === stayId)
-//     store.dispatch({ type: SET_CURR_STAY, currStay: currStay })
-//     console.log(currStay)
-//     return currStay
-// }
-
-export async function setCurrStay(stayId) {
-    try {
-        const stays = await stayService.query()
-        const currStay = stays.find(stay => stay._id === stayId)
-        store.dispatch({ type: SET_CURR_STAY, currStay: currStay })
-        return currStay
-    } catch (err) {
-        console.log('Cannot set stay', err)
-        throw err
-    }
-
 }
 
 // Demo for Optimistic Mutation 

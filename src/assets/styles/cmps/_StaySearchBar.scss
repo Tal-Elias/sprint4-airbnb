@@ -35,6 +35,11 @@
             &.add-guests {
                 font-family: inherit;
                 color: $clr-txt-secondary;
+
+                &.bold {
+                    color: $clr-txt-primary;
+                    font-family: cereal-md, roboto, sans-serif;
+                }
             }
         }
 

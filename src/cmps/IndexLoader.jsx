@@ -6,7 +6,7 @@ export function IndexLoader() {
 
   return (
     <>
-      <ul className='loader-list card-grid stay-list clean-list main-layout'>
+      <ul className='stay-list clean-list'>
         {demoStays.map((demoStay) => {
           return (
             <li key={demoStay._id} className='loader-list-item stay-list-item'>

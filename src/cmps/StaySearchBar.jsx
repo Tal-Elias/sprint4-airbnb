@@ -31,7 +31,7 @@ export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput, filterBy }
             <span className="seperator"></span>
             <div className="btn-container">
                 <button
-                    className="add-guests btn-search-bar"
+                    className={`add-guests btn-search-bar ${filterBy.guests ? 'bold' : ''}`}
                     onClick={() => handleOnClick('guests')}>{guests}</button>
             </div>
             <button className="search"><FaSearch /></button>

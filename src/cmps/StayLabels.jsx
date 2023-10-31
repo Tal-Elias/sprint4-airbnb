@@ -31,7 +31,7 @@ import { Navigation } from 'swiper/modules';
 import { useState } from "react"
 
 export function StayLabels({ handleChange }) {
-    const[activeLable, setActiveLabel]=useState(null)
+    const [activeLable, setActiveLabel] = useState(null)
     const labels = [
         {
             title: 'National parks',
@@ -161,7 +161,7 @@ export function StayLabels({ handleChange }) {
             >
 
                 {labels.map(label =>
-                    <SwiperSlide className={activeLable===label.title?'active':''} key={label.title} onClick={() => onLabelSelect(label.title)}>
+                    <SwiperSlide className={activeLable === label.title ? 'active' : ''} key={label.title} onClick={() => onLabelSelect(label.title)}>
                         <img className="label-img w24 " src={label.url} />
                         <span className="label-title">{label.title}</span>
                     </SwiperSlide>

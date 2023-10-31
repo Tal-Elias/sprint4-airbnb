@@ -12,7 +12,6 @@ export const SET_FILTER_BY = 'SET_FILTER_BY'
 const initialState = {
     stays: [],
     filterBy: stayService.getDefaultFilter(),
-    currStay: null,
     lastRemovedStay: null
 }
 
@@ -22,8 +21,6 @@ export function stayReducer(state = initialState, action) {
     switch (action.type) {
         case SET_STAYS:
             newState = { ...state, stays: action.stays }
-            // console.log('newState:',newState)
-
             break
         case REMOVE_STAY:
             const lastRemovedStay = state.stays.find(stay => stay._id === action.stayId)
@@ -42,13 +39,8 @@ export function stayReducer(state = initialState, action) {
                 newState = { ...state, stays: [...state.stays, state.lastRemovedStay], lastRemovedStay: null }
             }
             break
-
         case SET_FILTER_BY:
             newState = { ...state, filterBy: { ...action.filterBy } }
-            break
-
-        case SET_CURR_STAY:
-            newState = { ...state, currStay: action.currStay }
             break
         default:
     }

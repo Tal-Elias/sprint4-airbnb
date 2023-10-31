@@ -4,6 +4,7 @@ import { DatePickerModal } from './DatePickerModal'
 import { useEffect, useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 import { utilService } from '../../services/util.service'
+import { ButtonReserve } from '../ButtonReserve'
 
 export function OrderModal({ stay, orderToEdit, onSetField }) {
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
@@ -59,7 +60,8 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
                 />
             </div>
             <Link to={`/stay/order`}>
-                <button className="reserve btn scale">Reserve</button>
+                <ButtonReserve children={'Reserve'} />
+                {/* <button className="reserve btn scale">Reserve</button> */}
             </Link>
             {isDatePickerModalOpen && (
                 <DatePickerModal

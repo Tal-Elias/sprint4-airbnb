@@ -55207,23 +55207,28 @@ window.cs = stayService
 
 _createStays()
 
-async function query(filterBy = { txt: '', label: '', guests: '' }) {
+async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageSize: 30 }) {
     let stays = await storageService.query(STORAGE_KEY)
+
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
         stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
     }
+
     if (filterBy.label) {
         const regex = new RegExp(filterBy.label, 'i')
         stays = stays.filter(stay => regex.test(stay.type))
     }
+    
     if (filterBy.guests) {
         stays = stays.filter(stay => filterBy.guests <= stay.capacity)
     }
-    // if (filterBy.price) {
-    //     stays = stays.filter(stay => stay.price <= filterBy.price)
-    // }
-    return stays
+    
+    const startIndex = (filterBy.page - 1) * filterBy.pageSize
+    const endIndex = startIndex + filterBy.pageSize
+    const paginatedStays = stays.slice(startIndex, endIndex)
+
+    return paginatedStays
 }
 
 function getById(stayId) {
@@ -55297,7 +55302,9 @@ function getDefaultFilter() {
         children: 0,
         infants: 0,
         pets: 0,
-        label: ''
+        label: '',
+        page: 1,
+        pageSize: 30
     }
 }
 

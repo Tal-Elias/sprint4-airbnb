@@ -7,8 +7,8 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 import { useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay.service.local.js'
 import { IndexLoader } from '../cmps/IndexLoader.jsx'
-import { utilService } from '../services/util.service.js'
 import useEventListener from '../customHooks/useEventListener.js'
+import { utilService } from '../services/util.service.js'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)

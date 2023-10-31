@@ -112,6 +112,10 @@
 
         }
 
+        &:has(.swiper-button-disabled) {
+            display: none;
+        }
+
     }
 
     .swiper-button {

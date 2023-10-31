@@ -11,6 +11,7 @@ export const utilService = {
     timeStampToLongDate,
     getDemoFormattedDate,
     countGuests,
+    getSearchParams,
     numOf
 }
 
@@ -119,4 +120,17 @@ function countGuests(guests) {
     const result = resultArray.join(', ')
 
     return !result ? 'Add guests' : result
+}
+
+function getSearchParams(searchParams) {
+    return {
+        destination: searchParams.get('destination') || '',
+        checkIn: searchParams.get('checkIn') || '',
+        checkOut: searchParams.get('checkOut') || '',
+        guests: +searchParams.get('guests') || '',
+        adults: +searchParams.get('adults') || '',
+        children: +searchParams.get('children') || '',
+        infants: +searchParams.get('infants') || '',
+        pets: +searchParams.get('pets') || ''
+    }
 }
