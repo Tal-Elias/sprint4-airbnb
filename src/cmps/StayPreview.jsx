@@ -3,11 +3,6 @@ import { ImageCarousel } from "./ImageCarousel";
 import { ReviewRate } from "./stay-reviews/ReviewRate";
 export function StayPreview({ stay, dates, onWishlist, user }) {
 
-    useEffect(() => {
-        // console.log(user)
-    }, [user])
-
-
     function randomDateRange() {
         const months = [
             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -28,11 +23,9 @@ export function StayPreview({ stay, dates, onWishlist, user }) {
 
     function onClickHeart(ev) {
         ev.preventDefault()
-        // ev.stopPropagation()
         onWishlist(stay._id)
 
     }
-    // console.log(user.wishlist)
     const fillColor = user?.wishlist?.includes(stay._id) ? 'onWishlist' : ''
     return (
         <article className="stay-preview">

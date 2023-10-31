@@ -8,7 +8,7 @@ import { useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay.service.local.js'
 import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
-import { saveUser } from '../store/actions/user.actions.js'
+import { saveUser, saveUserWishlist } from '../store/actions/user.actions.js'
 import useEventListener from '../customHooks/useEventListener.js'
 
 export function StayIndex() {
@@ -72,18 +72,11 @@ export function StayIndex() {
     useEventListener('scroll', handleScroll)
 
     async function onWishlist(stayId) {
-        if (!user) return showErrorMsg('Please log in')
-        const newUser = { ...user, wishlist: [...user.wishlist] }
-        const stayIndex = newUser.wishlist.indexOf(stayId)
-        if (stayIndex !== -1) newUser.wishlist.splice(stayIndex, 1)
-        else newUser.wishlist.unshift(stayId)
-
-        // setUserToEdit(prevUser => ({ ...prevUser, wishlist: [...prevUser.wishlist] }))
         try {
-            saveUser(newUser)
+            saveUserWishlist(stayId)
         } catch (err) {
-            console.log('Cannot update user', err)
-            showErrorMsg('Cannot update user')
+            console.log('Cannot update user wishlist', err)
+            showErrorMsg('Cannot update user wishlist')
         }
     }
 
