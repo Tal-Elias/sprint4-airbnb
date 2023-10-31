@@ -15,24 +15,22 @@ header.app-header {
         z-index: -1;
         background-color: $clr-bg-primary;
         box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
-        transition: transform 250ms ease;
+        transition: transform 200ms ease;
         transform: initial;
     }
 
-    // &.secondary-layout::after{
-    //     height: 72px;
-    // }
+    &.secondary-layout.expanded::after {
+        height: 72px;
+    }
 
     &:has(.search-bar-form)::after {
         transform: scaleY(3.4);
         box-shadow: none;
-        transition: transform 250ms ease;
+        transition: transform 200ms ease;
     }
 
     &.sticky {
-        // position: sticky;
         top: 0;
-        // z-index: 100;
     }
 
     .header-container {
@@ -47,6 +45,4 @@ header.app-header {
             flex: 0 0 150px;
         }
     }
-
-    // box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
 }

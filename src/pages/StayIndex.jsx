@@ -5,15 +5,16 @@ import { StayList } from '../cmps/StayList.jsx'
 import { StayLabels } from '../cmps/StayLabels.jsx'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useSearchParams } from 'react-router-dom'
-import { saveUser } from '../store/actions/user.actions.js'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
     const [searchParams, setSearchParams] = useSearchParams()
     const user = useSelector(storeState => storeState.userModule.user)
 
     useEffect(() => {
+        // console.log('filterByIndex:', filterBy)
         setFilter({ ...filterByParams })
     }, [])
 
@@ -26,12 +27,27 @@ export function StayIndex() {
         }
     }, [filterBy])
 
-    const filterByParams = {
-        ...filterBy,
-        txt: searchParams.get('destination') || '',
-        label: searchParams.get('label') || '',
-        guests: +searchParams.get('guests') || ''
+    function setFilterByParams() {
+        if (!searchParams.size) return
+        const filterByParams = {
+            ...filterBy,
+            txt: searchParams.get('destination') || '',
+            label: searchParams.get('label') || '',
+            guests: +searchParams.get('guests') || 0,
+            checkIn: +searchParams.get('checkIn') || '',
+            checkOut: +searchParams.get('checkOut') || ''
+        }
+        setFilter({ ...filterByParams })
     }
+
+    // const filterByParams = {
+    //     ...filterBy,
+    //     txt: searchParams.get('destination') || '',
+    //     label: searchParams.get('label') || '',
+    //     guests: +searchParams.get('guests') || '',
+    //     checkIn: +searchParams.get('checkIn') || '',
+    //     checkOut: +searchParams.get('checkOut') || ''
+    // }
 
     const updatedSearchParams = {
         destination: searchParams.get('destination') || '',
@@ -65,12 +81,13 @@ export function StayIndex() {
         }
     }
 
-    if (!stays) return <div>loading</div>
+    // if (!stays) return <div>loading</div>
 
     return (
         <section className="stay-index">
-            <StayLabels handleChange={handleChange} />
-            <StayList stays={stays} updatedSearchParams={updatedSearchParams} onWishlist={onWishlist} user={user} />
-        </section>
+        <StayLabels handleChange={handleChange} />
+        {isLoading && <IndexLoader />}
+        {!!stays && <StayList stays={stays} updatedSearchParams={updatedSearchParams} onWishlist={onWishlist} user={user} />}
+    </section>
     )
 }

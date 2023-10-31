@@ -1,6 +1,5 @@
 .stay-search-bar {
     align-items: center;
-    min-width: 348px;
     max-height: 48px;
     padding-inline-start: 8px;
     border: 1px solid $clr-border;
@@ -27,6 +26,11 @@
             background: transparent;
             border: 1px solid transparent;
             font-family: cereal-md, roboto, sans-serif;
+
+            &.anywhere {
+                min-width: 80px;
+                text-align: left;
+            }
 
             &.add-guests {
                 font-family: inherit;

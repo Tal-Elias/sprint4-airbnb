@@ -10,6 +10,7 @@ export const utilService = {
     formatToMonthDay,
     timeStampToLongDate,
     getDemoFormattedDate,
+    countGuests,
     numOf
 }
 
@@ -104,4 +105,18 @@ function getDemoFormattedDate(daysToAdd) {
     const day = String(targetDate.getDate()).padStart(2, '0');
     const year = targetDate.getFullYear();
     return `${month}/${day}/${year}`;
+}
+
+function countGuests(guests) {
+    const { adults = 0, children = 0, infants, pets } = guests
+
+    const totalGuests = adults + children
+    const guestString = totalGuests > 0 ? `${totalGuests} guest${totalGuests > 1 ? 's' : ''}` : ''
+    const infantString = infants > 0 ? `${infants} infant${infants > 1 ? 's' : ''}` : ''
+    const petString = pets > 0 ? `${pets} pet${pets > 1 ? 's' : ''}` : ''
+
+    const resultArray = [guestString, infantString, petString].filter(Boolean)
+    const result = resultArray.join(', ')
+
+    return !result ? 'Add guests' : result
 }

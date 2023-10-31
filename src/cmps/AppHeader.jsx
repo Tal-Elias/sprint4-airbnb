@@ -7,7 +7,7 @@ import { SearchBarForm } from './SearchBarForm'
 import { SearchFormOptions } from './SearchFormOptions'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
@@ -16,64 +16,45 @@ export function AppHeader({ isSecondaryLayout }) {
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
     const [selectedInput, setSelectedInput] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
-    // const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    // const [searchFormIputs, setSearchFormIputs] = useState({})
-    const filterByParams = {
-        ...filterBy,
-        txt: searchParams.get('destination') || '',
-        label: searchParams.get('label') || '',
-        guests: +searchParams.get('guests') || ''
-    }
+    const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(filterByParams)
-        setFilter(filterByParams)
+        setFilterByParams()
     }, [])
 
-    useEffect(() => {
-        // setFilter(filterByParams)
-        setSearchParams({ ...filterBy })
-        console.log('hiiii')
-    }, [filterBy])
-
-
-
-    function onSetFilter(filterBy) {
-        console.log('filterBy from header:', filterBy)
-        setFilter(filterBy)
-
+    function setFilterByParams() {
+        if (!searchParams.size) return
+        const filterByParams = {
+            ...filterBy,
+            txt: searchParams.get('destination') || '',
+            label: searchParams.get('label') || '',
+            guests: +searchParams.get('guests') || 0
+        }
+        setFilter({ ...filterByParams })
     }
-    // const updatedSearchParams = {
-    //     destination: searchParams.get('destination') || '',
-    //     checkIn: searchParams.get('checkIn') || '',
-    //     checkOut: searchParams.get('checkOut') || '',
-    //     guests: +searchParams.get('guests') || '',
-    //     adults: +searchParams.get('adults') || '',
-    //     children: +searchParams.get('children') || '',
-    //     infants: +searchParams.get('infants') || '',
-    //     pets: +searchParams.get('pets') || ''
-    // }
+
+    function onSetFilter(searchFormIputs) {
+        setFilter({ ...searchFormIputs, txt: searchFormIputs.destination })
+        setSearchParams(searchFormIputs)
+        const searchString = new URLSearchParams(searchFormIputs)
+        if (isSecondaryLayout) navigate(`/?${searchString}`)
+    }
 
     function handleScroll() {
         if (window.scrollY > 0) setIsSearchBarOpen(false)
     }
 
-    // function handleChange({ field, value }, newSearchPreview) {
-    //     setFilter({ ...filterBy, [field]: value })
-    //     setSearchPreview(newSearchPreview)
-    // }
-
     useEventListener('scroll', handleScroll)
 
     return (
-        <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'}`}>
+        <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'} ${isSearchBarOpen ? 'expanded' : ''}`}>
             <div className='header-container'>
                 <Logo />
                 {!isSearchBarOpen &&
                     <StaySearchBar
-                        setIsSearchBarOpen={setIsSearchBarOpen}
-                        setSelectedInput={setSelectedInput}
                         filterBy={filterBy}
+                        setSelectedInput={setSelectedInput}
+                        setIsSearchBarOpen={setIsSearchBarOpen}
                     />}
                 {isSearchBarOpen &&
                     <SearchFormOptions
@@ -93,14 +74,11 @@ export function AppHeader({ isSecondaryLayout }) {
             </div>
             {isSearchBarOpen &&
                 <SearchBarForm
-                    setIsSearchBarOpen={setIsSearchBarOpen}
-                    selectedInput={selectedInput}
-                    setSelectedInput={setSelectedInput}
                     filterBy={filterBy}
                     onSetFilter={onSetFilter}
-                // filterByToEdit={filterByToEdit}
-                // setFilterByToEdit={setFilterByToEdit}
-                // setSearchFormIputs={setSearchFormIputs}
+                    selectedInput={selectedInput}
+                    setSelectedInput={setSelectedInput}
+                    setIsSearchBarOpen={setIsSearchBarOpen}
                 />}
         </header>
     )

@@ -22,13 +22,12 @@ export function DatePickerModal({
         if (isDatePickerModalOpen) setDatePickerModalOpen(false)
     })
 
-    // function setDateRangeFromOrder() {
-    //     const checkIn = new Date(dateRangeFromOrder.checkIn)
-    //     const checkOut = new Date(dateRangeFromOrder.checkOut)
-    // }
-
     return (
-        <div className={`date-picker-modal ${formLayout ? formLayout : ''}`} ref={elDatePickerModal}>
+        <div
+            className={`date-picker-modal ${formLayout ? formLayout : ''}`}
+            ref={elDatePickerModal}
+            onClick={(e) => e.stopPropagation()}
+        >
             <header className="header">
                 <div className="side-header">
                     <h2>Select dates</h2>
@@ -36,6 +35,7 @@ export function DatePickerModal({
                 </div>
                 <DatePickerPreview
                     selectedDateRange={selectedDateRange}
+                    dateRangeFromOrder={dateRangeFromOrder}
                 />
             </header>
             <DatePicker
