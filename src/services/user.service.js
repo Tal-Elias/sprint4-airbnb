@@ -14,6 +14,7 @@ export const userService = {
     getUsers,
     getById,
     remove,
+    save,
     update,
     updateLocalUserFields
 }
@@ -26,14 +27,16 @@ const gUsers = [
         username: 'host',
         password: '123',
         isHost: true,
-        _id: "SzgiV"
+        _id: "SzgiV",
+        wishlist: []
     },
     {
         fullname: 'Guest',
         username: 'guest',
         password: '123',
         isHost: false,
-        _id: "dhbsb"
+        _id: "dhbsb",
+        wishlist: []
     }
 ]
 
@@ -55,8 +58,14 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
+async function save(user) {
+    if (!user) return
+    if (user._id) return await storageService.put('user', user)
+}
+
 async function update({ _id }) {
     const user = await storageService.get('user', _id)
+    console.log('user in service:', user)
     await storageService.put('user', user)
 
     // const user = await httpService.put(`user/${_id}`, {_id, score})
@@ -86,7 +95,7 @@ async function logout() {
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost }
+    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost, wishlist: user.wishlist }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }

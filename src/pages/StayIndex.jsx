@@ -68,12 +68,28 @@ export function StayIndex() {
     }
 
     useEventListener('scroll', handleScroll)
+    
+    async function onWishlist(stayId) {
+        if (!user) return showErrorMsg('Please log in')
+        const newUser = { ...user, wishlist: [...user.wishlist] }
+        const stayIndex = newUser.wishlist.indexOf(stayId)
+        if (stayIndex !== -1) newUser.wishlist.splice(stayIndex, 1)
+        else newUser.wishlist.unshift(stayId)
+
+        // setUserToEdit(prevUser => ({ ...prevUser, wishlist: [...prevUser.wishlist] }))
+        try {
+            saveUser(newUser)
+        } catch (err) {
+            console.log('Cannot update user', err)
+            showErrorMsg('Cannot update user')
+        }
+    }
 
     return (
         <section className="stay-index">
             <StayLabels handleChange={handleChange} />
             {isLoading && <IndexLoader />}
-            {!!stays && <StayList stays={stays} updatedSearchParams={updatedSearchParams} />}
+            {!!stays && <StayList stays={stays} updatedSearchParams={updatedSearchParams} onWishlist={onWishlist} user={user} />}
         </section>
     )
 }
