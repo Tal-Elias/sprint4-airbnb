@@ -55224,6 +55224,10 @@ async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageS
         stays = stays.filter(stay => filterBy.guests <= stay.capacity)
     }
 
+    if (filterBy.userWishlist){
+        stays=stays.filter(stay=>filterBy.userWishlist.includes(stay._id))
+    }
+
     const startIndex = (filterBy.page - 1) * filterBy.pageSize
     const endIndex = startIndex + filterBy.pageSize
     const paginatedStays = stays.slice(startIndex, endIndex)
