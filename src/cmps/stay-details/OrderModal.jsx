@@ -16,7 +16,7 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
         setDatePickerModalOpen(!isDatePickerModalOpen)
     }
 
-    const guestsCount = orderToEdit.guests
+    const guestCount = orderToEdit.guests
     const totalGuestCount = utilService.countGuests(orderToEdit.guests)
     const { checkIn, checkOut } = orderToEdit
     const dateRangeFromOrder = {
@@ -54,7 +54,7 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
                 <GuestSelect
                     isGuestSelectModalOpen={isGuestSelectModalOpen}
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
-                    guestsCount={guestsCount}
+                    guestCount={guestCount}
                     totalGuestCount={totalGuestCount}
                     onSetField={onSetField}
                 />

@@ -46,7 +46,7 @@ export function StayDetails() {
             checkIn: +searchParams.get('checkIn') || utilService.getDemoFormattedDate(7),
             checkOut: +searchParams.get('checkOut') || utilService.getDemoFormattedDate(12),
         }
-        const guestsParams = {
+        const guestParams = {
             guests: +searchParams.get('guests') || 1,
             adults: +searchParams.get('adults') || 1,
             children: +searchParams.get('children') || 0,
@@ -57,12 +57,12 @@ export function StayDetails() {
             ...currOrder,
             checkIn: dateRangeParams.checkIn,
             checkOut: dateRangeParams.checkOut,
-            guestsCount: guestsParams.guests,
+            guestCount: guestParams.guests,
             guests: {
-                adults: guestsParams.adults,
-                children: guestsParams.children,
-                infants: guestsParams.infants,
-                pets: guestsParams.pets
+                adults: guestParams.adults,
+                children: guestParams.children,
+                infants: guestParams.infants,
+                pets: guestParams.pets
             },
             stay: {
                 _id: stayId

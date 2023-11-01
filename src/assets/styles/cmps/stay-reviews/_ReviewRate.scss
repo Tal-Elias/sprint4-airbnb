@@ -5,4 +5,12 @@
     span {
         margin-inline-start: 4px;
     }
+
+    &.bold {
+        font-family: cereal-md;
+
+        :first-child {
+            font-size: 16px;
+        }
+    }
 }

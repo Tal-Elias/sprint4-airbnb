@@ -141,7 +141,7 @@ export function SearchBarForm({
                     {selectedInput === 'guests' &&
                         <GuestSelectModal
                             formLayout='form-layout'
-                            guestsCount={fields.guests}
+                            guestCount={fields.guests}
                             onSetField={onSetField}
                         />
                     }

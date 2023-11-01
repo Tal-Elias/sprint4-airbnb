@@ -27,13 +27,13 @@
         .price-per-night {
             span.price {
                 font-size: rem(22px);
-                font-weight: 600;
-                // line-height: 26px;
+                font-family: cereal-md, roboto, sans-serif;
+                line-height: lh(26px, 22px);
             }
 
             span.night {
                 font-size: rem(16px);
-                // line-height: 20px;
+                line-height: lh(20px, 16px);
             }
         }
 

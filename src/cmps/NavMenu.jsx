@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { useRef } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { LoginSignup } from "./LoginSignup"
 import { login, logout, signup } from '../store/actions/user.actions'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
@@ -10,6 +10,7 @@ import useClickOutside from "../customHooks/useClickOutside"
 export function NavMenu({ ...props }) {
     const user = useSelector(storeState => storeState.userModule.user)
     const elNavMenu = useRef()
+    const navigate = useNavigate()
 
     async function onLogin(credentials) {
         try {
@@ -32,6 +33,7 @@ export function NavMenu({ ...props }) {
         try {
             await logout()
             showSuccessMsg(`Bye now`)
+            navigate('/')
         } catch (err) {
             showErrorMsg('Cannot logout')
         }
@@ -58,7 +60,7 @@ export function NavMenu({ ...props }) {
                 </section>
             }
             <nav className="nav-links flex column">
-                {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
+                {routes.map(route => <NavLink key={route.path} to={route.path} onClick={() => props.setIsNavMenuOpen(false)}>{route.label}</NavLink>)}
             </nav>
         </div>
     )

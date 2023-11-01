@@ -57,24 +57,6 @@ export function StayOrder() {
         }
     }
 
-    function formatDateRange(start, end) {
-
-        const startDate = new Date(start);
-        const endDate = new Date(end);
-
-        // Convert the months to abbreviated names (e.g., Jan, Feb, Mar)
-        const startMonth = startDate.toLocaleString('en-US', { month: 'short' });
-        const endMonth = endDate.toLocaleString('en-US', { month: 'short' });
-
-        // Extract the day parts
-        const startDay = startDate.getDate();
-        const endDay = endDate.getDate();
-
-        // Construct the formatted date range
-        if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
-        else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
-    }
-
     function onEditGuests(ev) {
         ev.stopPropagation()
         setGuestSelectModalOpen(!isGuestSelectModalOpen)

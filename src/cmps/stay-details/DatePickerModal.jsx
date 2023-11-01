@@ -48,8 +48,8 @@ export function DatePickerModal({
                 onSetField={onSetField}
             />
             <div className="reset-close-btns">
-                <button onClick={() => setSelectedDateRange(null)}>Clear dates</button>
-                <button onClick={() => setDatePickerModalOpen(false)}>Close</button>
+                <button className="btn btn-clear" onClick={() => setSelectedDateRange(null)}>Clear dates</button>
+                <button className="btn btn-close" onClick={() => setDatePickerModalOpen(false)}>Close</button>
             </div>
         </div>
     )

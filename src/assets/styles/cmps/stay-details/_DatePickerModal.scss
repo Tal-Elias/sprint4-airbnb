@@ -63,4 +63,28 @@
             }
         }
     }
+
+    &.details-layout {
+        position: static;
+        padding: 0;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        border-radius: none;
+        height: 373px;
+
+        .header {
+            display: none;
+        }
+
+        .rdp-month {
+            width: 334px;
+            padding: 0 0 0 13px;
+            margin: 0;
+        }
+
+        .btn-close {
+            display: none;
+        }
+    }
 }

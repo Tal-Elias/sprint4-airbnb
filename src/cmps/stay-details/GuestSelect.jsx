@@ -3,7 +3,7 @@ import { GuestSelectModal } from './GuestSelectModal';
 export function GuestSelect({
     isGuestSelectModalOpen,
     setGuestSelectModalOpen,
-    guestsCount,
+    guestCount,
     onSetField,
     totalGuestCount
 }) {
@@ -45,7 +45,7 @@ export function GuestSelect({
                 <GuestSelectModal
                     isGuestSelectModalOpen={isGuestSelectModalOpen}
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
-                    guestsCount={guestsCount}
+                    guestCount={guestCount}
                     onSetField={onSetField}
                 />
             }

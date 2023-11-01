@@ -10,6 +10,15 @@ footer.app-footer {
     background-color: $clr-bg-primary;
     box-shadow: 0px -1px rgba(0, 0, 0, 0.12);
 
+    &.secondary-layout {
+        position: relative;
+        background-color: $clr-bg-secondary;
+
+        &.fixed {
+            position: fixed;
+        }
+    }
+
     .site-info {
         line-height: lh(18px, 14px);
     }

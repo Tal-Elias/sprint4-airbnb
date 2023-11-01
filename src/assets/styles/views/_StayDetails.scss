@@ -12,44 +12,32 @@
         }
 
         .header-actions {
-            align-items: flex-end;
             display: flex;
+            align-items: flex-end;
             justify-content: space-between;
-            height: 32px;
+            margin-top: 4px;
 
             .reviews-loc {
                 display: flex;
                 flex-wrap: wrap;
-
-                button {
-                    margin-top: 4px
-                }
-
-                span {
-                    font-weight: 400;
-                    margin: 5px 8px 3px
-                }
+                height: 24px;
+                gap: 6px;
             }
 
             .share-save {
-                // height: 28px;
                 display: flex;
-                flex-direction: row;
                 justify-content: flex-end;
-                gap: 4px;
-                position: relative;
-                left: 8px;
-                top: 8px;
 
-                .share,
-                .save {
-                    display: flex;
-                    border: 0;
-                    border-bottom: 1.6px solid transparent;
+                .btn {
+                    align-items: center;
+                    gap: 8px;
+                    padding: 8px 0;
 
-                    svg {
-                        margin-right: 8px ;
+                    &.btn-share {
+                        margin-right: 20px;
                     }
+
+                    &.btn-save {}
                 }
             }
         }
@@ -62,6 +50,7 @@
         .img-grid {
             display: grid;
             grid-template-columns: 50% 1fr 1fr;
+            grid-template-rows: 50% 1fr;
             gap: 8px;
             grid-template-areas:
                 'img1 . . '
@@ -106,7 +95,7 @@
             margin: 0;
             padding: 7px 15px;
             text-decoration: none;
-            font-weight: 600;
+            font-family: cereal-md, roboto, sans-serif;
             color: $clr-txt-primary;
             background-color: $clr-bg-primary;
             border: 1px solid $clr-txt-primary;
@@ -115,7 +104,7 @@
             .btn-inner-container {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 8px;
             }
         }
     }
@@ -144,10 +133,29 @@
             }
 
             .short-summary {
+                h1 {
+                    margin-bottom: 8px;
+                }
+
+                ul {
+                    font-size: rem(16px);
+                    line-height: lh(20px, 16px);
+                }
+
                 span.seperator {
                     display: inline-block;
                     text-align: center;
                     width: em(10.75px, 14px);
+                }
+
+                .small-img-container {
+                    width: 65px;
+                    height: 56px;
+                    margin-left: 16px;
+                }
+
+                img {
+                    border-radius: 2em;
                 }
             }
 
@@ -170,7 +178,7 @@
                         margin: 0;
                         padding: 13px 23px;
                         font-size: 1rem;
-                        font-weight: 600;
+                        font-family: cereal-md, roboto, sans-serif;
                         text-decoration: none;
                         color: $clr-txt-primary;
                         background-color: $clr-bg-primary;

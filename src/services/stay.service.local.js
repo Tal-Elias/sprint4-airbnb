@@ -11,7 +11,9 @@ export const stayService = {
     remove,
     getEmptyStay,
     addStayMsg,
-    getDefaultFilter
+    getDefaultFilter,
+    getLabels,
+    getSelectedAmenities,
 }
 
 const gStays = [
@@ -55224,8 +55226,8 @@ async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageS
         stays = stays.filter(stay => filterBy.guests <= stay.capacity)
     }
 
-    if (filterBy.userWishlist){
-        stays=stays.filter(stay=>filterBy.userWishlist.includes(stay._id))
+    if (filterBy.userWishlist) {
+        stays = stays.filter(stay => filterBy.userWishlist.includes(stay._id))
     }
 
     const startIndex = (filterBy.page - 1) * filterBy.pageSize
@@ -55310,6 +55312,120 @@ function getDefaultFilter() {
         page: 1,
         pageSize: 30
     }
+}
+
+function getLabels() {
+    return [
+        {
+            title: 'National parks',
+            url: 'nationalParks'
+        },
+        {
+            title: 'Beachfront',
+            url: 'beachfront'
+        },
+        {
+            title: 'Cabins',
+            url: 'cabins'
+        },
+        {
+            title: 'Design',
+            url: 'design'
+        },
+        {
+            title: 'Farms',
+            url: 'farms'
+        },
+        {
+            title: 'Mansions',
+            url: 'mansions'
+        },
+        {
+            title: 'Amazing views',
+            url: 'amazingViews'
+        },
+        {
+            title: 'Tropical',
+            url: 'tropical'
+        },
+        {
+            title: 'Vineyards',
+            url: 'vineyards'
+        },
+        {
+            title: 'Lake',
+            url: 'lake'
+        },
+        {
+            title: 'Treehouses',
+            url: 'treehouses'
+        },
+        {
+            title: 'OMG!',
+            url: 'omg'
+        },
+        {
+            title: 'Countryside',
+            url: 'countryside'
+        },
+        {
+            title: 'Amazing pools',
+            url: 'amazingPools'
+        },
+        {
+            title: 'Castles',
+            url: 'castles'
+        },
+        {
+            title: 'Rooms',
+            url: 'rooms'
+        },
+        {
+            title: 'Islands',
+            url: 'islands'
+        },
+        {
+            title: 'A-frames',
+            url: 'aFrames'
+        },
+        {
+            title: 'Iconic cities',
+            url: 'iconicCities'
+        },
+        {
+            title: 'LakeFront',
+            url: 'lakeFront'
+        },
+        {
+            title: 'Off-the-grid',
+            url: 'offTheGrid'
+        },
+        {
+            title: 'Play',
+            url: 'play'
+        },
+        {
+            title: 'Skiing',
+            url: 'skiing'
+        }
+    ]
+}
+
+function getSelectedAmenities() {
+    return [
+        {
+            title: 'Self check-in',
+            url: 'self-check-in'
+        },
+        {
+            title: 'Great location',
+            url: 'great-location'
+        },
+        {
+            title: 'Great check-in experience',
+            url: 'great-check-in'
+        }
+    ]
 }
 
 function _createStays() {

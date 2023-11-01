@@ -14,6 +14,8 @@ export const utilService = {
     countGuests,
     getSearchParams,
     formatNumber,
+    getRandomDateRange,
+    formatDateRange,
     numOf
 }
 
@@ -152,4 +154,40 @@ function formatNumber(number) {
         // If the number has a fractional part, display two digits after the decimal point
         return number.toFixed(2);
     }
+}
+
+function getRandomDateRange() {
+    const months = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    const startMonthIndex = Math.floor(Math.random() * 12);
+    const endMonthIndex = Math.floor(Math.random() * 12);
+
+    const startDate = Math.floor(Math.random() * 31) + 1;
+    const endDate = Math.floor(Math.random() * 31) + 1;
+
+    const startMonth = months[startMonthIndex];
+    const endMonth = months[endMonthIndex];
+
+    return `${startMonth} ${startDate} – ${endMonth} ${endDate}`;
+}
+
+function formatDateRange(start, end) {
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    // Convert the months to abbreviated names (e.g., Jan, Feb, Mar)
+    const startMonth = startDate.toLocaleString('en-US', { month: 'short' });
+    const endMonth = endDate.toLocaleString('en-US', { month: 'short' });
+
+    // Extract the day parts
+    const startDay = startDate.getDate();
+    const endDay = endDate.getDate();
+
+    // Construct the formatted date range
+    if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
+    else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
 }

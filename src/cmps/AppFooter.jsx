@@ -1,7 +1,11 @@
 
-export function AppFooter({ isSecondaryLayout }) {
+export function AppFooter({ isSecondaryLayout, routeLocation }) {
+
+    const isDetailsLayout = isSecondaryLayout ? 'secondary-layout' : 'main-layout'
+    const isFixed = !routeLocation.pathname.startsWith('/stay/') ? 'fixed' : ''
+    
     return (
-        <footer className={`app-footer full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
+        <footer className={`app-footer full ${isDetailsLayout} ${isFixed}`}>
             <div className="site-info">
                 <span> © 2023 Hairbnb, Inc.</span>
                 <span className="seperator">·</span>
