@@ -55230,7 +55230,7 @@ async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageS
 
     const startIndex = (filterBy.page - 1) * filterBy.pageSize
     const endIndex = startIndex + filterBy.pageSize
-    const paginatedStays = stays.slice(startIndex, endIndex)
+    const paginatedStays = stays.slice(33, 104)
 
     return paginatedStays
 }

@@ -85,6 +85,9 @@ export function StayOrder() {
         setDatePickerModalOpen(!isDatePickerModalOpen)
     }
 
+    const currOrderCheckIn = utilService.timeStampToLongDate(currOrder.checkIn)
+    const currOrderCheckOut = utilService.timeStampToLongDate(currOrder.checkOut)
+
     return (
         <div>
             {currOrder && stay && <section className="stay-order">
@@ -102,7 +105,7 @@ export function StayOrder() {
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Dates</h3>
-                                <div>{`${currOrder.checkIn} - ${currOrder.checkOut}`}</div>
+                                <div>{`${currOrderCheckIn} - ${currOrderCheckOut}`}</div>
                             </div>
                             <button className="btn underline" onClick={onEditDates}>Edit</button>
                             {isDatePickerModalOpen &&

@@ -10,8 +10,10 @@ export const utilService = {
     formatToMonthDay,
     timeStampToLongDate,
     getDemoFormattedDate,
+    getDemoTimestamp,
     countGuests,
     getSearchParams,
+    formatNumber,
     numOf
 }
 
@@ -108,6 +110,13 @@ function getDemoFormattedDate(daysToAdd) {
     return `${month}/${day}/${year}`;
 }
 
+function getDemoTimestamp(daysToAdd) {
+    const currentDate = new Date();
+    const targetDate = new Date(currentDate);
+    targetDate.setDate(currentDate.getDate() + daysToAdd);
+    return targetDate.getTime();
+}
+
 function countGuests(guests) {
     const { adults = 0, children = 0, infants, pets } = guests
 
@@ -132,5 +141,15 @@ function getSearchParams(searchParams) {
         children: +searchParams.get('children') || '',
         infants: +searchParams.get('infants') || '',
         pets: +searchParams.get('pets') || ''
+    }
+}
+
+function formatNumber(number) {
+    if (Number.isInteger(number)) {
+        // If the number is an integer (round number), display one digit after the decimal point
+        return number.toFixed(1);
+    } else {
+        // If the number has a fractional part, display two digits after the decimal point
+        return number.toFixed(2);
     }
 }

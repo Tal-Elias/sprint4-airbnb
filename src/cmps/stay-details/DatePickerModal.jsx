@@ -8,6 +8,7 @@ export function DatePickerModal({
     setDatePickerModalOpen,
     onSetField,
     formLayout,
+    detailsLayout,
     dateRangeFromOrder
 }) {
     const [selectedDateRange, setSelectedDateRange] = useState(null)
@@ -22,9 +23,11 @@ export function DatePickerModal({
         if (isDatePickerModalOpen) setDatePickerModalOpen(false)
     })
 
+    const currLayout = formLayout ? 'form-layout' : detailsLayout ? 'details-layout' : ''
+
     return (
         <div
-            className={`date-picker-modal ${formLayout ? formLayout : ''}`}
+            className={`date-picker-modal ${currLayout}`}
             ref={elDatePickerModal}
             onClick={(e) => e.stopPropagation()}
         >

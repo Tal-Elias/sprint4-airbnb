@@ -23,16 +23,16 @@ window.userService = userService
 
 const gUsers = [
     {
-        fullname: 'Host',
-        username: 'host',
+        fullname: 'Captain Host',
+        username: 'captain host',
         password: '123',
         isHost: true,
         _id: "SzgiV",
         wishlist: []
     },
     {
-        fullname: 'Guest',
-        username: 'guest',
+        fullname: 'Renderella',
+        username: 'renderella',
         password: '123',
         isHost: false,
         _id: "dhbsb",

@@ -21,11 +21,11 @@ export function IndexLoader() {
                       aspectRatio: '20/19',
                     }}
                   />
-                  <div className='preview-header flex justify-between'>
+                  <div className='preview-header flex space-between'>
                     <Skeleton
                       variant='text'
                       sx={{
-                        backgroundColor: '#b0b0b0',
+                        backgroundColor: '#ebebeb',
                         fontSize: '1.5rem',
                         width: '45%',
                       }}

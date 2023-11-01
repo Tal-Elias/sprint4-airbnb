@@ -60,16 +60,16 @@ export function StayIndex() {
         setSearchParams({ ...updatedSearchParams, [field]: value })
     }
 
-    function handleScroll() {
-        if (
-            window.innerHeight + document.documentElement.scrollTop ===
-            document.documentElement.offsetHeight
-        ) {
-            setPage(page + 1)
-        }
-    }
+    // function handleScroll() {
+    //     if (
+    //         window.innerHeight + document.documentElement.scrollTop ===
+    //         document.documentElement.offsetHeight
+    //     ) {
+    //         setPage(page + 1)
+    //     }
+    // }
 
-    useEventListener('scroll', handleScroll)
+    // useEventListener('scroll', handleScroll)
 
     async function onWishlist(stayId) {
         try {
@@ -84,7 +84,13 @@ export function StayIndex() {
         <section className="stay-index">
             <StayLabels handleChange={handleChange} />
             {isLoading && <IndexLoader />}
-            {!!stays && <StayList stays={stays} updatedSearchParams={updatedSearchParams} onWishlist={onWishlist} user={user} />}
+            {!!stays &&
+                <StayList
+                    user={user}
+                    stays={stays}
+                    onWishlist={onWishlist}
+                    updatedSearchParams={updatedSearchParams}
+                />}
         </section>
     )
 }
