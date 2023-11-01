@@ -4,13 +4,20 @@ import { Link } from "react-router-dom"
 import { loadOrders } from "../store/actions/order.actions"
 import { orderService } from "../services/order.service.local"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { Reservations } from "../cmps/Reservations"
+import { Listings } from "../cmps/Listings"
+import { Performance } from "../cmps/Performance"
+import { loadStays } from "../store/actions/stay.actions"
 
 export function Dashboard() {
     const user = useSelector((storeState) => storeState.userModule.user)
     const [orders, setOrders] = useState(null)
+    const stays = useSelector(storeState => storeState.stayModule.stays)
+
 
     useEffect(() => {
         loadOrders()
+        loadStays({ page: 1, pageSize: 30, hostListing: user._id })
     }, [])
 
     async function loadOrders() {
@@ -23,7 +30,7 @@ export function Dashboard() {
         }
     }
 
-    async function onApprove(order, status) {
+    async function onOrderRespond(order, status) {
         order.status = status
         try {
             const updatedOrder = await orderService.save(order)
@@ -39,19 +46,10 @@ export function Dashboard() {
 
     return (
         <section className="dashboard">
-            <Link to='stay/edit'>Create Listing</Link>
-            <ul className="clean-list">
-                {orders.map(order => <li key={order._id}>
-                    <h2>Guest: {order.buyer.fullname}</h2>
-                    <h2>Check-in: {order.checkIn}</h2>
-                    <h2>Checkout: {order.checkOut}</h2>
-                    <h2>Listing: {order.stay.name}</h2>
-                    <h2>Total: ${order.totalPrice}</h2>
-                    <h2>Status: {order.status}</h2>
-                    <button onClick={() => onApprove(order, 'approved')}>Approve</button>
-                    <button onClick={() => onApprove(order, 'declined')}>Decline</button>
-                </li>)}
-            </ul>
+            <Reservations orders={orders} onOrderRespond={onOrderRespond}/>
+            {/* <Listings stays={stays}/> */}
+            {/* <Performance/> */}
+            
         </section>
     )
 }

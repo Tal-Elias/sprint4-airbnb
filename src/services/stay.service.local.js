@@ -99,7 +99,7 @@ const gStays = [
             "Tropical"
         ],
         "host": {
-            "_id": "u101",
+            "_id": "SzgiV",
             "fullname": "Davit Pok",
             "imgUrl": "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
         },
@@ -55224,13 +55224,16 @@ async function query(filterBy = { txt: '', label: '', guests: '', page: 1, pageS
         stays = stays.filter(stay => filterBy.guests <= stay.capacity)
     }
 
-    if (filterBy.userWishlist){
-        stays=stays.filter(stay=>filterBy.userWishlist.includes(stay._id))
+    if (filterBy.userWishlist) {
+        stays = stays.filter(stay => filterBy.userWishlist.includes(stay._id))
+    }
+    if (filterBy.hostListing) {
+        stays = stays.filter(stay => filterBy.hostListing === stay.host._id)
     }
 
     const startIndex = (filterBy.page - 1) * filterBy.pageSize
     const endIndex = startIndex + filterBy.pageSize
-    const paginatedStays = stays.slice(33, 104)
+    const paginatedStays = stays.slice(0, 30)
 
     return paginatedStays
 }
