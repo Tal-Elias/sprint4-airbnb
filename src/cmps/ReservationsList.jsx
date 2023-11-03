@@ -10,7 +10,7 @@ export function ReservationsList({ orders, onOrderRespond }) {
                 <h3>Check-in</h3>
                 <h3>Checkout</h3>
                 <h3>Listing</h3>
-                {/* <h3>Total: ${order.totalPrice}</h3> */}
+                <h3>Total payout</h3>
             </div>
             <ul className="clean-list">
                 {orders.map(order => <li key={order._id}>

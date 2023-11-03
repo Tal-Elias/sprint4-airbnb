@@ -1,0 +1,10 @@
+.listing-list{
+    margin-block-start: 30px;
+    .header{
+        grid-template-columns: repeat(7,1fr);
+
+        .listing{
+            grid-column: 1/3;
+        }
+    }
+}

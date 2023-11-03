@@ -1,5 +1,43 @@
-.performance{
+.performance {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr 1fr;
+    height: 100%;
+    gap: 20px;
+
+    .wishlist-average {
+        grid-column: 1/3;
+    }
+
+    .orders-average {
+        grid-column: 3/5;
+    }
+
+    .cancellation-rate {
+       grid-column:  5/7;
+    }
+
+    .average-rating {
+        grid-column: 1/4;
+    }
+
+    .income-month {
+        grid-column: 4/7;
+    }
+
+    .average {
+        height: 90%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid $clr-border;
+        gap: 30px;
+
+        span {
+            font-size: .8rem;
+            font-family: cereal-light;
+        }
+    }
 }
