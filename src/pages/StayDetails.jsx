@@ -219,8 +219,6 @@ export function StayDetails() {
                         <OrderModal
                             stay={stay}
                             onSetField={onSetField}
-                            orderToEdit={orderToEdit}
-                            setOrderToEdit={setOrderToEdit}
                             clearDateRange={clearDateRange}
                             dateRangeFromOrder={dateRangeFromOrder}
                         />
@@ -236,8 +234,8 @@ export function StayDetails() {
                             {firstSixReviews.map((review, idx) => {
                                 return (
                                     <div key={idx} className="review-preview">
-                                        <div className="review-header flex align-center">
-                                            <img style={{ width: '40px' }} src={review.imgUrl} alt="" />
+                                        <div className="preview-header flex align-center">
+                                            <img style={{ width: '40px', borderRadius: '2em' }} src={review.imgUrl} alt="" />
                                             <div className="flex column align-center">
                                                 <h3>{review.fullname}</h3>
                                                 <span>{review.at}</span>

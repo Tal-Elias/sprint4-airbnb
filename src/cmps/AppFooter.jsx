@@ -5,7 +5,7 @@ export function AppFooter({ isSecondaryLayout, routeLocation }) {
 
     let isFixed
     if ((!routeLocation.pathname.startsWith('/stay/')) ||
-        (!routeLocation.pathname.startsWith('/stay/order/'))) {
+        (routeLocation.pathname.startsWith('/stay/order'))) {
         isFixed = 'fixed'
     } else {
         isFixed = ''

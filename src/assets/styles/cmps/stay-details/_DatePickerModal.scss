@@ -1,6 +1,6 @@
 .date-picker-modal {
     position: absolute;
-    top: 52px;
+    top: 50px;
     right: -8.5px;
 
     width: 660px;
@@ -34,6 +34,14 @@
     .reset-close-btns {
         float: right;
         padding-top: 20px;
+
+        .btn-close {
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin-inline-start: 8px;
+            color: $clr-bg-primary;
+            background-color: $clr-txt-primary;
+        }
     }
 
     &.form-layout {

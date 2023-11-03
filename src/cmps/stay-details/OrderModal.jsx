@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ReviewRate } from '../stay-reviews/ReviewRate'
 import { DatePickerModal } from './DatePickerModal'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 import { utilService } from '../../services/util.service'
 import { ButtonReserve } from '../ButtonReserve'
@@ -10,7 +10,6 @@ import { OrderPriceSum } from './OrderPriceSum'
 
 export function OrderModal({
     stay,
-    orderToEdit,
     onSetField,
     clearDateRange,
     dateRangeFromOrder
@@ -30,6 +29,8 @@ export function OrderModal({
 
     const checkIn = dateRangeFromOrder.from ? dateRangeFromOrder.from : 'Add date'
     const checkOut = dateRangeFromOrder.to ? dateRangeFromOrder.to : 'Add date'
+
+    const isOrderToSet = (currOrder.checkIn && currOrder.checkOut) ? true : false
 
     return (
         <div className="order-modal">
@@ -55,6 +56,14 @@ export function OrderModal({
                         <span>{checkOut}</span>
                     </div>
                 </div>
+                {isDatePickerModalOpen && 
+                    <DatePickerModal
+                        onSetField={onSetField}
+                        clearDateRange={clearDateRange}
+                        dateRangeFromOrder={dateRangeFromOrder}
+                        isDatePickerModalOpen={isDatePickerModalOpen}
+                        setDatePickerModalOpen={setDatePickerModalOpen}
+                    />}
                 <GuestSelect
                     onSetField={onSetField}
                     guestCount={guestCount}
@@ -63,25 +72,19 @@ export function OrderModal({
                     setGuestSelectModalOpen={setGuestSelectModalOpen}
                 />
             </div>
-            <Link to={`/stay/order`}>
-                <ButtonReserve children={'Reserve'} />
-                {/* <button className="reserve btn scale">Reserve</button> */}
-            </Link>
-            {isDatePickerModalOpen && (
-                <DatePickerModal
-                    onSetField={onSetField}
-                    clearDateRange={clearDateRange}
-                    dateRangeFromOrder={dateRangeFromOrder}
-                    isDatePickerModalOpen={isDatePickerModalOpen}
+            <div onClick={(e) => e.stopPropagation()}>
+                <ButtonReserve
+                    isOrderToSet={isOrderToSet}
                     setDatePickerModalOpen={setDatePickerModalOpen}
                 />
-            )}
-            <OrderPriceSum
-                checkIn={checkIn}
-                checkOut={checkOut}
-                price={stay.price}
-                cleaningFee={stay.cleaningFee}
-            />
+            </div>
+            {currOrder.checkIn && currOrder.checkOut &&
+                <OrderPriceSum
+                    checkIn={checkIn}
+                    checkOut={checkOut}
+                    price={stay.price}
+                    cleaningFee={stay.cleaningFee}
+                />}
         </div>
     )
 }

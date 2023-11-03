@@ -71,7 +71,7 @@ export function GuestSelectModal({
                     </div>
                 )
             })}
-            <button className="btn-close" onClick={() => setGuestSelectModalOpen(false)}>Close</button>
+            <button className="btn btn-close scale underline grey-bg" onClick={() => setGuestSelectModalOpen(false)}>Close</button>
         </div>
     )
 }

@@ -31,13 +31,11 @@
     }
 
     button {
-        float: right;
-        margin: 0;
-        padding: 10px;
-        font-size: rem(16px);
-        color: $clr-txt-primary;
-        text-decoration: underline;
-        background: transparent;
+        &.btn-close {
+            float: right;
+            padding: 10px;
+            font-size: rem(16px);
+        }
     }
 
     &.form-layout {

@@ -15,8 +15,8 @@ export function UserWishList() {
             if (!user) return showErrorMsg('please Log in')
             loadStays({ page: 1, pageSize: 30, userWishlist: user.wishlist })
         } catch (err) {
-            console.log(err);
-            showErrorMsg('Cannot load stays')
+            console.log('Cannot load wishlist', err);
+            showErrorMsg('Cannot load wishlist')
         }
     }, [])
 

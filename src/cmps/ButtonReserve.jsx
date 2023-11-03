@@ -1,7 +1,14 @@
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router'
 
-export function ButtonReserve({ children, ...props }) {
+export function ButtonReserve({ isOrderToSet, setDatePickerModalOpen }) {
   const buttonRef = useRef(null)
+  const navigate = useNavigate()
+
+  function handleOnClick() {
+    if (isOrderToSet) navigate('/stay/order')
+    else setDatePickerModalOpen(true)
+  }
 
   useEffect(() => {
     const handleMouseMove = (ev) => {
@@ -23,8 +30,8 @@ export function ButtonReserve({ children, ...props }) {
   }, [buttonRef])
 
   return (
-    <button ref={buttonRef} {...props} className="button-reserve">
-      {children}
+    <button onClick={handleOnClick} ref={buttonRef} className="button-reserve">
+      {isOrderToSet ? 'Reserve' : 'Check availability'}
     </button>
   )
 }

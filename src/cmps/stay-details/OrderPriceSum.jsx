@@ -10,20 +10,24 @@ export function OrderPriceSum({ checkIn, checkOut, price, cleaningFee }) {
 
     return (
         <div className="order-price-sum">
-            <div className="no-charge-msg"><span>You won't be charged yet</span></div>
+            <div className="no-charge-msg flex justify-center"><span>You won't be charged yet</span></div>
             <div className="price-calc-container flex column">
                 <div className="total-nights flex space-between">
-                    <div className="nights-calc">${(price)} x {utilService.checkIfPlural(' night', totalNights)}</div>
+                    <div className="nights-calc underline">${(price)} x {utilService.checkIfPlural(' night', totalNights)}</div>
                     <div className="night-sum">${totalNightPrice}</div>
                 </div>
                 <div className="cleaning-fee-container flex space-between">
-                    <div className="cleaning-txt">Cleaning fee</div>
+                    <div className="cleaning-txt underline">Cleaning fee</div>
                     <div className="cleaning-sum">${cleaningFee}</div>
                 </div>
                 <div className="service-fee-container flex space-between">
-                    <div className="service-txt">Hairbnb service fee</div>
+                    <div className="service-txt underline">Hairbnb service fee</div>
                     <div className="service-sum">${serviceFee}</div>
                 </div>
+            </div>
+            <div className="total-price-container flex space-between pt24">
+                <div className="total-txt">Total</div>
+                <div className="total-price">${totalPrice}</div>
             </div>
         </div>
     )

@@ -25,4 +25,10 @@
         max-width: 50%;
         min-width: 36px;
     }
+
+    &.bold-border {
+        outline: 2px solid black;
+        border-radius: 8px;
+    }
+
 }

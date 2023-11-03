@@ -1,0 +1,28 @@
+.order-price-sum {
+    .no-charge-msg {
+        margin-block-start: 8px;
+        line-height: 1.125rem;
+
+        span {
+            margin-block-start: 8px;
+        }
+    }
+
+    .price-calc-container {
+        font-size: 1rem;
+        line-height: 1.25rem;
+        margin-block-start: 24px;
+
+        >div:not(:first-child) {
+            padding-top: 16px;
+        }
+    }
+
+    .total-price-container {
+        font-size: 1.05rem;
+        line-height: 1.25rem;
+        font-family: cereal-md, roboto, sans-serif;
+        margin-top: 24px;
+        border-top: 1px solid $clr-border;
+    }
+}

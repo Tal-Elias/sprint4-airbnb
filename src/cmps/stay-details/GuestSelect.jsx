@@ -16,7 +16,7 @@ export function GuestSelect({
     }
 
     return (
-        <div className="guest-select flex" onClick={handleOnClickGuestSelect}>
+        <div className={`guest-select flex ${isGuestSelectModalOpen ? 'bold-border' : ''}`} onClick={handleOnClickGuestSelect}>
             <div className="guests-preview">
                 <span>GUESTS</span>
                 <span>{totalGuestCount}</span>

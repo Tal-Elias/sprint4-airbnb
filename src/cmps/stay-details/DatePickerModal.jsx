@@ -69,7 +69,7 @@ export function DatePickerModal({
             />
             <div className="reset-close-btns">
                 <button className="btn btn-clear grey-bg scale underline" onClick={() => { setSelectedDateRange(null); clearDateRange() }}>Clear dates</button>
-                <button className="btn btn-close" onClick={() => setDatePickerModalOpen(false)}>Close</button>
+                <button className="btn btn-close scale" onClick={() => setDatePickerModalOpen(false)}>Close</button>
             </div>
         </div>
     )

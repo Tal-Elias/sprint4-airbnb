@@ -18,6 +18,7 @@ export function NavMenu({ ...props }) {
             showSuccessMsg(`Welcome: ${user.fullname}`)
             props.setIsNavMenuOpen(false)
         } catch (err) {
+            console.log('cannot log in:', err)
             showErrorMsg('Cannot login')
         }
     }
