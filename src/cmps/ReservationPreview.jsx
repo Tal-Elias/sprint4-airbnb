@@ -1,14 +1,15 @@
+import { useEffect, useState } from "react";
 import { utilService } from "../services/util.service";
 
-export function ReservationPreview({ order , onOrderRespond}) {
+export function ReservationPreview({ order, onOrderRespond }) {
 
     function getStatusColor() {
         let statusColor
         switch (order.status) {
-            case 'confirmed':
+            case 'approved':
                 statusColor = 'green'
                 break;
-            case 'rejected':
+            case 'declined':
                 statusColor = 'red'
                 break;
             default:
@@ -16,8 +17,9 @@ export function ReservationPreview({ order , onOrderRespond}) {
         }
         return statusColor
     }
+    console.log(order)
     return (
-        <div className="reservation-preview">
+        <div className="reservation-preview preview">
             <h4 style={{ color: getStatusColor() }}>{order.status}</h4>
             <div>
                 <h4>{order.buyer.fullname}</h4>
@@ -26,10 +28,12 @@ export function ReservationPreview({ order , onOrderRespond}) {
             <h4>{utilService.timeStampToLongDate(order.checkIn)}</h4>
             <h4>{utilService.timeStampToLongDate(order.checkOut)}</h4>
             <h4>{order.stay.name}</h4>
-            {/* <h4>Total: ${order.totalPrice}</h4> */}
-
-            <button onClick={() => onOrderRespond(order, 'approved')}>Approve</button>
-            <button onClick={() => onOrderRespond(order, 'declined')}>Decline</button>
+            <h4>${order.totalPrice}</h4>
+            {order.status==='pending'&&
+            <div className="action-btns">
+                <button className="approve action " onClick={() => onOrderRespond(order, 'approved')}>Approve</button>
+                <button className="decline action " onClick={() => onOrderRespond(order, 'declined')}>Decline</button>
+            </div>}
         </div>
     )
 }

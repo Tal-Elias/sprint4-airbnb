@@ -1,10 +1,25 @@
 .reservation-preview{
-    display: grid;
     grid-template-columns: repeat(7,1fr);
-    border-bottom: 1px solid $clr-border;
-    align-items: center;
-    h5,h4{
-        font-family: cereal-light;
+    .action-btns{
+        display: flex;
+        justify-content: space-around;
+        .action{
+            border: 1px solid $clr-border;
+            width: fit-content;
+            padding: 2px 10px;
+            &:hover {
+                background-color: $clr-bg-secondary;
+            }
+    
+            &.approve{
+                color: green;
+            }
+    
+            &.decline{
+                color: red;
+            }
 
+        }
     }
+    
 }

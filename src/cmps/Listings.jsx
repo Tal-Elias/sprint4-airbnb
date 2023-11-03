@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
+import { ListingList } from "./ListingList";
 
 export function Listings({ stays }) {
     return (
-        <div>
-            <h2>Listings</h2>
-            <Link to='stay/edit'>Create Listing</Link>
-            {stays.map(stay =>
-                <div key={stay._id}>
-                    {stay._id}
-                </div>)}
-            
+        <div className="listings">
+            <Link className="create-listing" to='stay/edit'>Create Listing</Link>
+            <ListingList stays={stays} />
         </div>
     )
 }

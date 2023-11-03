@@ -31,6 +31,8 @@ const gStays = [
         "price": 80,
         "summary": "Fantastic duplex apartment...",
         "capacity": 8,
+        "bathrooms": 1,
+        "bedrooms": 1,
         "roomType": "Entire home/apt",
         "amenities": [
             "TV",
@@ -85,6 +87,8 @@ const gStays = [
         "price": 744,
         "summary": "This spacious and charming villa has everything you need for an amazing holiday. Fully equipped for a self-catering stay for up to 6 guests, you will enjoy a private swimming pool 8x6 m, landscaped garden within your own  gated area for maximum comfort and privacy. Located across the road from Oroklini promenade where there is an open air gym, this beautiful villa is within easy walking distance of many cafes and restaurants and the 5 star Radisson Hotel.   The sunrises are awesome !",
         "capacity": 6,
+        "bathrooms": 1,
+        "bedrooms": 1,
         "roomType": "Entire home/apt",
         "amenities": [
             "TV",

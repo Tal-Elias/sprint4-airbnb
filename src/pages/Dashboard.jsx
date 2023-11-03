@@ -11,24 +11,14 @@ import { loadStays } from "../store/actions/stay.actions"
 
 export function Dashboard() {
     const user = useSelector((storeState) => storeState.userModule.user)
-    const [orders, setOrders] = useState(null)
+    const orders = useSelector((storeState) => storeState.orderModule.orders)
     const stays = useSelector(storeState => storeState.stayModule.stays)
-
-
+    const [activePage, setActivePage] = useState('reservations')
+    const [orderToUpdate, setOrderToUpdate] = useState(null)
     useEffect(() => {
-        loadOrders()
+        loadOrders({ hostId: user._id })
         loadStays({ page: 1, pageSize: 30, hostListing: user._id })
-    }, [])
-
-    async function loadOrders() {
-        try {
-            const orders = await orderService.query({ hostId: user._id })
-            setOrders(orders)
-        } catch (err) {
-            console.log('Error while getting orders:', err)
-            showErrorMsg('Cannot get orders')
-        }
-    }
+    }, [orderToUpdate])
 
     async function onOrderRespond(order, status) {
         order.status = status
@@ -36,6 +26,7 @@ export function Dashboard() {
             const updatedOrder = await orderService.save(order)
             console.log('order approval:', updatedOrder)
             showSuccessMsg('Order ' + status)
+            setOrderToUpdate(updatedOrder)
         } catch (error) {
             console.log('Error while updating order:', err)
             showErrorMsg('Cannot update order')
@@ -46,10 +37,15 @@ export function Dashboard() {
 
     return (
         <section className="dashboard">
-            <Reservations orders={orders} onOrderRespond={onOrderRespond}/>
-            {/* <Listings stays={stays}/> */}
-            {/* <Performance/> */}
-            
+            <nav className="dashboard-nav">
+                <button className={"btn underline " + (activePage === 'reservations' ? 'active-page' : '')} onClick={() => setActivePage('reservations')}>Reservations</button>
+                <button className={"btn underline " + (activePage === 'listings' ? 'active-page' : '')} onClick={() => setActivePage('listings')}>Listings</button>
+                <button className={"btn underline " + (activePage === 'performance' ? 'active-page' : '')} onClick={() => setActivePage('performance')}>Performance</button>
+            </nav>
+            {activePage === 'reservations' && <Reservations orders={orders} onOrderRespond={onOrderRespond} />}
+            {activePage === 'listings' && <Listings stays={stays} />}
+            {activePage === 'performance' && <Performance />}
+
         </section>
     )
 }
