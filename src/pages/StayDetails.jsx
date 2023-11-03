@@ -9,7 +9,7 @@ import { stayService } from "../services/stay.service.local.js"
 import { useSelector } from "react-redux"
 import { DetailsLoader } from "../cmps/stay-details/DetailsLoader.jsx"
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal.jsx"
-import test from '../assets/img/asset15.jpeg'
+import { ReviewBarGrid } from "../cmps/stay-details/ReviewBarGrid.jsx"
 
 export function StayDetails() {
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
@@ -70,13 +70,28 @@ export function StayDetails() {
         setOrderToEdit(newOrder)
     }
 
+    function clearDateRange() {
+        const updatedOrder = {
+            ...orderToEdit,
+            checkIn: '',
+            checkOut: ''
+        }
+        setOrderToEdit(updatedOrder)
+    }
+
     function onSetField(field, value) {
         setOrderToEdit((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
-    const selectedAmenities = stayService.getSelectedAmenities()
+    const { checkIn, checkOut } = orderToEdit
+    const dateRangeFromOrder = {
+        from: utilService.timeStampToLongDate(checkIn),
+        to: utilService.timeStampToLongDate(checkOut)
+    }
 
-    const firstName = stay?.host.fullname.split(' ')
+    const selectedAmenities = stayService.getSelectedAmenities()
+    const firstSixReviews = utilService.getFirstSixReviewsFormatted(stay)
+
 
     return (
         <>
@@ -99,7 +114,7 @@ export function StayDetails() {
                             <div className="reviews-loc">
                                 <ReviewRate reviews={stay.reviews} bold={'bold'} />
                                 <span>.</span>
-                                <button className="btn underline">{utilService.numOf('review', (stay.reviews.length))}</button>
+                                <button className="btn underline">{utilService.checkIfPlural('review', (stay.reviews.length))}</button>
                                 <span>.</span>
                                 <button className="btn underline">{stay.loc.city}, {stay.loc.country}</button>
                             </div>
@@ -155,28 +170,35 @@ export function StayDetails() {
                             </div>
                             <div className="selected-amenities border-bottom ptb32 flex column gap24">
                                 {selectedAmenities && selectedAmenities.map((amenity, idx) => (
-                                    <div key={idx} className="flex gap24">
-                                        <img className="w24" src={`../src/assets/img/amenities/${amenity.url}.svg`} alt="" />
-                                        <h3>{amenity.title}</h3>
+                                    <div key={idx} className="selected-amenity-container flex gap24">
+                                        <div className="flex justify-center" style={{ width: '40px' }}>
+                                            <img className="w24" src={`../src/assets/img/amenities/${amenity.url}.svg`} alt="" />
+                                        </div>
+                                        <div className="selected-amenity-description flex column">
+                                            <h3>{amenity.title}</h3>
+                                            <span>{amenity.desc}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
                             <div className="full-summary border-bottom pt32 pb48">
                                 <p>{stay.summary}</p>
-                                <button>Show more {`>`}</button>
+                                <button className="btn underline">Show more
+                                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style={{ height: '12px', width: '12px', display: 'block' }}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
+                                </button>
                             </div>
                             <div className="amenities border-bottom ptb48">
                                 <h2 className="pb24">What this place offers</h2>
                                 <div className="amenities-container flex column">
                                     {stay.amenities.slice(0, 10).map((amenity, idx) => (
                                         <div key={idx} className="amenity-container flex align-center">
-                                            <img className="w24" src={test} alt="" />
+                                            <img className="w24" src={`../src/assets/img/amenities/${amenity}.svg`} alt="" />
                                             <span>{amenity}</span>
                                         </div>
                                     ))}
                                 </div>
                                 <div className="show-all-amenities">
-                                    <button className="btn scale">Show all ... amenities</button>
+                                    <button className="btn scale">Show all {stay.amenities.length} amenities</button>
                                 </div>
                             </div>
                             <div className="calendar ptb48">
@@ -185,25 +207,46 @@ export function StayDetails() {
                                     <span>Nov 18, 2023 - Nov 23, 2023</span>
                                 </div>
                                 <div style={{ position: 'relative' }}>
-                                    <DatePickerModal detailsLayout='details-layout' />
+                                    <DatePickerModal
+                                        onSetField={onSetField}
+                                        detailsLayout='details-layout'
+                                        clearDateRange={clearDateRange}
+                                        dateRangeFromOrder={dateRangeFromOrder}
+                                    />
                                 </div>
-                                {/* <div className="cmp">
-                                    Calender CMP
-                                    <DatePickerModal detailsLayout='details-layout' />
-                                </div> */}
                             </div>
                         </div>
                         <OrderModal
                             stay={stay}
-                            orderToEdit={orderToEdit}
                             onSetField={onSetField}
+                            orderToEdit={orderToEdit}
+                            setOrderToEdit={setOrderToEdit}
+                            clearDateRange={clearDateRange}
+                            dateRangeFromOrder={dateRangeFromOrder}
                         />
                     </div>
-                    <section className="reviews border-bottom ptb48">
+                    <section className="reviews-container border-bottom ptb48">
                         <div className="reviews-header flex">
                             <ReviewRate reviews={stay.reviews} />
                             <span className="seperator">·</span>
                             <span>{stay.reviews.length} reviews</span>
+                        </div>
+                        <ReviewBarGrid />
+                        <div className="reviews-preview-container flex">
+                            {firstSixReviews.map((review, idx) => {
+                                return (
+                                    <div key={idx} className="review-preview">
+                                        <div className="review-header flex align-center">
+                                            <img style={{ width: '40px' }} src={review.imgUrl} alt="" />
+                                            <div className="flex column align-center">
+                                                <h3>{review.fullname}</h3>
+                                                <span>{review.at}</span>
+                                            </div>
+                                        </div>
+                                        <div>{review.txt}</div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </section>
                 </section>}

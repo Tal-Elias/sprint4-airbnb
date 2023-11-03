@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { DatePicker } from "../DatePicker";
 import { DatePickerPreview } from "./DatePickerPreview";
 import useClickOutside from "../../customHooks/useClickOutside";
+import { utilService } from "../../services/util.service";
+import { useSelector } from "react-redux";
 
 export function DatePickerModal({
     isDatePickerModalOpen,
@@ -9,15 +11,35 @@ export function DatePickerModal({
     onSetField,
     formLayout,
     detailsLayout,
+    clearDateRange,
     dateRangeFromOrder
 }) {
+    const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
     const [selectedDateRange, setSelectedDateRange] = useState(null)
     const elDatePickerModal = useRef()
 
     useEffect(() => {
-        if (selectedDateRange?.from) onSetField('checkIn', selectedDateRange.from)
-        if (selectedDateRange?.to) onSetField('checkOut', selectedDateRange.to)
-    }, [selectedDateRange])
+        if (dateRangeFromOrder) {
+            const dateRangeToConvert = {
+                from: dateRangeFromOrder.from,
+                to: dateRangeFromOrder.to
+            }
+            const updatedDateRange = utilService.convertDates(dateRangeToConvert)
+            setSelectedDateRange(updatedDateRange)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!currOrder.checkIn && !currOrder.checkOut) {
+            setSelectedDateRange(null)
+        }
+    }, [currOrder])
+
+    // useEffect(() => {
+    //     console.log('selectedDateRange:', selectedDateRange)
+    //     if (selectedDateRange?.from) onSetField('checkIn', selectedDateRange.from)
+    //     if (selectedDateRange?.to) onSetField('checkOut', selectedDateRange.to)
+    // }, [selectedDateRange])
 
     useClickOutside(elDatePickerModal, () => {
         if (isDatePickerModalOpen) setDatePickerModalOpen(false)
@@ -38,17 +60,15 @@ export function DatePickerModal({
                 </div>
                 <DatePickerPreview
                     selectedDateRange={selectedDateRange}
-                    dateRangeFromOrder={dateRangeFromOrder}
                 />
             </header>
             <DatePicker
+                onSetField={onSetField}
                 selectedDateRange={selectedDateRange}
                 setSelectedDateRange={setSelectedDateRange}
-                dateRangeFromOrder={dateRangeFromOrder}
-                onSetField={onSetField}
             />
             <div className="reset-close-btns">
-                <button className="btn btn-clear" onClick={() => setSelectedDateRange(null)}>Clear dates</button>
+                <button className="btn btn-clear grey-bg scale underline" onClick={() => { setSelectedDateRange(null); clearDateRange() }}>Clear dates</button>
                 <button className="btn btn-close" onClick={() => setDatePickerModalOpen(false)}>Close</button>
             </div>
         </div>

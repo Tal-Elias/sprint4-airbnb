@@ -54,7 +54,7 @@
         .day-picker {
 
             .rdp-months {
-                gap: 65px;
+                gap: 40px;
             }
 
             .rdp-month {
@@ -67,24 +67,88 @@
     &.details-layout {
         position: static;
         padding: 0;
-        width: 100%;
+        width: auto;
         border: none;
         box-shadow: none;
         border-radius: none;
         height: 373px;
+
+        .rdp-month:last-child {
+            display: none;
+        }
+
+        @include secondary-for-normal-layout {
+            max-width: 653px;
+
+            .rdp-months {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .rdp-month:last-child {
+                display: block;
+            }
+
+            .rdp-month {
+                flex: 0;
+                width: 334px;
+                padding: 0;
+                margin: 0;
+            }
+        }
 
         .header {
             display: none;
         }
 
         .rdp-month {
-            width: 334px;
-            padding: 0 0 0 13px;
-            margin: 0;
+            &.rdp-caption_start {
+                padding-left: 8px;
+            }
+
+            &.rdp-caption_end {
+                padding-right: 13px;
+            }
         }
 
-        .btn-close {
-            display: none;
+        .rdp-month:first-child {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+
+            .rdp-caption {
+                width: 100%;
+            }
+        }
+
+        .reset-close-btns {
+            padding: 0;
+
+            .btn-close {
+                display: none;
+            }
+
+            .btn-clear {
+                padding: 8px;
+                margin-right: 8px;
+            }
+        }
+
+        .rdp-caption {
+            width: 308px;
+        }
+
+        .rdp-table {
+            width: 100%;
+            max-width: none;
+
+            &:nth-child(2) {
+                .rdp-day {
+                    width: 42px;
+                    height: 42px;
+                }
+            }
         }
     }
 }

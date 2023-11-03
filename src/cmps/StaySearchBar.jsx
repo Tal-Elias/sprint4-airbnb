@@ -13,7 +13,7 @@ export function StaySearchBar({ setIsSearchBarOpen, setSelectedInput, filterBy }
     const destination = filterBy.txt ? filterBy.txt : 'Anywhere'
     const checkIn = filterBy.checkIn ? utilService.formatToMonthDay(filterBy.checkIn) : 'Any week'
     const checkOut = filterBy.checkOut ? utilService.formatToMonthDay(filterBy.checkOut) : ''
-    const guests = filterBy.guests ? filterBy.guests + ' Guests' : 'Add guests'
+    const guests = filterBy.guests ? utilService.checkIfPlural(' Guest', (filterBy.guests)) : 'Add guests'
 
     return (
         <div className="stay-search-bar flex" onClick={(e) => e.stopPropagation()}>

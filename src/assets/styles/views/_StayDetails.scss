@@ -8,7 +8,7 @@
 
         h1 {
             font-size: rem(26px);
-            line-height: lh(30px, 26px)
+            line-height: lh(30px, 26px);
         }
 
         .header-actions {
@@ -31,13 +31,15 @@
                 .btn {
                     align-items: center;
                     gap: 8px;
-                    padding: 8px 0;
+                    padding: 8px;
 
                     &.btn-share {
-                        margin-right: 20px;
+                        margin-right: 4px;
                     }
 
-                    &.btn-save {}
+                    &.btn-save {
+                        margin-right: -6px;
+                    }
                 }
             }
         }
@@ -117,7 +119,7 @@
         padding-block-start: em(32px, 14px);
 
         .details-description {
-            width: 58%;
+            width: 58.3%;
 
             .icon {
                 width: 40px;
@@ -159,14 +161,51 @@
                 }
             }
 
+            .selected-amenities {
+                .selected-amenity-container {
+                    img {
+                        align-self: flex-start;
+                    }
+
+                    h3 {
+                        font-size: rem(16px);
+                        line-height: lh(20px, 16px);
+                        margin-block-end: 4px;
+                    }
+
+                    span {
+                        color: $clr-txt-secondary;
+                    }
+                }
+            }
+
+            .full-summary {
+                p {
+                    line-height: lh(24px, 16px);
+                }
+
+                button {
+                    position: relative;
+                    font-size: rem(16px);
+
+                    svg {
+                        position: absolute;
+                        top: 20%;
+                        right: -20%;
+                    }
+                }
+            }
+
             .amenities {
                 .amenities-container {
                     flex-wrap: wrap;
                     max-height: 200px;
 
                     .amenity-container {
+                        font-size: rem(16px);
                         gap: 20px;
                         padding-block-end: 16px;
+                        line-height: 20px;
                     }
 
                 }
@@ -200,9 +239,38 @@
         }
     }
 
-    .reviews {
+    .reviews-container {
+        // position: absolute;
+        // right: 0;
+        // left: 0;
+        // padding-left: 80px;
+        // border-top: 1px solid $clr-border;
+
         .reviews-header {
             margin-block-end: 32px;
+            font-family: cereal-md, roboto, sans-serif;
+            font-size: rem(22px);
+
+            .review-rate {
+                svg {
+                    width: 19px;
+                    margin-top: 2px;
+                }
+            }
+
+            .seperator {
+                margin: 0 6px;
+            }
+        }
+
+        .reviews-preview-container {
+            flex-wrap: wrap;
+
+            .review-preview {
+                width: 41.6667%;
+                margin-inline-end: 8.333%;
+                padding: 0 8px;
+            }
         }
     }
 }

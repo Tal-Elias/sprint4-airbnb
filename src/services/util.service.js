@@ -16,7 +16,10 @@ export const utilService = {
     formatNumber,
     getRandomDateRange,
     formatDateRange,
-    numOf
+    convertDates,
+    getFirstSixReviewsFormatted,
+    getTotalNights,
+    checkIfPlural
 }
 
 function makeId(length = 6) {
@@ -81,7 +84,7 @@ function getAssetSrc(name) {
     return mod.default
 }
 
-function numOf(word, length) {
+function checkIfPlural(word, length) {
     if (length === 1) return `${length} ${word}`
     else return `${length} ${word}s`
 }
@@ -95,6 +98,7 @@ function formatToMonthDay(dateString) {
 }
 
 function timeStampToLongDate(timestamp) {
+    if (!timestamp) return
     const date = new Date(timestamp);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
@@ -190,4 +194,50 @@ function formatDateRange(start, end) {
     // Construct the formatted date range
     if (startMonth === endMonth) return `${startMonth} ${startDay} – ${endDay}`
     else return `${startMonth} ${startDay} – ${endMonth} ${endDay}`;
+}
+
+function convertDates(obj) {
+    if (!obj.from || !obj.to) return
+    const { from, to } = obj;
+
+    function formatDate(dateString) {
+        const [month, day, year] = dateString.split('/');
+        return new Date(`${month}/${day}/${year}`);
+    }
+
+    return {
+        from: formatDate(from),
+        to: formatDate(to)
+    };
+}
+
+function getFirstSixReviewsFormatted(stay) {
+    if (!stay) return
+    const { reviews } = stay;
+    const firstFour = reviews.slice(0, 6);
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    return firstFour.map(review => {
+        const date = new Date(review.at);
+        const year = date.getFullYear();
+        const month = months[date.getMonth()]; // Get the month in text form
+
+        return {
+            at: `${month} ${year}`,
+            fullname: review?.by?.fullname,
+            imgUrl: review?.by?.imgUrl,
+            txt: review?.txt
+        };
+    });
+}
+
+function getTotalNights(date1, date2) {
+    const firstDate = new Date(date1);
+    const secondDate = new Date(date2);
+    const timeDifference = Math.abs(secondDate.getTime() - firstDate.getTime());
+    const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+    return numberOfDays;
 }
