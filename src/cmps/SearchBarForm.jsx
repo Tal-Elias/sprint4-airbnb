@@ -40,7 +40,7 @@ export function SearchBarForm({
         setFields((prevFields) => ({ ...prevFields, [field]: value }))
         if (field === 'destination') setSelectedInput('check-in')
         if (field === 'checkIn') setSelectedInput('checkout')
-        if (field === 'checkOut') setSelectedInput('guests')
+        // if (field === 'checkOut') setSelectedInput('guests')
     }
 
     function toggleActiveClass(input) {
@@ -62,8 +62,8 @@ export function SearchBarForm({
         setIsSearchBarOpen(false)
     }
 
-    const fromDate = fields['checkIn'] ? utilService.formatToMonthDay(fields['checkIn']) : 'Add dates'
-    const toDate = fields['checkOut'] ? utilService.formatToMonthDay(fields['checkOut']) : 'Add dates'
+    const checkIn = fields['checkIn'] ? utilService.formatToMonthDay(fields['checkIn']) : 'Add dates'
+    const checkOut = fields['checkOut'] ? utilService.formatToMonthDay(fields['checkOut']) : 'Add dates'
     const totalGuestCount = utilService.countGuests(fields.guests)
 
     return (
@@ -92,8 +92,8 @@ export function SearchBarForm({
                         onClick={() => handleOnClick('check-in')}>
                         <div style={{ position: 'relative' }}>
                             <div className="label">Check in</div>
-                            <div className="sub-label">{fromDate}</div>
-                            {fromDate !== 'Add dates' && selectedInput === 'check-in' &&
+                            <div className="sub-label">{checkIn}</div>
+                            {checkIn !== 'Add dates' && selectedInput === 'check-in' &&
                                 <span
                                     className="btn-close"
                                     onClick={() => {
@@ -110,8 +110,8 @@ export function SearchBarForm({
                         onClick={() => handleOnClick('checkout')}>
                         <div style={{ position: 'relative' }}>
                             <div className="label">Check out</div>
-                            <div className="sub-label">{toDate}</div>
-                            {toDate !== 'Add dates' && selectedInput === 'checkout' &&
+                            <div className="sub-label">{checkOut}</div>
+                            {checkOut !== 'Add dates' && selectedInput === 'checkout' &&
                                 <span
                                     className="btn-close"
                                     onClick={() => {

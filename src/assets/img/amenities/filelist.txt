@@ -49,7 +49,7 @@ C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\ass
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\park-view.svg
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\parking.svg
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\patio-or-balcony.svg
-C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\pets-allowed.svg
+C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\pets allowed.svg
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\pool.svg
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\private-entrance.svg
 C:\Elichay\Coding_Academy\course\Final-sprint\CA_sprint4_airbnb\frontend\src\assets\img\amenities\refrigerator.svg

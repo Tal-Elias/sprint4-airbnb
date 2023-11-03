@@ -1,0 +1,39 @@
+.review-bar-grid {
+    flex-wrap: wrap;
+    height: 108px;
+    margin-bottom: 24px;
+
+    .tag-container {
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+        .tag-name {
+            width: 100%;
+            font-size: rem(16px);
+            line-height: 1.25rem;
+        }
+
+        .progress-bar-container {
+            margin-inline-start: 12px;
+            width: 90%;
+
+            .progress-bar {
+                position: relative;
+                width: 50%;
+                height: 4px;
+                margin-right: 4px;
+            }
+
+            .rc-progress-line {
+                border-radius: 2em;
+            }
+
+            .average-score {
+                font-family: cereal-md, Roboto, sans-serif;
+                font-size: 0.75rem;
+                line-height: 1rem;
+                margin-left: 6px;
+            }
+        }
+    }
+}

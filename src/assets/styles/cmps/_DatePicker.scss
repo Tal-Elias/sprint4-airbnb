@@ -5,7 +5,7 @@
   /* Font size for the caption labels. */
   --rdp-accent-color: #222222;
   /* Accent color for the background of selected days. */
-  --rdp-background-color: none;
+  --rdp-background-color: $clr-bg-secondary;
   /* Background color for the hovered/focused elements. */
   --rdp-accent-color-dark: #3003e1;
   /* Accent color for the background of selected days (to use in dark-mode). */
@@ -40,21 +40,50 @@
   }
 
   .rdp-day {
+    max-width: 42px;
     font-family: cereal-md, roboto, sans-serif;
 
     &.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
       background-color: transparent;
       border: 1.5px solid $clr-txt-primary;
     }
+  }
 
+  .rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_middle {
+    color: #222222;
+    background: transparent;
+  }
+
+  .rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_start {
+    border-radius: 50%;
+  }
+
+  .rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_end {
+    border-radius: 50%;
   }
 
   .rdp-month {
     width: 100%;
   }
-  
+
   .rdp-caption_label {
     font-family: cereal-md, roboto, sans-serif;
     font-weight: 400;
+  }
+
+  .rdp-cell:has(.rdp-day_selected) {
+    background-color: $clr-bg-secondary;
+  }
+
+  .rdp-cell:has(.rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_start) {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    background-color: $clr-bg-secondary;
+  }
+
+  .rdp-cell:has(.rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_end) {
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+    background-color: $clr-bg-secondary;
   }
 }

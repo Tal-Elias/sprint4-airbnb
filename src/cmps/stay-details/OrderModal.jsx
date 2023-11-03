@@ -5,8 +5,17 @@ import { useEffect, useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 import { utilService } from '../../services/util.service'
 import { ButtonReserve } from '../ButtonReserve'
+import { useSelector } from 'react-redux'
+import { OrderPriceSum } from './OrderPriceSum'
 
-export function OrderModal({ stay, orderToEdit, onSetField }) {
+export function OrderModal({
+    stay,
+    orderToEdit,
+    onSetField,
+    clearDateRange,
+    dateRangeFromOrder
+}) {
+    const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
     const { price, reviews } = stay
@@ -16,16 +25,11 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
         setDatePickerModalOpen(!isDatePickerModalOpen)
     }
 
-    const guestCount = orderToEdit.guests
-    const totalGuestCount = utilService.countGuests(orderToEdit.guests)
-    const { checkIn, checkOut } = orderToEdit
-    const dateRangeFromOrder = {
-        from: utilService.timeStampToLongDate(checkIn),
-        to: utilService.timeStampToLongDate(checkOut)
-    }
+    const guestCount = currOrder.guests
+    const totalGuestCount = utilService.countGuests(currOrder.guests)
 
-    const fromDate = dateRangeFromOrder.from ? dateRangeFromOrder.from : 'Add date'
-    const toDate = dateRangeFromOrder.to ? dateRangeFromOrder.to : 'Add date'
+    const checkIn = dateRangeFromOrder.from ? dateRangeFromOrder.from : 'Add date'
+    const checkOut = dateRangeFromOrder.to ? dateRangeFromOrder.to : 'Add date'
 
     return (
         <div className="order-modal">
@@ -44,19 +48,19 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
                 <div className="date-picker flex" onClick={handleOnClickDatePicker}>
                     <div className="check-in flex column">
                         <span>CHECK-IN</span>
-                        <span>{fromDate}</span>
+                        <span>{checkIn}</span>
                     </div>
                     <div className="checkout flex column">
                         <span>CHECKOUT</span>
-                        <span>{toDate}</span>
+                        <span>{checkOut}</span>
                     </div>
                 </div>
                 <GuestSelect
-                    isGuestSelectModalOpen={isGuestSelectModalOpen}
-                    setGuestSelectModalOpen={setGuestSelectModalOpen}
+                    onSetField={onSetField}
                     guestCount={guestCount}
                     totalGuestCount={totalGuestCount}
-                    onSetField={onSetField}
+                    isGuestSelectModalOpen={isGuestSelectModalOpen}
+                    setGuestSelectModalOpen={setGuestSelectModalOpen}
                 />
             </div>
             <Link to={`/stay/order`}>
@@ -65,12 +69,19 @@ export function OrderModal({ stay, orderToEdit, onSetField }) {
             </Link>
             {isDatePickerModalOpen && (
                 <DatePickerModal
+                    onSetField={onSetField}
+                    clearDateRange={clearDateRange}
+                    dateRangeFromOrder={dateRangeFromOrder}
                     isDatePickerModalOpen={isDatePickerModalOpen}
                     setDatePickerModalOpen={setDatePickerModalOpen}
-                    dateRangeFromOrder={dateRangeFromOrder}
-                    onSetField={onSetField}
                 />
             )}
+            <OrderPriceSum
+                checkIn={checkIn}
+                checkOut={checkOut}
+                price={stay.price}
+                cleaningFee={stay.cleaningFee}
+            />
         </div>
     )
 }

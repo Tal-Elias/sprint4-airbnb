@@ -100,7 +100,7 @@ export function StayOrder() {
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Guests</h3>
-                                <div>{utilService.numOf('guest', ((+currOrder.guests.adults || 1) + +currOrder.guests.children))}</div>
+                                <div>{utilService.checkIfPlural('guest', ((+currOrder.guests.adults || 1) + +currOrder.guests.children))}</div>
                             </div>
                             <button className="btn underline" onClick={onEditGuests}>Edit</button>
                             {isGuestSelectModalOpen &&

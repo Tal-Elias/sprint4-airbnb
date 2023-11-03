@@ -95,7 +95,7 @@ export function StayDetails() {
                     <h1>{`${stay.name}`}</h1>
                     <div className="header-actions">
                         <div className="reviews-loc">
-                            <button className="btn underline">{utilService.numOf('review', (stay.reviews.length))}</button>
+                            <button className="btn underline">{utilService.checkIfPlural('review', (stay.reviews.length))}</button>
                             <span>.</span>
                             <button className="btn underline">{stay.loc.city}, {stay.loc.country}</button>
                         </div>
