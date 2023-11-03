@@ -18,7 +18,6 @@ export const userService = {
     update,
     updateLocalUserFields
 }
-
 window.userService = userService
 
 const gUsers = [
