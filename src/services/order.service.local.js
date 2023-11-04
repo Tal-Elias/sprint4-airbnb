@@ -1,7 +1,73 @@
 import { storageService } from "./async-storage.service"
 import { userService } from "./user.service"
+import { utilService } from "./util.service"
 
 const STORAGE_KEY = 'order'
+const gOrders=[
+    {
+        "hostId": "SzgiV",
+        "totalPrice": 30,
+        "checkIn": 1699707191955,
+        "checkOut": 1700139191955,
+        "guestCount": 2,
+        "guests": {},
+        "stay": {
+            "_id": "622f337a75c7d36e498aaaf9",
+            "name": "Belle chambre à côté Metro Papineau",
+            "price": 30
+        },
+        "msgs": [],
+        "status": "pending",
+        "buyer": {
+            "_id": "dhbsb",
+            "fullname": "Renderella",
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+        },
+        "_id": "3xy3Y"
+    },
+    {
+        "hostId": "SzgiV",
+        "totalPrice": 65,
+        "checkIn": 1699707256044,
+        "checkOut": 1700139256044,
+        "guestCount": 3,
+        "guests": {},
+        "stay": {
+            "_id": "622f337a75c7d36e498aaafa",
+            "name": "M&M Space MM2  Apartamento no centro da cidade",
+            "price": 65
+        },
+        "msgs": [],
+        "status": "pending",
+        "buyer": {
+            "_id": "dhbsb",
+            "fullname": "Renderella",
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+        },
+        "_id": "auyog"
+    },
+    {
+        "hostId": "SzgiV",
+        "totalPrice": 79,
+        "checkIn": 1699707266389,
+        "checkOut": 1700139266389,
+        "guestCount": 5,
+        "guests": {},
+        "stay": {
+            "_id": "622f337a75c7d36e498aaafb",
+            "name": "Fresh and modern 1BR in Bed-Stuy",
+            "price": 79
+        },
+        "msgs": [],
+        "status": "pending",
+        "buyer": {
+            "_id": "dhbsb",
+            "fullname": "Renderella",
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+        },
+        "_id": "Aix8a"
+    }
+]
 
 export const orderService = {
     query,
@@ -9,7 +75,7 @@ export const orderService = {
     save,
     getEmptyOrder
 }
-
+_createOrders()
 window.cs = orderService
 
 async function query(filterBy = { txt: '', price: 0 }) {
@@ -46,8 +112,8 @@ async function save(order) {
         savedOrder = await storageService.put(STORAGE_KEY, order)
     } else {
         // Later, owner is set by the backend
-        const { _id, fullname } = userService.getLoggedinUser()
-        order.buyer = { _id, fullname }
+        const { _id, fullname , imgUrl} = userService.getLoggedinUser()
+        order.buyer = { _id, fullname , imgUrl}
         order.status = 'pending'
         savedOrder = await storageService.post(STORAGE_KEY, order)
     }
@@ -73,7 +139,13 @@ function getEmptyOrder() {
     }
 }
 
-
+function _createOrders() {
+    let orders = utilService.loadFromStorage('order')
+    if (!orders || !orders.length) {
+        orders = gOrders
+        utilService.saveToStorage('order', orders)
+    }
+}
 // async function addStayMsg(stayId, txt) {
 //     // Later, this is all done by the backend
 //     const stay = await getById(stayId)

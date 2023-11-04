@@ -36,6 +36,7 @@ export function StayOrder() {
             totalPrice: stay.price, //To fix
             checkIn: currOrder.checkIn,
             checkOut: currOrder.checkOut,
+            guestCount: currOrder.guestCount,
             guests: {
                 adults: currOrder.adults,
                 kids: currOrder.children
