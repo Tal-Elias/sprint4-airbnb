@@ -68,6 +68,29 @@ button {
             }
         }
 
+        &.show-all {
+            margin: 0;
+            padding: 13px 23px;
+            font-size: 1rem;
+            font-family: cereal-md, roboto, sans-serif;
+            text-decoration: none;
+            color: $clr-txt-primary;
+            background-color: $clr-bg-primary;
+            border: 1px solid $clr-txt-primary;
+            border-radius: em(8px, 14px);
+        }
+
+        &.show-more {
+            position: relative;
+            font-size: rem(16px);
+
+            svg {
+                position: absolute;
+                top: 20%;
+                right: -15%;
+            }
+        }
+
         &.underline {
             text-decoration: underline;
             font-family: cereal-md;

@@ -1,0 +1,13 @@
+.google-map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr-brand;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    svg {
+        // background-color: $clr-brand;
+        color: $clr-bg-primary;
+    }
+}

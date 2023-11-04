@@ -10,6 +10,7 @@ import { useSelector } from "react-redux"
 import { DetailsLoader } from "../cmps/stay-details/DetailsLoader.jsx"
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal.jsx"
 import { ReviewBarGrid } from "../cmps/stay-details/ReviewBarGrid.jsx"
+import { GoogleMap } from "../cmps/GoogleMap.jsx"
 
 export function StayDetails() {
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
@@ -83,6 +84,11 @@ export function StayDetails() {
         setOrderToEdit((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
+    function LongTxt(txt, length = 170) {
+        const displayText = (txt.length > length) ? txt.slice(0, length) + '...' : txt
+        return displayText
+    }
+
     const { checkIn, checkOut } = orderToEdit
     const dateRangeFromOrder = {
         from: utilService.timeStampToLongDate(checkIn),
@@ -98,7 +104,7 @@ export function StayDetails() {
             {!stay && < DetailsLoader />}
             {showAllPhotos &&
                 <div className="all-photos">
-                    <button onClick={() => setShowAllPhotos(false)}>Close</button>
+                    <button className="btn grey-bg scale underline" onClick={() => setShowAllPhotos(false)}>Close</button>
                     <div className="img-grid">
                         {
                             stay?.imgUrls?.length > 0 &&
@@ -106,7 +112,7 @@ export function StayDetails() {
                         }
                     </div>
                 </div>}
-            {!!stay &&
+            {!!stay && !showAllPhotos &&
                 <section className="stay-details">
                     <div className="details-header">
                         <h1>{`${stay.name}`}</h1>
@@ -183,7 +189,7 @@ export function StayDetails() {
                             </div>
                             <div className="full-summary border-bottom pt32 pb48">
                                 <p>{stay.summary}</p>
-                                <button className="btn underline">Show more
+                                <button className="btn underline show-more">Show more
                                     <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style={{ height: '12px', width: '12px', display: 'block' }}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
                                 </button>
                             </div>
@@ -198,7 +204,7 @@ export function StayDetails() {
                                     ))}
                                 </div>
                                 <div className="show-all-amenities">
-                                    <button className="btn scale">Show all {stay.amenities.length} amenities</button>
+                                    <button className="btn scale show-all">Show all {stay.amenities.length} amenities</button>
                                 </div>
                             </div>
                             <div className="calendar ptb48">
@@ -229,24 +235,49 @@ export function StayDetails() {
                             <span className="seperator">·</span>
                             <span>{stay.reviews.length} reviews</span>
                         </div>
-                        <ReviewBarGrid />
+                        <ReviewBarGrid reviews={stay.reviews} />
                         <div className="reviews-preview-container flex">
                             {firstSixReviews.map((review, idx) => {
                                 return (
                                     <div key={idx} className="review-preview">
-                                        <div className="preview-header flex align-center">
-                                            <img style={{ width: '40px', borderRadius: '2em' }} src={review.imgUrl} alt="" />
-                                            <div className="flex column align-center">
-                                                <h3>{review.fullname}</h3>
-                                                <span>{review.at}</span>
+                                        <div style={{ marginBlockEnd: '40px' }}>
+                                            <div className="preview-header flex align-center">
+                                                <img style={{ width: '40px', borderRadius: '2em' }} src={review.imgUrl} alt="" />
+                                                <div className="flex column align-center">
+                                                    <h3>{review.fullname}</h3>
+                                                    <span>{review.at}</span>
+                                                </div>
+                                            </div>
+                                            <div className="review-body">
+                                                <div className="review-txt">{LongTxt(review.txt, 170)}</div>
+                                                <button className="btn underline show-more">Show more
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentColor', strokeWidth: 5.33333, overflow: 'visible' }}><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
+                                                </button>
                                             </div>
                                         </div>
-                                        <div>{review.txt}</div>
                                     </div>
                                 )
                             })}
                         </div>
+                        <div className="show-all-reviews">
+                            <button className="btn scale show-all">Show all {stay.reviews.length} reviews</button>
+                        </div>
                     </section>
+                    <div className="map-location border-bottom">
+                        <div style={{ paddingBottom: '24px' }}>
+                            <h1 className="map-location-header">Where you’ll be</h1>
+                        </div>
+                        <GoogleMap location={stay.loc} />
+                        <div className="stay-address">
+                            <h3>{stay.loc.address}</h3>
+                            <div className="stay-location-desc">We take you to Terrasini, less than 50 minutes by car from the center of Palermo. Here we find everything you could want in your free time: the sea and the mountains, beautiful beaches, a nature reserve, watchtowers, good food, popular traditions still alive, a small marina, sunsets and enchanting views.</div>
+                        </div>
+                        <div style={{ marginTop: '16px' }}>
+                            <button className="btn underline show-more">Show more
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentColor', strokeWidth: 5.33333, overflow: 'visible' }}><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                 </section>}
         </>
     )
