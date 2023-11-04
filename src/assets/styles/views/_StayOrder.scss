@@ -1,5 +1,8 @@
 .stay-order {
-
+    .order-stay-img {
+        height: 100px;
+        width: auto;
+    }
     .confirm {
         padding-bottom: 48px;
         padding-top: 64px;
@@ -188,13 +191,12 @@
                 font-size: 1rem;
             }
         }
+
+        
     }
 
 
-    .order-stay-img {
-        height: 100px;
-        width: auto;
-    }
+
 
 
 }

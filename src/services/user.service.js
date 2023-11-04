@@ -27,7 +27,8 @@ const gUsers = [
         password: '123',
         isHost: true,
         _id: "SzgiV",
-        wishlist: []
+        wishlist: [],
+        imgUrl: "https://randomuser.me/api/portraits/med/women/35.jpg"
     },
     {
         fullname: 'Renderella',
@@ -35,7 +36,8 @@ const gUsers = [
         password: '123',
         isHost: false,
         _id: "dhbsb",
-        wishlist: []
+        wishlist: [],
+        imgUrl: "https://randomuser.me/api/portraits/med/women/9.jpg"
     }
 ]
 
