@@ -1,4 +1,3 @@
-
 export function AppFooter({ isSecondaryLayout, routeLocation }) {
 
     const isDetailsLayout = isSecondaryLayout ? 'secondary-layout' : 'main-layout'

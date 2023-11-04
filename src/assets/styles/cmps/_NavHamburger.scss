@@ -20,5 +20,15 @@
             color: $clr-txt-secondary;
             flex: 0 0 32px;
         }
+
+        .user-img {
+            display: flex;
+            flex: 0 0 32px;
+            margin-left: 14px;
+
+            img {
+                border-radius: 50%;
+            }
+        }
     }
 }

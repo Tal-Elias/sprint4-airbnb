@@ -8,9 +8,11 @@ import { SearchFormOptions } from './SearchFormOptions'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { MobileHeader } from './MobileHeader'
 import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
+    const user = useSelector(storeState => storeState.userModule.user)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false)
     const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
@@ -63,6 +65,7 @@ export function AppHeader({ isSecondaryLayout }) {
                     />}
                 <div className="nav-container" style={{ position: 'relative' }}>
                     <NavHamburger
+                        user={user}
                         isNavMenuOpen={isNavMenuOpen}
                         setIsNavMenuOpen={setIsNavMenuOpen}
                     />

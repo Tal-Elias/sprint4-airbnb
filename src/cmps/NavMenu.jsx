@@ -49,7 +49,6 @@ export function NavMenu({ ...props }) {
             {user &&
                 <span className="user-info">
                     <Link to={`user/${user._id}`}>
-                        {user.imgUrl && <img src={user.imgUrl} />}
                         {user.fullname}
                     </Link>
                     <button onClick={onLogout}>Logout</button>

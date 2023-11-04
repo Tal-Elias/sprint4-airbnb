@@ -1,4 +1,9 @@
 .stay-order {
+    padding-top: 70px;
+
+    @include main-for-narrow-layout {
+        padding-top: 0;
+    }
 
     .confirm {
         padding-bottom: 48px;
@@ -65,7 +70,7 @@
                 .date-picker-modal {
                     position: fixed;
                     z-index: 10;
-                  
+
                 }
             }
 

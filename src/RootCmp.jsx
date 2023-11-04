@@ -8,6 +8,8 @@ import { StayOrder } from './pages/StayOrder.jsx'
 import { Toaster } from 'react-hot-toast'
 import { StayIndex } from './pages/StayIndex'
 import { StayEdit } from './pages/StayEdit'
+import { MobileHeader } from './cmps/MobileHeader.jsx'
+import { MobileFooter } from './cmps/MobileFooter.jsx'
 
 export function RootCmp() {
     let routeLocation = useLocation()
@@ -25,6 +27,7 @@ export function RootCmp() {
     return (
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
             <AppHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
+            <MobileHeader />
             <main style={{ paddingBottom: '80px' }}>
                 <Toaster position='absolute' containerStyle={{ bottom: 60, left: 30, }} />
                 <Routes>
@@ -35,6 +38,7 @@ export function RootCmp() {
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                 </Routes>
             </main>
+            <MobileFooter />
             <AppFooter isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
         </div>
     )

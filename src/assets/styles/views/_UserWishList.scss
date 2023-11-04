@@ -1,3 +1,7 @@
 .user-wishlist {
-    
+    padding-top: 70px;
+
+    @include main-for-narrow-layout {
+        padding-top: 0;
+    }
 }

@@ -1,9 +1,13 @@
 header.app-header {
+    display: none;
     position: sticky;
     z-index: 999;
-
-    height: 80px;
+    height: $headerHeight;
     background-color: $clr-bg-primary;
+
+    @include main-for-narrow-layout {
+        display: inherit;
+    }
 
     &::after {
         content: '';
@@ -11,7 +15,7 @@ header.app-header {
         top: 0;
         right: 0;
         left: 0;
-        height: 80px;
+        height: $headerHeight;
         z-index: -1;
         background-color: $clr-bg-primary;
         box-shadow: 0px 1px rgba(0, 0, 0, 0.08);
@@ -37,7 +41,7 @@ header.app-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        min-height: 80px;
+        min-height: $headerHeight;
 
         .nav-container {
             display: flex;

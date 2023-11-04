@@ -138,7 +138,7 @@ export function StayDetails() {
                             </div>
                         </div>
                     </div>
-                    <div className="img-container">
+                    <div className="img-container" id="photos">
                         <div className="img-grid">
                             {stay?.imgUrls?.length > 0 &&
                                 stay.imgUrls.map((url, idx) =>

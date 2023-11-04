@@ -1,4 +1,10 @@
 .add-stay {
+    padding-top: 70px;
+
+    @include main-for-narrow-layout {
+        padding-top: 0;
+    }
+
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -17,5 +23,3 @@
         }
     }
 }
-
-

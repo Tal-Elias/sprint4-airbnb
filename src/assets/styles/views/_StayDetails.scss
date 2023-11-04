@@ -1,4 +1,9 @@
 .stay-details {
+    padding-top: 70px;
+
+    @include main-for-narrow-layout {
+        padding-top: 0;
+    }
 
     .details-header {
         display: flex;

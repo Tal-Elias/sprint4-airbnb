@@ -1,3 +1,7 @@
 .stay-index {
-    
+    padding-top: 144px;
+
+    @include main-for-narrow-layout {
+        padding-top: 0;
+    }
 }

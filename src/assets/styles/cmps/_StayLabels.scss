@@ -1,43 +1,70 @@
 .stay-labels {
-    position: sticky;
-    top: 6.5vh;
-    z-index: 10;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 24px;
     background: $clr-bg-primary;
-    padding-block-start: 20px;
-    // max-width: 100vw;
-    // background-color: purple;
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+
+    @include main-for-narrow-layout {
+        position: sticky;
+        top: 6.1vh;
+        z-index: 10;
+        padding: 20px 0 0 0;
+        box-shadow: none;
+    }
+
+    // ::before {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0px;
+    //     transition: opacity 0.2s cubic-bezier(0.35, 0, 0.65, 1) 0s;
+    //     opacity: 1;
+    //     background: rgb(255, 255, 255);
+    //     border: none;
+    // }
 
     .swiper {
-        // TODO: define width
-        width: 85vw;
+        width: 100vw;
         margin: 0;
-
-        // height: fit-content;
+        height: fit-content;
         font-family: cereal-md, sans-serif;
         font-size: 12px;
-        // background-color: yellow;
 
-
+        @include main-for-narrow-layout {
+            width: 85vw;
+        }
 
         .swiper-wrapper {
+            // margin-left: 5px;
             position: relative;
-            // background-color: pink;
-            // width: 100%;
+            height: 74px;
 
+            @include main-for-narrow-layout {
+                height: 78px;
+            }
 
             .swiper-slide {
                 min-width: 56px;
+                height: fit-content;
                 max-width: fit-content;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 gap: 8px;
-                padding: 4px 0 4px;
+                padding: 4px 0;
                 margin: 12px 0 10px;
                 color: $clr-txt-secondary;
                 position: relative;
                 white-space: nowrap;
                 cursor: pointer;
+
+                @include main-for-narrow-layout {
+                    padding: 4px 0 4px;
+                }
 
                 .label-img {
                     opacity: 0.65;
@@ -95,11 +122,15 @@
     }
 
     .bg {
-        height: 40px;
+        display: none;
+        height: 77px;
         width: 80px;
         position: absolute;
-        height: 80px;
         z-index: 10;
+
+        @include main-for-narrow-layout {
+            display: block;
+        }
 
         &.next {
             right: 0;
@@ -168,41 +199,22 @@
 
     .swiper-button-disabled {
         display: none;
-
-        // background-color: transparent;
-
     }
 
+    .labels-border {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: -100px;
+        right: -100px;
+        background-color: #dddddd73;
+        height: 1px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px;
 
-
-    // .button-container {
-    // height: 100%;
-    // position: absolute;
-    // width: 80px;
-    // z-index: 10;
-
-    // &.next {
-    //     right: 0;
-    //     background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
-
-    // }
-
-    // &.prev {
-
-    //     left: 0;
-    //     background-image: linear-gradient(to left, rgb(255 255 255/0), white 40px);
-
-
-    // }
-
-    // &::before {
-    //     content: '';
-    //     display: block;
-    //     width: 40px;
-    //     // background-image: linear-gradient(to right, rgb(255 255 255/0), white 40px);
-
-    // }
-
-
-
+        @include main-for-narrow-layout {
+            &.scrolling {
+                display: block;
+            }
+        }
+    }
 }
