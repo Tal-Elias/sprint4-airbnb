@@ -1,15 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ImageCarousel } from "./ImageCarousel";
 import { ReviewRate } from "./stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
 export function StayPreview({ stay, dates, onWishlist, user }) {
-
-    const randomDateRange = utilService.getRandomDateRange()
+    const [randomDateRange]=useState(utilService.getRandomDateRange())
 
     function onClickHeart(ev) {
         ev.preventDefault()
-        onWishlist(stay._id)
-
+        onWishlist(stay)
     }
     const fillColor = user?.wishlist?.includes(stay._id) ? 'onWishlist' : ''
     return (
