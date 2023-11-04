@@ -57,9 +57,12 @@ function remove(userId) {
     // return httpService.delete(`user/${userId}`)
 }
 
-async function save(user) {
-    saveLocalUser(user)
-    if (user._id) return await storageService.put('user', user)
+async function save(userToSave) {
+    const users = await storageService.query('user')
+    const userFromStorage = users.find(user => user._id === userToSave._id)
+    userFromStorage.wishlist = userToSave.wishlist
+    saveLocalUser(userToSave)
+    return await storageService.put('user', userFromStorage)
 }
 
 async function update({ _id }) {

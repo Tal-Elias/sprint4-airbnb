@@ -3,7 +3,7 @@ import { StayPreview } from './StayPreview'
 
 export function StayList({ stays, updatedSearchParams, onWishlist, user }) {
     const params = new URLSearchParams(updatedSearchParams).toString()
-
+    
     return (
         <section >
             <ul className="stay-list clean-list">

@@ -1,7 +1,7 @@
 import { userService } from "../../services/user.service";
 import { store } from '../../store/store'
 
-import { showErrorMsg } from '../../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg} from '../../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "../reducers/system.reducer";
 import { REMOVE_USER, UPDATE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer";
 
@@ -30,7 +30,7 @@ export async function saveUser(user) {
     try {
         const userToSave = await userService.save(user)
         // store.dispatch({ type: UPDATE_USER, user: userToSave })
-        store.dispatch({ type: SET_USER, user: userToSave})
+        store.dispatch({ type: SET_USER, user: userToSave })
         return userToSave
     } catch (err) {
         console.log('user action -> Cannot save user', err)
@@ -39,15 +39,24 @@ export async function saveUser(user) {
 }
 
 
-export async function saveUserWishlist(stayId) {
+export async function saveUserWishlist(stay) {
+    let liked
     const { user } = store.getState().userModule
     if (!user) return showErrorMsg('Please log in')
     const updatedUser = { ...user, wishlist: [...user.wishlist] }
-    const stayIndex = updatedUser.wishlist.indexOf(stayId)
-    if (stayIndex !== -1) updatedUser.wishlist.splice(stayIndex, 1)
-    else updatedUser.wishlist.unshift(stayId)
+    const stayIndex = updatedUser.wishlist.indexOf(stay._id)
+    if (stayIndex !== -1) {
+        updatedUser.wishlist.splice(stayIndex, 1)
+        liked = false
+    }
+    else {
+        updatedUser.wishlist.unshift(stay._id)
+        liked = true
+    }
     try {
+        const msg = liked ? `${stay.name} added to wishlist` : `${stay.name} removed from wishlist`
         saveUser(updatedUser)
+        showSuccessMsg(msg)
     } catch (err) {
         console.log('Cannot update user', err)
         showErrorMsg('Cannot update user')

@@ -71,9 +71,9 @@ export function StayIndex() {
 
     // useEventListener('scroll', handleScroll)
 
-    async function onWishlist(stayId) {
+    async function onWishlist(stay) {
         try {
-            saveUserWishlist(stayId)
+            saveUserWishlist(stay)
         } catch (err) {
             console.log('Cannot update user wishlist', err)
             showErrorMsg('Cannot update user wishlist')
