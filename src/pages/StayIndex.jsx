@@ -17,11 +17,11 @@ export function StayIndex() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
     const [searchParams, setSearchParams] = useSearchParams()
-    const [page, setPage] = useState(1)
+    const [pageIdx, setPageIdx] = useState(0)
 
     useEffect(() => {
         setFilterByParams()
-        loadStays({ ...filterBy, page: 1 })
+        loadStays({ ...filterBy, pageIdx: 0 })
         return (() => {
             setFilter(stayService.getDefaultFilter())
         })
@@ -29,16 +29,12 @@ export function StayIndex() {
 
     useEffect(() => {
         try {
-            loadStays({ ...filterBy, page })
+            loadStays({ ...filterBy, pageIdx })
         } catch (err) {
             console.log(err);
             showErrorMsg('Cannot load stays')
         }
-    }, [filterBy, page])
-
-    // useEffect(() => {
-    //     console.log('hi')
-    // }, [handleScroll])
+    }, [filterBy, pageIdx])
 
     function setFilterByParams() {
         if (!searchParams.size) return
@@ -60,12 +56,13 @@ export function StayIndex() {
         setSearchParams({ ...updatedSearchParams, [field]: value })
     }
 
+    //****WIP****//
     // function handleScroll() {
     //     if (
     //         window.innerHeight + document.documentElement.scrollTop ===
     //         document.documentElement.offsetHeight
     //     ) {
-    //         setPage(page + 1)
+    //         setPageIdx(pageIdx + 1)
     //     }
     // }
 

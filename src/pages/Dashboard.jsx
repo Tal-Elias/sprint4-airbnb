@@ -17,7 +17,7 @@ export function Dashboard() {
     const [orderToUpdate, setOrderToUpdate] = useState(null)
     useEffect(() => {
         loadOrders({ hostId: user._id })
-        loadStays({ page: 1, pageSize: 30, hostListing: user._id })
+        loadStays({ pageIdx: 0, hostListing: user._id })
     }, [orderToUpdate])
 
     async function onOrderRespond(order, status) {

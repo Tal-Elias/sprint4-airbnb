@@ -15,6 +15,7 @@ export function RootCmp() {
     let routeLocation = useLocation()
 
     const [isSecondaryLayout, setIsSecondaryLayout] = useState(false)
+    const [isDetailsPage, setIsDetailsPage] = useState(false)
 
     useEffect(() => {
         if (routeLocation.pathname.startsWith('/stay/') ||
@@ -22,12 +23,18 @@ export function RootCmp() {
             routeLocation.pathname.startsWith('/wishlist') ||
             routeLocation.pathname.startsWith('/dashboard')) setIsSecondaryLayout(true)
         else setIsSecondaryLayout(false)
+        if ((routeLocation.pathname.startsWith('/stay/')) &&
+            (!routeLocation.pathname.startsWith('/stay/order'))) {
+            setIsDetailsPage(true)
+        } else {
+            setIsDetailsPage(false)
+        }
     }, [routeLocation])
 
     return (
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
             <AppHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
-            <MobileHeader />
+            {!isDetailsPage && <MobileHeader />}
             <main style={{ paddingBottom: '80px' }}>
                 <Toaster position='absolute' containerStyle={{ bottom: 60, left: 30, }} />
                 <Routes>

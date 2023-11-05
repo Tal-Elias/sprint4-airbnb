@@ -14,7 +14,7 @@ export function UserWishList() {
     useEffect(() => {
         try {
             if (!user) return showErrorMsg('please Log in')
-            loadStays({ page: 1, pageSize: 30, userWishlist: user.wishlist })
+            loadStays({ pageIdx: 0, userWishlist: user.wishlist })
         } catch (err) {
             console.log('Cannot load wishlist', err);
             showErrorMsg('Cannot load wishlist')
