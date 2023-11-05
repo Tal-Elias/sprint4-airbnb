@@ -19,7 +19,7 @@ export function HostOrderPreview({ order, onOrderRespond }) {
     }
     console.log(order)
     return (
-        <div className="reservation-preview preview">
+        <div className="host-order-preview preview">
             <div className="buyer">
                 <img src={order.buyer.imgUrl} style={{ width: '40px', borderRadius: '2em' }}/>
                 <h4 className="guest-name">{order.buyer.fullname}</h4>
