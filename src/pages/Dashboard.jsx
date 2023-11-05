@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 import { loadOrders } from "../store/actions/order.actions"
 import { orderService } from "../services/order.service.local"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
-import { Reservations } from "../cmps/Reservations"
 import { Listings } from "../cmps/Listings"
 import { Performance } from "../cmps/Performance"
 import { loadStays } from "../store/actions/stay.actions"
+import { HostOrder } from "../cmps/HostOrder"
 
 export function Dashboard() {
     const user = useSelector((storeState) => storeState.userModule.user)
@@ -42,7 +42,7 @@ export function Dashboard() {
                 <button className={"btn underline " + (activePage === 'listings' ? 'active-page' : '')} onClick={() => setActivePage('listings')}>Listings</button>
                 <button className={"btn underline " + (activePage === 'performance' ? 'active-page' : '')} onClick={() => setActivePage('performance')}>Performance</button>
             </nav>
-            {activePage === 'reservations' && <Reservations orders={orders} onOrderRespond={onOrderRespond} />}
+            {activePage === 'reservations' && <HostOrder orders={orders} onOrderRespond={onOrderRespond} />}
             {activePage === 'listings' && <Listings stays={stays} />}
             {activePage === 'performance' && <Performance />}
 

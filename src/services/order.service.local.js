@@ -21,7 +21,7 @@ const gOrders=[
         "buyer": {
             "_id": "dhbsb",
             "fullname": "Renderella",
-            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/19.jpg"
         },
         "_id": "3xy3Y"
     },
@@ -42,7 +42,7 @@ const gOrders=[
         "buyer": {
             "_id": "dhbsb",
             "fullname": "Renderella",
-            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/19.jpg"
         },
         "_id": "auyog"
     },
@@ -63,7 +63,7 @@ const gOrders=[
         "buyer": {
             "_id": "dhbsb",
             "fullname": "Renderella",
-            "imgUrl": "https://randomuser.me/api/portraits/med/women/9.jpg"
+            "imgUrl": "https://randomuser.me/api/portraits/med/women/19.jpg"
         },
         "_id": "Aix8a"
     }

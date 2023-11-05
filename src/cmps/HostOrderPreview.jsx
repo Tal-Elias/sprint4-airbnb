@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { utilService } from "../services/util.service";
 
-export function ReservationPreview({ order, onOrderRespond }) {
+export function HostOrderPreview({ order, onOrderRespond }) {
 
     function getStatusColor() {
         let statusColor

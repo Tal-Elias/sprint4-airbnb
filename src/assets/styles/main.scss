@@ -20,7 +20,7 @@
 @import "views/StayEdit";
 @import "views/StayOrder";
 @import "views/UserDetails";
-@import "views/UserTrips";
+@import "views/UserOrder";
 @import "views/UserWishList";
 
 // Components
@@ -55,6 +55,9 @@
 @import "cmps/UserOrderPreview";
 @import "cmps/stay-details/ReviewBarGrid";
 @import "cmps/ImageCarousel";
+@import "cmps/UserOrderList.scss";
+
+
 
 // Components- stay details
 @import "cmps/stay-details/OrderModal";
