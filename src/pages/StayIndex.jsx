@@ -5,10 +5,11 @@ import { StayList } from '../cmps/StayList.jsx'
 import { StayLabels } from '../cmps/StayLabels.jsx'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useSearchParams } from 'react-router-dom'
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
+// import { stayService } from '../services/stay.service.local.js'
 import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
-import { saveUser, saveUserWishlist } from '../store/actions/user.actions.js'
+import { saveUserWishlist } from '../store/actions/user.actions.js'
 import useEventListener from '../customHooks/useEventListener.js'
 
 export function StayIndex() {

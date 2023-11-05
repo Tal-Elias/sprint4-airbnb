@@ -1,7 +1,8 @@
 import { userService } from "../../services/user.service";
+// import { userService } from '../../services/user.service.local'
 import { store } from '../../store/store'
 
-import { showErrorMsg, showSuccessMsg} from '../../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "../reducers/system.reducer";
 import { REMOVE_USER, UPDATE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer";
 
@@ -28,6 +29,7 @@ export async function removeUser(userId) {
 
 export async function saveUser(user) {
     try {
+        // const userToSave = await userServiceTest.update(user)
         const userToSave = await userService.save(user)
         // store.dispatch({ type: UPDATE_USER, user: userToSave })
         store.dispatch({ type: SET_USER, user: userToSave })
@@ -56,7 +58,7 @@ export async function saveUserWishlist(stay) {
     try {
         const msg = liked ? `${stay.name} added to wishlist` : `${stay.name} removed from wishlist`
         saveUser(updatedUser)
-        showSuccessMsg(msg)
+        showSuccessMsg(msg, { icon: '👏' })
     } catch (err) {
         console.log('Cannot update user', err)
         showErrorMsg('Cannot update user')

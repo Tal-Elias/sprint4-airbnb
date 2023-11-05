@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { stayService } from "../services/stay.service.local";
+import { stayService } from "../services/stay.service";
+// import { stayService } from "../services/stay.service.local";
 
 export function Logo({ setFilterByToEdit }) {
     return (

@@ -4,7 +4,8 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useRef, useState } from "react"
-import { stayService } from "../services/stay.service.local"
+import { stayService } from "../services/stay.service"
+// import { stayService } from "../services/stay.service.local"
 import useOnScreen from "../customHooks/useOnScreen"
 
 export function StayLabels({ handleChange }) {

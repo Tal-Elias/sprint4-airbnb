@@ -58,8 +58,8 @@ export const eventBusService = createEventEmitter()
 export function showUserMsg(msg) {
     eventBusService.emit('show-user-msg', msg)
 }
-export function showSuccessMsg(txt) {
-    toast.success(txt)
+export function showSuccessMsg(txt, icon = '') {
+    toast.success(txt, icon)
     // showUserMsg({ txt, type: 'success' })
 }
 export function showErrorMsg(txt) {
