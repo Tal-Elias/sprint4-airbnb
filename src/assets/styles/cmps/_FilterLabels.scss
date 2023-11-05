@@ -1,0 +1,31 @@
+.filter-labels{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 24px;
+    background: $clr-bg-primary;
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+
+    @include main-for-narrow-layout {
+        position: sticky;
+        top: 6.1vh;
+        z-index: 10;
+        padding: 20px 0 0 0;
+        box-shadow: none;
+    }
+
+    .filters{
+        border: 1px solid black;
+        border-radius: 5px;
+
+
+    }
+}

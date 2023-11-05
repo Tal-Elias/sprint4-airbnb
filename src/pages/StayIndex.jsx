@@ -11,6 +11,7 @@ import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
 import { saveUserWishlist } from '../store/actions/user.actions.js'
 import useEventListener from '../customHooks/useEventListener.js'
+import { FilterLabels } from '../cmps/FilterLabels.jsx'
 
 export function StayIndex() {
     const user = useSelector(storeState => storeState.userModule.user)
@@ -80,7 +81,7 @@ export function StayIndex() {
 
     return (
         <section className="stay-index">
-            <StayLabels handleChange={handleChange} />
+            <FilterLabels handleChange={handleChange}/>
             {isLoading && <IndexLoader />}
             {!!stays &&
                 <StayList
