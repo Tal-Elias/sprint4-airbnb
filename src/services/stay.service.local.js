@@ -20,7 +20,6 @@ export const stayService = {
 }
 
 const gStays = mongoStays
-console.log('mongoStays:', mongoStays)
 
 function modify(users) {
     console.log(users)

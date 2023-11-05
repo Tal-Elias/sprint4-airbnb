@@ -30,7 +30,7 @@ export async function removeUser(userId) {
 export async function saveUser(user) {
     try {
         // const userToSave = await userServiceTest.update(user)
-        const userToSave = await userService.save(user)
+        const userToSave = await userService.update(user)
         // store.dispatch({ type: UPDATE_USER, user: userToSave })
         store.dispatch({ type: SET_USER, user: userToSave })
         return userToSave

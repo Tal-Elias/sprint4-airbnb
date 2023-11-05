@@ -21,7 +21,7 @@ export function UserOrderPreview({ order }) {
     }
 
 
-    if (!stay) return
+    if (!stay) return <div>loading</div>
     return (
         <div className="user-order-preview">
             <div className="order-details">

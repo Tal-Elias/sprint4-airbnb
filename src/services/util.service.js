@@ -140,8 +140,8 @@ function countGuests(guests) {
 function getSearchParams(searchParams) {
     return {
         destination: searchParams.get('destination') || '',
-        checkIn: searchParams.get('checkIn') || '',
-        checkOut: searchParams.get('checkOut') || '',
+        checkIn: +searchParams.get('checkIn') || '',
+        checkOut: +searchParams.get('checkOut') || '',
         guests: +searchParams.get('guests') || '',
         adults: +searchParams.get('adults') || '',
         children: +searchParams.get('children') || '',

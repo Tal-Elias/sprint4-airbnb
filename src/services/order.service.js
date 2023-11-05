@@ -1,7 +1,7 @@
 
 import { httpService } from './http.service.js'
 
-const BASE_URL = 'stay/order/'
+const BASE_URL = 'order/'
 
 export const orderService = {
     query,
@@ -17,16 +17,16 @@ async function query(filterBy = { hostId: '', buyerId: '' }) {
 }
 
 function getById(orderId) {
-    return httpService.get(`stay/order/${orderId}`)
+    return httpService.get(`order/${orderId}`)
 }
 
 async function save(order) {
     let savedOrder
     if (order._id) {
-        savedOrder = await httpService.put(`stay/order/${order._id}`, order)
+        savedOrder = await httpService.put(`order/${order._id}`, order)
 
     } else {
-        savedOrder = await httpService.post('order', order)
+        savedOrder = await httpService.post('order/', order)
     }
     return savedOrder
 }
@@ -49,7 +49,3 @@ function getEmptyOrder() {
         msgs: [],
     }
 }
-
-
-
-

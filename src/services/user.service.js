@@ -29,11 +29,10 @@ function remove(userId) {
     return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, wishlist }) {
-    console.log('_id, wishlist:', _id, wishlist)
-    const user = await httpService.put(`user/${_id}`, { _id, wishlist })
-    if (getLoggedinUser()._id === user._id) _setLoggedinUser(user)
-    return user
+async function update(user) {
+    const updatedUser = await httpService.put(`user/${user._id}`, { ...user })
+    if (getLoggedinUser()._id === user._id) _setLoggedinUser(updatedUser)
+    return updatedUser
 }
 
 async function login({ username, password }) {
@@ -58,8 +57,8 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost, wishlist: user.wishlist }
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    const userToSet = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost, wishlist: user.wishlist }
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSet))
     return user
 }
 

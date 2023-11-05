@@ -17,6 +17,7 @@ export function Dashboard() {
     const [activePage, setActivePage] = useState('reservations')
     const [orderToUpdate, setOrderToUpdate] = useState(null)
     useEffect(() => {
+        if (!user) return
         loadOrders({ hostId: user._id })
         loadStays({ pageIdx: 0, hostListing: user._id })
     }, [orderToUpdate])
@@ -34,7 +35,7 @@ export function Dashboard() {
         }
     }
 
-    if (!orders) return <div>is loading...</div>
+    if (!orders || !user) return <div>is loading...</div>
 
     return (
         <section className="dashboard">
