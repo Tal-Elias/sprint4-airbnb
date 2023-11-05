@@ -1,5 +1,52 @@
-.user-order-preview{
+.user-order-preview {
     display: flex;
     font-family: cereal-light;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-block-end: 10px;
+    overflow: hidden;
+
+    .order-details {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+
+        .stay-name {
+            height: 50%;
+            position: relative;
+            font-family: cereal-light;
+            border-bottom: 1px solid $clr-border;
+
+            div:first-child {
+                font-family: cereal-md;
+
+            }
+        }
+
+        .dates-loc {
+            display: flex;
+            height: 50%;
+            align-items: center;
+            // justify-content: space-between;
+
+
+            .dates {
+                border-right: 1px solid $clr-border;
+                position: relative;
+                height: 100%;
+
+            }
+
+        }
+    }
+
+    img {
+        // border-radius: 10px;
+        height: 100%;
+        width: 50%;
+        object-fit: cover;
+    }
 
 }
