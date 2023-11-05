@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Formik, Field, Form } from 'formik';
 import { addStay } from '../store/actions/stay.actions.js'
-import { useEffect, useState } from "react"
-import { stayService } from '../services/stay.service.local.js';
+import { useState } from "react"
+import { stayService } from '../services/stay.service.js';
+// import { stayService } from '../services/stay.service.local.js';
 import { cloudinaryService } from '../services/cloudinary-service.js';
 import Multiselect from 'multiselect-react-dropdown';
 

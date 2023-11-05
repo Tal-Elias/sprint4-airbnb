@@ -4,7 +4,8 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
-import { stayService } from "../services/stay.service.local";
+import { stayService } from "../services/stay.service";
+// import { stayService } from "../services/stay.service.local";
 import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
 
