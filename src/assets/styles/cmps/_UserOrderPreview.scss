@@ -3,24 +3,31 @@
     font-family: cereal-light;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    margin-block-end: 10px;
+    margin-block-start: 15px;
     overflow: hidden;
+    height: 250px;
+    cursor: pointer;
 
     .order-details {
         width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-
+        // align-items: center;
+        padding: 24px;
 
         .stay-name {
             height: 50%;
+            width: 100%;
             position: relative;
             font-family: cereal-light;
             border-bottom: 1px solid $clr-border;
+            justify-self: center;
+
 
             div:first-child {
                 font-family: cereal-md;
+                font-size: 1.375rem;
 
             }
         }
@@ -33,20 +40,41 @@
 
 
             .dates {
+                display: flex;
                 border-right: 1px solid $clr-border;
                 position: relative;
                 height: 100%;
+                padding: 24px 24px 24px 0;
+                align-items: center;
+            }
+
+            .loc {
+                padding: 24px 0 24px 24px;
 
             }
 
         }
+
     }
 
-    img {
-        // border-radius: 10px;
+    .img-container {
+        position: relative;
         height: 100%;
         width: 50%;
-        object-fit: cover;
+        img{
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+        .status {
+            position: absolute;
+            background-color: $clr-bg-primary;
+            top: 10px;
+            left: 10px;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
     }
 
 }

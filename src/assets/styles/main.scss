@@ -20,7 +20,7 @@
 @import "views/StayEdit";
 @import "views/StayOrder";
 @import "views/UserDetails";
-@import "views/UserTrips";
+@import "views/UserOrder";
 @import "views/UserWishList";
 
 // Components
@@ -42,8 +42,7 @@
 @import "cmps/Backdrop";
 @import "cmps/RegionSelect";
 @import "cmps/ButtonReserve";
-@import "cmps/ReservationPreview";
-@import "cmps/ReservationsList";
+@import "cmps/HostOrderPreview";
 @import "cmps/ListingReservations";
 @import "cmps/Performance";
 @import "cmps/ListingPreview";
@@ -55,6 +54,9 @@
 @import "cmps/UserOrderPreview";
 @import "cmps/stay-details/ReviewBarGrid";
 @import "cmps/ImageCarousel";
+@import "cmps/UserOrderList.scss";
+
+
 
 // Components- stay details
 @import "cmps/stay-details/OrderModal";

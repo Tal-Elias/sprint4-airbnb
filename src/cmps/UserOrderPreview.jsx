@@ -19,6 +19,8 @@ export function UserOrderPreview({ order }) {
             showErrorMsg('Cannot load stay')
         }
     }
+
+
     if (!stay) return
     return (
         <div className="user-order-preview">
@@ -29,18 +31,20 @@ export function UserOrderPreview({ order }) {
                 </div>
                 <div className="dates-loc">
                     <div className="dates">
-                        <div>{utilService.timeStampToLongDate(order.checkIn)}</div>
-                        <div>{utilService.timeStampToLongDate(order.checkOut)}</div>
+                        <div>{utilService.formatDateRange(order.checkIn, order.checkOut)}</div>
+                        {/* <div>{utilService.timeStampToLongDate(order.checkOut)}</div> */}
                     </div>
-                    <div>{stay.loc.address}</div>
-                    {/* <div>{order.status}</div> */}
+                    <div className="loc">{stay.loc.address}</div>
 
                 </div>
 
             </div>
-            {/* <div style={{ width: '50%' }}> */}
+            <div className="img-container">
                 <img src={stay.imgUrls[0]} />
-            {/* </div> */}
+              <div className="status">{order.status}</div>
+
+            </div>
+
         </div>
 
     )
