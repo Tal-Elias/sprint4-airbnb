@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { ReviewRate } from "../cmps/stay-reviews/ReviewRate";
 import { utilService } from "../services/util.service";
 import { stayService } from "../services/stay.service";
-// import { stayService } from "../services/stay.service.local";
 import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
+import { Logo } from "../cmps/Logo";
 
 
 export function StayOrder() {
@@ -74,6 +74,10 @@ export function StayOrder() {
 
     return (
         <div>
+            <header className="stay-order-header">
+                <Logo />
+            </header>
+            {!currOrder || !stay && <div>loading</div>}
             {currOrder && stay && <section className="stay-order">
                 <div className="confirm" >
                     {/* should be changed to a better way to navigate
@@ -91,7 +95,7 @@ export function StayOrder() {
                                 <h3>Dates</h3>
                                 <div>{`${currOrderCheckIn} - ${currOrderCheckOut}`}</div>
                             </div>
-                            <button className="btn underline" onClick={onEditDates}>Edit</button>
+                            <button disabled className="btn underline" onClick={onEditDates}>Edit</button>
                             {isDatePickerModalOpen &&
                                 <DatePickerModal
                                     isDatePickerModalOpen={isDatePickerModalOpen}
@@ -104,7 +108,7 @@ export function StayOrder() {
                                 <h3>Guests</h3>
                                 <div>{utilService.checkIfPlural('guest', ((+currOrder.guests.adults || 1) + +currOrder.guests.children))}</div>
                             </div>
-                            <button className="btn underline" onClick={onEditGuests}>Edit</button>
+                            <button disabled className="btn underline" onClick={onEditGuests}>Edit</button>
                             {isGuestSelectModalOpen &&
                                 <GuestSelectModal />
                             }
@@ -140,7 +144,6 @@ export function StayOrder() {
                     </div>
                 </div>
             </section>}
-            {!currOrder && !stay && <div>loading</div>}
         </div >
     )
 }

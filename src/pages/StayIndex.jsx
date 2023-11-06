@@ -6,7 +6,6 @@ import { StayLabels } from '../cmps/StayLabels.jsx'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay.service.js'
-// import { stayService } from '../services/stay.service.local.js'
 import { IndexLoader } from '../cmps/IndexLoader.jsx'
 import { utilService } from '../services/util.service.js'
 import { saveUserWishlist } from '../store/actions/user.actions.js'
@@ -81,7 +80,7 @@ export function StayIndex() {
 
     return (
         <section className="stay-index">
-            <FilterLabels handleChange={handleChange}/>
+            <StayLabels handleChange={handleChange} />
             {isLoading && <IndexLoader />}
             {!!stays &&
                 <StayList

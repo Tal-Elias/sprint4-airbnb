@@ -8,7 +8,6 @@ import { SearchFormOptions } from './SearchFormOptions'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { MobileHeader } from './MobileHeader'
 import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {

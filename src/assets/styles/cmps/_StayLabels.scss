@@ -1,4 +1,21 @@
 .stay-labels {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 24px;
+    background: $clr-bg-primary;
+    box-shadow: rgb(0 0 0 / 16%) 0 0 6px;
+
+    @include main-for-narrow-layout {
+        position: sticky;
+        top: 62px;
+        z-index: 10;
+        padding: 20px 0 0 0;
+        box-shadow: none;
+    }
+
     // ::before {
     //     content: "";
     //     position: absolute;
@@ -8,7 +25,6 @@
     //     background: rgb(255, 255, 255);
     //     border: none;
     // }
-    position: relative;
 
     .swiper {
         width: 100vw;
@@ -18,10 +34,15 @@
         font-size: 12px;
 
         @include main-for-narrow-layout {
-            width: 85vw;
-            // width: 90vw;
+            width: calc(100vw - 100px);
+        }
 
+        @include main-for-normal-layout {
+            width: calc(100vw - 180px);
+        }
 
+        @include main-for-wide-layout {
+            width: auto;
         }
 
         .swiper-wrapper {
@@ -41,7 +62,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
+                gap: 4px;
                 padding: 4px 0;
                 margin: 12px 0 10px;
                 color: $clr-txt-secondary;
@@ -51,6 +72,7 @@
 
                 @include main-for-narrow-layout {
                     padding: 4px 0 4px;
+                    gap: 8px;
                 }
 
                 .label-img {
@@ -68,12 +90,14 @@
                         content: '';
                         background-color: $clr-border;
                         width: 100%;
-                        height: 2px;
                         position: absolute;
-                        bottom: -8px;
+                        bottom: -9px;
                         // top: calc(100% + 8px);
                         // top: calc(100% + 12px);
 
+                        @include main-for-narrow-layout {
+                            height: 2px;
+                        }
                     }
                 }
 
@@ -90,7 +114,7 @@
                         width: 100%;
                         height: 2px;
                         position: absolute;
-                        bottom: -8px;
+                        bottom: -9px;
                         // top: calc(100% + 8px);
                         background-color: $clr-txt-primary;
                     }

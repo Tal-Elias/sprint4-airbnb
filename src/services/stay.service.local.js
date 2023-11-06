@@ -2,7 +2,6 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-// import { userService } from './user.service.local.js'
 import { demoData, mongoStays } from '../../demoData.js'
 const STORAGE_KEY = 'stay'
 const PAGE_SIZE = 50

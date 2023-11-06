@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux"
 import { orderService } from "../services/order.service"
-// import { orderService } from "../services/order.service.local"
 import { useEffect, useState } from "react"
 import { showErrorMsg } from "../services/event-bus.service"
 import { UserOrderList } from "../cmps/UserOrderList"

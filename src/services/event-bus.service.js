@@ -1,37 +1,4 @@
-// export const SHOW_MSG = 'show-msg'
-
 import toast from "react-hot-toast"
-
-// function createEventEmitter() {
-//     const listenersMap = {}
-//     return {
-//         on(evName, listener) {
-//             listenersMap[evName] = (listenersMap[evName]) ? [...listenersMap[evName], listener] : [listener]
-//             return () => {
-//                 listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
-//             }
-//         },
-//         emit(evName, data) {
-//             if (!listenersMap[evName]) return
-//             listenersMap[evName].forEach(listener => listener(data))
-//         }
-//     }
-// }
-
-// export const eventBusService = createEventEmitter()
-
-// export function showUserMsg(msg) {
-//     eventBusService.emit(SHOW_MSG, msg)
-// }
-
-// export function showSuccessMsg(txt) {
-//     showUserMsg({ txt, type: 'success' })
-// }
-// export function showErrorMsg(txt) {
-//     showUserMsg({ txt, type: 'error' })
-// }
-
-// window.showUserMsg = showUserMsg
 
 function createEventEmitter() {
     const listenersMap = {}
@@ -60,9 +27,7 @@ export function showUserMsg(msg) {
 }
 export function showSuccessMsg(txt, icon = '') {
     toast.success(txt, icon)
-    // showUserMsg({ txt, type: 'success' })
 }
 export function showErrorMsg(txt) {
     toast.error(txt)
-    // showUserMsg({ txt, type: 'error' })
 }

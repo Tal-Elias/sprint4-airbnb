@@ -1,5 +1,4 @@
 import { userService } from "../../services/user.service";
-// import { userService } from '../../services/user.service.local'
 import { store } from '../../store/store'
 
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
@@ -58,7 +57,7 @@ export async function saveUserWishlist(stay) {
     try {
         const msg = liked ? `${stay.name} added to wishlist` : `${stay.name} removed from wishlist`
         saveUser(updatedUser)
-        showSuccessMsg(msg, { icon: '👏' })
+        showSuccessMsg(msg, { icon: '✔️' })
     } catch (err) {
         console.log('Cannot update user', err)
         showErrorMsg('Cannot update user')

@@ -1,5 +1,4 @@
 import { orderService } from '../../services/order.service.js';
-// import { orderService } from '../../services/order.service.local.js';
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 import { ADD_ORDER, REMOVE_ORDER, SET_CURR_ORDER, SET_ORDERS, UNDO_REMOVE_ORDER, UPDATE_ORDER } from "../reducers/order.reducer.js";

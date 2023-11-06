@@ -5,12 +5,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useRef, useState } from "react"
 import { stayService } from "../services/stay.service"
-// import { stayService } from "../services/stay.service.local"
 import useOnScreen from "../customHooks/useOnScreen"
 
 export function StayLabels({ handleChange }) {
     const labelRef = useRef()
-    const [activeLable, setActiveLabel] = useState(null)
+    const [activeLable, setActiveLabel] = useState('National parks')
     const [spaceBetween, setSpaceBetween] = useState(32)
     const topLabelsVisible = useOnScreen(labelRef, '-160px')
 
