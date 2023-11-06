@@ -9,13 +9,11 @@ import { showSuccessMsg } from "../services/event-bus.service";
 
 export function MobileFooter() {
     const [isActiveLabel, setIsActiveLabel] = useState(null)
-    const [isNotification, setIsNotification] = useState(0)
+    const [isNotification, setIsNotification] = useState(1)
 
     useEffect(() => {
 
-        socketService.on(SOCKET_EVENT_NEW_ORDER, (order) => {
-            console.log(order)
-            showSuccessMsg(`New order about me ${order}`)
+        socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
             setIsNotification(1)
         })
 

@@ -13,6 +13,7 @@ export function NavMenu({ ...props }) {
     const navigate = useNavigate()
 
     async function onLogin(credentials) {
+        console.log('credentials:', credentials)
         try {
             const user = await login(credentials)
             showSuccessMsg(`Welcome: ${user.fullname}`)

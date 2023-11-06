@@ -8,6 +8,7 @@ import { Listings } from "../cmps/Listings"
 import { Performance } from "../cmps/Performance"
 import { loadStays } from "../store/actions/stay.actions"
 import { HostOrder } from "../cmps/HostOrder"
+import { SOCKET_EVENT_NEW_ORDER, socketService } from "../services/socket.service"
 
 export function Dashboard() {
     const user = useSelector((storeState) => storeState.userModule.user)
@@ -15,17 +16,25 @@ export function Dashboard() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [activePage, setActivePage] = useState('reservations')
     const [orderToUpdate, setOrderToUpdate] = useState(null)
+
     useEffect(() => {
         if (!user) return
         loadOrders({ hostId: user._id })
         loadStays({ pageIdx: 0, hostListing: user._id })
-    }, [orderToUpdate])
+        socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
+            showSuccessMsg(`New order has arrived`)
+            loadOrders({ hostId: user._id })
+        })
+
+        return () => {
+            socketService.off(SOCKET_EVENT_NEW_ORDER)
+        }
+    }, [])
 
     async function onOrderRespond(order, status) {
         order.status = status
         try {
             const updatedOrder = await orderService.save(order)
-            console.log('order approval:', updatedOrder)
             showSuccessMsg('Order ' + status)
             setOrderToUpdate(updatedOrder)
         } catch (error) {

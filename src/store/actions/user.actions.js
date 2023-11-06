@@ -66,6 +66,7 @@ export async function saveUserWishlist(stay) {
 }
 
 export async function login(credentials) {
+    console.log('credentials:', credentials)
     try {
         const user = await userService.login(credentials)
         store.dispatch({

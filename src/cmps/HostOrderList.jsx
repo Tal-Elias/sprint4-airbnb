@@ -6,7 +6,6 @@ export function HostOrderList({ orders, onOrderRespond }) {
             <ul className="clean-list">
                 {orders.map(order => <li key={order._id}>
                     <HostOrderPreview order={order} onOrderRespond={onOrderRespond} />
-
                 </li>)}
             </ul>
         </section>

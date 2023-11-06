@@ -11,6 +11,7 @@ import { Logo } from "../cmps/Logo";
 
 
 export function StayOrder() {
+    const user = useSelector(storeState => storeState.userModule.user)
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
@@ -32,6 +33,7 @@ export function StayOrder() {
         }
     }
     async function onOrder() {
+        if (!user) return showErrorMsg('Please login')
         const orderToSave = {
             hostId: stay.host._id,
             totalPrice: stay.price, //To fix
@@ -52,8 +54,8 @@ export function StayOrder() {
             status: 'pending'
         }
         try {
-            const savedOrder = await addOrder(orderToSave)
-            showSuccessMsg(`Order added (id: ${savedOrder._id})`)
+            await addOrder(orderToSave)
+            showSuccessMsg(`Order added successfully`)
         } catch (err) {
             showErrorMsg('Cannot add order')
         }

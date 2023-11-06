@@ -17,7 +17,7 @@ export function LoginSignup(props) {
     }
 
     function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
+        setCredentials({ username: '', password: '', fullname: '' })
         setIsSignup(false)
     }
 
@@ -30,7 +30,6 @@ export function LoginSignup(props) {
     function onLogin(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
-        console.log('credentials:', credentials)
         props.onLogin(credentials)
         clearState()
     }
