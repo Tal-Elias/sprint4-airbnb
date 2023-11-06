@@ -17,7 +17,6 @@ export function HostOrderPreview({ order, onOrderRespond }) {
         }
         return statusColor
     }
-    console.log(order)
     return (
         <div className="host-order-preview preview">
             <div className="buyer">

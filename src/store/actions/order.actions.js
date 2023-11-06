@@ -51,7 +51,6 @@ export async function removeOrder(orderId) {
 export async function addOrder(order) {
     try {
         const savedOrder = await orderService.save(order)
-        console.log('Added Order', savedOrder)
         store.dispatch(getActionAddOrder(savedOrder))
         return savedOrder
     } catch (err) {
