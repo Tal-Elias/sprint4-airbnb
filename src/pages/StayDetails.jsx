@@ -98,7 +98,6 @@ export function StayDetails() {
     const selectedAmenities = stayService.getSelectedAmenities()
     const firstSixReviews = utilService.getFirstSixReviewsFormatted(stay)
 
-
     return (
         <>
             {!stay && < DetailsLoader />}
@@ -178,7 +177,7 @@ export function StayDetails() {
                                 {selectedAmenities && selectedAmenities.map((amenity, idx) => (
                                     <div key={idx} className="selected-amenity-container flex gap24">
                                         <div className="flex justify-center" style={{ width: '40px' }}>
-                                            <img className="w24" src={`../src/assets/img/amenities/${amenity.url}.svg`} alt="" />
+                                            <img className="w24" src={`../assets/img/amenities/${amenity.url}.svg`} alt="" />
                                         </div>
                                         <div className="selected-amenity-description flex column">
                                             <h3>{amenity.title}</h3>
@@ -198,7 +197,7 @@ export function StayDetails() {
                                 <div className="amenities-container flex column">
                                     {stay.amenities.slice(0, 10).map((amenity, idx) => (
                                         <div key={idx} className="amenity-container flex align-center">
-                                            <img className="w24" src={`../src/assets/img/amenities/${amenity}.svg`} alt="" />
+                                            <img className="w24" src={`../assets/img/amenities/${amenity.toLowerCase()}.svg`} alt="" />
                                             <span>{amenity}</span>
                                         </div>
                                     ))}

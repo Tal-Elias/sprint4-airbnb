@@ -22,7 +22,6 @@ export function Dashboard() {
         loadOrders({ hostId: user._id })
         loadStays({ pageIdx: 0, hostListing: user._id })
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
-            showSuccessMsg(`New order has arrived`)
             loadOrders({ hostId: user._id })
         })
 
