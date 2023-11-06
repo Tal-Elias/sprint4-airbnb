@@ -4,7 +4,7 @@ import { UserWishList } from "../pages/UserWishlist";
 import { UserOrder } from "../pages/UserOrder";
 import { Dashboard } from "../pages/Dashboard";
 import { useEffect, useState } from "react";
-import {SOCKET_EVENT_NEW_ORDER } from "../services/socket.service";
+import { SOCKET_EVENT_NEW_ORDER } from "../services/socket.service";
 import { showSuccessMsg } from "../services/event-bus.service";
 
 export function MobileFooter() {
@@ -69,8 +69,10 @@ export function MobileFooter() {
                             {route.icon}
                         </div>
                         <div className="route-label">{route.label}</div>
+                        {isNotification > 0 && route.label === 'Dashboard' &&
+                            <div className="notification-dot">{isNotification}</div>
+                        }
                     </NavLink>)}
-                {isNotification > 0 && <div style={{ width: '40px', height: '40px', backgroundColor: 'red' }}>{isNotification}</div>}
             </nav>
         </div>
     )

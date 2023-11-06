@@ -11,11 +11,11 @@
     }
 
     @include main-for-narrow-layout {
-        grid-template-columns: 40px 1fr 40px
+        grid-template-columns: $narrowLayoutPadding 1fr $narrowLayoutPadding
     }
 
     @include main-for-normal-layout {
-        grid-template-columns: 80px 1fr 80px;
+        grid-template-columns: $normalLayoutPadding 1fr $normalLayoutPadding;
     }
 
     @include main-for-wide-layout {
@@ -36,11 +36,11 @@
     }
 
     @include secondary-for-narrow-layout {
-        grid-template-columns: 40px 1fr 40px;
+        grid-template-columns: $narrowLayoutPadding 1fr $narrowLayoutPadding;
     }
 
     @include secondary-for-normal-layout {
-        grid-template-columns: 80px 1fr 80px;
+        grid-template-columns: $normalLayoutPadding 1fr $normalLayoutPadding;
     }
 
     @include secondary-for-wide-layout {

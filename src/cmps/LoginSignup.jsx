@@ -30,6 +30,7 @@ export function LoginSignup(props) {
     function onLogin(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
+        console.log('credentials:', credentials)
         props.onLogin(credentials)
         clearState()
     }
@@ -59,6 +60,7 @@ export function LoginSignup(props) {
                     name="username"
                     value={credentials.username}
                     onChange={handleChange}
+                    autoComplete='off'
                 >
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}

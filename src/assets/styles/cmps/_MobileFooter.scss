@@ -13,6 +13,7 @@
         margin: 0 auto;
 
         .footer-nav-link {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -22,6 +23,7 @@
             color: $clr-txt-secondary;
 
             &.active {
+                font-family: cereal-md, roboto, sans-serif;
                 color: $clr-brand;
             }
 
@@ -31,6 +33,23 @@
 
             .label-icon {
                 margin-block-end: 2px;
+            }
+
+            .notification-dot {
+                position: absolute;
+                top: 4px;
+                right: 9px;
+                background-color: $clr-brand;
+                color: white;
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+                font-family: cereal-md;
+                font-size: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1)
             }
         }
     }
