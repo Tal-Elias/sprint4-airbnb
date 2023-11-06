@@ -198,6 +198,20 @@
                 font-size: 1rem;
             }
         }
+
+        .order-price-sum {
+            .price-calc-container {
+                margin-block-start: 0;
+            }
+
+            .no-charge-msg {
+                display: none;
+            }
+
+            .nights-calc {
+                text-decoration: none;
+            }
+        }
     }
 }
 
