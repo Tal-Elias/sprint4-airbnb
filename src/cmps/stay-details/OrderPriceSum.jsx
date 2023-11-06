@@ -1,6 +1,6 @@
 import { utilService } from "../../services/util.service"
 
-export function OrderPriceSum({ checkIn, checkOut, price, cleaningFee }) {
+export function OrderPriceSum({ checkIn, checkOut, price, cleaningFee}) {
 
     const SERVICE_FEE = 11.2
     const totalNights = utilService.getTotalNights(checkIn, checkOut)

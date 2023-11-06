@@ -8,6 +8,7 @@ import { stayService } from "../services/stay.service";
 import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
 import { Logo } from "../cmps/Logo";
+import { OrderPriceSum } from "../cmps/stay-details/OrderPriceSum";
 
 
 export function StayOrder() {
@@ -31,10 +32,22 @@ export function StayOrder() {
             navigate('/')
         }
     }
+
+    function getTotalPrice() {
+        const SERVICE_FEE = 11.2
+        const totalNights = utilService.getTotalNights(currOrder.checkIn, currOrder.checkOut)
+        const totalNightPrice = stay.price * totalNights
+        const serviceFee = Math.round(SERVICE_FEE * totalNights)
+        const totalPrice = totalNightPrice + serviceFee + stay.cleaningFee
+        return totalPrice
+    }
+
+
+
     async function onOrder() {
         const orderToSave = {
             hostId: stay.host._id,
-            totalPrice: stay.price, //To fix
+            totalPrice: getTotalPrice(),
             checkIn: currOrder.checkIn,
             checkOut: currOrder.checkOut,
             guestCount: currOrder.guestCount,
@@ -133,14 +146,7 @@ export function StayOrder() {
                             </div>
                         </div>
                         <h2>Price details</h2>
-                        <div className="price">
-                            <div>$779.60 x 5 nights</div>
-                            <div>$3,898.00</div>
-                        </div>
-                        <div className="total">
-                            <div >Total ($)</div>
-                            <div>$3,898.00</div>
-                        </div>
+                        <OrderPriceSum checkIn={currOrder.checkIn} checkOut={currOrder.checkOut} price={stay.price} cleaningFee={stay.cleaningFee} />
                     </div>
                 </div>
             </section>}
