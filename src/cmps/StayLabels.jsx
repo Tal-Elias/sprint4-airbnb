@@ -61,12 +61,12 @@ export function StayLabels({ handleChange }) {
                 modules={[Navigation]}
             // className="mySwiper"
             >
-                {labels && labels.map(label =>
+                {labels && labels.map(label => (
                     <SwiperSlide className={activeLable === label.title ? 'active' : ''} key={label.title} onClick={() => onLabelSelect(label.title)}>
-                        <img className="label-img w24 " src={`./src/assets/img/labels/${label.url}.jpeg`} />
+                        <img className="label-img w24 " src={`../assets/img/labels/${label.url}.jpeg`} />
                         <span className="label-title">{label.title}</span>
                     </SwiperSlide>
-                )}
+                ))}
             </Swiper >
             <div className={`labels-border ${scrollClass}`}></div>
         </div>
