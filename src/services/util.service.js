@@ -1,3 +1,4 @@
+
 export const utilService = {
     makeId,
     makeLorem,
@@ -19,7 +20,8 @@ export const utilService = {
     convertDates,
     getFirstSixReviewsFormatted,
     getTotalNights,
-    checkIfPlural
+    checkIfPlural,
+    capitalizeFirstLetter
 }
 
 function makeId(length = 6) {
@@ -241,3 +243,10 @@ function getTotalNights(date1, date2) {
     const numberOfDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
     return numberOfDays;
 }
+
+function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  
+
+

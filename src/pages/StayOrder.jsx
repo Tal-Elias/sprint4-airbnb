@@ -10,6 +10,7 @@ import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
 import { Logo } from "../cmps/Logo";
 import { OrderPriceSum } from "../cmps/stay-details/OrderPriceSum";
 import { ButtonConfirm } from "../cmps/ButtonConfirm";
+import { NavLink } from "react-router-dom";
 
 
 export function StayOrder() {
@@ -18,6 +19,7 @@ export function StayOrder() {
     const [isGuestSelectModalOpen, setGuestSelectModalOpen] = useState(false)
     const [isDatePickerModalOpen, setDatePickerModalOpen] = useState(false)
     const [stay, setStay] = useState(null)
+    const [isGoToTripsShow, setIsGoToTripsShow] = useState(false)
     const { stay: { _id: stayId } } = currOrder
 
     useEffect(() => {
@@ -48,6 +50,7 @@ export function StayOrder() {
 
     async function onOrder() {
         if (!user) return showErrorMsg('Please login')
+        setIsGoToTripsShow(true)
         const orderToSave = {
             hostId: stay.host._id,
             totalPrice: getTotalPrice(),
@@ -130,11 +133,16 @@ export function StayOrder() {
                             }
                         </div>
                         <ButtonConfirm onOrder={onOrder} />
+                        {isGoToTripsShow &&
+                            <div className="go-to-trips flex">
+                                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '32px', width: '32px', fill: 'rgb(227, 28, 95)', stroke: 'currentcolor' }}><g><g stroke="none"><path d="M43 8v21.295L32.295 40l-10.359.001A11.971 11.971 0 0 0 26 31c0-6.627-5.373-12-12-12a12.02 12.02 0 0 0-3.001.378L11 8h32z" fillOpacity=".2"></path><path d="M32 42v-8a5 5 0 0 1 4.783-4.995L37 29h8V6H34v2h-2V6H22v2h-2V6H9v14.5H7V6a2 2 0 0 1 1.85-1.995L9 4h11V2h2v2h10V2h2v2h11a2 2 0 0 1 1.995 1.85L47 6v24.953L33.953 44H15v-2h17zm12.123-11H37a3 3 0 0 0-2.995 2.824L34 34v7.122L44.123 31z"></path></g><g fill="none" strokeWidth="2"><path d="M14 43c.328 0 .653-.013.974-.039C21.146 42.465 26 37.299 26 31c0-6.627-5.373-12-12-12A11.995 11.995 0 0 0 2 31c0 6.627 5.373 12 12 12z"></path><path d="M23 31h-9v-9"></path></g></g></svg>
+                                <NavLink to="/trip"><h2>Go to trips</h2></NavLink>
+                            </div>
+                        }
                     </div>
                     <div className="stay-modal">
                         <div className="stay-details">
                             <div>
-
                                 <img src={stay.imgUrls[0]} />
                             </div>
                             <div className="stay-details-txt">

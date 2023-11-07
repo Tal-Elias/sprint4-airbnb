@@ -288,3 +288,6 @@ function _createStays() {
         utilService.saveToStorage(STORAGE_KEY, stays)
     }
 }
+
+
+
