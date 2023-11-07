@@ -87,6 +87,27 @@
                 font-size: rem(16px);
                 background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
             }
+
+            .go-to-trips {
+                // background-color: pink;
+                display: flex;
+                padding: 24px 0;
+                border-bottom: 1px solid $clr-border;
+                border-top: 1px solid $clr-border;
+                margin-block-start: 32px;
+
+                h2 {
+                    font-size: 1.375rem;
+                    line-height: 1.625rem;
+                    padding: 0;
+                }
+
+                align-items: center;
+
+                svg {
+                    margin-right: 24px;
+                }
+            }
         }
 
         .stay-modal {
@@ -213,6 +234,7 @@
             }
         }
     }
+
 }
 
 .stay-order-header {

@@ -17,7 +17,8 @@ export function ReviewBarGrid({ reviews }) {
         <section className='review-bar-grid flex column'>
             {reviewTags.map((tag, idx) => {
                 const dynamicPercentage = ((averageRating / 5) * 100) + (Math.random() * 10 - 5)
-                const rating = (dynamicPercentage / 20).toFixed(1)
+                let rating = (dynamicPercentage / 20).toFixed(1)
+                if (rating>5) rating = '5.0'
                 return (
                     <div key={idx} className='tag-container flex align-center'>
                         <span className='tag-name'>{tag}</span>

@@ -40,7 +40,7 @@ export function UserOrderPreview({ order }) {
             </div>
             <div className="img-container">
                 <img src={stay.imgUrls[0]} />
-              <div className="status">{order.status}</div>
+              <div className="status">{utilService.capitalizeFirstLetter(order.status)}</div>
 
             </div>
 
