@@ -6,13 +6,13 @@ export function HostOrderPreview({ order, onOrderRespond }) {
             let statusColor
             switch (order.status) {
                 case 'approved':
-                    statusColor = 'green'
+                    statusColor = '#008489'
                     break;
                 case 'declined':
-                    statusColor = 'red'
+                    statusColor = '#FF5A5F'
                     break;
                 default:
-                    statusColor = 'orange'
+                    statusColor = '#FFB400'
             }
             return statusColor
         }
@@ -23,15 +23,15 @@ export function HostOrderPreview({ order, onOrderRespond }) {
                 <h4 className="guest-name">{order.buyer.fullname}</h4>
                 <h5 className="guests">{utilService.checkIfPlural('guest', order.guestCount)}</h5>
             </div>
-            <h4 className="status" style={{ color: getStatusColor() }}>{order.status}</h4>
+            <div className="status" style={{ color: getStatusColor() }}>{utilService.capitalizeFirstLetter(order.status)}</div>
             <h4 className="check-in">{utilService.timeStampToLongDate(order.checkIn)} - {utilService.timeStampToLongDate(order.checkOut)}</h4>
             {/* <h4 className="check-out">{utilService.timeStampToLongDate(order.checkOut)}</h4> */}
             <h4 className="stay-name">{order.stay.name}</h4>
             <h4 className="price">${order.totalPrice} <span>  total</span></h4>
             {order.status === 'pending' &&
                 <div className="action-btns">
-                    <button className="approve action " onClick={() => onOrderRespond(order, 'approved')}>Approve</button>
-                    <button className="decline action " onClick={() => onOrderRespond(order, 'declined')}>Decline</button>
+                    <button className="btn btn-approve action " onClick={() => onOrderRespond(order, 'approved')}>Approve</button>
+                    <button className="btn btn-decline action " onClick={() => onOrderRespond(order, 'declined')}>Decline</button>
                 </div>}
         </div>
     )

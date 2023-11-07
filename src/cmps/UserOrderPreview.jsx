@@ -23,13 +23,13 @@ export function UserOrderPreview({ order }) {
         let statusColor
         switch (order.status) {
             case 'approved':
-                statusColor = 'green'
+                statusColor = '#008489'
                 break;
             case 'declined':
-                statusColor = 'red'
+                statusColor = '#FF5A5F'
                 break;
             default:
-                statusColor = 'orange'
+                statusColor = '#FFB400'
         }
         return statusColor
     }

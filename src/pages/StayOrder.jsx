@@ -96,7 +96,7 @@ export function StayOrder() {
             <header className="stay-order-header">
                 <Logo />
             </header>
-            {!currOrder || !stay && <div>loading</div>}
+            {!currOrder || !stay && <div></div>}
             {currOrder && stay && <section className="stay-order">
                 <div className="confirm" >
                     {/* should be changed to a better way to navigate

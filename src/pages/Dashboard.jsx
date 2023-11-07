@@ -42,7 +42,7 @@ export function Dashboard() {
         }
     }
 
-    if (!orders || !user) return <div>is loading...</div>
+    if (!orders || !user) return <div></div>
 
     return (
         <section className="dashboard">

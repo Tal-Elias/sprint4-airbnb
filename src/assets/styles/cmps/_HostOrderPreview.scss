@@ -14,7 +14,7 @@
     }
 
     @include main-for-narrow-layout {
-        grid-template-columns:1fr 2fr 2fr 4fr 1fr 130px;
+        grid-template-columns: 1fr 2fr 2fr 4fr 1fr 172px;
         grid-template-rows: auto;
         align-items: center;
         justify-content: center;
@@ -22,6 +22,7 @@
     }
 
     .status {
+        font-family: cereal-md;
         grid-column: -2/-1;
         justify-self: end;
 
@@ -116,22 +117,27 @@
         .action {
             border: 1px solid $clr-border;
             width: fit-content;
-            padding: 7px;
+            padding: 14px;
             border-radius: 10px;
-            font-size: .9em;
+            font-family: cereal-md;
+            color: $clr-bg-primary;
 
-            &:hover {
-                background-color: $clr-bg-secondary;
+
+            &.btn-approve {
+                background-color: #008489;
+
+                &:hover {
+                    background-color: darken($color: #008489, $amount: 5);
+                }
             }
 
-            &.approve {
-                color: green;
-            }
+            &.btn-decline {
+                background-color: #FF5A5F;
 
-            &.decline {
-                color: red;
+                &:hover {
+                    background-color: darken($color: #FF5A5F, $amount: 10);
+                }
             }
-
         }
     }
 

@@ -4,7 +4,7 @@ import { UserWishList } from "../pages/UserWishlist";
 import { UserOrder } from "../pages/UserOrder";
 import { Dashboard } from "../pages/Dashboard";
 import { useEffect, useState } from "react";
-import { SOCKET_EVENT_NEW_ORDER } from "../services/socket.service";
+import { SOCKET_EVENT_NEW_ORDER, socketService } from "../services/socket.service";
 import { showSuccessMsg } from "../services/event-bus.service";
 
 export function MobileFooter() {
@@ -12,13 +12,13 @@ export function MobileFooter() {
     const [isNotification, setIsNotification] = useState(0)
 
     useEffect(() => {
+        console.log('isNotification:', isNotification)
 
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
             setTimeout(() => { setIsNotification(1), showSuccessMsg(`New order has arrived`) }, 2000)
             // showSuccessMsg(`New order has arrived`)
             // setIsNotification(1)
         })
-
         return () => {
             socketService.off(SOCKET_EVENT_NEW_ORDER)
         }
