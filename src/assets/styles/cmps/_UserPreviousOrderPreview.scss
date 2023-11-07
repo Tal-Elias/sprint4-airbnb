@@ -1,0 +1,25 @@
+.user-previous-order-preview {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+
+    .stay-img {
+        // flex: 0 0 auto;
+        height: 72px;
+        overflow: hidden;
+        // position: relative;
+        width: 72px;
+        margin-right: 16px;
+        border-radius: 8px;
+    }
+
+    .stay-loc{
+        text-overflow: ellipsis ;
+        font-family: cereal-bold;
+    }
+    .details{
+        margin-block-start: 2px;
+        color: $clr-txt-secondary;
+        font-family: cereal-light;
+    }
+}
