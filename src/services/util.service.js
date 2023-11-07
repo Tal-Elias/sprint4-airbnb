@@ -246,7 +246,4 @@ function getTotalNights(date1, date2) {
 
 function capitalizeFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
-  }
-  
-
-
+}

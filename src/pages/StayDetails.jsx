@@ -207,9 +207,9 @@ export function StayDetails() {
                                 </div>
                             </div>
                             <div className="calendar ptb48">
-                                <h2>5 nights in Tel Aviv-Yafo</h2>
+                                <h2>5 nights in {stay.loc.city}</h2>
                                 <div className="date-range">
-                                    <span>Nov 18, 2023 - Nov 23, 2023</span>
+                                    <span>{dateRangeFromOrder.from} - {dateRangeFromOrder.to}</span>
                                 </div>
                                 <div style={{ position: 'relative' }}>
                                     <DatePickerModal

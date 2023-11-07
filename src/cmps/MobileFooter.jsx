@@ -14,8 +14,9 @@ export function MobileFooter() {
     useEffect(() => {
 
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
-            showSuccessMsg(`New order has arrived`)
-            setIsNotification(prevnot => prevnot + 1)
+            setTimeout(() => { setIsNotification(1), showSuccessMsg(`New order has arrived`) }, 2000)
+            // showSuccessMsg(`New order has arrived`)
+            // setIsNotification(1)
         })
 
         return () => {

@@ -86,10 +86,6 @@ function getDefaultFilter() {
 function getLabels() {
     return [
         {
-            title: 'National parks',
-            url: 'nationalParks'
-        },
-        {
             title: 'Beachfront',
             url: 'beachfront'
         },
@@ -132,6 +128,10 @@ function getLabels() {
         {
             title: 'OMG!',
             url: 'omg'
+        },
+        {
+            title: 'National parks',
+            url: 'nationalParks'
         },
         {
             title: 'Countryside',
