@@ -9,6 +9,7 @@ import { GuestSelectModal } from "../cmps/stay-details/GuestSelectModal";
 import { DatePickerModal } from "../cmps/stay-details/DatePickerModal";
 import { Logo } from "../cmps/Logo";
 import { OrderPriceSum } from "../cmps/stay-details/OrderPriceSum";
+import { ButtonConfirm } from "../cmps/ButtonConfirm";
 
 
 export function StayOrder() {
@@ -128,7 +129,7 @@ export function StayOrder() {
                                 <GuestSelectModal />
                             }
                         </div>
-                        <button className="confirm-btn btn scale" onClick={onOrder}>Confirm and pay</button>
+                        <ButtonConfirm onOrder={onOrder} />
                     </div>
                     <div className="stay-modal">
                         <div className="stay-details">

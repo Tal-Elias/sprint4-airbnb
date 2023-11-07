@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ReviewRate } from '../stay-reviews/ReviewRate'
 import { DatePickerModal } from './DatePickerModal'
 import { useState } from 'react'
