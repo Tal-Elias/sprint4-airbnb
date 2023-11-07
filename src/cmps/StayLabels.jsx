@@ -9,7 +9,7 @@ import useOnScreen from "../customHooks/useOnScreen"
 
 export function StayLabels({ handleChange }) {
     const labelRef = useRef()
-    const [activeLable, setActiveLabel] = useState('National parks')
+    const [activeLable, setActiveLabel] = useState('Beachfront')
     const [spaceBetween, setSpaceBetween] = useState(32)
     const topLabelsVisible = useOnScreen(labelRef, '-160px')
 

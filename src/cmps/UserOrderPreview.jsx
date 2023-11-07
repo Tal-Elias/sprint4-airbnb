@@ -19,6 +19,21 @@ export function UserOrderPreview({ order }) {
         }
     }
 
+    function getStatusColor() {
+        let statusColor
+        switch (order.status) {
+            case 'approved':
+                statusColor = 'green'
+                break;
+            case 'declined':
+                statusColor = 'red'
+                break;
+            default:
+                statusColor = 'orange'
+        }
+        return statusColor
+    }
+
 
     if (!stay) return <div>loading</div>
     return (
@@ -40,7 +55,7 @@ export function UserOrderPreview({ order }) {
             </div>
             <div className="img-container">
                 <img src={stay.imgUrls[0]} />
-              <div className="status">{utilService.capitalizeFirstLetter(order.status)}</div>
+                <div className="status" style={{ color: getStatusColor() }}>{utilService.capitalizeFirstLetter(order.status)}</div>
 
             </div>
 
