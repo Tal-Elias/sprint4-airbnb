@@ -32,6 +32,21 @@
                     gap: 8px;
                     padding: 8px;
 
+                    .stay-heart {
+                        fill: none;
+                        stroke: currentcolor;
+                        display: block;  
+                        height: 16px; 
+                        width: 16px;  
+                        stroke-width: 2; 
+                        overflow: visible;
+
+                        &.onWishlist {
+                            fill: $clr-brand;
+                            stroke: $clr-brand;
+                        }
+                    }
+
                     &.btn-share {
                         margin-right: 4px;
                     }
@@ -40,6 +55,7 @@
                         margin-right: -6px;
                     }
                 }
+
             }
         }
     }
