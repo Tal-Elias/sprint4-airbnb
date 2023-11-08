@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
-import { loadOrders } from "../store/actions/order.actions"
-import { orderService } from "../services/order.service"
+import { loadOrders, updateOrder } from "../store/actions/order.actions"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { Listings } from "../cmps/Listings"
 import { Performance } from "../cmps/Performance"
@@ -15,7 +13,6 @@ export function Dashboard() {
     const orders = useSelector((storeState) => storeState.orderModule.orders)
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const [activePage, setActivePage] = useState('reservations')
-    const [orderToUpdate, setOrderToUpdate] = useState(null)
 
     useEffect(() => {
         if (!user) return
@@ -24,19 +21,14 @@ export function Dashboard() {
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
             loadOrders({ hostId: user._id })
         })
-
-        return () => {
-            socketService.off(SOCKET_EVENT_NEW_ORDER)
-        }
     }, [])
 
     async function onOrderRespond(order, status) {
         order.status = status
         try {
-            const updatedOrder = await orderService.save(order)
+            updateOrder(order)
             showSuccessMsg('Order ' + status)
-            setOrderToUpdate(updatedOrder)
-        } catch (error) {
+        } catch (err) {
             console.log('Error while updating order:', err)
             showErrorMsg('Cannot update order')
         }

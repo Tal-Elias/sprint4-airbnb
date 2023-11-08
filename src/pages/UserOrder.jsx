@@ -12,16 +12,12 @@ export function UserOrder() {
     useEffect(() => {
         socketService.on(SOCKET_EVENT_ORDER_UPDATED, () => {
             loadOrders({ buyerId: user._id })
-            showSuccessMsg('Order status has been updated')
         })
         try {
             loadOrders({ buyerId: user._id })
         } catch {
             console.log('Error while getting orders:', err)
             showErrorMsg('Cannot get orders')
-        }
-        return () => {
-            socketService.off(SOCKET_EVENT_ORDER_UPDATED)
         }
     }, [])
 

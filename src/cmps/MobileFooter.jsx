@@ -12,21 +12,13 @@ export function MobileFooter() {
     const [isNotification, setIsNotification] = useState(0)
 
     useEffect(() => {
-        console.log('isNotification:', isNotification)
-
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
-            setTimeout(() => { setIsNotification(1), showSuccessMsg(`New order has arrived`) }, 2000)
-            // showSuccessMsg(`New order has arrived`)
-            // setIsNotification(1)
+            setTimeout(() => {
+                setIsNotification(prevNotification => prevNotification + 1),
+                    showSuccessMsg(`New order has arrived`)
+            }, 1500)
         })
-        return () => {
-            socketService.off(SOCKET_EVENT_NEW_ORDER)
-        }
     }, [])
-
-    function clearNotifications() {
-        setIsNotification(0)
-    }
 
     const footerNavRoutes = [
         {
@@ -67,7 +59,7 @@ export function MobileFooter() {
                 {footerNavRoutes.map(route =>
                     <NavLink key={route.label} to={route.path}
                         className={`footer-nav-link ${isActiveLabel === route.label ? 'active' : ''}`}
-                        onClick={() => { setIsActiveLabel(route.label); route.label === 'Dashboard' && clearNotifications() }}>
+                        onClick={() => { setIsActiveLabel(route.label); route.label === 'Dashboard' && setIsNotification(0) }}>
                         <div className="label-icon">
                             {route.icon}
                         </div>

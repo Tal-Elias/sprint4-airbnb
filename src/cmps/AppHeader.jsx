@@ -8,6 +8,8 @@ import { SearchFormOptions } from './SearchFormOptions'
 import { setFilter } from '../store/actions/stay.actions'
 import { useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import { showSuccessMsg } from '../services/event-bus.service'
+import { SOCKET_EVENT_NEW_ORDER, SOCKET_EVENT_ORDER_UPDATED, socketService } from '../services/socket.service'
 import useEventListener from '../customHooks/useEventListener'
 
 export function AppHeader({ isSecondaryLayout }) {
@@ -22,6 +24,20 @@ export function AppHeader({ isSecondaryLayout }) {
     useEffect(() => {
         setFilterByParams()
     }, [])
+
+    useEffect(() => {
+        if (!user) return
+        socketService.on(SOCKET_EVENT_ORDER_UPDATED, () => {
+            showSuccessMsg('Order status has been updated')
+        })
+        socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
+            showSuccessMsg(`New order has arrived`)
+        })
+        return () => {
+            socketService.off(SOCKET_EVENT_ORDER_UPDATED)
+            socketService.off(SOCKET_EVENT_NEW_ORDER)
+        }
+    }, [user])
 
     function setFilterByParams() {
         if (!searchParams.size) return

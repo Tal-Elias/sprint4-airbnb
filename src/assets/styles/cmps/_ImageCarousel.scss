@@ -44,24 +44,24 @@
     }
 
     .new-button {
+        position: absolute;
+        top: 43%;
         height: 30px;
         width: 30px;
-        background-color: rgb(255, 255, 255);
         opacity: .9;
-        border: 1px solid $clr-txt-secondary;
-        border-radius: 50%;
-        position: absolute;
-        transform: translateY(-50%);
-        top: 50%;
         z-index: 1;
-        place-items: center;
-        transition: .3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent, 0 2px 4px rgba(0, 0, 0, 0.18);
+        border-radius: 50%;
+        transition: transform .25s;
         display: none;
 
         &:hover {
             opacity: 1;
-            height: 31px;
-            width: 31px;
+            transform: scale(1.04);
         }
 
         &.prev {
@@ -73,7 +73,9 @@
         }
     }
 
-    &:hover .new-button {
-        display: grid;
+    &:hover {
+        .new-button {
+            display: flex;
+        }
     }
 }

@@ -19,7 +19,6 @@ export function UserPreviousOrderPreview({ order }) {
         }
     }
     if (!stay) return 
-    console.log(stay)
     return (
         <NavLink to={`/stay/${stay._id}`}>
             <section className="user-previous-order-preview">

@@ -57,7 +57,6 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    console.log('user:', user)
     const userToSet = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isHost: user.isHost, wishlist: user.wishlist }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSet))
     return user

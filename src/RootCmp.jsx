@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
-import routes from './routes'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { StayDetails } from './pages/StayDetails'
@@ -10,6 +9,7 @@ import { StayIndex } from './pages/StayIndex'
 import { StayEdit } from './pages/StayEdit'
 import { MobileHeader } from './cmps/MobileHeader.jsx'
 import { MobileFooter } from './cmps/MobileFooter.jsx'
+import routes from './routes'
 
 export function RootCmp() {
     let routeLocation = useLocation()
