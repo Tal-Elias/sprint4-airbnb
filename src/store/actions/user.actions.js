@@ -3,7 +3,7 @@ import { store } from '../../store/store'
 
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from "../reducers/system.reducer";
-import { REMOVE_USER, UPDATE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer";
+import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "../reducers/user.reducer";
 import { socketService } from "../../services/socket.service";
 
 export async function loadUsers() {

@@ -5,6 +5,7 @@ import { utilService } from "../services/util.service"
 
 export function UserOrderPreview({ order }) {
     const [stay, setStay] = useState(null)
+
     useEffect(() => {
         loadStay()
     }, [])
@@ -35,7 +36,7 @@ export function UserOrderPreview({ order }) {
     }
 
 
-    if (!stay) return 
+    if (!stay) return
     return (
         <div className="user-order-preview">
             <div className="order-details">
@@ -55,7 +56,7 @@ export function UserOrderPreview({ order }) {
             </div>
             <div className="img-container">
                 <img src={stay.imgUrls[0]} />
-                <div className="status" style={{ color: getStatusColor() }}>{utilService.capitalizeFirstLetter(order.status)}</div>
+                <div className="status" style={{ backgroundColor: getStatusColor() }}>{utilService.capitalizeFirstLetter(order.status)}</div>
 
             </div>
 

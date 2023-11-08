@@ -15,7 +15,7 @@ export function Dashboard() {
     const [activePage, setActivePage] = useState('reservations')
 
     useEffect(() => {
-        if (!user) return
+        if (!user) return showErrorMsg('Please login')
         loadOrders({ hostId: user._id })
         loadStays({ pageIdx: 0, hostListing: user._id })
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {

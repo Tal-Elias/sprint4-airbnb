@@ -16,7 +16,7 @@ export function MobileFooter() {
             setTimeout(() => {
                 setIsNotification(prevNotification => prevNotification + 1),
                     showSuccessMsg(`New order has arrived`)
-            }, 1500)
+            }, 2000)
         })
     }, [])
 

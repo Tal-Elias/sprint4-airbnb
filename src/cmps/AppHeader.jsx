@@ -31,7 +31,8 @@ export function AppHeader({ isSecondaryLayout }) {
             showSuccessMsg('Order status has been updated')
         })
         socketService.on(SOCKET_EVENT_NEW_ORDER, () => {
-            showSuccessMsg(`New order has arrived`)
+            console.log('new order arrived');
+            // showSuccessMsg(`New order has arrived`)
         })
         return () => {
             socketService.off(SOCKET_EVENT_ORDER_UPDATED)
