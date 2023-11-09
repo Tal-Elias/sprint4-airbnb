@@ -9,23 +9,30 @@ export function UserOrderList({ orders }) {
     return (
         <section className="user-order-list">
             <h1 className="trips">Trips</h1>
+            <div className="upcoming headline">Upcoming reservations</div>
+
             <ul className="clean-list" >
+
                 {orders.map(order => {
                     if (order.checkIn > currentDate) {
                         return <li key={order._id}>
-                            <div className="upcoming headline">Upcoming reservations</div>
+
                             <UserOrderPreview order={order} />
                         </li>
+
+
                     }
                 }
                 )
                 }
             </ul>
+            <div className="previous headline">Where you've been</div>
+
             <ul className="clean-list previous-orders" >
                 {orders.map(order => {
                     if (order.checkIn <= currentDate) {
                         return <li key={order._id}>
-                            <div className="previous headline">Where you've been</div>
+
                             <UserPreviousOrderPreview order={order} />
                         </li>
                     }

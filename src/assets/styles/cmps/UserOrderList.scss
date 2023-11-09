@@ -8,11 +8,15 @@
 
     }
 
-    .trips{
+    .trips {
         font-size: 1.625rem;
     }
 
-    .previous-orders{
+    .previous {
+        padding-bottom: 12px;
+    }
+
+    .previous-orders {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
