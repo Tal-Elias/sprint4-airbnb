@@ -88,8 +88,8 @@ export function StayOrder() {
         setDatePickerModalOpen(!isDatePickerModalOpen)
     }
 
-    const currOrderCheckIn = utilService.timeStampToLongDate(currOrder.checkIn)
-    const currOrderCheckOut = utilService.timeStampToLongDate(currOrder.checkOut)
+    // const currOrderCheckIn = utilService.timeStampToLongDate(currOrder.checkIn)
+    // const currOrderCheckOut = utilService.timeStampToLongDate(currOrder.checkOut)
 
     return (
         <div>
@@ -112,7 +112,7 @@ export function StayOrder() {
                         <div className="order-edit">
                             <div className="details">
                                 <h3>Dates</h3>
-                                <div>{`${currOrderCheckIn} - ${currOrderCheckOut}`}</div>
+                                <div>{utilService.formatDateRange(currOrder.checkIn, currOrder.checkOut)}</div>
                             </div>
                             <button disabled className="btn underline" onClick={onEditDates}>Edit</button>
                             {isDatePickerModalOpen &&
@@ -122,7 +122,7 @@ export function StayOrder() {
                                 />
                             }
                         </div>
-                        <div className="order-edit">
+                        <div className="order-edit border-bottom">
                             <div className="details">
                                 <h3>Guests</h3>
                                 <div>{utilService.checkIfPlural('guest', ((+currOrder.guests.adults || 1) + +currOrder.guests.children))}</div>
@@ -131,6 +131,18 @@ export function StayOrder() {
                             {isGuestSelectModalOpen &&
                                 <GuestSelectModal />
                             }
+                        </div>
+                        <div>
+                            <h2 className="pt24">Cancellation policy</h2>
+                            <div className="border-bottom pb24">Cancel before check-in for a partial refund. After that, your refund depends on when you cancel.</div>
+                        </div>
+                        <div>
+                            <h2 className="pt24">Ground rules</h2>
+                            <div>We ask every guest to remember a few simple things about what makes a great guest.</div>
+                            <ul className="ground-rules border-bottom pb24">
+                                <li><span>Follow the house rules</span></li>
+                                <li><span>Treat your Host's home like your own</span></li>
+                            </ul>
                         </div>
                         <ButtonConfirm onOrder={onOrder} />
                         {isGoToTripsShow &&
