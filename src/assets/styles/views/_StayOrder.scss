@@ -90,12 +90,8 @@
             }
 
             .go-to-trips {
-                // background-color: pink;
                 display: flex;
-                padding: 24px 0;
-                border-bottom: 1px solid $clr-border;
-                border-top: 1px solid $clr-border;
-                margin-block-start: 32px;
+                text-decoration: underline;
 
                 h2 {
                     font-size: 1.375rem;
