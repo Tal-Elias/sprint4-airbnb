@@ -31,10 +31,14 @@ export function UserWishList() {
     }
     if (!stays && !user) return
     return (
-        <section>
+        <section className="user-wishlist">
             {isLoading && <IndexLoader />}
-            <StayList stays={stays} onWishlist={onWishlist} user={user} />
+            <h1>Wishlist</h1>
+            {user.wishlist.length ? <StayList stays={stays} onWishlist={onWishlist} user={user} /> :
+                <div className="create">
+                    <h2>Create your first wishlist</h2>
+                    <p>As you search, click the heart icon to save your favorite places to your wishlist.</p>
+                </div>}
         </section>
-
     )
 }

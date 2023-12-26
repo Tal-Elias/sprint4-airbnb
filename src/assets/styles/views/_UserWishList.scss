@@ -1,7 +1,32 @@
 .user-wishlist {
-    padding-top: 70px;
+    padding-top: 0;
+
+
+
+    h1 {
+        font-size: 2rem;
+        line-height: 2.25rem;
+        padding-top: 12px;
+        padding-bottom: 8px;
+    }
+
+    .create {
+        margin-top: 32px;
+        max-width: 496px;
+
+        h2 {
+            font-size: 1.375rem;
+            line-height: 1.625rem;
+        }
+
+        p {
+            margin-top: 16px;
+            color: $clr-txt-secondary;
+        }
+    }
 
     @include main-for-narrow-layout {
-        padding-top: 0;
+        padding-top: 36px;
+
     }
 }
