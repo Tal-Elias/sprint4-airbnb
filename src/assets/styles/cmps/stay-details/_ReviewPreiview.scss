@@ -1,0 +1,23 @@
+.review-preview {
+    width: 41.6667%;
+    margin-inline-end: 8.333%;
+    padding: 0 8px;
+
+    .preview-header {
+        gap: 12px;
+        margin-block-end: 16px;
+    }
+
+    .review-body {
+        .review-txt {
+            max-height: 72px;
+            overflow: hidden;
+            font-size: 1rem;
+            line-height: lh(24px, 16px);
+        }
+
+        .btn.show-more {
+            margin-block-start: 8px;
+        }
+    }
+}

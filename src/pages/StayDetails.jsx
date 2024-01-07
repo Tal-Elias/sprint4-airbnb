@@ -12,12 +12,17 @@ import { DatePickerModal } from "../cmps/stay-details/DatePickerModal.jsx"
 import { ReviewBarGrid } from "../cmps/stay-details/ReviewBarGrid.jsx"
 import { GoogleMap } from "../cmps/GoogleMap.jsx"
 import { saveUserWishlist } from "../store/actions/user.actions.js"
+import { AmenitiesModal } from "../cmps/stay-details/AmenitiesModal.jsx"
+import { ReviewsModal } from "../cmps/stay-details/ReviewsModal.jsx"
+import { ReviewPreview } from "../cmps/stay-details/ReviewPreview.jsx"
 
 export function StayDetails() {
     const currOrder = useSelector((storeState) => storeState.orderModule.currOrder)
     const user = useSelector((storeState) => storeState.userModule.user)
     const [orderToEdit, setOrderToEdit] = useState({})
     const [showAllPhotos, setShowAllPhotos] = useState(false)
+    const [isAmenetiesModalOpen, setAmenetiesModalOpen] = useState(false)
+    const [isReviewsModalOpen, setReviewsModalOpen] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const [stay, setStay] = useState(null)
     const { stayId } = useParams()
@@ -86,10 +91,10 @@ export function StayDetails() {
         setOrderToEdit((prevFields) => ({ ...prevFields, [field]: value }))
     }
 
-    function LongTxt(txt, length = 170) {
-        const displayText = (txt.length > length) ? txt.slice(0, length) + '...' : txt
-        return displayText
-    }
+    // function LongTxt(txt, length = 170) {
+    //     const displayText = (txt.length > length) ? txt.slice(0, length) + '...' : txt
+    //     return displayText
+    // }
 
     async function onWishlist(stay) {
         try {
@@ -100,6 +105,16 @@ export function StayDetails() {
         }
     }
 
+    function ShowAllAmeneties(ev) {
+        ev.stopPropagation()
+        setAmenetiesModalOpen(true)
+    }
+
+    function ShowAllReviews(ev) {
+        ev.stopPropagation()
+        setReviewsModalOpen(true)
+    }
+
     const { checkIn, checkOut } = orderToEdit
     const dateRangeFromOrder = {
         from: utilService.timeStampToLongDate(checkIn),
@@ -107,7 +122,7 @@ export function StayDetails() {
     }
 
     const selectedAmenities = stayService.getSelectedAmenities()
-    const firstSixReviews = utilService.getFirstSixReviewsFormatted(stay)
+    // const firstSixReviews = utilService.getFirstSixReviewsFormatted(stay)
     return (
         <>
             {!stay && < DetailsLoader />}
@@ -140,8 +155,8 @@ export function StayDetails() {
                                         <div className="">Share</div>
                                     </button>
                                     <button className="btn btn-save grey-bg flex scale underline">
-                                        <svg className={"stay-heart " + (user?.wishlist?.includes(stay._id) ? 'onWishlist' : '')} onClick={()=>onWishlist(stay)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path></svg>
-                                        <div className="">{(user?.wishlist?.includes(stay._id))? "Saved": "Save"}</div>
+                                        <svg className={"stay-heart " + (user?.wishlist?.includes(stay._id) ? 'onWishlist' : '')} onClick={() => onWishlist(stay)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path></svg>
+                                        <div className="">{(user?.wishlist?.includes(stay._id)) ? "Saved" : "Save"}</div>
                                     </button>
                                 </div>
                             </div>
@@ -198,9 +213,10 @@ export function StayDetails() {
                             </div>
                             <div className="full-summary border-bottom pt32 pb48">
                                 <p>{stay.summary}</p>
-                                <button className="btn underline show-more">Show more
+                                {/* Add a summary modal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+                                {/* <button className="btn underline show-more">Show more
                                     <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style={{ height: '12px', width: '12px', display: 'block' }}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
-                                </button>
+                                </button> */}
                             </div>
                             <div className="amenities border-bottom ptb48">
                                 <h2 className="pb24">What this place offers</h2>
@@ -213,8 +229,12 @@ export function StayDetails() {
                                     ))}
                                 </div>
                                 <div className="show-all-amenities">
-                                    <button className="btn scale show-all">Show all {stay.amenities.length} amenities</button>
+                                    <button className="btn scale show-all" onClick={ShowAllAmeneties}>Show all {stay.amenities.length} amenities</button>
                                 </div>
+                                {isAmenetiesModalOpen && <AmenitiesModal
+                                    amenities={stay.amenities}
+                                    isAmenetiesModalOpen={isAmenetiesModalOpen}
+                                    setAmenetiesModalOpen={setAmenetiesModalOpen} />}
                             </div>
                             <div className="calendar ptb48">
                                 <h2>5 nights in {stay.loc.city}</h2>
@@ -246,31 +266,16 @@ export function StayDetails() {
                         </div>
                         <ReviewBarGrid reviews={stay.reviews} />
                         <div className="reviews-preview-container flex">
-                            {firstSixReviews.map((review, idx) => {
-                                return (
-                                    <div key={idx} className="review-preview">
-                                        <div style={{ marginBlockEnd: '40px' }}>
-                                            <div className="preview-header flex align-center">
-                                                <img style={{ width: '40px', borderRadius: '2em' }} src={review.imgUrl} alt="" />
-                                                <div className="flex column align-center">
-                                                    <h3>{review.fullname}</h3>
-                                                    <span>{review.at}</span>
-                                                </div>
-                                            </div>
-                                            <div className="review-body">
-                                                <div className="review-txt">{LongTxt(review.txt, 170)}</div>
-                                                <button className="btn underline show-more">Show more
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '12px', width: '12px', stroke: 'currentColor', strokeWidth: 5.33333, overflow: 'visible' }}><path fill="none" d="m12 4 11.3 11.3a1 1 0 0 1 0 1.4L12 28"></path></svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
+                            {stay.reviews.slice(0, 6).map((review, idx) => {
+                                return <ReviewPreview key={idx} review={review} isModal={false} ShowAllReviews={ShowAllReviews}/>
                             })}
                         </div>
-                        <div className="show-all-reviews">
-                            <button className="btn scale show-all">Show all {stay.reviews.length} reviews</button>
-                        </div>
+                        {stay.reviews.length > 6 && <div className="show-all-reviews">
+                            <button className="btn scale show-all" onClick={ShowAllReviews}>Show all {stay.reviews.length} reviews</button>
+                        </div>}
+                        {isReviewsModalOpen && <ReviewsModal
+                            reviews={stay.reviews}
+                            setReviewsModalOpen={setReviewsModalOpen} />}
                     </section>
                     <div className="map-location border-bottom">
                         <div style={{ paddingBottom: '24px' }}>

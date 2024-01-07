@@ -82,3 +82,34 @@
         }
     }
 }
+
+@mixin modal-background{
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 20;
+}
+
+@mixin modal{
+    position: absolute;
+    padding: 14px 28px;
+    background-color: $clr-bg-primary;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    max-width: 780px;
+    min-width: 600px;
+    z-index: 21;
+    border-radius: 12px;
+    overflow: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

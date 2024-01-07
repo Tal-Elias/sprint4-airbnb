@@ -1,0 +1,17 @@
+.reviews-modal,
+.overlay {
+    @include modal-background;
+    .overlay {
+        background: rgba(49, 49, 49, 0.8);
+    }
+
+    .modal-content {
+        @include modal;
+ 
+        .reviews-preview-container{
+            .review-preview{
+                width: auto;
+            }
+        }
+     }
+}

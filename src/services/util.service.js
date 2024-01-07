@@ -21,7 +21,8 @@ export const utilService = {
     getFirstSixReviewsFormatted,
     getTotalNights,
     checkIfPlural,
-    capitalizeFirstLetter
+    capitalizeFirstLetter,
+    getMonthYear
 }
 
 function makeId(length = 6) {
@@ -235,6 +236,19 @@ function getFirstSixReviewsFormatted(stay) {
         };
     });
 }
+
+function getMonthYear(timeStamp) {
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const date = new Date(timeStamp);
+    const year = date.getFullYear();
+    const month = months[date.getMonth()]; // Get the month in text form
+
+    return `${month} ${year}`
+}
+
 
 function getTotalNights(date1, date2) {
     const firstDate = new Date(date1);

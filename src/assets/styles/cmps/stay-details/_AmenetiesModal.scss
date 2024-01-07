@@ -1,0 +1,27 @@
+.ameneties-modal , .overlay{
+    @include modal-background;
+
+    
+    .overlay {
+       
+        background: rgba(49, 49, 49, 0.8);
+    }
+
+    .modal-content {
+       @include modal;
+
+        ul {
+            .amenity-container {
+                font-size: rem(16px);
+                gap: 20px;
+                padding-block-end: 16px;
+                line-height: 20px;
+            }
+
+            .line {
+                height: 1px;
+                background-color: $clr-border;
+            }
+        }
+    }
+}
