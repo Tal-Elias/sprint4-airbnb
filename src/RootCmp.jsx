@@ -33,8 +33,7 @@ export function RootCmp() {
 
     return (
         <div className={`${isSecondaryLayout ? 'secondary-layout' : 'main-layout'}`}>
-            <AppHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} />
-            {!isDetailsPage && <MobileHeader />}
+            <AppHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} isDetailsPage={isDetailsPage}/>
             <main style={{ paddingBottom: '80px' }}>
                 <Toaster position='absolute' containerStyle={{ bottom: 60, left: 30, }} />
                 <Routes>

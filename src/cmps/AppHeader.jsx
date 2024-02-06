@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react'
-import { StaySearchBar } from './StaySearchBar'
-import { NavHamburger } from './NavHamburger'
-import { Logo } from './Logo'
-import { NavMenu } from './NavMenu'
-import { SearchBarForm } from './SearchBarForm'
-import { SearchFormOptions } from './SearchFormOptions'
-import { setFilter } from '../store/actions/stay.actions'
-import { useSelector } from 'react-redux'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { showSuccessMsg } from '../services/event-bus.service'
+import { DesktopHeader } from "./DesktopHeader"
+import { MobileHeader } from "./MobileHeader"
 import { SOCKET_EVENT_NEW_ORDER, SOCKET_EVENT_ORDER_UPDATED, socketService } from '../services/socket.service'
-import useEventListener from '../customHooks/useEventListener'
+import { useSearchParams } from "react-router-dom"
+import { setFilter } from "../store/actions/stay.actions"
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
 
-export function AppHeader({ isSecondaryLayout }) {
+
+export function AppHeader({ isSecondaryLayout, routeLocation, isDetailsPage }) {
     const user = useSelector(storeState => storeState.userModule.user)
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState(false)
-    const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-    const [selectedInput, setSelectedInput] = useState(null)
     const [searchParams, setSearchParams] = useSearchParams()
-    const navigate = useNavigate()
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+
+    
+
 
     useEffect(() => {
         setFilterByParams()
@@ -51,55 +45,34 @@ export function AppHeader({ isSecondaryLayout }) {
         setFilter({ ...filterByParams })
     }
 
-    function onSetFilter(searchFormIputs) {
-        const { pageIdx } = filterBy
-        setFilter({ ...searchFormIputs, txt: searchFormIputs.destination, pageIdx })
-        setSearchParams(searchFormIputs)
-        const searchString = new URLSearchParams(searchFormIputs)
-        if (isSecondaryLayout) navigate(`/?${searchString}`)
-    }
+    // function onSetFilter(searchFormIputs) {
+    //     const { pageIdx } = filterBy
+    //     setFilter({ ...searchFormIputs, txt: searchFormIputs.destination, pageIdx })
+    //     setSearchParams(searchFormIputs)
+    //     const searchString = new URLSearchParams(searchFormIputs)
+    //     if (isSecondaryLayout) navigate(`/?${searchString}`)
+    // }
 
-    function handleScroll() {
-        if (window.scrollY > 0) setIsSearchBarOpen(false)
-    }
-
-    useEventListener('scroll', handleScroll)
-
+    // function onSearch() {
+    //     const { adults = 0, children = 0 } = fields.guests
+    //     const totalGuests = adults + children
+    //     const { destination, checkIn, checkOut, guests } = fields
+    //     const searchFormIputs = {
+    //         destination,
+    //         checkIn,
+    //         checkOut,
+    //         guests: (totalGuests === 0) ? '' : totalGuests,
+    //         ...guests
+    //     }
+    //     onSetFilter(searchFormIputs)
+    //     setIsSearchBarOpen(false)
+    // }
     return (
-        <header className={`app-header full ${isSecondaryLayout ? 'secondary-layout' : 'main-layout sticky'} ${isSearchBarOpen ? 'expanded' : ''}`}>
-            <div className='header-container'>
-                <Logo />
-                {!isSearchBarOpen &&
-                    <StaySearchBar
-                        filterBy={filterBy}
-                        setSelectedInput={setSelectedInput}
-                        setIsSearchBarOpen={setIsSearchBarOpen}
-                    />}
-                {isSearchBarOpen &&
-                    <SearchFormOptions
-                        isSearchBarOpen={isSearchBarOpen}
-                    />}
-                <div className="nav-container" style={{ position: 'relative' }}>
-                    <NavHamburger
-                        user={user}
-                        isNavMenuOpen={isNavMenuOpen}
-                        setIsNavMenuOpen={setIsNavMenuOpen}
-                    />
-                    {isNavMenuOpen &&
-                        <NavMenu
-                            isNavMenuOpen={isNavMenuOpen}
-                            setIsNavMenuOpen={setIsNavMenuOpen}
-                        />}
-                </div>
-            </div>
-            {isSearchBarOpen &&
-                <SearchBarForm
-                    filterBy={filterBy}
-                    onSetFilter={onSetFilter}
-                    selectedInput={selectedInput}
-                    setSelectedInput={setSelectedInput}
-                    setIsSearchBarOpen={setIsSearchBarOpen}
-                />}
-        </header>
+        <>
+            <DesktopHeader isSecondaryLayout={isSecondaryLayout} routeLocation={routeLocation} user={user}  />
+            {!isDetailsPage && <MobileHeader />}
+
+        </>
+
     )
 }
