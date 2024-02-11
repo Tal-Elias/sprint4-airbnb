@@ -1,5 +1,5 @@
 .guest-select-modal {
-    // position: absolute;
+    position: absolute;
     top: 57px;
     left: 0;
     cursor: default;
@@ -50,6 +50,10 @@
         border-radius: 32px;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
 
+        h2 {
+            display: none;
+        }
+
         .guest-select-row {
             position: relative;
             width: 330px;
@@ -68,6 +72,18 @@
 
         .btn-close {
             display: none;
+        }
+
+        &.mobile {
+            position: static;
+
+            h2 {
+                display: block;
+            }
+
+            .guest-select-row {
+                width: 100%;
+            }
         }
     }
 }

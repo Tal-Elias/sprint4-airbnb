@@ -7,7 +7,7 @@ export function GuestSelectModal({
     setGuestSelectModalOpen,
     onSetField,
     guestCount,
-    formLayout
+    formLayout,
 }) {
     const elGuestSelectModal = useRef()
 
@@ -60,6 +60,7 @@ export function GuestSelectModal({
 
     return (
         <div className={`guest-select-modal ${formLayout ? formLayout : ''}`} onClick={onModalClick} ref={elGuestSelectModal}>
+            <h2>Who's coming?</h2>
             {guestTypes.map((type, idx) => {
                 return (
                     <div className="guest-select-row flex space-between" key={idx}>

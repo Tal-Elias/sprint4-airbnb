@@ -220,34 +220,7 @@
                 }
             }
 
-            &.btn-search {
-                position: absolute;
-                right: 0;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 48px;
-                margin: 7px;
-                width: 48px;
-                padding: 16px;
-                border: transparent;
-                border-radius: 2em;
-                color: $clr-bg-primary;
-                background-color: $clr-brand;
-                transition: width .2s ease;
-
-                &.expand {
-                    width: 111.75px;
-                    background: linear-gradient(to right,#E61E4D 0%,#E31C5F 50%,#D70466 100%);
-                    transition: none;
-                }
-
-                .txt-search {
-                    font-family: cereal-md, roboto, sans-serif;
-                    font-size: rem(16px);
-                    overflow: hidden;
-                }
-            }
+     
         }
     }
 }

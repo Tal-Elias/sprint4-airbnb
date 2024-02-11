@@ -70,20 +70,21 @@ export function MobileSearchBarForm({
                 < MobileClosedSearchTab input={'When'} setSelectedInput={setSelectedInput} />}
 
             {selectedInput === 'guests' ?
-                <div className="who tab">
-                    <h2>Who's coming?</h2>
+                // <div className="who tab">
+                //     <h2>Who's coming?</h2>
                     <GuestSelectModal
-                        formLayout='form-layout'
+                        formLayout='form-layout mobile'
                         guestCount={fields.guests}
                         onSetField={onSetField}
                     />
-                </div> :
+                // </div> 
+                :
 
                 <MobileClosedSearchTab input={'Who'} setSelectedInput={setSelectedInput} />}
 
-            <div className="footer">
+            {/* <div className="footer"> */}
                 <ButtonSearch selectedInput={selectedInput} fields={fields} filterBy={filterBy} setIsSearchBarOpen={setIsMobileSearchBarOpen} />
-            </div>
+            {/* </div> */}
         </div>
     )
 }
