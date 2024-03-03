@@ -1,8 +1,8 @@
 .order-modal {
+    display: flex;
     position: sticky;
     top: $headerHeight;
 
-    display: flex;
     flex-basis: 372px;
     flex-direction: column;
     z-index: 10;
@@ -88,5 +88,31 @@
         color: white;
         font-size: rem(16px);
         background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    }
+
+
+}
+
+.order-footer {
+    position:fixed;
+    background-color: #fff;
+    bottom: 0;
+    width: 100%;
+    min-height: 80px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+
+    &::before{
+        content: '';
+        position: absolute;
+        // display: flex;
+        background-color: $clr-border;
+        width: 100%;
+        height: 1px;
+        top: 0;
+        left: -20px;
     }
 }

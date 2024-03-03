@@ -1,6 +1,6 @@
 import { ReviewRate } from '../stay-reviews/ReviewRate'
 import { DatePickerModal } from './DatePickerModal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GuestSelect } from './GuestSelect'
 import { utilService } from '../../services/util.service'
 import { ButtonReserve } from '../ButtonReserve'
@@ -31,7 +31,21 @@ export function OrderModal({
 
     const isOrderToSet = (currOrder.checkIn && currOrder.checkOut) ? true : false
 
-    return (
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+
+    function handleResize() {
+        setScreenWidth(window.innerWidth)
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+
+
+    if (screenWidth >= 744) return (
         <div className="order-modal">
             <header className="order-modal-header">
                 <div className="price-per-night">
@@ -55,7 +69,7 @@ export function OrderModal({
                         <span>{checkOut}</span>
                     </div>
                 </div>
-                {isDatePickerModalOpen && 
+                {isDatePickerModalOpen &&
                     <DatePickerModal
                         onSetField={onSetField}
                         clearDateRange={clearDateRange}
@@ -85,5 +99,20 @@ export function OrderModal({
                     cleaningFee={stay.cleaningFee}
                 />}
         </div>
+
+
     )
+    else return (
+        <div className='order-footer'>
+             <div className="price-per-night">
+                    <span className="price">${price} </span>
+                    <span className="night">night</span>
+                </div>
+                <ButtonReserve
+                    isOrderToSet={isOrderToSet}
+                    setDatePickerModalOpen={setDatePickerModalOpen}
+                />
+        </div>
+        )
+
 }

@@ -1,7 +1,7 @@
 .button-reserve {
     padding: 13px 23px;
-    width: 100%;
-    min-width: 200px;
+    min-width: 148px;
+
 
     background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
     --mouse-x: 92;
@@ -22,6 +22,11 @@
     &:active {
         animation: press 1s forwards;
         transition: .3s;
+    }
+
+    @include main-for-narrow-layout {
+        width: 100%;
+        min-width: 200px;
     }
 }
 
