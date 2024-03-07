@@ -11,6 +11,7 @@ import { Logo } from "../cmps/Logo";
 import { OrderPriceSum } from "../cmps/stay-details/OrderPriceSum";
 import { ButtonConfirm } from "../cmps/ButtonConfirm";
 import { NavLink } from "react-router-dom";
+import { StaySummary } from "../cmps/StaySummary";
 
 
 export function StayOrder() {
@@ -21,10 +22,23 @@ export function StayOrder() {
     const [stay, setStay] = useState(null)
     const [isGoToTripsShow, setIsGoToTripsShow] = useState(false)
     const { stay: { _id: stayId } } = currOrder
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
+
+    function handleResize() {
+        setScreenWidth(window.innerWidth)
+    }
     useEffect(() => {
+        window.addEventListener('resize', handleResize)
         loadStay()
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
     }, [])
+
+    // useEffect(() => {
+    //     loadStay()
+    // }, [])
 
     async function loadStay() {
         try {
@@ -106,6 +120,7 @@ export function StayOrder() {
                     </div>
                     <h1>Confirm and pay</h1>
                 </div>
+                {screenWidth < 744 && <StaySummary stay={stay} />}
                 <div className="summary">
                     <div className="trip-summary">
                         <h2>Your trip</h2>
@@ -132,6 +147,8 @@ export function StayOrder() {
                                 <GuestSelectModal />
                             }
                         </div>
+                        {screenWidth < 744 && <h2>Price details</h2>}
+                        {screenWidth < 744 && <OrderPriceSum checkIn={currOrder.checkIn} checkOut={currOrder.checkOut} price={stay.price} cleaningFee={stay.cleaningFee} />}
                         <div>
                             <h2 className="pt24">Cancellation policy</h2>
                             <div className="border-bottom pb24">Cancel before check-in for a partial refund. After that, your refund depends on when you cancel.</div>
@@ -152,25 +169,11 @@ export function StayOrder() {
                             </div>
                         }
                     </div>
-                    <div className="stay-modal">
-                        <div className="stay-details">
-                            <div>
-                                <img src={stay.imgUrls[0]} />
-                            </div>
-                            <div className="stay-details-txt">
-                                <div className="stay-summary">
-                                    <h5 className="stay-type">{stay.type}</h5>
-                                    <h5 className="stay-name">{stay.name}</h5>
-                                </div>
-                                <div className="flex reviews">
-                                    <ReviewRate reviews={stay.reviews} />
-                                    <div className="reviews-count">{'(' + stay.reviews.length + ')'}</div>
-                                </div>
-                            </div>
-                        </div>
+                    {screenWidth >= 744 && <div className="stay-modal">
+                        <StaySummary stay={stay} />
                         <h2>Price details</h2>
                         <OrderPriceSum checkIn={currOrder.checkIn} checkOut={currOrder.checkOut} price={stay.price} cleaningFee={stay.cleaningFee} />
-                    </div>
+                    </div>}
                 </div>
             </section>}
         </div >
